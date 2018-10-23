@@ -28,14 +28,14 @@ public class App extends Application {
     
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Pane root;
-        //root = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLLogin.fxml"));
+        //Pane root;root = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLLogin.fxml"));     
+        Pane root;root = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLVboxTelaPrincipal.fxml"));     
+        Scene scene = new Scene(root);
         
-//        Scene scene = new Scene(root);
-//        
-//        primaryStage.setScene(scene);
-//        primaryStage.show();
-//        
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        
+        
 //        EntityManager em =  ConnectionFactory.getInstance().getConnection();
 //        try{
 //        

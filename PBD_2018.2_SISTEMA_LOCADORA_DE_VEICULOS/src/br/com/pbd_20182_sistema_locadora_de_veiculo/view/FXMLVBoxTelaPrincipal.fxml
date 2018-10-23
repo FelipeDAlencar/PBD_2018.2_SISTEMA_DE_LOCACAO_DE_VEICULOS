@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="br.com.pbd_20182_sistema_locadora_de_veiculo.controller.FXMLVBoxTelaPrincipalController">
+   <children>
+      <VBox layoutX="193.0" layoutY="45.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <MenuBar>
+              <menus>
+                <Menu mnemonicParsing="false" text="Cadastros">
+                  <items>
+                    <MenuItem fx:id="menuItemClientes" mnemonicParsing="false" text="Clientes" />
+                        <MenuItem fx:id="menuItemFuncionarios" mnemonicParsing="false" text="Funcionarios" />
+                        <MenuItem fx:id="menuItemVeiculos" mnemonicParsing="false" text="Veículos" />
+                        <MenuItem fx:id="menuItemReservas" mnemonicParsing="false" text="Reservas" />
+                        <MenuItem fx:id="menuItemLocacoes" mnemonicParsing="false" text="Locações" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Relatorios">
+                  <items>
+                    <MenuItem fx:id="menuItemClientesFisicos" mnemonicParsing="false" text="Cliente Físicos" />
+                        <MenuItem fx:id="menuItemPessoasJuridicas" mnemonicParsing="false" text="Cliente Juridicos" />
+                        <MenuItem fx:id="menuItemReservasPorPeriodo" mnemonicParsing="false" text="Reservar por período" />
+                        <MenuItem fx:id="menuItemLocacoesPorPeriodo" mnemonicParsing="false" text="Locações por período" />
+                        <MenuItem fx:id="menuItemLocacoesPorCliente" mnemonicParsing="false" text="Locações por clientes" />
+                        <MenuItem fx:id="MenuItemLocacoesPorMotorista" mnemonicParsing="false" text="Locações por motorista" />
+                        <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+                        <MenuItem mnemonicParsing="false" text="Histórico de revisões por carro" />
+                        <MenuItem fx:id="MenuItemPorCategoriaMaisReservadas" mnemonicParsing="false" text="Por categoria mais reservada" />
+                  </items>
+                </Menu>
+                  <Menu mnemonicParsing="false" text="Administração" />
+              </menus>
+            </MenuBar>
+            <AnchorPane prefHeight="377.0" prefWidth="600.0" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
