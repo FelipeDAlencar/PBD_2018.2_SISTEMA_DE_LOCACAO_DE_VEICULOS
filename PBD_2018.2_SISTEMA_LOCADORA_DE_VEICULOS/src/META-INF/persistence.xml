@@ -5,7 +5,7 @@
     <!-- Implementação do JPA -->
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     <!-- Lista de entidades -->
-    <class>br.com.felipe.model.Categoria</class>
+    <class>br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica</class>
     <properties>
       <!-- Propriedades JDBC -->
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
