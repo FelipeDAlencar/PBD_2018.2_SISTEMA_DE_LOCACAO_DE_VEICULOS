@@ -6,6 +6,7 @@
 package br.com.pbd_20182_sistema_locadora_de_veiculo.model;
 
 
+import br.com.pbd_20182_sistema_locadora_de_veiculo.dao.EntidadeBase;
 import java.util.Calendar;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,7 +20,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "pessoa_fisica")
-public class PessoaFisica extends Pessoa{
+public class PessoaFisica extends Pessoa {
     
     @Column(name = "cpf", length = 14, nullable = false)
     private String CPF;

@@ -6,6 +6,7 @@
 package App;
 
 import br.com.pbd_20182_sistema_locadora_de_veiculo.connection.ConnectionFactory;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.dao.DAOGenerico;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Pessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
 import java.io.IOException;
@@ -36,27 +37,21 @@ public class App extends Application {
         primaryStage.show();
         
         
-//        EntityManager em =  ConnectionFactory.getInstance().getConnection();
-//        try{
-//        
+        DAOGenerico dao = new DAOGenerico();
+        
 //        PessoaFisica pessoa = new PessoaFisica();
-//        pessoa.setCodigo("p1");
-//        pessoa.setNome("Felipe");
+//        pessoa.setCodigo("p2");
+//        pessoa.setNome("Alissim");
 //        pessoa.setData_nascimento(Calendar.getInstance());
 //        pessoa.setData_vencimentoCNH(Calendar.getInstance());
-//        pessoa.setIdentificacao("aaaa");
-//        pessoa.setNumero_CNH("123");
-//        pessoa.setCPF("108590");
-//  
-//        em.getTransaction().begin();
-//        em.persist(pessoa);
-//        em.getTransaction().commit();
-//        }catch(Exception e){
-//            e.printStackTrace();
-//            em.getTransaction().rollback();
-//        }finally{
-//            em.close();
-//        }
+//        pessoa.setIdentificacao("BBBB");
+//        pessoa.setNumero_CNH("321");
+//        pessoa.setCPF("0000000");
+//        
+//        
+//        dao.salvar(pessoa);
+  
+        
         
         
         

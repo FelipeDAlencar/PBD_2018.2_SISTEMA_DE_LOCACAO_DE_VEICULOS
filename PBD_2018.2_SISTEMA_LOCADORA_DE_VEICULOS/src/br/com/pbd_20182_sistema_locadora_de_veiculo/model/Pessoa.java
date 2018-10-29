@@ -7,6 +7,7 @@ package br.com.pbd_20182_sistema_locadora_de_veiculo.model;
 
 
 
+import br.com.pbd_20182_sistema_locadora_de_veiculo.dao.EntidadeBase;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +24,7 @@ import javax.persistence.Table;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "pessoa")
-public abstract class Pessoa{
+public abstract class Pessoa implements EntidadeBase{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
@@ -33,6 +34,7 @@ public abstract class Pessoa{
     private String codigo;
     
 
+    @Override
     public Integer getId() {
         return id;
     }

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="479.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.pbd_20182_sistema_locadora_de_veiculo.controller.FXMLAnchoPaneCadastroClienteController">
+   <children>
+      <SplitPane dividerPositions="0.29797979797979796" layoutX="272.0" layoutY="169.0" prefHeight="479.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="158.0" prefWidth="174.0">
+               <children>
+                  <TableView fx:id="TableViewClientes" layoutX="35.0" layoutY="56.0" prefHeight="477.0" prefWidth="235.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columns>
+                      <TableColumn fx:id="ColunaNomeCliente" prefWidth="75.0" text="Nome" />
+                      <TableColumn fx:id="ColunaCPFCliente" prefWidth="75.0" text="CPF" />
+                        <TableColumn fx:id="ColunaCodigoCliente" prefWidth="84.0" text="Codigo" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+          <AnchorPane accessibleRole="BUTTON" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <GridPane alignment="BASELINE_RIGHT" layoutX="135.0" layoutY="111.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="256.0" prefWidth="288.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="148.0" minWidth="10.0" prefWidth="112.0" />
+                      <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="131.0" minWidth="10.0" prefWidth="131.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Codigo" />
+                        <Label text="Nome" GridPane.rowIndex="1" />
+                        <Label text="CPF" GridPane.rowIndex="3" />
+                        <Label fx:id="lbNumeroCNH" text="Numero CNH" GridPane.rowIndex="5" />
+                        <Label text="Data de vencimento CNH" GridPane.rowIndex="4" />
+                        <Label text="Data de nascimento" GridPane.rowIndex="2" />
+                        <Label text="Identificacao" GridPane.rowIndex="6" />
+                        <Label fx:id="lbCodigo" text="Label" textAlignment="JUSTIFY" GridPane.columnIndex="1" />
+                        <Label fx:id="lbNome" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="lbDataNascimento" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="lbCPF" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label fx:id="DataDeVencimentoCNH" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label fx:id="DataNascimento" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label fx:id="lbIdentificacao" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                     </children>
+                  </GridPane>
+                  <Label layoutX="145.0" layoutY="24.0" text="Detlhes do cliente">
+                     <font>
+                        <Font name="Arial Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <Group layoutX="187.0" layoutY="373.0" />
+                  <HBox layoutX="317.0" layoutY="21.0" prefHeight="25.0" prefWidth="224.0">
+                     <children>
+                        <TextField fx:id="tfPesquisa" />
+                        <Button fx:id="btnPesquisar" accessibleRole="INCREMENT_BUTTON" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0"  text="Pesquisar" />
+                     </children>
+                  </HBox>
+                  <Button fx:id="BtnInserirCliente" layoutX="330.0" layoutY="438.0" mnemonicParsing="false" onAction="#acoesDeBotao" prefHeight="25.0" prefWidth="59.0" text="Inserir" />
+                  <Button fx:id="btnAlterar" layoutX="400.0" layoutY="438.0" mnemonicParsing="false" onAction="#acoesDeBotao" prefHeight="25.0" prefWidth="59.0" text="Alterar" />
+                  <Button fx:id="BtnExcluir" layoutX="470.0" layoutY="438.0" mnemonicParsing="false" onAction="#acoesDeBotao" prefHeight="25.0" prefWidth="59.0" text="Excluir" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
+<!--
+    style="-fx-background-image:  url(/res/icon-pesquisar.jpg);
+-->
