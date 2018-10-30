@@ -49,7 +49,7 @@ public class App extends Application {
 //        pessoa.setCPF("0000000");
         
         
-        dao.salvar(pessoa);
+     //   dao.salvar(pessoa);
   
         
         
