@@ -6,7 +6,7 @@
 package br.com.pbd_20182_sistema_locadora_de_veiculo.model;
 
 
-import br.com.pbd_20182_sistema_locadora_de_veiculo.dao.EntidadeBase;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.EntidadeBase;
 import java.util.Calendar;
 import javax.persistence.Column;
 import javax.persistence.Entity;

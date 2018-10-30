@@ -6,7 +6,7 @@
 package App;
 
 import br.com.pbd_20182_sistema_locadora_de_veiculo.connection.ConnectionFactory;
-import br.com.pbd_20182_sistema_locadora_de_veiculo.dao.DAOGenerico;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOGenerico;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Pessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
 import java.io.IOException;
@@ -47,9 +47,9 @@ public class App extends Application {
 //        pessoa.setIdentificacao("BBBB");
 //        pessoa.setNumero_CNH("321");
 //        pessoa.setCPF("0000000");
-//        
-//        
-//        dao.salvar(pessoa);
+        
+        
+        dao.salvar(pessoa);
   
         
         
