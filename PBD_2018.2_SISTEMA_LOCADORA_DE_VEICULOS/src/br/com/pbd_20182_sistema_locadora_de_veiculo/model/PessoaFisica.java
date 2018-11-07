@@ -6,8 +6,10 @@
 package br.com.pbd_20182_sistema_locadora_de_veiculo.model;
 
 
-import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.EntidadeBase;
+
+import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -20,9 +22,9 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "pessoa_fisica")
-public class PessoaFisica extends Pessoa {
+public class PessoaFisica extends Pessoa{
     
-    @Column(name = "cpf", length = 14, nullable = false)
+    @Column(name = "cpf", length = 11, nullable = false)
     private String CPF;
    
     @Temporal(TemporalType.DATE)
@@ -76,6 +78,50 @@ public class PessoaFisica extends Pessoa {
     public void setNumero_CNH(String numero_CNH) {
         this.numero_CNH = numero_CNH;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.CPF);
+        hash = 97 * hash + Objects.hashCode(this.data_nascimento);
+        hash = 97 * hash + Objects.hashCode(this.data_vencimentoCNH);
+        hash = 97 * hash + Objects.hashCode(this.identificacao);
+        hash = 97 * hash + Objects.hashCode(this.numero_CNH);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final PessoaFisica other = (PessoaFisica) obj;
+        if (!Objects.equals(this.CPF, other.CPF)) {
+            return false;
+        }
+        if (!Objects.equals(this.identificacao, other.identificacao)) {
+            return false;
+        }
+        if (!Objects.equals(this.numero_CNH, other.numero_CNH)) {
+            return false;
+        }
+        if (!Objects.equals(this.data_nascimento, other.data_nascimento)) {
+            return false;
+        }
+        if (!Objects.equals(this.data_vencimentoCNH, other.data_vencimentoCNH)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
+    
     
     
     

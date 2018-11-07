@@ -6,7 +6,6 @@
 package br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao;
 
 import br.com.pbd_20182_sistema_locadora_de_veiculo.connection.ConnectionFactory;
-import java.util.ArrayList;
 import javax.persistence.EntityManager;
 
 
@@ -25,7 +24,6 @@ public class DAOGenerico <T extends EntidadeBase>{
 
     public void salvar(T t) {
         EntityManager em = ConnectionFactory.getInstance().getConnection();
-
         try {
             em.getTransaction().begin();
             if (t.getId() != null) {

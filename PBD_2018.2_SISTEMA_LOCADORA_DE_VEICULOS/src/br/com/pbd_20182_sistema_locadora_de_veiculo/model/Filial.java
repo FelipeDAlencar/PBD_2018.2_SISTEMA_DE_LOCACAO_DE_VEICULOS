@@ -5,8 +5,6 @@
  */
 package br.com.pbd_20182_sistema_locadora_de_veiculo.model;
 
-
-
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.EntidadeBase;
 import java.io.Serializable;
 import java.util.Objects;
@@ -15,31 +13,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
 
-/**
- *
- * @author Felipe
- */
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "pessoa")
-@SequenceGenerator(name = "pessoa_sequencia", sequenceName = "pessoa_seq", initialValue = 1, allocationSize = 1)
-public abstract class Pessoa implements EntidadeBase, Serializable{
+@SequenceGenerator(name = "filial_sequencia", sequenceName = "filial_seq", initialValue = 1, allocationSize = 1)
+public class Filial implements Serializable, EntidadeBase {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pessoa_sequencia")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "filial_sequencia")
     private Integer id;
-    @Column(length = 30, nullable = false)
+    @Column(nullable = false)
     private String nome;
-    @Column(nullable = false, unique = true)
-    private String codigo;
     @OneToOne
     private Endereco endereco;
-    
 
     @Override
     public Integer getId() {
@@ -48,16 +35,6 @@ public abstract class Pessoa implements EntidadeBase, Serializable{
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
     }
 
     public String getNome() {
@@ -78,11 +55,10 @@ public abstract class Pessoa implements EntidadeBase, Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 37 * hash + Objects.hashCode(this.id);
-        hash = 37 * hash + Objects.hashCode(this.nome);
-        hash = 37 * hash + Objects.hashCode(this.codigo);
-        hash = 37 * hash + Objects.hashCode(this.endereco);
+        int hash = 5;
+        hash = 53 * hash + Objects.hashCode(this.id);
+        hash = 53 * hash + Objects.hashCode(this.nome);
+        hash = 53 * hash + Objects.hashCode(this.endereco);
         return hash;
     }
 
@@ -97,11 +73,8 @@ public abstract class Pessoa implements EntidadeBase, Serializable{
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Pessoa other = (Pessoa) obj;
+        final Filial other = (Filial) obj;
         if (!Objects.equals(this.nome, other.nome)) {
-            return false;
-        }
-        if (!Objects.equals(this.codigo, other.codigo)) {
             return false;
         }
         if (!Objects.equals(this.id, other.id)) {
@@ -113,9 +86,4 @@ public abstract class Pessoa implements EntidadeBase, Serializable{
         return true;
     }
 
-   
-   
-    
-    
-    
 }
