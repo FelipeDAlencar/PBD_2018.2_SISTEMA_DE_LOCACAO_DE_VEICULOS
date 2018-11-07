@@ -5,9 +5,6 @@
  */
 package br.com.pbd_20182_sistema_locadora_de_veiculo.model;
 
-
-
-import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Objects;
 import javax.persistence.Column;

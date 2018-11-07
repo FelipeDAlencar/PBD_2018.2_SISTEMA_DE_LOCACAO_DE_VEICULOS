@@ -5,12 +5,21 @@
         <!-- Implementação do JPA -->
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <!-- Lista de entidades -->
-        <class>br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica</class>
+        <class>br.com.pbd_20182_sistema_locadora_de_veiculo.model.Pessoa</class>
         <class>br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica</class>
         <class>br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaJuridica</class>
         <class>br.com.pbd_20182_sistema_locadora_de_veiculo.model.Endereco</class>
         <class>br.com.pbd_20182_sistema_locadora_de_veiculo.model.Filial</class>
         <class>br.com.pbd_20182_sistema_locadora_de_veiculo.model.Funcionario</class>
+        <class>br.com.pbd_20182_sistema_locadora_de_veiculo.model.Log</class>
+        <class>br.com.pbd_20182_sistema_locadora_de_veiculo.model.Veiculo</class>
+        <class>br.com.pbd_20182_sistema_locadora_de_veiculo.model.Locacao</class>
+        <class>br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria</class>
+        <class>br.com.pbd_20182_sistema_locadora_de_veiculo.model.CaminhonetaDeCarga</class>
+        <class>br.com.pbd_20182_sistema_locadora_de_veiculo.model.CaminhonetaDePassageiros</class>
+        <class>br.com.pbd_20182_sistema_locadora_de_veiculo.model.Geral</class>
+         
+         
         <properties>
             <!-- Propriedades JDBC -->
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
@@ -22,6 +31,7 @@
             <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
+            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
         </properties>
     </persistence-unit>
 </persistence>
