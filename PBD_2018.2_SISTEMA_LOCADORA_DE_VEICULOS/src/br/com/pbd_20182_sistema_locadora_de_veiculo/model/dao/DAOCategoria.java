@@ -6,7 +6,7 @@
 package br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao;
 
 import br.com.pbd_20182_sistema_locadora_de_veiculo.connection.ConnectionFactory;
-import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
 import java.util.ArrayList;
 import javax.persistence.EntityManager;
 
@@ -14,15 +14,15 @@ import javax.persistence.EntityManager;
  *
  * @author Felipe
  */
-public class DAOPessoaFisica extends DAOGenerico<PessoaFisica> implements IDAOPessoaFisica {
+public class DAOCategoria extends DAOGenerico<Categoria> implements IDAOCategoria {
 
     @Override
-    public ArrayList<PessoaFisica> findAll() {
+    public ArrayList<Categoria> findAll() {
         EntityManager em = ConnectionFactory.getInstance().getConnection();
-        ArrayList<PessoaFisica> pessoaFisicas = null;
+        ArrayList<Categoria> categorias = null;
 
         try {
-            pessoaFisicas = (ArrayList) em.createQuery("from PessoaFisica p").getResultList();
+            categorias = (ArrayList) em.createQuery("from categoria c").getResultList();
         } catch (Exception e) {
             e.printStackTrace();
 
@@ -30,6 +30,7 @@ public class DAOPessoaFisica extends DAOGenerico<PessoaFisica> implements IDAOPe
             em.close();
         }
 
-        return pessoaFisicas;
+        return categorias;
     }
+
 }

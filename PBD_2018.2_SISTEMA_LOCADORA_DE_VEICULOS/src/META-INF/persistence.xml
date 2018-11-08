@@ -18,6 +18,7 @@
         <class>br.com.pbd_20182_sistema_locadora_de_veiculo.model.CaminhonetaDeCarga</class>
         <class>br.com.pbd_20182_sistema_locadora_de_veiculo.model.CaminhonetaDePassageiros</class>
         <class>br.com.pbd_20182_sistema_locadora_de_veiculo.model.Geral</class>
+        <class>br.com.pbd_20182_sistema_locadora_de_veiculo.model.ReservaPessoasCategorias</class>
          
          
         <properties>

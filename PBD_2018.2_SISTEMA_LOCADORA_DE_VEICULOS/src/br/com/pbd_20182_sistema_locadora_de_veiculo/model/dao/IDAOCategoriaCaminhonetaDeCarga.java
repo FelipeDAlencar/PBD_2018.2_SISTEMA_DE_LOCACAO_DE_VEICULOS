@@ -5,10 +5,13 @@
  */
 package br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao;
 
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.CaminhonetaDeCarga;
+import java.util.ArrayList;
+
 /**
  *
  * @author Felipe
  */
 public interface IDAOCategoriaCaminhonetaDeCarga {
-    
+     public ArrayList<CaminhonetaDeCarga> findAll();
 }

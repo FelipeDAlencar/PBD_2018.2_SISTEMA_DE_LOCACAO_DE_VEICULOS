@@ -5,10 +5,15 @@
  */
 package br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao;
 
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Endereco;
+import java.util.ArrayList;
+
 /**
  *
  * @author Felipe
  */
 public interface IDAOEndereco {
+    
+     public ArrayList<Endereco> findAll();
     
 }

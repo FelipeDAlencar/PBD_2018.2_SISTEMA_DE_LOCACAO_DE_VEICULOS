@@ -3,16 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao;
-
-import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Log;
-import java.util.ArrayList;
+package br.com.pbd_20182_sistema_locadora_de_veiculo.model.business;
 
 /**
  *
  * @author Felipe
  */
-public interface IDAOLog {
+public class BusinessCategoria {
     
-     public ArrayList<Log> findAll();
 }

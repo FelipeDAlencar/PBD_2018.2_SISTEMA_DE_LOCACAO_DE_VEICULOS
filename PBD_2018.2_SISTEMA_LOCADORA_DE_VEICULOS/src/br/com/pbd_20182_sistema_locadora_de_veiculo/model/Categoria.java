@@ -1,6 +1,5 @@
 package br.com.pbd_20182_sistema_locadora_de_veiculo.model;
 
-import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.EntidadeBase;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
@@ -43,8 +42,7 @@ public class Categoria implements Serializable, EntidadeBase {
     private boolean tipoDeCambio;
     @Column(name = "camera_de_re")
     private boolean cameraDeRe;
-    @ManyToMany(mappedBy = "categorias")
-    private List<Pessoa> pessoas;
+    
     
     @Override
     public Integer getId() {
@@ -151,13 +149,7 @@ public class Categoria implements Serializable, EntidadeBase {
         this.cameraDeRe = cameraDeRe;
     }
 
-    public List<Pessoa> getPessoas() {
-        return pessoas;
-    }
-
-    public void setPessoas(List<Pessoa> pessoas) {
-        this.pessoas = pessoas;
-    }
+  
 
     @Override
     public int hashCode() {
@@ -175,7 +167,6 @@ public class Categoria implements Serializable, EntidadeBase {
         hash = 79 * hash + (this.radio ? 1 : 0);
         hash = 79 * hash + (this.tipoDeCambio ? 1 : 0);
         hash = 79 * hash + (this.cameraDeRe ? 1 : 0);
-        hash = 79 * hash + Objects.hashCode(this.pessoas);
         return hash;
     }
 
@@ -228,9 +219,6 @@ public class Categoria implements Serializable, EntidadeBase {
             return false;
         }
         if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (!Objects.equals(this.pessoas, other.pessoas)) {
             return false;
         }
         return true;

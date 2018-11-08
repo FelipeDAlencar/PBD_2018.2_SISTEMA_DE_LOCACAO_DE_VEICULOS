@@ -7,10 +7,11 @@ package br.com.pbd_20182_sistema_locadora_de_veiculo.model;
 
 
 
-import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.EntidadeBase;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,9 +19,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -43,10 +42,10 @@ public abstract class Pessoa implements EntidadeBase, Serializable{
     private String codigo;
     @OneToOne
     private Endereco endereco;
-    @ManyToMany
-    @JoinTable(name = "pessoas_categorias", joinColumns = @JoinColumn(name = "pessoa_id"),
-            inverseJoinColumns = @JoinColumn(name = "categoria_id"))
-    private List<Categoria>categorias;
+    @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL)
+    private List<ReservaPessoasCategorias> reservaPessoasCategorias;
+    
+        
     
 
     @Override
@@ -84,22 +83,22 @@ public abstract class Pessoa implements EntidadeBase, Serializable{
         this.endereco = endereco;
     }
 
-    public List<Categoria> getCategorias() {
-        return categorias;
+    public List<ReservaPessoasCategorias> getReservaPessoasCategorias() {
+        return reservaPessoasCategorias;
     }
 
-    public void setCategorias(List<Categoria> categorias) {
-        this.categorias = categorias;
+    public void setReservaPessoasCategorias(ArrayList<ReservaPessoasCategorias> reservaPessoasCategorias) {
+        this.reservaPessoasCategorias = reservaPessoasCategorias;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 17 * hash + Objects.hashCode(this.id);
-        hash = 17 * hash + Objects.hashCode(this.nome);
-        hash = 17 * hash + Objects.hashCode(this.codigo);
-        hash = 17 * hash + Objects.hashCode(this.endereco);
-        hash = 17 * hash + Objects.hashCode(this.categorias);
+        hash = 31 * hash + Objects.hashCode(this.id);
+        hash = 31 * hash + Objects.hashCode(this.nome);
+        hash = 31 * hash + Objects.hashCode(this.codigo);
+        hash = 31 * hash + Objects.hashCode(this.endereco);
+        hash = 31 * hash + Objects.hashCode(this.reservaPessoasCategorias);
         return hash;
     }
 
@@ -127,13 +126,16 @@ public abstract class Pessoa implements EntidadeBase, Serializable{
         if (!Objects.equals(this.endereco, other.endereco)) {
             return false;
         }
-        if (!Objects.equals(this.categorias, other.categorias)) {
+        if (!Objects.equals(this.reservaPessoasCategorias, other.reservaPessoasCategorias)) {
             return false;
         }
         return true;
     }
     
     
+    
+    
+
    
     
     

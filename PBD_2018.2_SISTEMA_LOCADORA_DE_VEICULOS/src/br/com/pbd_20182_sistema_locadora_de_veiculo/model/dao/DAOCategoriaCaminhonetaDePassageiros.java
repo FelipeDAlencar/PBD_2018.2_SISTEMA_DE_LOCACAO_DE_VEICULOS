@@ -6,7 +6,8 @@
 package br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao;
 
 import br.com.pbd_20182_sistema_locadora_de_veiculo.connection.ConnectionFactory;
-import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.CaminhonetaDePassageiros;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
 import java.util.ArrayList;
 import javax.persistence.EntityManager;
 
@@ -14,22 +15,22 @@ import javax.persistence.EntityManager;
  *
  * @author Felipe
  */
-public class DAOPessoaFisica extends DAOGenerico<PessoaFisica> implements IDAOPessoaFisica {
+public class DAOCategoriaCaminhonetaDePassageiros extends DAOGenerico<CaminhonetaDePassageiros> implements IDAOCategoriaCaminhonetaDePassageiros{
 
     @Override
-    public ArrayList<PessoaFisica> findAll() {
+    public ArrayList<CaminhonetaDePassageiros> findAll() {
         EntityManager em = ConnectionFactory.getInstance().getConnection();
-        ArrayList<PessoaFisica> pessoaFisicas = null;
+        ArrayList<CaminhonetaDePassageiros> caminhonetasDePassageiros = null;
 
         try {
-            pessoaFisicas = (ArrayList) em.createQuery("from PessoaFisica p").getResultList();
+            caminhonetasDePassageiros = (ArrayList) em.createQuery("from caminhonetas_de_passageiros c").getResultList();
         } catch (Exception e) {
             e.printStackTrace();
 
         } finally {
             em.close();
         }
-
-        return pessoaFisicas;
+        return caminhonetasDePassageiros;
     }
+    
 }
