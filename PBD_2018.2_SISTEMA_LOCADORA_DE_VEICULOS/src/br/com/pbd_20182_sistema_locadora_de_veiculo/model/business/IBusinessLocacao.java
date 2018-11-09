@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package br.com.pbd_20182_sistema_locadora_de_veiculo.model.business;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Locacao;
+import java.util.ArrayList;
 
 /**
  *
@@ -11,4 +13,8 @@ package br.com.pbd_20182_sistema_locadora_de_veiculo.model.business;
  */
 public interface IBusinessLocacao {
     
+    public void salvar(Locacao locacao);
+    public ArrayList<Locacao> listarTodos();
+    public Locacao buscarPorId(int id);
+    public void alterar(Locacao locacao);
 }

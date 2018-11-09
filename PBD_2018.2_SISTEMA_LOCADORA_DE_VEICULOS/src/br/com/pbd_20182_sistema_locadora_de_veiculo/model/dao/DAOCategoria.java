@@ -15,7 +15,8 @@ import javax.persistence.EntityManager;
  * @author Felipe
  */
 public class DAOCategoria extends DAOGenerico<Categoria> implements IDAOCategoria {
-
+    
+    
     @Override
     public ArrayList<Categoria> findAll() {
         EntityManager em = ConnectionFactory.getInstance().getConnection();
