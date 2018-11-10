@@ -11,7 +11,8 @@ public class Funcionario extends Pessoa{
     private String cargo;
     @Column(name = "super_usuario")
     private boolean superUsuario;
-    
+    @Column(length = 20, nullable = false)
+    private String matricula;
 
     public String getCargo() {
         return cargo;
@@ -29,11 +30,20 @@ public class Funcionario extends Pessoa{
         this.superUsuario = superUsuario;
     }
 
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.cargo);
-        hash = 97 * hash + (this.superUsuario ? 1 : 0);
+        int hash = 3;
+        hash = 29 * hash + Objects.hashCode(this.cargo);
+        hash = 29 * hash + (this.superUsuario ? 1 : 0);
+        hash = 29 * hash + Objects.hashCode(this.matricula);
         return hash;
     }
 
@@ -55,8 +65,13 @@ public class Funcionario extends Pessoa{
         if (!Objects.equals(this.cargo, other.cargo)) {
             return false;
         }
+        if (!Objects.equals(this.matricula, other.matricula)) {
+            return false;
+        }
         return true;
     }
+    
+   
     
     
     

@@ -21,7 +21,7 @@ import javax.persistence.TemporalType;
 @Table(name = "pessoa_fisica")
 public class PessoaFisica extends Pessoa{
     
-    @Column(name = "cpf", length = 11, nullable = false)
+    @Column(name = "cpf", length = 11, nullable = false, unique = true)
     private String CPF;
    
     @Temporal(TemporalType.DATE)

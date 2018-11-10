@@ -56,7 +56,7 @@ public class FXMLVBoxTelaPrincipalController implements  Initializable{
     private MenuItem MenuItemPorCategoriaMaisReservadas;
 
     @FXML
-    private Menu menuAdministracao;
+    public static Menu menuAdministracao;
 
     @FXML
     private AnchorPane AnchorPaneContent;
@@ -82,5 +82,7 @@ public class FXMLVBoxTelaPrincipalController implements  Initializable{
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+    
     
 }

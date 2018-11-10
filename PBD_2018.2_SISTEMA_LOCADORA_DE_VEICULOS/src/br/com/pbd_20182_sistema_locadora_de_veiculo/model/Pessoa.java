@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javassist.expr.Instanceof;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,7 +33,7 @@ import javax.persistence.Table;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "pessoa")
 @SequenceGenerator(name = "pessoa_sequencia", sequenceName = "pessoa_seq", initialValue = 1, allocationSize = 1)
-public abstract class Pessoa implements EntidadeBase, Serializable{
+public class Pessoa implements EntidadeBase, Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pessoa_sequencia")
     private Integer id;
@@ -40,12 +41,21 @@ public abstract class Pessoa implements EntidadeBase, Serializable{
     private String nome;
     @Column(nullable = false, unique = true)
     private String codigo;
+    @Column(length = 50, nullable = false, unique = true)
+    private String login;
+    @Column(length = 50, nullable = false)
+    private String senha;
+    
     @OneToOne
     private Endereco endereco;
     @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL)
     private List<ReservaPessoasCategorias> reservaPessoasCategorias;
     
-        
+    
+    
+    
+    
+    
     
 
     @Override
@@ -91,14 +101,36 @@ public abstract class Pessoa implements EntidadeBase, Serializable{
         this.reservaPessoasCategorias = reservaPessoasCategorias;
     }
 
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public void setReservaPessoasCategorias(List<ReservaPessoasCategorias> reservaPessoasCategorias) {
+        this.reservaPessoasCategorias = reservaPessoasCategorias;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 31 * hash + Objects.hashCode(this.id);
-        hash = 31 * hash + Objects.hashCode(this.nome);
-        hash = 31 * hash + Objects.hashCode(this.codigo);
-        hash = 31 * hash + Objects.hashCode(this.endereco);
-        hash = 31 * hash + Objects.hashCode(this.reservaPessoasCategorias);
+        int hash = 3;
+        hash = 47 * hash + Objects.hashCode(this.id);
+        hash = 47 * hash + Objects.hashCode(this.nome);
+        hash = 47 * hash + Objects.hashCode(this.codigo);
+        hash = 47 * hash + Objects.hashCode(this.login);
+        hash = 47 * hash + Objects.hashCode(this.senha);
+        hash = 47 * hash + Objects.hashCode(this.endereco);
+        hash = 47 * hash + Objects.hashCode(this.reservaPessoasCategorias);
         return hash;
     }
 
@@ -120,6 +152,12 @@ public abstract class Pessoa implements EntidadeBase, Serializable{
         if (!Objects.equals(this.codigo, other.codigo)) {
             return false;
         }
+        if (!Objects.equals(this.login, other.login)) {
+            return false;
+        }
+        if (!Objects.equals(this.senha, other.senha)) {
+            return false;
+        }
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
@@ -132,6 +170,8 @@ public abstract class Pessoa implements EntidadeBase, Serializable{
         return true;
     }
     
+    
+
     
     
     
