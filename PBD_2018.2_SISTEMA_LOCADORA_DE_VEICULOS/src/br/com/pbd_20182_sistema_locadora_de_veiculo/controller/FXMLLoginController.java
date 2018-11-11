@@ -45,6 +45,7 @@ public class FXMLLoginController implements Initializable {
     private PasswordField tfSenha;
 
     private DAOPessoa dAOPessoa = new DAOPessoa();
+    private FXMLVBoxTelaPrincipalController controllerPrincipal;
 
     public FXMLLoginController(Stage stage) {
         this.stage = stage;
@@ -57,14 +58,19 @@ public class FXMLLoginController implements Initializable {
         pessoa.setSenha(tfSenha.getText());
 
         try {
-            if (dAOPessoa.buscarLogin(pessoa) != null) {
-
-                verificarTipoUsuarioLogin(pessoa);
+            pessoa = dAOPessoa.buscarLogin(pessoa);
+            if (pessoa != null) {
 
                 FXMLLoader load = new FXMLLoader();
                 load.setLocation(FXMLVBoxTelaPrincipalController.class
                         .getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLVBoxTelaPrincipal.fxml"));
+
                 Pane root = load.load();
+
+                controllerPrincipal = load.getController();
+
+                verificarTipoUsuarioLogin(pessoa);
+                System.out.println("Aqui2");
 
                 Stage stage = new Stage();
                 Scene scene = new Scene(root);
@@ -74,6 +80,7 @@ public class FXMLLoginController implements Initializable {
                 this.stage.close();
             }
         } catch (Exception e) {
+            System.out.println("Entrou");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("ERRO AO TENTAR LOGAR.");
             alert.show();
@@ -87,16 +94,19 @@ public class FXMLLoginController implements Initializable {
     }
 
     private void verificarTipoUsuarioLogin(Pessoa pessoa) {
-
         if (pessoa instanceof PessoaFisica || pessoa instanceof PessoaJuridica) {
-            System.out.println("É Física");
-            FXMLVBoxTelaPrincipalController.menuAdministracao.setDisable(true);
+            controllerPrincipal.getMenuItemClientes().setDisable(true);
+            controllerPrincipal.getMenuItemFuncionarios().setDisable(true);
+            controllerPrincipal.getMenuItemLocacoes().setDisable(true);
+            controllerPrincipal.getMenuAdministracao().setDisable(true);
+            controllerPrincipal.getMenuRelatorios().setDisable(true);
+
         } else if (pessoa instanceof Funcionario) {
             Funcionario funcionario = (Funcionario) pessoa;
             if (funcionario.isSuperUsuario()) {
                 System.out.println("Tem privilegios");
             } else {
-                System.out.println("Sem privilegios");
+                controllerPrincipal.getMenuAdministracao().setDisable(true);
             }
 
         }

@@ -5,6 +5,7 @@
  */
 package br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao;
 
+import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Pessoa;
 import java.util.ArrayList;
 /**
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 public interface IDAOPessoa {
     
     
-    public Pessoa buscarLogin(Pessoa pessoa);
+    public Pessoa buscarLogin(Pessoa pessoa)throws DAOException;
         
-       
+     public ArrayList<Pessoa> buscarTodos()throws DAOException;
 }

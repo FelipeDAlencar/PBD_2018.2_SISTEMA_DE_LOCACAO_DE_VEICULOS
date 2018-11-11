@@ -7,6 +7,7 @@ package App;
 
 import br.com.pbd_20182_sistema_locadora_de_veiculo.JPA.ConnectionFactory;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.controller.FXMLLoginController;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Endereco;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Funcionario;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Pessoa;
@@ -37,7 +38,7 @@ import javax.persistence.EntityManager;
 public class App extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws IOException {
+    public void start(Stage primaryStage) throws IOException, DAOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLLogin.fxml"));
         loader.setControllerFactory(new Callback<Class<?>, Object>() {
             @Override
@@ -62,23 +63,23 @@ public class App extends Application {
 //        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
 //        System.out.println(sdf.format(data));
         //dao.salvar(pessoa);
-//        PessoaFisica pessoaFisica = new PessoaFisica();
-//        pessoaFisica.setCPF("000");
-//        pessoaFisica.setNumero_CNH("111");
-//        pessoaFisica.setNome("Felipe");
-//        pessoaFisica.setCodigo("00");
-//        pessoaFisica.setLogin("Felipe");
-//        pessoaFisica.setSenha(pessoaFisica.getCPF());
-//
-//        dao.salvar(pessoaFisica);
+//        PessoaJuridica pessoaJuridica = new PessoaJuridica();
+//        pessoaJuridica.setCNPJ("123456");
+//        pessoaJuridica.setInscriçãoEstadual("00005");
+//        pessoaJuridica.setNome("Abimael");
+//        pessoaJuridica.setCodigo("001");
+//        pessoaJuridica.setLogin("Abi");
+//        pessoaJuridica.setSenha(pessoaJuridica.getCNPJ());
+
+//        dao.salvar(pessoaJuridica);
 //        Funcionario funcionario = new Funcionario();
-//        funcionario.setLogin("Alisson");
+//        funcionario.setLogin("Igor");
 //        funcionario.setSenha("123");
-//        funcionario.setCodigo("000");
-//        funcionario.setNome("Alisson");
-//        funcionario.setCargo("Gerente");
-//        funcionario.setSuperUsuario(true);
-//        funcionario.setMatricula("01254");
+//        funcionario.setCodigo("8080");
+//        funcionario.setNome("igo");
+//        funcionario.setCargo("Funcionario");
+//        funcionario.setSuperUsuario(false);
+//        funcionario.setMatricula("01888");
 //        dao.salvar(funcionario);
 //
 //        Pessoa p =  (Pessoa) dao.findById(Pessoa.class, 4);

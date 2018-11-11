@@ -6,6 +6,7 @@
 package br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao;
 
 import br.com.pbd_20182_sistema_locadora_de_veiculo.JPA.ConnectionFactory;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
 import java.util.ArrayList;
 import javax.persistence.EntityManager;
@@ -15,9 +16,13 @@ import javax.persistence.EntityManager;
  * @author Felipe
  */
 public class DAOPessoaFisica extends DAOGenerico<PessoaFisica> implements IDAOPessoaFisica {
-
+    
+    private static DAOPessoaFisica dAOPessoaFisica;
+    
+    
+    
     @Override
-    public ArrayList<PessoaFisica> findAll() {
+    public ArrayList<PessoaFisica> findAll() throws DAOException{
         EntityManager em = ConnectionFactory.getInstance().getConnection();
         ArrayList<PessoaFisica> pessoaFisicas = null;
 

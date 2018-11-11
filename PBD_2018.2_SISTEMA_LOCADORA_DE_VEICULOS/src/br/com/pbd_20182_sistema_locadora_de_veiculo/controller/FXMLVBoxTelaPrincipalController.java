@@ -17,7 +17,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
-public class FXMLVBoxTelaPrincipalController implements  Initializable{
+public class FXMLVBoxTelaPrincipalController implements Initializable {
 
     @FXML
     private MenuItem menuItemClientes;
@@ -56,7 +56,10 @@ public class FXMLVBoxTelaPrincipalController implements  Initializable{
     private MenuItem MenuItemPorCategoriaMaisReservadas;
 
     @FXML
-    public static Menu menuAdministracao;
+    public Menu menuAdministracao;
+
+    @FXML
+    private Menu menuRelatorios;
 
     @FXML
     private AnchorPane AnchorPaneContent;
@@ -64,25 +67,86 @@ public class FXMLVBoxTelaPrincipalController implements  Initializable{
     @FXML
     void acaosMenuItensCadastros(ActionEvent event) {
         Pane pane;
-         try{
-             if(event.getSource() == menuItemClientes){
+        try {
+            if (event.getSource() == menuItemClientes) {
                 pane = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAnchorPaneCadastroCliente.fxml"));
                 AnchorPaneContent.getChildren().setAll(pane);
-             }
-         }catch(Exception e){
-             e.printStackTrace();
-         }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     void acoesMenuItensRelatorios(ActionEvent event) {
 
     }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
+
+    public MenuItem getMenuItemClientes() {
+        return menuItemClientes;
+    }
+
+    public MenuItem getMenuItemFuncionarios() {
+        return menuItemFuncionarios;
+    }
+
+    public MenuItem getMenuItemVeiculos() {
+        return menuItemVeiculos;
+    }
+
+    public MenuItem getMenuItemReservas() {
+        return menuItemReservas;
+    }
+
+    public MenuItem getMenuItemLocacoes() {
+        return menuItemLocacoes;
+    }
+
+    public MenuItem getMenuItemClientesFisicos() {
+        return menuItemClientesFisicos;
+    }
+
+    public MenuItem getMenuItemPessoasJuridicas() {
+        return menuItemPessoasJuridicas;
+    }
+
+    public MenuItem getMenuItemReservasPorPeriodo() {
+        return menuItemReservasPorPeriodo;
+    }
+
+    public MenuItem getMenuItemLocacoesPorPeriodo() {
+        return menuItemLocacoesPorPeriodo;
+    }
+
+    public MenuItem getMenuItemLocacoesPorCliente() {
+        return menuItemLocacoesPorCliente;
+    }
+
+    public MenuItem getMenuItemLocacoesPorMotorista() {
+        return MenuItemLocacoesPorMotorista;
+    }
+
+    public MenuItem getMenuItemPorCategoriaMaisReservadas() {
+        return MenuItemPorCategoriaMaisReservadas;
+    }
+
+    public Menu getMenuAdministracao() {
+        return menuAdministracao;
+    }
+
+    public AnchorPane getAnchorPaneContent() {
+        return AnchorPaneContent;
+    }
+
+    public Menu getMenuRelatorios() {
+        return menuRelatorios;
+    }
     
     
-    
+
 }

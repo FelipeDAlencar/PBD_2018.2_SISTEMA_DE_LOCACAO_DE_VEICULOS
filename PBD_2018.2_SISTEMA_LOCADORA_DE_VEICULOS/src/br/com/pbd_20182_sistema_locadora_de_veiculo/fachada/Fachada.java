@@ -5,6 +5,7 @@
  */
 package br.com.pbd_20182_sistema_locadora_de_veiculo.fachada;
 
+import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.BusinessExpection;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.CaminhonetaDeCarga;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.CaminhonetaDePassageiros;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
@@ -248,8 +249,8 @@ public class Fachada implements IFachada{
     }
 
     @Override
-    public void salvarPessoaFisica(PessoaFisica pessoaFisica) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void salvarPessoaFisica(PessoaFisica pessoaFisica) throws BusinessExpection {
+        businessPessoaFisica.salvar(pessoaFisica);
     }
 
     @Override
@@ -268,8 +269,8 @@ public class Fachada implements IFachada{
     }
 
     @Override
-    public void salvarPessoaJuridica(PessoaJuridica pessoaJuridica) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void salvarPessoaJuridica(PessoaJuridica pessoaJuridica) throws BusinessExpection {
+        businessPessoaJuridica.salvar(pessoaJuridica);
     }
 
     @Override

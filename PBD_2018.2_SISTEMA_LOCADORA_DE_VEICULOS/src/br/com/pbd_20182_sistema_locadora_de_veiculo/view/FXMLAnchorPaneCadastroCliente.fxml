@@ -20,11 +20,11 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="158.0" prefWidth="174.0">
                <children>
-                  <TableView fx:id="TableViewClientes" layoutX="35.0" layoutY="56.0" prefHeight="477.0" prefWidth="235.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="tableViewClientes" layoutX="35.0" layoutY="56.0" prefHeight="477.0" prefWidth="235.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                      <TableColumn fx:id="ColunaNomeCliente" prefWidth="75.0" text="Nome" />
-                      <TableColumn fx:id="ColunaCPFCliente" prefWidth="75.0" text="CPF" />
-                        <TableColumn fx:id="ColunaCodigoCliente" prefWidth="84.0" text="Codigo" />
+                      <TableColumn fx:id="colunaNomeCliente" prefWidth="75.0" text="Nome" />
+                      <TableColumn fx:id="colunaLoginCliente" prefWidth="75.0" text="Login" />
+                        <TableColumn fx:id="colunaCodigoCliente" prefWidth="84.0" text="Codigo" />
                     </columns>
                   </TableView>
                </children>
@@ -39,6 +39,7 @@
                     <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -48,21 +49,23 @@
                      <children>
                         <Label text="Codigo" />
                         <Label text="Nome" GridPane.rowIndex="1" />
-                        <Label text="CPF" GridPane.rowIndex="3" />
-                        <Label fx:id="lbNumeroCNH" text="Numero CNH" GridPane.rowIndex="5" />
-                        <Label text="Data de vencimento CNH" GridPane.rowIndex="4" />
-                        <Label text="Data de nascimento" GridPane.rowIndex="2" />
-                        <Label text="Identificacao" GridPane.rowIndex="6" />
-                        <Label fx:id="lbCodigo" text="Label" textAlignment="JUSTIFY" GridPane.columnIndex="1" />
-                        <Label fx:id="lbNome" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label fx:id="lbDataNascimento" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Label fx:id="lbCPF" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Label fx:id="DataDeVencimentoCNH" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <Label fx:id="DataNascimento" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <Label fx:id="lbIdentificacao" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label fx:id="lbCPFCPNJ" text="CPF" GridPane.rowIndex="3" />
+                        <Label fx:id="lbNumeroCNHD" text="Numero CNH" GridPane.rowIndex="6" />
+                        <Label fx:id="lbDatavencimentoCNHD" text="Data de vencimento CNH" GridPane.rowIndex="5" />
+                        <Label fx:id="lbDataNascimentoD" text="Data de nascimento" GridPane.rowIndex="4" />
+                        <Label fx:id="lbIdentificacaoD" text="Identificacao" GridPane.rowIndex="7" />
+                        <Label fx:id="lbCodigo" textAlignment="JUSTIFY" GridPane.columnIndex="1" />
+                        <Label fx:id="lbNome" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="lbDataNascimento" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label fx:id="lbCPFCNPJVazio" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label fx:id="lbDataDeVencimentoCNH" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label fx:id="lbNumeroCNH" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label fx:id="lbIdentificacao" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <Label text="Login" GridPane.rowIndex="2" />
+                        <Label fx:id="lbLogin" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
-                  <Label layoutX="145.0" layoutY="24.0" text="Detlhes do cliente">
+                  <Label layoutX="145.0" layoutY="24.0" text="Detalhes do cliente">
                      <font>
                         <Font name="Arial Bold" size="17.0" />
                      </font>
