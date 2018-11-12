@@ -12,16 +12,25 @@ import javafx.scene.control.Alert.AlertType;
  *
  * @author Felipe
  */
-public class Alerta {
+public class Alerta extends Alert {
 
-    public static javafx.scene.control.Alert alert;
-    
-    public static void getInstace(AlertType tipo, String title, String cabecalho, String conteudo) {
+    public static Alerta alert;
+
+    public static Alerta getInstace(AlertType tipo) {
         if (alert == null) {
-            alert = new Alert(tipo);
+            return alert = new Alerta(tipo);
         }
+
+        return alert;
+    }
+
+    public Alerta(AlertType alertType) {
+        super(alertType);
+    }
+
+    public void alertar(AlertType tipo, String titulo, String cabecalho, String conteudo ) {
         alert.setAlertType(tipo);
-        alert.setTitle(title);
+        alert.setTitle(titulo);
         alert.setHeaderText(cabecalho);
         alert.setContentText(conteudo);
         alert.show();

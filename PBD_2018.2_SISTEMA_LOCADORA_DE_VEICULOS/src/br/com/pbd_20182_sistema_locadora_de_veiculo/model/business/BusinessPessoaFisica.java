@@ -84,7 +84,10 @@ public class BusinessPessoaFisica implements IBusinessPessoaFisica {
         if (errorMessage.length() == 0) {
             return true;
         } else {
-            Alerta.getInstace(AlertType.ERROR, "Erro ao validar", "Campos Invalidos.", errorMessage);
+            Alerta alerta = Alerta.getInstace(AlertType.NONE);
+            alerta.alertar(AlertType.ERROR, "Erro", 
+                    "Erro ao validar campos.", errorMessage);
+           
             return false;
         }
     }

@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.effect.Blend?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
@@ -34,8 +35,14 @@
                         <MenuItem fx:id="MenuItemPorCategoriaMaisReservadas" mnemonicParsing="false" onAction="#acoesMenuItensRelatorios" text="Por categoria mais reservada" />
                   </items>
                 </Menu>
-                  <Menu fx:id="menuAdministracao" mnemonicParsing="false" text="Administração" />
+                  <Menu fx:id="menuAdministracao" mnemonicParsing="false" text="Administração">
+                     <items>
+                        <MenuItem fx:id="menuItemConfiguracoes" mnemonicParsing="false" onAction="#acaoMenuItemConfiguracoes" text="Configurações" />
+                     </items></Menu>
               </menus>
+               <effect>
+                  <Blend />
+               </effect>
             </MenuBar>
             <AnchorPane fx:id="AnchorPaneContent" prefHeight="479.0" prefWidth="800.0" />
          </children>

@@ -77,7 +77,9 @@ public class BusinessPessoaJuridica implements IBusinessPessoaJuridica{
         if (errorMessage.length() == 0) {
             return true;
         } else {
-            Alerta.getInstace(Alert.AlertType.ERROR, "Erro ao validar", "Campos Invalidos.", errorMessage);
+            Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
+            alerta.alertar(Alert.AlertType.ERROR, "Erro", 
+                    "Erro ao validar campos.", errorMessage);
             return false;
         }
     }

@@ -43,8 +43,8 @@
             <TextField fx:id="tfLogin" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <Button fx:id="btnCadastrar" layoutX="179.0" layoutY="320.0" mnemonicParsing="false" onAction="#acoesBtns" prefHeight="25.0" prefWidth="74.0" text="Cadastrar" />
-      <Button fx:id="BtnCancelar" layoutX="272.0" layoutY="320.0" mnemonicParsing="false" onAction="#acoesBtns" prefHeight="25.0" prefWidth="74.0" text="Cancelar" />
+      <Button fx:id="btnCadastrar" layoutX="179.0" layoutY="320.0" mnemonicParsing="false" onAction="#acoesBtns" prefHeight="31.0" prefWidth="99.0" text="Cadastrar" />
+      <Button fx:id="BtnCancelar" layoutX="296.0" layoutY="320.0" mnemonicParsing="false" onAction="#acoesBtns" prefHeight="31.0" prefWidth="99.0" text="Cancelar" />
       <RadioButton fx:id="rbPessoaJuridica" layoutX="86.0" layoutY="14.0" mnemonicParsing="false" onAction="#acaoRbPessoaJuridica" text="Pessoa Juridica" />
    </children>
 </AnchorPane>

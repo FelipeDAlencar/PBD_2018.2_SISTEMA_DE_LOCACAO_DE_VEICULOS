@@ -179,8 +179,8 @@ public class Fachada implements IFachada{
     }
 
     @Override
-    public void salvarFuncionario(Funcionario funcionario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void salvarFuncionario(Funcionario funcionario) throws BusinessExpection {
+        businessFuncionario.salvar(funcionario);
     }
 
     @Override

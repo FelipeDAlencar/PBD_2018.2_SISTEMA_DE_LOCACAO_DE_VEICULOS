@@ -65,11 +65,28 @@ public class FXMLVBoxTelaPrincipalController implements Initializable {
     private AnchorPane AnchorPaneContent;
 
     @FXML
+    private MenuItem menuItemConfiguracoes;
+
+    @FXML
     void acaosMenuItensCadastros(ActionEvent event) {
         Pane pane;
         try {
             if (event.getSource() == menuItemClientes) {
                 pane = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAnchorPaneCadastroCliente.fxml"));
+                AnchorPaneContent.getChildren().setAll(pane);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void acaoMenuItemConfiguracoes(ActionEvent event) {
+        Pane pane;
+        try {
+            if (event.getSource() == menuItemConfiguracoes) {
+                System.out.println("Entrou");
+                pane = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAnchorPaneGeral.fxml"));
                 AnchorPaneContent.getChildren().setAll(pane);
             }
         } catch (Exception e) {
@@ -146,7 +163,5 @@ public class FXMLVBoxTelaPrincipalController implements Initializable {
     public Menu getMenuRelatorios() {
         return menuRelatorios;
     }
-    
-    
 
 }

@@ -14,6 +14,7 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Pessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOGenerico;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaJuridica;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Util;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOPessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOPessoaFisica;
 import java.io.IOException;
@@ -103,7 +104,12 @@ public class App extends Application {
 //        }
 //
 //        Pessoa.verificarTipoUsuarioLogin(p);
-//
+//        DAOPessoa dAOPessoa = new DAOPessoa();
+//        String ultimoCodigo = dAOPessoa.buscarUltimoCodigo();
+        
+//       System.out.println(Util.gerarCodigoInterno("Felipe", "luc112"));
+
+        System.out.println(Util.formatarData(Calendar.getInstance()));
     }
 
     public static void main(String[] args) {

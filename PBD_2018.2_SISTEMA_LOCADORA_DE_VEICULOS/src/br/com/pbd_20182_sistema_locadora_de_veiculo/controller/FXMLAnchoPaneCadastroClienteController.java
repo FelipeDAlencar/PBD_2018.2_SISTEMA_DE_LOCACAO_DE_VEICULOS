@@ -12,6 +12,7 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Funcionario;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Pessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaJuridica;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Util;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOPessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOPessoaFisica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOPessoaJuridica;
@@ -120,24 +121,30 @@ public class FXMLAnchoPaneCadastroClienteController implements Initializable {
 
     @FXML
     void acoesDeBotao(ActionEvent event) throws BusinessExpection {
-        if (event.getSource() == BtnInserirCliente) {
 
-            boolean confirmacao = exibirTelaDecadastro();
-           
-            if (confirmacao) {
-                Pessoa pessoa = controller.getPessoa();
-                if (pessoa instanceof PessoaFisica) {
-                    fachada.salvarPessoaFisica((PessoaFisica) pessoa);
-                } else {
+        try {
+            if (event.getSource() == BtnInserirCliente) {
 
-                    fachada.salvarPessoaJuridica((PessoaJuridica) pessoa);
+                boolean confirmacao = exibirTelaDecadastro();
+
+                if (confirmacao) {
+                    Pessoa pessoa = controller.getPessoa();
+                    if (pessoa instanceof PessoaFisica) {
+                        fachada.salvarPessoaFisica((PessoaFisica) pessoa);
+                    } else {
+
+                        fachada.salvarPessoaJuridica((PessoaJuridica) pessoa);
+                    }
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setContentText("Cadastrado");
+                    alert.show();
+                    carregarClientes();
+
                 }
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setContentText("Cadastrado");
-                alert.show();
-                carregarClientes();
-            }
 
+            }
+        } catch (BusinessExpection e) {
+        
         }
 
     }
@@ -182,8 +189,8 @@ public class FXMLAnchoPaneCadastroClienteController implements Initializable {
 
                 lbCPFCPNJ.setText("CPF");
                 lbCPFCNPJVazio.setText(((PessoaFisica) pessoa).getCPF());
-                lbDataNascimento.setText(String.valueOf(((PessoaFisica) pessoa).getData_nascimento()));
-                lbDataDeVencimentoCNH.setText(String.valueOf(((PessoaFisica) pessoa).getData_vencimentoCNH()));
+                lbDataNascimento.setText(Util.formatarData(((PessoaFisica) pessoa).getData_nascimento()));
+                lbDataDeVencimentoCNH.setText(Util.formatarData(((PessoaFisica) pessoa).getData_vencimentoCNH()));
                 lbNumeroCNH.setText(((PessoaFisica) pessoa).getNumero_CNH());
                 lbIdentificacao.setText(((PessoaFisica) pessoa).getIdentificacao());
 
