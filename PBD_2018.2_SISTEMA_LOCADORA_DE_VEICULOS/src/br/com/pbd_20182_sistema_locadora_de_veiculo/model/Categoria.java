@@ -1,7 +1,6 @@
 package br.com.pbd_20182_sistema_locadora_de_veiculo.model;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,14 +9,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 @Entity
 @SequenceGenerator(name = "categoria_sequence", sequenceName = "categoria_seq", initialValue = 1, allocationSize = 1)
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Categoria implements Serializable, EntidadeBase {
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "categoria_sequence")
     private Integer id;
@@ -43,6 +41,8 @@ public class Categoria implements Serializable, EntidadeBase {
     @Column(name = "camera_de_re")
     private boolean cameraDeRe;
     
+
+        
     
     @Override
     public Integer getId() {
@@ -224,5 +224,10 @@ public class Categoria implements Serializable, EntidadeBase {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return getNome();
+    }
+    
    
 }

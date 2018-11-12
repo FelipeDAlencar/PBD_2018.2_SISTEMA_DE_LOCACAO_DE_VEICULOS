@@ -23,7 +23,7 @@ public class DAOCategoria extends DAOGenerico<Categoria> implements IDAOCategori
         ArrayList<Categoria> categorias = null;
 
         try {
-            categorias = (ArrayList) em.createQuery("from categoria c").getResultList();
+            categorias = (ArrayList) em.createQuery("from Categoria c").getResultList();
         } catch (Exception e) {
             e.printStackTrace();
 

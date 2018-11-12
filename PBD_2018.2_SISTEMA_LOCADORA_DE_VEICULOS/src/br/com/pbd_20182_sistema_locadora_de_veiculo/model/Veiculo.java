@@ -13,7 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
@@ -42,8 +41,8 @@ public class Veiculo implements Serializable, EntidadeBase{
     private String placa;
     @Column(name = "tipo_de_combustivel", length = 100)
     private String tipoDeCombustivel;
-    @OneToOne
-    private PessoaFisica pessoaFisica;
+    
+   
     @ManyToOne
     private Categoria categoria;
     
@@ -137,13 +136,6 @@ public class Veiculo implements Serializable, EntidadeBase{
         this.tipoDeCombustivel = tipoDeCombustivel;
     }
 
-    public PessoaFisica getPessoaFisica() {
-        return pessoaFisica;
-    }
-
-    public void setPessoaFisica(PessoaFisica pessoaFisica) {
-        this.pessoaFisica = pessoaFisica;
-    }
 
     public Categoria getCategoria() {
         return categoria;
@@ -167,7 +159,6 @@ public class Veiculo implements Serializable, EntidadeBase{
         hash = 79 * hash + Objects.hashCode(this.fabricante);
         hash = 79 * hash + Objects.hashCode(this.placa);
         hash = 79 * hash + Objects.hashCode(this.tipoDeCombustivel);
-        hash = 79 * hash + Objects.hashCode(this.pessoaFisica);
         hash = 79 * hash + Objects.hashCode(this.categoria);
         return hash;
     }
@@ -217,9 +208,7 @@ public class Veiculo implements Serializable, EntidadeBase{
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
-        if (!Objects.equals(this.pessoaFisica, other.pessoaFisica)) {
-            return false;
-        }
+      
         if (!Objects.equals(this.categoria, other.categoria)) {
             return false;
         }

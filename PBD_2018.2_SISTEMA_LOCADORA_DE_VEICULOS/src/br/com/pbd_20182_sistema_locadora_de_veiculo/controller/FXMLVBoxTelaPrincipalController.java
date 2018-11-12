@@ -5,6 +5,7 @@
  */
 package br.com.pbd_20182_sistema_locadora_de_veiculo.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -56,6 +57,9 @@ public class FXMLVBoxTelaPrincipalController implements Initializable {
     private MenuItem MenuItemPorCategoriaMaisReservadas;
 
     @FXML
+    private MenuItem menuItemCategoria;
+
+    @FXML
     public Menu menuAdministracao;
 
     @FXML
@@ -66,9 +70,9 @@ public class FXMLVBoxTelaPrincipalController implements Initializable {
 
     @FXML
     private MenuItem menuItemConfiguracoes;
-
+    
     @FXML
-    void acaosMenuItensCadastros(ActionEvent event) {
+    void acaosMenuItensCadastros(ActionEvent event) throws IOException {
         Pane pane;
         try {
             if (event.getSource() == menuItemClientes) {
@@ -77,6 +81,11 @@ public class FXMLVBoxTelaPrincipalController implements Initializable {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        if(event.getSource() == menuItemReservas){
+            pane = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAnchorPaneCadastroReserva.fxml"));
+            AnchorPaneContent.getChildren().setAll(pane);
+        
         }
     }
 

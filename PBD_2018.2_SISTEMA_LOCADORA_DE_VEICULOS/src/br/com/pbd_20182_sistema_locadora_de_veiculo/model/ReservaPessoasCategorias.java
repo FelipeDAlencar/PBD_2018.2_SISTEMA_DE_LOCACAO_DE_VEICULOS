@@ -30,11 +30,11 @@ public class ReservaPessoasCategorias implements Serializable, EntidadeBase{
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "reserva_sequence")
     private Integer id;
     
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
     
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "pessoa_id")
     private Pessoa pessoa;
     

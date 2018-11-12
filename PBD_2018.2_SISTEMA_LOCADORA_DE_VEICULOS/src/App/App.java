@@ -8,15 +8,20 @@ package App;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.JPA.ConnectionFactory;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.controller.FXMLLoginController;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Endereco;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Funcionario;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Pessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOGenerico;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaJuridica;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ReservaPessoasCategorias;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Util;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOCategoria;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOFuncionario;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOPessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOPessoaFisica;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOReservaPessoaCategoria;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -54,6 +59,7 @@ public class App extends Application {
 
         primaryStage.setScene(scene);
         primaryStage.show();
+        primaryStage.setTitle("LOCADORA DE VEÍCULOS PAJEÚ");
 
         EntityManager em = ConnectionFactory.getInstance().getConnection();
         //new FXMLLoginController(primaryStage);
@@ -71,7 +77,6 @@ public class App extends Application {
 //        pessoaJuridica.setCodigo("001");
 //        pessoaJuridica.setLogin("Abi");
 //        pessoaJuridica.setSenha(pessoaJuridica.getCNPJ());
-
 //        dao.salvar(pessoaJuridica);
 //        Funcionario funcionario = new Funcionario();
 //        funcionario.setLogin("Igor");
@@ -106,10 +111,40 @@ public class App extends Application {
 //        Pessoa.verificarTipoUsuarioLogin(p);
 //        DAOPessoa dAOPessoa = new DAOPessoa();
 //        String ultimoCodigo = dAOPessoa.buscarUltimoCodigo();
-        
 //       System.out.println(Util.gerarCodigoInterno("Felipe", "luc112"));
+//        Categoria categoria =  new Categoria();
+//        categoria.setDescricacao("Tem isso, aquilo, e tals");
+//        categoria.setValor(500);
+//        categoria.setNome("P1");
+//        categoria.setNumeroDePortas(4);
+//        categoria.setArCondicionado(true);
+//        categoria.setMp3(true);
+//        categoria.setNumeroDePassageiros(5);
+//        categoria.setDvd(true);
+//        categoria.setDirecaoHidraulica(true);
+//        categoria.setRadio(true);
+//        categoria.setTipoDeCambio(true);
+//        categoria.setCameraDeRe(true);
+//        
+//        
 
-        System.out.println(Util.formatarData(Calendar.getInstance()));
+
+//                  CODIGO DE INSERÇÃO DE RESERVA    
+//        DAOCategoria dAOCategoria = new DAOCategoria();
+//        DAOFuncionario dAOFuncionario = new DAOFuncionario();
+//        Funcionario funcionario = dAOFuncionario.findAll().get(0);
+//        Categoria categoria = dAOCategoria.findAll().get(0);
+//        DAOPessoaFisica dAOPessoaFisica = new DAOPessoaFisica();
+//        PessoaFisica pessoaFisica = dAOPessoaFisica.findAll().get(0);
+//        ReservaPessoasCategorias reservaPessoasCategorias = new ReservaPessoasCategorias();
+//        reservaPessoasCategorias.setCategoria(categoria);
+//        reservaPessoasCategorias.setDataHora(Calendar.getInstance());
+//        reservaPessoasCategorias.setPessoa(pessoaFisica);
+//        double valorAMais = 10;
+//        reservaPessoasCategorias.setValorPrevisto(categoria.getValor() + valorAMais);
+//        DAOReservaPessoaCategoria dAOReservaPessoaCategoria = new DAOReservaPessoaCategoria();
+//        dAOReservaPessoaCategoria.salvar(reservaPessoasCategorias);
+
     }
 
     public static void main(String[] args) {

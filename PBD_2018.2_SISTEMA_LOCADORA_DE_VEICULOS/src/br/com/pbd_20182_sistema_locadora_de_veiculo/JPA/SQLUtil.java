@@ -15,7 +15,8 @@ public class SQLUtil {
 
         public static final String SQL_BUSCA_LOGIN = "select p from Pessoa p where p.login = :login and p.senha = :senha";
         public static final String SQL_BUSCA_ULTIMOCODIGO = "select MAX(codigo) from Pessoa";
-        public static final String SQL_BUSCAPORBUSCA = "select p from Pessoa where  p.nome ilike :nome";
+        public static final String SQL_BUSCAPORBUSCA = "SELECT p FROM Pessoa p WHERE LOWER(p.nome) LIKE :nome or " +
+"                    LOWER(p.login) LIKE :login or LOWER(p.codigo) LIKE :codigo";
         
     }
 

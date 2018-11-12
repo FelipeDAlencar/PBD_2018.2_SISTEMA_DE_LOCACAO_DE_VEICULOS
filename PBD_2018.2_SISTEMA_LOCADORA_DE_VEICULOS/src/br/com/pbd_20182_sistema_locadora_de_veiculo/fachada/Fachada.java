@@ -79,8 +79,8 @@ public class Fachada implements IFachada{
     }
 
     @Override
-    public void salvarCategoria(Categoria categoria) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void salvarCategoria(Categoria categoria) throws BusinessExpection {
+        businessCategoria.salvar(categoria);
     }
 
     @Override

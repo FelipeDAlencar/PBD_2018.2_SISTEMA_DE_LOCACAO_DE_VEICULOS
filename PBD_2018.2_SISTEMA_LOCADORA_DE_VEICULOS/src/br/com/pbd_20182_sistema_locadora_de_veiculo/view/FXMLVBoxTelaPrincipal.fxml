@@ -20,6 +20,7 @@
                         <MenuItem fx:id="menuItemVeiculos" mnemonicParsing="false" onAction="#acaosMenuItensCadastros" text="Veículos" />
                         <MenuItem fx:id="menuItemReservas" mnemonicParsing="false" onAction="#acaosMenuItensCadastros" text="Reservas" />
                         <MenuItem fx:id="menuItemLocacoes" mnemonicParsing="false" onAction="#acaosMenuItensCadastros" text="Locações" />
+                        <MenuItem fx:id="menuItemCategoria" mnemonicParsing="false" text="Categoria" />
                   </items>
                 </Menu>
                 <Menu fx:id="menuRelatorios" mnemonicParsing="false" text="Relatorios">

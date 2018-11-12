@@ -5,6 +5,7 @@
  */
 package br.com.pbd_20182_sistema_locadora_de_veiculo.model.business;
 
+import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.BusinessExpection;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
 import java.util.ArrayList;
 
@@ -14,10 +15,8 @@ import java.util.ArrayList;
  */
 public interface IBusinessCategoria {
     
-    public void salvar(Categoria categoria);
+    public void salvar(Categoria categoria)throws BusinessExpection;
     public ArrayList<Categoria> listarTodos();
-    public Categoria buscarPorId(int id);
-    public void alterar(Categoria categoria);
-    
+    public Categoria buscarPorId(int id);    
     
 }

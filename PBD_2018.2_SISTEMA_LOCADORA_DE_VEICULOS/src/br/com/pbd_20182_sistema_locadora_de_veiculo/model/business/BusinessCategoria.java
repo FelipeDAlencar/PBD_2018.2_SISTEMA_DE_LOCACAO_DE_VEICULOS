@@ -5,18 +5,29 @@
  */
 package br.com.pbd_20182_sistema_locadora_de_veiculo.model.business;
 
+import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.BusinessExpection;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOCategoria;
 import java.util.ArrayList;
 
 /**
  *
  * @author Felipe
  */
-public class BusinessCategoria implements IBusinessCategoria{
+public class BusinessCategoria implements IBusinessCategoria {
+
+    private DAOCategoria dAOCategoria;
+
+    public BusinessCategoria() {
+        dAOCategoria = new DAOCategoria();
+
+    }
 
     @Override
-    public void salvar(Categoria categoria) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void salvar(Categoria categoria) throws BusinessExpection {
+        if(validar(categoria)){
+            salvar(categoria);
+        }
     }
 
     @Override
@@ -29,9 +40,8 @@ public class BusinessCategoria implements IBusinessCategoria{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void alterar(Categoria categoria) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private boolean validar(Categoria categoria) {
+       return true;
     }
-    
+
 }

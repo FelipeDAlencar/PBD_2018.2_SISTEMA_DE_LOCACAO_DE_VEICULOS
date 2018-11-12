@@ -23,7 +23,7 @@ public class DAOFuncionario extends DAOGenerico<Funcionario> implements IDAOFunc
         ArrayList<Funcionario> funcionarios = null;
 
         try {
-            funcionarios = (ArrayList) em.createQuery("from funcionario c").getResultList();
+            funcionarios = (ArrayList) em.createQuery("from Funcionario c").getResultList();
         } catch (Exception e) {
             e.printStackTrace();
 

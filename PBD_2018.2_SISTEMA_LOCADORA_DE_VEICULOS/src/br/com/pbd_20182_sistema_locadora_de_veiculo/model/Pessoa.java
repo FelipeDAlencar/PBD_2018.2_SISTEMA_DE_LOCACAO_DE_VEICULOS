@@ -48,6 +48,7 @@ public class Pessoa implements EntidadeBase, Serializable{
     
     @OneToOne
     private Endereco endereco;
+    
     @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL)
     private List<ReservaPessoasCategorias> reservaPessoasCategorias;
     
@@ -168,6 +169,11 @@ public class Pessoa implements EntidadeBase, Serializable{
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return getNome();
     }
     
     

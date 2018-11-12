@@ -44,6 +44,12 @@ public class Locacao implements Serializable, EntidadeBase{
     @Column(name = "data_volta")
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar dataVolta;
+    @Column(name = "km_livre")
+    private boolean kmLivre;
+    
+    @OneToOne
+    private PessoaFisica motorista;
+    
     @OneToOne
     private Veiculo veiculo;
 
@@ -135,20 +141,38 @@ public class Locacao implements Serializable, EntidadeBase{
         this.veiculo = veiculo;
     }
 
+    public boolean isKmLivre() {
+        return kmLivre;
+    }
+
+    public void setKmLivre(boolean kmLivre) {
+        this.kmLivre = kmLivre;
+    }
+
+    public PessoaFisica getMotorista() {
+        return motorista;
+    }
+
+    public void setMotorista(PessoaFisica motorista) {
+        this.motorista = motorista;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 89 * hash + Objects.hashCode(this.id);
-        hash = 89 * hash + (this.finalizada ? 1 : 0);
-        hash = 89 * hash + (int) (Double.doubleToLongBits(this.valor) ^ (Double.doubleToLongBits(this.valor) >>> 32));
-        hash = 89 * hash + (int) (Double.doubleToLongBits(this.KmInicialDoVeiculo) ^ (Double.doubleToLongBits(this.KmInicialDoVeiculo) >>> 32));
-        hash = 89 * hash + (int) (Double.doubleToLongBits(this.metadeDaPrimeiraDiaria) ^ (Double.doubleToLongBits(this.metadeDaPrimeiraDiaria) >>> 32));
-        hash = 89 * hash + (int) (Double.doubleToLongBits(this.kmFinalVeiculo) ^ (Double.doubleToLongBits(this.kmFinalVeiculo) >>> 32));
-        hash = 89 * hash + (int) (Double.doubleToLongBits(this.taxaCombustivel) ^ (Double.doubleToLongBits(this.taxaCombustivel) >>> 32));
-        hash = 89 * hash + (int) (Double.doubleToLongBits(this.taxaHigienizacao) ^ (Double.doubleToLongBits(this.taxaHigienizacao) >>> 32));
-        hash = 89 * hash + Objects.hashCode(this.dataIda);
-        hash = 89 * hash + Objects.hashCode(this.dataVolta);
-        hash = 89 * hash + Objects.hashCode(this.veiculo);
+        int hash = 5;
+        hash = 97 * hash + Objects.hashCode(this.id);
+        hash = 97 * hash + (this.finalizada ? 1 : 0);
+        hash = 97 * hash + (int) (Double.doubleToLongBits(this.valor) ^ (Double.doubleToLongBits(this.valor) >>> 32));
+        hash = 97 * hash + (int) (Double.doubleToLongBits(this.KmInicialDoVeiculo) ^ (Double.doubleToLongBits(this.KmInicialDoVeiculo) >>> 32));
+        hash = 97 * hash + (int) (Double.doubleToLongBits(this.metadeDaPrimeiraDiaria) ^ (Double.doubleToLongBits(this.metadeDaPrimeiraDiaria) >>> 32));
+        hash = 97 * hash + (int) (Double.doubleToLongBits(this.kmFinalVeiculo) ^ (Double.doubleToLongBits(this.kmFinalVeiculo) >>> 32));
+        hash = 97 * hash + (int) (Double.doubleToLongBits(this.taxaCombustivel) ^ (Double.doubleToLongBits(this.taxaCombustivel) >>> 32));
+        hash = 97 * hash + (int) (Double.doubleToLongBits(this.taxaHigienizacao) ^ (Double.doubleToLongBits(this.taxaHigienizacao) >>> 32));
+        hash = 97 * hash + Objects.hashCode(this.dataIda);
+        hash = 97 * hash + Objects.hashCode(this.dataVolta);
+        hash = 97 * hash + (this.kmLivre ? 1 : 0);
+        hash = 97 * hash + Objects.hashCode(this.motorista);
+        hash = 97 * hash + Objects.hashCode(this.veiculo);
         return hash;
     }
 
@@ -185,6 +209,9 @@ public class Locacao implements Serializable, EntidadeBase{
         if (Double.doubleToLongBits(this.taxaHigienizacao) != Double.doubleToLongBits(other.taxaHigienizacao)) {
             return false;
         }
+        if (this.kmLivre != other.kmLivre) {
+            return false;
+        }
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
@@ -194,11 +221,17 @@ public class Locacao implements Serializable, EntidadeBase{
         if (!Objects.equals(this.dataVolta, other.dataVolta)) {
             return false;
         }
+        if (!Objects.equals(this.motorista, other.motorista)) {
+            return false;
+        }
         if (!Objects.equals(this.veiculo, other.veiculo)) {
             return false;
         }
         return true;
     }
+    
+   
+    
     
     
     

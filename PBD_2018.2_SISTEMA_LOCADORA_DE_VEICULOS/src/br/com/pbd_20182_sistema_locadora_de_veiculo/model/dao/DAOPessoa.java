@@ -97,8 +97,7 @@ public class DAOPessoa extends DAOGenerico<Pessoa> implements IDAOPessoa {
         EntityManager em = ConnectionFactory.getInstance().getConnection();
         ArrayList<Pessoa> pessoas = null;
         try {
-            TypedQuery<Pessoa> query = em.createQuery("SELECT p FROM Pessoa p WHERE p.nome LIKE :nome or "
-                    + "p.login LIKE :login or p.codigo LIKE :codigo", Pessoa.class);
+            TypedQuery<Pessoa> query = em.createQuery(SQLUtil.Pessoa.SQL_BUSCAPORBUSCA, Pessoa.class);
             query.setParameter("nome", "%" + texto + "%");
             query.setParameter("login", "%" + texto + "%");
             query.setParameter("codigo", "%" + texto + "%");

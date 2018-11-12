@@ -38,28 +38,28 @@ import javax.persistence.NoResultException;
  * @author Felipe
  */
 public class FXMLLoginController implements Initializable {
-
+    
     private Stage stage;
     @FXML
     private AnchorPane AnchorPane;
-
+    
     @FXML
     private TextField tfLogin;
-
+    
     @FXML
     private Button btnEntrar;
-
+    
     @FXML
     private PasswordField tfSenha;
-
+    
     private DAOPessoa dAOPessoa = new DAOPessoa();
     private FXMLVBoxTelaPrincipalController controllerPrincipal;
     private FXMLAnchorPaneTelaDeMudancaDeSenhaController controllerMudancaSenha;
-
+    
     public FXMLLoginController(Stage stage) {
         this.stage = stage;
     }
-
+    
     @FXML
     void acaoBtnEntrar(ActionEvent event) throws BusinessExpection, DAOException {
         Pessoa pessoa = new Pessoa();
@@ -67,28 +67,28 @@ public class FXMLLoginController implements Initializable {
         pessoa.setSenha(tfSenha.getText());
         pessoa = dAOPessoa.buscarLogin(pessoa);
         if (pessoa != null) {
-            if(!verificarPrimeiroAcesso(pessoa)){
-                 exibirTelaPrincipal(pessoa);
+            if (!verificarPrimeiroAcesso(pessoa)) {
+                exibirTelaPrincipal(pessoa);
             }
-
+            
         }
-
+        
     }
-
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        
     }
-
+    
     private void verificarTipoUsuarioLogin(Pessoa pessoa) {
         if (pessoa instanceof PessoaFisica || pessoa instanceof PessoaJuridica) {
-
+            
             controllerPrincipal.getMenuItemClientes().setDisable(true);
             controllerPrincipal.getMenuItemFuncionarios().setDisable(true);
             controllerPrincipal.getMenuItemLocacoes().setDisable(true);
             controllerPrincipal.getMenuAdministracao().setDisable(true);
             controllerPrincipal.getMenuRelatorios().setDisable(true);
-
+            
         } else if (pessoa instanceof Funcionario) {
             Funcionario funcionario = (Funcionario) pessoa;
             if (funcionario.isSuperUsuario()) {
@@ -96,13 +96,13 @@ public class FXMLLoginController implements Initializable {
             } else {
                 controllerPrincipal.getMenuAdministracao().setDisable(true);
             }
-
+            
         }
-
+        
     }
-
+    
     private boolean verificarPrimeiroAcesso(Pessoa pessoa) throws BusinessExpection {
-
+        
         Fachada fachada = Fachada.getInstance();
         boolean sucesso = false;
         try {
@@ -127,8 +127,8 @@ public class FXMLLoginController implements Initializable {
                         fachada.salvarFuncionario((Funcionario) pessoa);
                     }
                 }
-            }   
-            if(sucesso){
+            }            
+            if (sucesso) {
                 exibirTelaPrincipal(pessoa);
             }
             
@@ -136,14 +136,14 @@ public class FXMLLoginController implements Initializable {
             throw new BusinessExpection("ERRO AO TENTAR REDEFINIR A SENHA");
         }
         return sucesso;
-
+        
     }
-
+    
     public boolean exibirTelaRedefinirSenha(Pessoa pessoa) {
         FXMLLoader load = new FXMLLoader();
         load.setLocation(FXMLAnchorPaneTelaDeMudancaDeSenhaController.class
                 .getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAnchorPaneTelaDeMudancaDeSenha.fxml"));
-
+        
         Pane root;
         try {
             root = load.load();
@@ -151,40 +151,41 @@ public class FXMLLoginController implements Initializable {
             Scene scene = new Scene(root);
             stageRedefinir.setScene(scene);
             controllerMudancaSenha = load.getController();
-
+            
             controllerMudancaSenha.setPessoa(pessoa);
             controllerMudancaSenha.setStage(stageRedefinir);
-
+            
             stageRedefinir.showAndWait();
-
+            
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-
+        
         return controllerMudancaSenha.isSucesso();
-
+        
     }
-
+    
     public void exibirTelaPrincipal(Pessoa pessoa) {
         FXMLLoader load = new FXMLLoader();
         load.setLocation(FXMLVBoxTelaPrincipalController.class
                 .getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLVBoxTelaPrincipal.fxml"));
-
+        
         Pane root;
         try {
             root = load.load();
             controllerPrincipal = load.getController();
-
+            
             verificarTipoUsuarioLogin(pessoa);
-
+            
             Stage stage = new Stage();
+            stage.setTitle("LOCADORA DE VEÍCULOS PAJEÚ");
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
             Logger.getLogger(FXMLLoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
         this.stage.close();
     }
 }
