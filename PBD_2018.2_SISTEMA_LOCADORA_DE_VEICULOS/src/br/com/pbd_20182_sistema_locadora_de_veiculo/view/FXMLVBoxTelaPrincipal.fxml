@@ -11,7 +11,7 @@
    <children>
       <VBox layoutX="193.0" layoutY="45.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <MenuBar>
+            <MenuBar prefHeight="25.0" prefWidth="633.0">
               <menus>
                 <Menu mnemonicParsing="false" text="Cadastros">
                   <items>
@@ -20,7 +20,7 @@
                         <MenuItem fx:id="menuItemVeiculos" mnemonicParsing="false" onAction="#acaosMenuItensCadastros" text="Veículos" />
                         <MenuItem fx:id="menuItemReservas" mnemonicParsing="false" onAction="#acaosMenuItensCadastros" text="Reservas" />
                         <MenuItem fx:id="menuItemLocacoes" mnemonicParsing="false" onAction="#acaosMenuItensCadastros" text="Locações" />
-                        <MenuItem fx:id="menuItemCategoria" mnemonicParsing="false" text="Categoria" />
+                        <MenuItem fx:id="menuItemCategoria" mnemonicParsing="false" onAction="#acaosMenuItensCadastros" text="Categoria" />
                   </items>
                 </Menu>
                 <Menu fx:id="menuRelatorios" mnemonicParsing="false" text="Relatorios">
@@ -36,16 +36,17 @@
                         <MenuItem fx:id="MenuItemPorCategoriaMaisReservadas" mnemonicParsing="false" onAction="#acoesMenuItensRelatorios" text="Por categoria mais reservada" />
                   </items>
                 </Menu>
-                  <Menu fx:id="menuAdministracao" mnemonicParsing="false" text="Administração">
+                  <Menu fx:id="menuAdministracao" mnemonicParsing="false" text="Administrar">
                      <items>
                         <MenuItem fx:id="menuItemConfiguracoes" mnemonicParsing="false" onAction="#acaoMenuItemConfiguracoes" text="Configurações" />
+                        <MenuItem fx:id="menuItemSair" mnemonicParsing="false" onAction="#acaoMenuItemConfiguracoes" text="Sair" />
                      </items></Menu>
               </menus>
                <effect>
                   <Blend />
                </effect>
             </MenuBar>
-            <AnchorPane fx:id="AnchorPaneContent" prefHeight="479.0" prefWidth="800.0" />
+            <AnchorPane fx:id="AnchorPaneContent" prefHeight="486.0" prefWidth="800.0" />
          </children>
       </VBox>
    </children>

@@ -137,14 +137,14 @@ public class FXMLAchorPaneCadastroClienteDialogController implements Initializab
                 SimpleDateFormat spdf = new SimpleDateFormat("yyyy/MM/dddd");
                 Calendar data_Nascimento = Calendar.getInstance();
                 data_Nascimento.setTime(s);
-                ((PessoaFisica)pessoa).setData_nascimento(data_Nascimento);
+                ((PessoaFisica)pessoa).setData_nascimento(data_Nascimento.getTime());
                 
 
                 s = Date.from(cpVencimentoCNH.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
                 Calendar dataVencimentoCNH = Calendar.getInstance();
                 dataVencimentoCNH.setTime(s);
 
-                ((PessoaFisica) pessoa).setData_vencimentoCNH(dataVencimentoCNH);
+                ((PessoaFisica) pessoa).setData_vencimentoCNH(dataVencimentoCNH.getTime());
 
                 ((PessoaFisica) pessoa).setIdentificacao(tfIdentificacao.getText());
                 

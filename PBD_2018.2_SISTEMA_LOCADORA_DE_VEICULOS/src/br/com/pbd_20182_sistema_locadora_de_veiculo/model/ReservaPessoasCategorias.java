@@ -7,6 +7,7 @@ package br.com.pbd_20182_sistema_locadora_de_veiculo.model;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -40,7 +41,7 @@ public class ReservaPessoasCategorias implements Serializable, EntidadeBase{
     
     @Column(name = "data_hora", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Calendar dataHora;
+    private Date dataHora;
     @Column(name = "valor_previsto")    
     private double valorPrevisto;
 
@@ -69,11 +70,11 @@ public class ReservaPessoasCategorias implements Serializable, EntidadeBase{
         this.pessoa = pessoa;
     }
 
-    public Calendar getDataHora() {
+    public Date getDataHora() {
         return dataHora;
     }
 
-    public void setDataHora(Calendar dataHora) {
+    public void setDataHora(Date dataHora) {
         this.dataHora = dataHora;
     }
 

@@ -23,7 +23,7 @@ public class Categoria implements Serializable, EntidadeBase {
     private String descricacao;
     @Column(nullable = false)
     private double valor;
-    @Column(nullable = false)
+    @Column(nullable = false, length = 20)
     private String nome;
     @Column(name = "numero_de_portas", nullable = false)
     private int numeroDePortas;

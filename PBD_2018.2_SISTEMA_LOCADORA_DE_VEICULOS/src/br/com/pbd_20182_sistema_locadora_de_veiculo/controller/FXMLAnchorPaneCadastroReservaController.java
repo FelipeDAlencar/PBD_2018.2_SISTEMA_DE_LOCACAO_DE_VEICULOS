@@ -13,6 +13,7 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOReservaPessoaCa
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -43,7 +44,7 @@ public class FXMLAnchorPaneCadastroReservaController implements Initializable {
     private TableColumn<ReservaPessoasCategorias, Categoria> colunaCategoria;
 
     @FXML
-    private TableColumn<ReservaPessoasCategorias, Calendar> colunaData;
+    private TableColumn<ReservaPessoasCategorias, Date> colunaData;
 
     @FXML
     private TextField tfBusca;
@@ -98,10 +99,9 @@ public class FXMLAnchorPaneCadastroReservaController implements Initializable {
     public void carregarReservas(){
         
         reservaPessoasCategoriases = dAOReservaPessoaCategoria.findAll();
-        
         colunaCategoria.setCellValueFactory(new PropertyValueFactory<>("categoria"));
-        colunaCliente.setCellValueFactory(new PropertyValueFactory<>("cliente"));
-        colunaData.setCellValueFactory(new PropertyValueFactory<>("data_hora"));
+        colunaCliente.setCellValueFactory(new PropertyValueFactory<>("pessoa"));
+        colunaData.setCellValueFactory(new PropertyValueFactory<>("dataHora"));
         
         
         obsReservaPessoasCategoriases = FXCollections.observableArrayList(reservaPessoasCategoriases);
@@ -122,4 +122,20 @@ public class FXMLAnchorPaneCadastroReservaController implements Initializable {
 
     }
 
+    public Button getBtnBuscar() {
+        return btnBuscar;
+    }
+
+    public Button getBtnInserir() {
+        return btnInserir;
+    }
+
+    public Button getBtnEditar() {
+        return btnEditar;
+    }
+
+    public Button getBtnExcluir() {
+        return btnExcluir;
+    }
+    
 }

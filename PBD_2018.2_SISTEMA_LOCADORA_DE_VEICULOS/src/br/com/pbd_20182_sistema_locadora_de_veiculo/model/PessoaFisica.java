@@ -5,7 +5,7 @@
  */
 package br.com.pbd_20182_sistema_locadora_de_veiculo.model;
 
-import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,10 +25,10 @@ public class PessoaFisica extends Pessoa{
     private String CPF;
    
     @Temporal(TemporalType.DATE)
-    private Calendar data_nascimento;
+    private Date dataNascimento;
    
     @Temporal(TemporalType.DATE)
-    private Calendar data_vencimentoCNH;
+    private Date data_vencimentoCNH;
     
     private String identificacao;
    
@@ -44,19 +44,19 @@ public class PessoaFisica extends Pessoa{
         this.CPF = CPF;
     }
 
-    public Calendar getData_nascimento() {
-        return data_nascimento;
+    public Date getData_nascimento() {
+        return dataNascimento;
     }
 
-    public void setData_nascimento(Calendar data_nascimento) {
-        this.data_nascimento = data_nascimento;
+    public void setData_nascimento(Date data_nascimento) {
+        this.dataNascimento = data_nascimento;
     }
 
-    public Calendar getData_vencimentoCNH() {
+    public Date getData_vencimentoCNH() {
         return data_vencimentoCNH;
     }
 
-    public void setData_vencimentoCNH(Calendar data_vencimentoCNH) {
+    public void setData_vencimentoCNH(Date data_vencimentoCNH) {
         this.data_vencimentoCNH = data_vencimentoCNH;
     }
 
@@ -80,7 +80,7 @@ public class PessoaFisica extends Pessoa{
     public int hashCode() {
         int hash = 7;
         hash = 97 * hash + Objects.hashCode(this.CPF);
-        hash = 97 * hash + Objects.hashCode(this.data_nascimento);
+        hash = 97 * hash + Objects.hashCode(this.dataNascimento);
         hash = 97 * hash + Objects.hashCode(this.data_vencimentoCNH);
         hash = 97 * hash + Objects.hashCode(this.identificacao);
         hash = 97 * hash + Objects.hashCode(this.numero_CNH);
@@ -108,7 +108,7 @@ public class PessoaFisica extends Pessoa{
         if (!Objects.equals(this.numero_CNH, other.numero_CNH)) {
             return false;
         }
-        if (!Objects.equals(this.data_nascimento, other.data_nascimento)) {
+        if (!Objects.equals(this.dataNascimento, other.dataNascimento)) {
             return false;
         }
         if (!Objects.equals(this.data_vencimentoCNH, other.data_vencimentoCNH)) {

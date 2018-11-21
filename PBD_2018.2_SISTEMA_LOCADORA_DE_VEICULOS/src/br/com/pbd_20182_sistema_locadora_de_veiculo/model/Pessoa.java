@@ -46,7 +46,8 @@ public class Pessoa implements EntidadeBase, Serializable{
     @Column(length = 50, nullable = false)
     private String senha;
     
-    @OneToOne
+    
+    @OneToOne(cascade = CascadeType.ALL)
     private Endereco endereco;
     
     @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL)

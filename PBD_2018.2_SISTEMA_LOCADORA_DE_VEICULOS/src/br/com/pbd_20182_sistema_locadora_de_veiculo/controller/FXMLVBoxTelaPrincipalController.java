@@ -13,10 +13,13 @@ import javafx.fxml.Initializable;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import javafx.util.Callback;
 
 public class FXMLVBoxTelaPrincipalController implements Initializable {
 
@@ -60,6 +63,9 @@ public class FXMLVBoxTelaPrincipalController implements Initializable {
     private MenuItem menuItemCategoria;
 
     @FXML
+    private MenuItem menuItemSair;
+
+    @FXML
     public Menu menuAdministracao;
 
     @FXML
@@ -70,22 +76,29 @@ public class FXMLVBoxTelaPrincipalController implements Initializable {
 
     @FXML
     private MenuItem menuItemConfiguracoes;
-    
+
+    Stage stage;
+
     @FXML
     void acaosMenuItensCadastros(ActionEvent event) throws IOException {
         Pane pane;
-        try {
-            if (event.getSource() == menuItemClientes) {
-                pane = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAnchorPaneCadastroCliente.fxml"));
-                AnchorPaneContent.getChildren().setAll(pane);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+
+        if (event.getSource() == menuItemClientes) {
+            pane = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAnchorPaneCadastroCliente.fxml"));
+            AnchorPaneContent.getChildren().setAll(pane);
         }
-        if(event.getSource() == menuItemReservas){
+
+        if (event.getSource() == menuItemReservas) {
             pane = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAnchorPaneCadastroReserva.fxml"));
             AnchorPaneContent.getChildren().setAll(pane);
-        
+
+        }
+
+        if (event.getSource() == menuItemCategoria) {
+            System.out.println("Entrou");
+            pane = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAnchorPaneCadastroCategoria.fxml"));
+            AnchorPaneContent.getChildren().setAll(pane);
+
         }
     }
 
@@ -94,13 +107,34 @@ public class FXMLVBoxTelaPrincipalController implements Initializable {
         Pane pane;
         try {
             if (event.getSource() == menuItemConfiguracoes) {
-                System.out.println("Entrou");
                 pane = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAnchorPaneGeral.fxml"));
                 AnchorPaneContent.getChildren().setAll(pane);
+            }
+
+            if (event.getSource() == menuItemSair) {
+                stage.close();
+
+                Stage primaryStage = new Stage();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLLogin.fxml"));
+                loader.setControllerFactory(new Callback<Class<?>, Object>() {
+                    @Override
+                    public Object call(Class<?> param) {
+                        return new FXMLLoginController(primaryStage);
+                    }
+                });
+                Pane root = loader.load();
+
+                //Pane root = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLVboxTelaPrincipal.fxml"));
+                Scene scene = new Scene(root);
+
+                primaryStage.setScene(scene);
+                primaryStage.show();
+                primaryStage.setTitle("LOCADORA DE VEÍCULOS PAJEÚ");
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
     @FXML
@@ -171,6 +205,38 @@ public class FXMLVBoxTelaPrincipalController implements Initializable {
 
     public Menu getMenuRelatorios() {
         return menuRelatorios;
+    }
+
+    public MenuItem getMenuItemCategoria() {
+        return menuItemCategoria;
+    }
+
+    public void setMenuItemCategoria(MenuItem menuItemCategoria) {
+        this.menuItemCategoria = menuItemCategoria;
+    }
+
+    public MenuItem getMenuItemSair() {
+        return menuItemSair;
+    }
+
+    public void setMenuItemSair(MenuItem menuItemSair) {
+        this.menuItemSair = menuItemSair;
+    }
+
+    public MenuItem getMenuItemConfiguracoes() {
+        return menuItemConfiguracoes;
+    }
+
+    public void setMenuItemConfiguracoes(MenuItem menuItemConfiguracoes) {
+        this.menuItemConfiguracoes = menuItemConfiguracoes;
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 
 }

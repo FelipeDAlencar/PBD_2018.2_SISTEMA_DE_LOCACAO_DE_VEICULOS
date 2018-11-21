@@ -19,5 +19,8 @@ public class SQLUtil {
 "                    LOWER(p.login) LIKE :login or LOWER(p.codigo) LIKE :codigo";
         
     }
+    
+    
+    
 
 }

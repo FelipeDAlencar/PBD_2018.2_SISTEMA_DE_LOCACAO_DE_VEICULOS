@@ -53,7 +53,7 @@ public class FXMLLoginController implements Initializable {
     private PasswordField tfSenha;
     
     private DAOPessoa dAOPessoa = new DAOPessoa();
-    private FXMLVBoxTelaPrincipalController controllerPrincipal;
+        private FXMLVBoxTelaPrincipalController controllerPrincipal;
     private FXMLAnchorPaneTelaDeMudancaDeSenhaController controllerMudancaSenha;
     
     public FXMLLoginController(Stage stage) {
@@ -86,7 +86,7 @@ public class FXMLLoginController implements Initializable {
             controllerPrincipal.getMenuItemClientes().setDisable(true);
             controllerPrincipal.getMenuItemFuncionarios().setDisable(true);
             controllerPrincipal.getMenuItemLocacoes().setDisable(true);
-            controllerPrincipal.getMenuAdministracao().setDisable(true);
+            controllerPrincipal.getMenuItemConfiguracoes().setDisable(true);
             controllerPrincipal.getMenuRelatorios().setDisable(true);
             
         } else if (pessoa instanceof Funcionario) {
@@ -181,6 +181,8 @@ public class FXMLLoginController implements Initializable {
             stage.setTitle("LOCADORA DE VEÍCULOS PAJEÚ");
             Scene scene = new Scene(root);
             stage.setScene(scene);
+            controllerPrincipal.setStage(stage);
+            
             stage.show();
         } catch (IOException ex) {
             Logger.getLogger(FXMLLoginController.class.getName()).log(Level.SEVERE, null, ex);

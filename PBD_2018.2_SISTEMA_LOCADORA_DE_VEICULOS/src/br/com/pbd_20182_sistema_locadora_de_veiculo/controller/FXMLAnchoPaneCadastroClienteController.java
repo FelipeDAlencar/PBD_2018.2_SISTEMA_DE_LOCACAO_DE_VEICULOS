@@ -248,4 +248,23 @@ public class FXMLAnchoPaneCadastroClienteController implements Initializable {
         return false;
     }
 
+    public Button getBtnPesquisar() {
+        return btnPesquisar;
+    }
+
+    public Button getBtnInserirCliente() {
+        return BtnInserirCliente;
+    }
+
+    public Button getBtnAlterar() {
+        return btnAlterar;
+    }
+
+    public Button getBtnExcluir() {
+        return BtnExcluir;
+    }
+    
+    
+    
+
 }

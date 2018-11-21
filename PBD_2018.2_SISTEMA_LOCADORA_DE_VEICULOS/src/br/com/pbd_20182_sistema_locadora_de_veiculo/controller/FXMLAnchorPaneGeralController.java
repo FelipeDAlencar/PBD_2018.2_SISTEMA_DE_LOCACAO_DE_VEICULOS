@@ -126,4 +126,16 @@ public class FXMLAnchorPaneGeralController implements Initializable {
         this.pessoa = pessoa;
     }
 
+    public TableColumn<Pessoa, String> getColunaCodigo() {
+        return colunaCodigo;
+    }
+
+    public Button getBtnPesquisa() {
+        return btnPesquisa;
+    }
+
+    public Button getBtnResetar() {
+        return btnResetar;
+    }
+    
 }

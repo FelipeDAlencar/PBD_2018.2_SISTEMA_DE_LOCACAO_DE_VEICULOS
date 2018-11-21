@@ -22,8 +22,10 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOFuncionario;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOPessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOPessoaFisica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOReservaPessoaCategoria;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.minhaData;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import javafx.application.Application;
@@ -127,8 +129,6 @@ public class App extends Application {
 //        categoria.setCameraDeRe(true);
 //        
 //        
-
-
 //                  CODIGO DE INSERÇÃO DE RESERVA    
 //        DAOCategoria dAOCategoria = new DAOCategoria();
 //        DAOFuncionario dAOFuncionario = new DAOFuncionario();
@@ -144,6 +144,7 @@ public class App extends Application {
 //        reservaPessoasCategorias.setValorPrevisto(categoria.getValor() + valorAMais);
 //        DAOReservaPessoaCategoria dAOReservaPessoaCategoria = new DAOReservaPessoaCategoria();
 //        dAOReservaPessoaCategoria.salvar(reservaPessoasCategorias);
+      
 
     }
 
