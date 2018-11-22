@@ -289,13 +289,14 @@ public class Fachada implements IFachada{
     }
 
     @Override
-    public void salvarReservaPessoasCategorias(ReservaPessoasCategorias reservaPessoasCategorias) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void salvarReservaPessoasCategorias(ReservaPessoasCategorias reservaPessoasCategorias)throws BusinessExpection{
+        businessReservaPessoaCategoria.salvar(reservaPessoasCategorias);
+
     }
 
     @Override
     public ArrayList<ReservaPessoasCategorias> listarTodosReservaPessoasCategorias() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return businessReservaPessoaCategoria.listarTodos();
     }
 
     @Override
