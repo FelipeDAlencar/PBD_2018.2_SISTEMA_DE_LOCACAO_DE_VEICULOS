@@ -15,7 +15,9 @@ import java.util.List;
 import javafx.scene.control.Alert;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.ParameterMode;
 import javax.persistence.Query;
+import javax.persistence.StoredProcedureQuery;
 import javax.persistence.TypedQuery;
 import org.hibernate.SQLQuery;
 
@@ -112,4 +114,40 @@ public class DAOPessoa extends DAOGenerico<Pessoa> implements IDAOPessoa {
 
         return null;
     }
+
+    @Override
+    public String criptografarSenha(String senha) throws DAOException {
+
+        EntityManager em = ConnectionFactory.getInstance().getConnection();
+        StoredProcedureQuery query = em
+                .createStoredProcedureQuery(SQLUtil.Pessoa.SQL_PROCEDURE_CRIPTOGRAFAR_SENHA)
+                .registerStoredProcedureParameter("senha", String.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("cript", String.class, ParameterMode.OUT)
+                .setParameter("senha", senha);
+
+        query.execute();
+
+        String cripttografia = (String) query
+                .getOutputParameterValue("cript");
+        System.out.println(cripttografia);
+        return cripttografia;
+
+    }
+
+    @Override
+    public int buscarUltimoID() {
+        EntityManager em = ConnectionFactory.getInstance().getConnection();
+        int id = 0;
+        try {
+            id = em.createQuery(SQLUtil.Pessoa.SQL_BUSCA_ULTIMOID, Integer.class).getSingleResult();
+            return id;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+
+        return 0;
+    }
+
 }

@@ -120,7 +120,7 @@ public class FXMLAnchoPaneCadastroClienteController implements Initializable {
     FXMLAchorPaneCadastroClienteDialogController controller;
 
     @FXML
-    void acoesDeBotao(ActionEvent event) throws BusinessExpection {
+    void acoesDeBotao(ActionEvent event) throws BusinessExpection, DAOException {
 
         try {
             if (event.getSource() == BtnInserirCliente) {
@@ -129,12 +129,21 @@ public class FXMLAnchoPaneCadastroClienteController implements Initializable {
 
                 if (confirmacao) {
                     Pessoa pessoa = controller.getPessoa();
+
                     if (pessoa instanceof PessoaFisica) {
                         fachada.salvarPessoaFisica((PessoaFisica) pessoa);
                     } else {
 
                         fachada.salvarPessoaJuridica((PessoaJuridica) pessoa);
                     }
+                    
+                    DAOPessoa dAOPessoa =  new DAOPessoa();
+                    int id = dAOPessoa.buscarUltimoID();
+                    pessoa = dAOPessoa.findById(Pessoa.class, id);
+
+                    pessoa.setSenha(dAOPessoa.criptografarSenha(pessoa.getSenha()));
+                    dAOPessoa.salvar(pessoa);
+
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setContentText("Cadastrado");
                     alert.show();
@@ -144,7 +153,7 @@ public class FXMLAnchoPaneCadastroClienteController implements Initializable {
 
             }
         } catch (BusinessExpection e) {
-        
+
         }
 
     }
@@ -263,8 +272,5 @@ public class FXMLAnchoPaneCadastroClienteController implements Initializable {
     public Button getBtnExcluir() {
         return BtnExcluir;
     }
-    
-    
-    
 
 }

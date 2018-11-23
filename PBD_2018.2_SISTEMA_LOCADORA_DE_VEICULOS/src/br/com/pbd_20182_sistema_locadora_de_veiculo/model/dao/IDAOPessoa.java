@@ -23,5 +23,8 @@ public interface IDAOPessoa {
     public String buscarUltimoCodigo() throws DAOException;
 
     public ArrayList<Pessoa> buscarPorBusca(String texto) throws DAOException;
-
+    
+    
+    public String criptografarSenha(String senha)throws DAOException; 
+    public int buscarUltimoID()throws DAOException;
 }

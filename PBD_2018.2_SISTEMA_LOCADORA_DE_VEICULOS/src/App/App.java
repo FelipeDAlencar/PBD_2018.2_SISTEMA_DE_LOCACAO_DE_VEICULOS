@@ -152,15 +152,15 @@ public class App extends Application {
 //        System.out.println("esse 3"+teste.substring(0, 2));
 
 
-        PessoaJuridica pessoaJuridica = new PessoaJuridica();
-        pessoaJuridica.setCNPJ("123456");
-        pessoaJuridica.setInscriçãoEstadual("00005");
-        pessoaJuridica.setNome("Jonas");
-        pessoaJuridica.setCodigo("001");
-        pessoaJuridica.setLogin("jonas");
-        pessoaJuridica.setSenha(pessoaJuridica.getCNPJ());
-        dao.salvar(pessoaJuridica);
-
+//        PessoaJuridica pessoaJuridica = new PessoaJuridica();
+//        pessoaJuridica.setCNPJ("123456");
+//        pessoaJuridica.setInscriçãoEstadual("00005");
+//        pessoaJuridica.setNome("Jonas");
+//        pessoaJuridica.setCodigo("001");
+//        pessoaJuridica.setLogin("jonas");
+//        pessoaJuridica.setSenha(pessoaJuridica.getCNPJ());
+//        dao.salvar(pessoaJuridica);
+        
     }
 
     public static void main(String[] args) {

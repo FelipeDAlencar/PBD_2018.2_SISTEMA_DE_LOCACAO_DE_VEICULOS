@@ -44,7 +44,7 @@ public class FXMLAnchorPaneTelaDeMudancaDeSenhaController implements Initializab
 
     @FXML
     void acaoBtnRedefinir(ActionEvent event) throws BusinessExpection {
-        System.out.println("Aqui 1");
+      
         if (pessoa instanceof PessoaFisica) {
             if (((PessoaFisica) pessoa).getCPF().equals(ptfSenha.getText())) {
                 throw new BusinessExpection("Senha não permitida.");
