@@ -144,7 +144,22 @@ public class App extends Application {
 //        reservaPessoasCategorias.setValorPrevisto(categoria.getValor() + valorAMais);
 //        DAOReservaPessoaCategoria dAOReservaPessoaCategoria = new DAOReservaPessoaCategoria();
 //        dAOReservaPessoaCategoria.salvar(reservaPessoasCategorias);
-      
+        //System.out.println(Util.gerarNomeCategoria("CP1", 1));
+//        String teste = "CP1";
+//
+//        System.out.println("esse 1"+teste.substring(0, 0));
+//        System.out.println("esse 2"+teste.substring(0, 1));
+//        System.out.println("esse 3"+teste.substring(0, 2));
+
+
+        PessoaJuridica pessoaJuridica = new PessoaJuridica();
+        pessoaJuridica.setCNPJ("123456");
+        pessoaJuridica.setInscriçãoEstadual("00005");
+        pessoaJuridica.setNome("Jonas");
+        pessoaJuridica.setCodigo("001");
+        pessoaJuridica.setLogin("jonas");
+        pessoaJuridica.setSenha(pessoaJuridica.getCNPJ());
+        dao.salvar(pessoaJuridica);
 
     }
 

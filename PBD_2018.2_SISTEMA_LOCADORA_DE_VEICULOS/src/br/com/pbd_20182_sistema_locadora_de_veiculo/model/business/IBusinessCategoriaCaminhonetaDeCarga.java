@@ -13,8 +13,15 @@ import java.util.ArrayList;
  * @author Felipe
  */
 public interface IBusinessCategoriaCaminhonetaDeCarga {
+
     public void salvar(CaminhonetaDeCarga caminhonetaDeCarga);
+
     public ArrayList<CaminhonetaDeCarga> listarTodos();
+
     public CaminhonetaDeCarga buscarPorId(int id);
+
     public void alterar(CaminhonetaDeCarga caminhonetaDeCarga);
+
+    public String buscarUltimoNomeCaminhonetaDeCarga();
+
 }

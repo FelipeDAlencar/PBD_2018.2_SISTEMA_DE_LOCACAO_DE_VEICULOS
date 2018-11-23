@@ -72,9 +72,9 @@
                         <Label text="Descrição" GridPane.rowIndex="1" />
                         <Label text="Valor" GridPane.rowIndex="2" />
                         <Label text="Nº de portas" GridPane.rowIndex="3" />
-                        <Label text="Ar condicionado" GridPane.rowIndex="4" />
+                        <Label text="Ar condicionado" GridPane.rowIndex="6" />
                         <Label text="MP3" GridPane.rowIndex="5" />
-                        <Label text="Nº de passageiros" GridPane.rowIndex="6" />
+                        <Label text="Nº de passageiros" GridPane.rowIndex="4" />
                         <Label text="DVD" GridPane.rowIndex="7" />
                         <Label text="Dire. Hidráulica" GridPane.rowIndex="8" />
                         <Label text="Radio" GridPane.rowIndex="9" />
@@ -84,15 +84,15 @@
                         <Label fx:id="lbDescricao" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label fx:id="lbValor" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <Label fx:id="lbNumeroDePortas" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Label fx:id="lbArCondicionado" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <Label fx:id="lbMP3" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <Label fx:id="lbNumeroDePassageiros" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label fx:id="lbNumeroDePassageiros" prefHeight="17.0" prefWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <Label fx:id="lbDVD" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                         <Label fx:id="lbDirecaoHidraulica" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                         <Label fx:id="lbRadio" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                         <Label fx:id="lbTipoCambio" GridPane.columnIndex="1" GridPane.rowIndex="10" />
                         <Label fx:id="lbCameraDeRe" GridPane.columnIndex="1" GridPane.rowIndex="11" />
                         <Label text="Nome" />
+                        <Label fx:id="lbArCondicionado" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                      </children>
                   </GridPane>
                </children>

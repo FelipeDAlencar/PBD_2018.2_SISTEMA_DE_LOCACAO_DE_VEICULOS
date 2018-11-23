@@ -13,17 +13,13 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Util;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOPessoa;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -137,8 +133,7 @@ public class FXMLAchorPaneCadastroClienteDialogController implements Initializab
                 SimpleDateFormat spdf = new SimpleDateFormat("yyyy/MM/dddd");
                 Calendar data_Nascimento = Calendar.getInstance();
                 data_Nascimento.setTime(s);
-                ((PessoaFisica)pessoa).setData_nascimento(data_Nascimento.getTime());
-                
+                ((PessoaFisica) pessoa).setData_nascimento(data_Nascimento.getTime());
 
                 s = Date.from(cpVencimentoCNH.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
                 Calendar dataVencimentoCNH = Calendar.getInstance();
@@ -147,8 +142,8 @@ public class FXMLAchorPaneCadastroClienteDialogController implements Initializab
                 ((PessoaFisica) pessoa).setData_vencimentoCNH(dataVencimentoCNH.getTime());
 
                 ((PessoaFisica) pessoa).setIdentificacao(tfIdentificacao.getText());
-                
-                ((PessoaFisica)pessoa).setNumero_CNH(tfNCNH.getText());
+
+                ((PessoaFisica) pessoa).setNumero_CNH(tfNCNH.getText());
 
             }
 

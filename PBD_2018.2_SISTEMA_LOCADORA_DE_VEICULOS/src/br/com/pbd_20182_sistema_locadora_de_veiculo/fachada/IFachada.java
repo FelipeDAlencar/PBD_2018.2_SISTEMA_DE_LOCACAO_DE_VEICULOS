@@ -15,6 +15,7 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Funcionario;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Geral;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Locacao;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Log;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Pessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaJuridica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ReservaPessoasCategorias;
@@ -31,19 +32,21 @@ public interface IFachada {
     public ArrayList<Categoria> listarTodosCategoria()throws BusinessExpection;
     public Categoria buscarPorIdCategoria(int id)throws BusinessExpection;
     public void alterarCategoria(Categoria categoria)throws BusinessExpection;
+    public String buscarUltimoNomeCategoria();
     
     
     public void salvarCaminhonetaDeCarga(CaminhonetaDeCarga caminhonetaDeCarga)throws BusinessExpection;
     public ArrayList<CaminhonetaDeCarga> listarTodosCaminhonetaDeCarga()throws BusinessExpection;
     public CaminhonetaDeCarga buscarPorIdCaminhonetaDeCarga(int id)throws BusinessExpection;
     public void alterarCaminhonetaDeCarga(CaminhonetaDeCarga caminhonetaDeCarga)throws BusinessExpection;
-    
+    public String buscarUltimoNomeCaminhonetaDeCarga();
+
     
     public void salvarCaminhonetaDePassageiros(CaminhonetaDePassageiros caminhonetaDePassageiros)throws BusinessExpection;
     public ArrayList<CaminhonetaDePassageiros> listarTodosCaminhonetaDePassageiros()throws BusinessExpection;
     public CaminhonetaDePassageiros buscarPorIdCaminhonetaDePassageiros(int id)throws BusinessExpection;
     public void alterarCaminhonetaDePassageiros(CaminhonetaDePassageiros caminhonetaDePassageiros)throws BusinessExpection;
-    
+    public String buscarUltimoNomeCaminhonetaDePassageiros();
     
     public void salvarEndereco(Endereco endereco)throws BusinessExpection;
     public ArrayList<Endereco> listarTodosEndereco()throws BusinessExpection;
@@ -74,6 +77,11 @@ public interface IFachada {
     public Log buscarPorIdLog(int id)throws BusinessExpection;
     public void alterarLog(Log log)throws BusinessExpection;
     
+    
+    public void salvarPessoa(Pessoa pessoa)throws BusinessExpection;
+    public ArrayList<Pessoa> listarTodosPessoa()throws BusinessExpection;
+    public Pessoa buscarPorIdPessoa(int id)throws BusinessExpection;
+    public void alterarPessoa(PessoaFisica pessoaFisica)throws BusinessExpection;
     
     public void salvarPessoaFisica(PessoaFisica pessoaFisica)throws BusinessExpection;
     public ArrayList<PessoaFisica> listarTodosPessoaFisica()throws BusinessExpection;

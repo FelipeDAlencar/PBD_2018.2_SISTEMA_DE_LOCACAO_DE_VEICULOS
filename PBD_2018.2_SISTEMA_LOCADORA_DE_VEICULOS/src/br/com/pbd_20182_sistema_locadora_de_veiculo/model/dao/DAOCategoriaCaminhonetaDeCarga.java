@@ -6,8 +6,9 @@
 package br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao;
 
 import br.com.pbd_20182_sistema_locadora_de_veiculo.JPA.ConnectionFactory;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.JPA.SQLUtil;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.CaminhonetaDeCarga;
-import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
 import java.util.ArrayList;
 import javax.persistence.EntityManager;
 
@@ -23,7 +24,7 @@ public class DAOCategoriaCaminhonetaDeCarga extends DAOGenerico<CaminhonetaDeCar
         ArrayList<CaminhonetaDeCarga> caminhonetaDeCarga = null;
 
         try {
-            caminhonetaDeCarga = (ArrayList) em.createQuery("from caminhoneta_de_carga c").getResultList();
+            caminhonetaDeCarga = (ArrayList) em.createQuery("from CaminhonetaDeCarga c").getResultList();
         } catch (Exception e) {
             e.printStackTrace();
 
@@ -33,6 +34,21 @@ public class DAOCategoriaCaminhonetaDeCarga extends DAOGenerico<CaminhonetaDeCar
 
         return caminhonetaDeCarga;
 
+    }
+    
+    public String buscarUltimoNome() throws DAOException {
+        EntityManager em = ConnectionFactory.getInstance().getConnection();
+        String nome = null;
+        try {
+            nome = em.createQuery(SQLUtil.CaminhonetaDeCarga.SQL_BUSCA_ULTIMONOME, String.class).getSingleResult();
+            return nome;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+
+        return null;
     }
 
 }

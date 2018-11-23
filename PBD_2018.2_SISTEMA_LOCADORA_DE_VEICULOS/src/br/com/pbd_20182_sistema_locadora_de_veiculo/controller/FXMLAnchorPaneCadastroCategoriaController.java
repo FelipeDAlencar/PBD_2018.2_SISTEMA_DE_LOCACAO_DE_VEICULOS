@@ -5,8 +5,12 @@
  */
 package br.com.pbd_20182_sistema_locadora_de_veiculo.controller;
 
+import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.BusinessExpection;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.CaminhonetaDePassageiros;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOCategoria;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.view.Alerta;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -20,6 +24,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -94,20 +99,39 @@ public class FXMLAnchorPaneCadastroCategoriaController implements Initializable 
     @FXML
     private Label lbCameraDeRe;
 
-    private DAOCategoria dAOCategoria;
+    private Fachada fachada;
     private ArrayList<Categoria> categorias;
     private ObservableList<Categoria> obsCategorias;
+    private FXMLAnchorPaneCadastroCategoriaDialogController controllerDialog;
 
     @FXML
-    void acaoDeBtns(ActionEvent event) {
+    void acaoDeBtns(ActionEvent event) throws BusinessExpection {
         if (event.getSource() == btInserir) {
-            exibirTelaDeSelecaoDeCategorias();
+            boolean confirmar = exibirTelaDeCadastroDeCategorias();
+            
+            
+            if(confirmar){
+                Categoria categoria = controllerDialog.getCategoria();
+                System.out.println("Aqui"+((CaminhonetaDePassageiros)categoria).isAirBag());
+                if(categoria instanceof Categoria){
+                    fachada.salvarCategoria(categoria);
+                }else if(categoria instanceof  CaminhonetaDePassageiros){
+                    fachada.salvarCaminhonetaDePassageiros(((CaminhonetaDePassageiros) categoria));
+                }
+                carregarTabela();
+                
+                Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
+                alerta.alertar(Alert.AlertType.CONFIRMATION, "Cadastro de categoria", 
+                        "Sucesso!", "Categoria cadastrada com sucesso!");
+                
+                
+            }
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        dAOCategoria = new DAOCategoria();
+        fachada = Fachada.getInstance();
 
         carregarTabela();
         tableView.getSelectionModel().selectedItemProperty().addListener(
@@ -135,7 +159,7 @@ public class FXMLAnchorPaneCadastroCategoriaController implements Initializable 
 
     private void carregarTabela() {
 
-        categorias = dAOCategoria.findAll();
+        categorias = fachada.listarTodosCategoria();
 
         colunaDescricao.setCellValueFactory(new PropertyValueFactory<>("descricacao"));
         colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
@@ -146,22 +170,31 @@ public class FXMLAnchorPaneCadastroCategoriaController implements Initializable 
         tableView.setItems(obsCategorias);
     }
 
-    public void exibirTelaDeSelecaoDeCategorias() {
+    public boolean exibirTelaDeCadastroDeCategorias() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(FXMLAnchorPaneCadastroReservaDialogController.class.
-                    getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAnchorPaneSelecaoCategoria.fxml"));
+            loader.setLocation(FXMLAnchorPaneCadastroCategoriaDialogController.class.
+                    getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAnchorPaneCadastroCategoriaDialog.fxml"));
             Pane pane = loader.load();
 
+            controllerDialog = loader.getController();
+            Categoria categoria = null;
             Stage stage = new Stage();
             Scene scene = new Scene(pane);
             stage.setScene(scene);
 
-            stage.show();
+            controllerDialog.setStage(stage);
+            controllerDialog.setCategoria(categoria);
+
+            stage.showAndWait();
+
+            return controllerDialog.isConfirmar();
 
         } catch (IOException ex) {
-            Logger.getLogger(FXMLAnchorPaneCadastroReservaController.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
+
+        return false;
 
     }
 }

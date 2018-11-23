@@ -15,12 +15,27 @@ public class SQLUtil {
 
         public static final String SQL_BUSCA_LOGIN = "select p from Pessoa p where p.login = :login and p.senha = :senha";
         public static final String SQL_BUSCA_ULTIMOCODIGO = "select MAX(codigo) from Pessoa";
-        public static final String SQL_BUSCAPORBUSCA = "SELECT p FROM Pessoa p WHERE LOWER(p.nome) LIKE :nome or " +
-"                    LOWER(p.login) LIKE :login or LOWER(p.codigo) LIKE :codigo";
-        
+        public static final String SQL_BUSCAPORBUSCA = "SELECT p FROM Pessoa p WHERE LOWER(p.nome) LIKE :nome or "
+                + "                    LOWER(p.login) LIKE :login or LOWER(p.codigo) LIKE :codigo";
+
     }
-    
-    
-    
+
+    public static class Categoria {
+
+        public static final String SQL_BUSCA_ULTIMONOME = "select MAX(nome) from Categoria";
+
+    }
+
+    public static class CaminhonetaDeCarga {
+
+        public static final String SQL_BUSCA_ULTIMONOME = "select MAX(nome) from CaminhonetaDeCarga";
+
+    }
+
+    public static class CaminhonetaDePassageiros {
+
+        public static final String SQL_BUSCA_ULTIMONOME = "select MAX(nome) from CaminhonetaDePassageiros";
+
+    }
 
 }

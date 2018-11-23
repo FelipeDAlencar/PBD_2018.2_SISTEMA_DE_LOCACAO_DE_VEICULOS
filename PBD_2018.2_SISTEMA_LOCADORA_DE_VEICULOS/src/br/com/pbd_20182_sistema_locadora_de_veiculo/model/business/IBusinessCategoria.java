@@ -14,9 +14,13 @@ import java.util.ArrayList;
  * @author Felipe
  */
 public interface IBusinessCategoria {
-    
-    public void salvar(Categoria categoria)throws BusinessExpection;
+
+    public void salvar(Categoria categoria) throws BusinessExpection;
+
     public ArrayList<Categoria> listarTodos();
-    public Categoria buscarPorId(int id);    
-    
+
+    public Categoria buscarPorId(int id);
+
+    public String buscarUltimoNomeCategoria();
+
 }

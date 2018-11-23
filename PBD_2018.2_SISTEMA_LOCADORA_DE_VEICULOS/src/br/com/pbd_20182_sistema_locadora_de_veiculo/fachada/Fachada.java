@@ -15,6 +15,7 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Funcionario;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Geral;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Locacao;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Log;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Pessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaJuridica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ReservaPessoasCategorias;
@@ -34,7 +35,8 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.model.business.BusinessReser
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.business.BusinessVeiculo;
 import java.util.ArrayList;
 
-public class Fachada implements IFachada{
+public class Fachada implements IFachada {
+
     private static Fachada fachada;
     private BusinessCategoria businessCategoria;
     private BusinessCategoriaCaminhonetaDeCarga businessCategoriaCaminhonetaDeCarga;
@@ -49,32 +51,30 @@ public class Fachada implements IFachada{
     private BusinessReservaPessoaCategoria businessReservaPessoaCategoria;
     private BusinessVeiculo businessVeiculo;
     private BusinessLog businessLog;
-  
-    
+
     public Fachada() {
-        
-        businessCategoria =  new BusinessCategoria();
+
+        businessCategoria = new BusinessCategoria();
         businessCategoriaCaminhonetaDeCarga = new BusinessCategoriaCaminhonetaDeCarga();
-        businessCategoriaCaminhonetaDePassageiros =  new BusinessCategoriaCaminhonetaDePassageiros();
+        businessCategoriaCaminhonetaDePassageiros = new BusinessCategoriaCaminhonetaDePassageiros();
         businessEndereco = new BusinessEndereco();
         businessFilial = new BusinessFilial();
         businessFuncionario = new BusinessFuncionario();
         businessGeral = new BusinessGeral();
-        businessLog =  new BusinessLog();
+        businessLog = new BusinessLog();
         businessPessoaFisica = new BusinessPessoaFisica();
         businessPessoaJuridica = new BusinessPessoaJuridica();
         businessReservaPessoaCategoria = new BusinessReservaPessoaCategoria();
         businessVeiculo = new BusinessVeiculo();
-        
-        
+
     }
-    
-    public static Fachada getInstance(){
-        
-        if(fachada != null){
+
+    public static Fachada getInstance() {
+
+        if (fachada != null) {
             return fachada;
         }
-        
+
         return fachada = new Fachada();
     }
 
@@ -84,8 +84,13 @@ public class Fachada implements IFachada{
     }
 
     @Override
+    public String buscarUltimoNomeCategoria() {
+       return  businessCategoria.buscarUltimoNomeCategoria();
+    }
+
+    @Override
     public ArrayList<Categoria> listarTodosCategoria() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return businessCategoria.listarTodos();
     }
 
     @Override
@@ -101,6 +106,11 @@ public class Fachada implements IFachada{
     @Override
     public void salvarCaminhonetaDeCarga(CaminhonetaDeCarga caminhonetaDeCarga) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String buscarUltimoNomeCaminhonetaDeCarga() {
+        return businessCategoriaCaminhonetaDeCarga.buscarUltimoNomeCaminhonetaDeCarga();
     }
 
     @Override
@@ -121,6 +131,11 @@ public class Fachada implements IFachada{
     @Override
     public void salvarCaminhonetaDePassageiros(CaminhonetaDePassageiros caminhonetaDePassageiros) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String buscarUltimoNomeCaminhonetaDePassageiros() {
+        return businessCategoriaCaminhonetaDePassageiros.buscarUltimoNomeCaminhonetaDePassageiros();
     }
 
     @Override
@@ -247,7 +262,29 @@ public class Fachada implements IFachada{
     public void alterarLog(Log log) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    
+     @Override
+    public void salvarPessoa(Pessoa pessoa) throws BusinessExpection {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
+    @Override
+    public ArrayList<Pessoa> listarTodosPessoa() throws BusinessExpection {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Pessoa buscarPorIdPessoa(int id) throws BusinessExpection {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void alterarPessoa(PessoaFisica pessoaFisica) throws BusinessExpection {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
     @Override
     public void salvarPessoaFisica(PessoaFisica pessoaFisica) throws BusinessExpection {
         businessPessoaFisica.salvar(pessoaFisica);
@@ -289,7 +326,7 @@ public class Fachada implements IFachada{
     }
 
     @Override
-    public void salvarReservaPessoasCategorias(ReservaPessoasCategorias reservaPessoasCategorias)throws BusinessExpection{
+    public void salvarReservaPessoasCategorias(ReservaPessoasCategorias reservaPessoasCategorias) throws BusinessExpection {
         businessReservaPessoaCategoria.salvar(reservaPessoasCategorias);
 
     }
@@ -328,7 +365,6 @@ public class Fachada implements IFachada{
     public void alterarVeiculo(Veiculo veiculo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
-    
+
+   
 }

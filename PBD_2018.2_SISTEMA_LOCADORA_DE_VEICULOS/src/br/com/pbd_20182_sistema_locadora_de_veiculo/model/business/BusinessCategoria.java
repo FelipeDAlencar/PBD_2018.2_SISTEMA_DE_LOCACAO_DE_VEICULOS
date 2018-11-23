@@ -6,9 +6,13 @@
 package br.com.pbd_20182_sistema_locadora_de_veiculo.model.business;
 
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.BusinessExpection;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOCategoria;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 /**
  *
@@ -26,13 +30,17 @@ public class BusinessCategoria implements IBusinessCategoria {
     @Override
     public void salvar(Categoria categoria) throws BusinessExpection {
         if(validar(categoria)){
-            salvar(categoria);
+            try {
+                dAOCategoria.salvar(categoria);
+            } catch (DAOException ex) {
+                throw  new BusinessExpection("Erro ao tentar inserir Categoria");
+            }
         }
     }
 
     @Override
     public ArrayList<Categoria> listarTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return dAOCategoria.findAll();
     }
 
     @Override
@@ -42,6 +50,17 @@ public class BusinessCategoria implements IBusinessCategoria {
 
     private boolean validar(Categoria categoria) {
        return true;
+    }
+
+    @Override
+    public String buscarUltimoNomeCategoria() {
+        
+        try {
+            return dAOCategoria.buscarUltimoNome();
+        } catch (DAOException ex) {
+            Logger.getLogger(BusinessCategoria.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
 }
