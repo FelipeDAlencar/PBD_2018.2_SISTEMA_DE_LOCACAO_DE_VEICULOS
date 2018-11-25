@@ -8,6 +8,7 @@ package App;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.JPA.ConnectionFactory;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.JPA.SQLUtil;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.controller.FXMLLoginController;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.BusinessExpection;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Backup;
@@ -168,24 +169,6 @@ public class App extends Application implements Runnable {
 //        dao.salvar(pessoaJuridica);
         //new Backup().executeCommand("ls ~");
         addNotify();
-        
-        fachada = Fachada.getInstance();
-        
-        ReservaPessoasCategorias reserva = fachada.listarTodosReservaPessoasCategorias().get(0);
-        
-        
-        System.err.println("Data objeto antes: " + reserva.getDataHora());
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(reserva.getDataHora());
-        calendar.add(Calendar.MINUTE, 60);
-
-        System.err.println("Data objeto add + 60 min: " + calendar.getTime());
-        System.err.println("Data Atual: " + new Date());
-
-        if (calendar.after(new Date())) {
-            System.out.println("Venceu");
-        }
-        
 
     }
 
@@ -203,36 +186,33 @@ public class App extends Application implements Runnable {
 
     @Override
     public void run() {
-        
-//        try {
-//
-//            while (true) {
-//                ArrayList<ReservaPessoasCategorias> reservas = fachada.listarTodosReservaPessoasCategorias();
-//                System.err.println("Entrou");
-//                for(ReservaPessoasCategorias reserva: reservas){
-//                    Calendar calendar = Calendar.getInstance();
-//                    calendar.setTime(reserva.getDataHora());
-//                    calendar.add(Calendar.MINUTE, 60);
-//                    
-//                    System.err.println(calendar.getTime());
-//                    System.err.println(new Date());
-//                    
-//                    if(calendar.after(new Date())){
-//                        System.out.println("Venceu");
-//                    }
-//                    
-//                    
-//                    
-//                    
-//                }
-//                
-//                Thread.sleep(1000);
-//            }
-//
-//        } catch (InterruptedException ex) {
-//            ex.printStackTrace();
-//        }
 
+        try {
+            while (true) {
+                ArrayList<ReservaPessoasCategorias> reservas = fachada.listarTodosReservaPessoasCategorias();
+                for (ReservaPessoasCategorias reserva : reservas) {
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTime(reserva.getDataHora());
+                    calendar.add(Calendar.MINUTE, 60);
+
+                    Calendar dataHoraAtual = Calendar.getInstance();
+                    dataHoraAtual.setTime(new Date());
+
+                    if (calendar.compareTo(dataHoraAtual) < 0) {
+                        reserva.setStatus(false);
+                        fachada.salvarReservaPessoasCategorias(reserva);
+                    }
+
+                }
+
+                Thread.sleep(500000);
+            }
+
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        } catch (BusinessExpection ex) {
+            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

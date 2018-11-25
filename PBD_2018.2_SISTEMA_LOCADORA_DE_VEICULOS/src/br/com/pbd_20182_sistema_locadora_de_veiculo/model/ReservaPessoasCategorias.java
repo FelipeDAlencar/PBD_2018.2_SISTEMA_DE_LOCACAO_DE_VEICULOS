@@ -26,26 +26,31 @@ import javax.persistence.TemporalType;
 @Table(name = "reservas_pessoa_categoria")
 @SequenceGenerator(name = "reserva_sequence", sequenceName = "reserva_seq", initialValue = 1, allocationSize = 1)
 
-public class ReservaPessoasCategorias implements Serializable, EntidadeBase{
+public class ReservaPessoasCategorias implements Serializable, EntidadeBase {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "reserva_sequence")
     private Integer id;
-    
+
     @ManyToOne()
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
-    
+
     @ManyToOne()
     @JoinColumn(name = "pessoa_id")
     private Pessoa pessoa;
-    
+
     @Column(name = "data_hora", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataHora;
-    @Column(name = "valor_previsto")    
+    @Column(name = "valor_previsto")
     private double valorPrevisto;
 
+    private boolean status; 
+    
+    
     @Override
+
     public Integer getId() {
         return id;
     }
@@ -86,14 +91,23 @@ public class ReservaPessoasCategorias implements Serializable, EntidadeBase{
         this.valorPrevisto = valorPrevisto;
     }
 
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 53 * hash + Objects.hashCode(this.id);
-        hash = 53 * hash + Objects.hashCode(this.categoria);
-        hash = 53 * hash + Objects.hashCode(this.pessoa);
-        hash = 53 * hash + Objects.hashCode(this.dataHora);
-        hash = 53 * hash + (int) (Double.doubleToLongBits(this.valorPrevisto) ^ (Double.doubleToLongBits(this.valorPrevisto) >>> 32));
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.id);
+        hash = 97 * hash + Objects.hashCode(this.categoria);
+        hash = 97 * hash + Objects.hashCode(this.pessoa);
+        hash = 97 * hash + Objects.hashCode(this.dataHora);
+        hash = 97 * hash + (int) (Double.doubleToLongBits(this.valorPrevisto) ^ (Double.doubleToLongBits(this.valorPrevisto) >>> 32));
+        hash = 97 * hash + (this.status ? 1 : 0);
         return hash;
     }
 
@@ -112,6 +126,9 @@ public class ReservaPessoasCategorias implements Serializable, EntidadeBase{
         if (Double.doubleToLongBits(this.valorPrevisto) != Double.doubleToLongBits(other.valorPrevisto)) {
             return false;
         }
+        if (this.status != other.status) {
+            return false;
+        }
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
@@ -127,8 +144,6 @@ public class ReservaPessoasCategorias implements Serializable, EntidadeBase{
         return true;
     }
     
-    
-    
-    
+
     
 }

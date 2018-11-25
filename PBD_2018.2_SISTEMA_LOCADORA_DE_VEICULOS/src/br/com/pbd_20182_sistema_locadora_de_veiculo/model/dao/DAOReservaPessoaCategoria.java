@@ -22,7 +22,7 @@ public class DAOReservaPessoaCategoria extends DAOGenerico<ReservaPessoasCategor
         ArrayList<ReservaPessoasCategorias> reservaPessoasCategoriases = null;
 
         try {
-            reservaPessoasCategoriases = (ArrayList) em.createQuery("from ReservaPessoasCategorias c").getResultList();
+            reservaPessoasCategoriases = (ArrayList) em.createQuery("from ReservaPessoasCategorias c where status = true").getResultList();
         } catch (Exception e) {
             e.printStackTrace();
 
