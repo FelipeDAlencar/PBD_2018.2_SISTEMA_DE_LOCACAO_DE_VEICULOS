@@ -6,6 +6,7 @@
 package br.com.pbd_20182_sistema_locadora_de_veiculo.fachada;
 
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.BusinessExpection;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.CaminhonetaDeCarga;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.CaminhonetaDePassageiros;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
@@ -79,17 +80,17 @@ public class Fachada implements IFachada {
     }
 
     @Override
-    public void salvarCategoria(Categoria categoria) throws BusinessExpection {
+    public void salvarCategoria(Categoria categoria) throws BusinessExpection, DAOException {
         businessCategoria.salvar(categoria);
     }
 
     @Override
-    public String buscarUltimoNomeCategoria() {
-       return  businessCategoria.buscarUltimoNomeCategoria();
+    public String buscarUltimoNomeCategoria() throws DAOException {
+        return businessCategoria.buscarUltimoNomeCategoria();
     }
 
     @Override
-    public ArrayList<Categoria> listarTodosCategoria() {
+    public ArrayList<Categoria> listarTodosCategoria() throws DAOException {
         return businessCategoria.listarTodos();
     }
 
@@ -109,7 +110,7 @@ public class Fachada implements IFachada {
     }
 
     @Override
-    public String buscarUltimoNomeCaminhonetaDeCarga() {
+    public String buscarUltimoNomeCaminhonetaDeCarga() throws DAOException {
         return businessCategoriaCaminhonetaDeCarga.buscarUltimoNomeCaminhonetaDeCarga();
     }
 
@@ -154,8 +155,8 @@ public class Fachada implements IFachada {
     }
 
     @Override
-    public void salvarEndereco(Endereco endereco) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void salvarEndereco(Endereco endereco) throws DAOException, BusinessExpection {
+        businessEndereco.salvar(endereco);
     }
 
     @Override
@@ -262,31 +263,29 @@ public class Fachada implements IFachada {
     public void alterarLog(Log log) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
-     @Override
-    public void salvarPessoa(Pessoa pessoa) throws BusinessExpection {
+
+    @Override
+    public void salvarPessoa(Pessoa pessoa) throws DAOException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public ArrayList<Pessoa> listarTodosPessoa() throws BusinessExpection {
+    public ArrayList<Pessoa> listarTodosPessoa() throws DAOException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Pessoa buscarPorIdPessoa(int id) throws BusinessExpection {
+    public Pessoa buscarPorIdPessoa(int id) throws DAOException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void alterarPessoa(PessoaFisica pessoaFisica) throws BusinessExpection {
+    public void alterarPessoa(PessoaFisica pessoaFisica) throws DAOException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
     @Override
-    public void salvarPessoaFisica(PessoaFisica pessoaFisica) throws BusinessExpection {
+    public void salvarPessoaFisica(PessoaFisica pessoaFisica) throws BusinessExpection, DAOException {
         businessPessoaFisica.salvar(pessoaFisica);
     }
 
@@ -353,7 +352,9 @@ public class Fachada implements IFachada {
 
     @Override
     public ArrayList<Veiculo> listarTodosVeiculo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        return businessVeiculo.listarTodos();
+
     }
 
     @Override
@@ -366,5 +367,4 @@ public class Fachada implements IFachada {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-   
 }

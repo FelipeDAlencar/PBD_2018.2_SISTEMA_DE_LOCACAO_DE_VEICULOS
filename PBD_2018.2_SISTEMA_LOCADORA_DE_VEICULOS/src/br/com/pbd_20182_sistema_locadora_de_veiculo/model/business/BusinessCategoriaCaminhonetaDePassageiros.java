@@ -5,7 +5,9 @@
  */
 package br.com.pbd_20182_sistema_locadora_de_veiculo.model.business;
 
+import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.BusinessExpection;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.ValidarException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.CaminhonetaDePassageiros;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOCategoriaCaminhonetaDePassageiros;
 import java.util.ArrayList;
@@ -30,13 +32,12 @@ public class BusinessCategoriaCaminhonetaDePassageiros implements IBusinessCateg
     
     
     @Override
-    public void salvar(CaminhonetaDePassageiros caminhonetaDePassageiros) {
+    public void salvar(CaminhonetaDePassageiros caminhonetaDePassageiros)throws DAOException,BusinessExpection{
         
-        try {
+            validar(caminhonetaDePassageiros);
+            
             daoccdp.salvar(caminhonetaDePassageiros);
-        } catch (DAOException ex) {
-            ex.printStackTrace();
-        }
+        
 
     }
 
@@ -71,6 +72,17 @@ public class BusinessCategoriaCaminhonetaDePassageiros implements IBusinessCateg
         }
         
         return null;
+        
+    }
+
+    private void validar(CaminhonetaDePassageiros caminhonetaDePassageiros)throws BusinessExpection{
+        
+        if(caminhonetaDePassageiros != null){
+            
+        }else {
+            throw  new BusinessExpection("ERRO AO TENTAR INSERIR");
+        }
+        
         
     }
     

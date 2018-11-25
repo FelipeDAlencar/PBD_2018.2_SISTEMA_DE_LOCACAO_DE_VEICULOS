@@ -5,6 +5,7 @@
  */
 package br.com.pbd_20182_sistema_locadora_de_veiculo.controller;
 
+import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.CaminhonetaDePassageiros;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
@@ -12,6 +13,8 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Util;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.view.Alerta;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -176,7 +179,7 @@ public class FXMLAnchorPaneCadastroCategoriaDialogController implements Initiali
     }
 
     @FXML
-    void acoesRadios(ActionEvent event) {
+    void acoesRadios(ActionEvent event) throws DAOException {
         if (event.getSource() == rbCategoriaPassageiros) {
 
             lbAirbag.setVisible(true);
@@ -236,7 +239,11 @@ public class FXMLAnchorPaneCadastroCategoriaDialogController implements Initiali
 
         fachada = Fachada.getInstance();
 
-        ultimoNome = fachada.buscarUltimoNomeCategoria();
+        try {
+            ultimoNome = fachada.buscarUltimoNomeCategoria();
+        } catch (DAOException ex) {
+            Logger.getLogger(FXMLAnchorPaneCadastroCategoriaDialogController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         tfNome.setText(Util.gerarNomeCategoria(ultimoNome, 1));
 
     }

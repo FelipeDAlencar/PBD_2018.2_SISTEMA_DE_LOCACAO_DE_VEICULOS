@@ -29,34 +29,30 @@ public class BusinessPessoaFisica implements IBusinessPessoaFisica {
     }
 
     @Override
-    public void salvar(PessoaFisica pessoaFisica) throws BusinessExpection {
-        if(validar(pessoaFisica)){
-        
-            try {
-                dAOPessoaFisica.salvar(pessoaFisica);
-            } catch (DAOException ex) {
-                throw new BusinessExpection("Erro no bus");
-            }
-            
-        }
+    public void salvar(PessoaFisica pessoaFisica) throws DAOException, BusinessExpection {
+
+        validar(pessoaFisica);
+
+        dAOPessoaFisica.salvar(pessoaFisica);
+
     }
 
     @Override
-    public ArrayList<PessoaFisica> listarTodos() throws BusinessExpection {
+    public ArrayList<PessoaFisica> listarTodos() throws DAOException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public PessoaFisica buscarPorId(int id) throws BusinessExpection {
+    public PessoaFisica buscarPorId(int id) throws DAOException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void alterar(PessoaFisica pessoaFisica) throws BusinessExpection {
+    public void alterar(PessoaFisica pessoaFisica) throws DAOException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public boolean validar(PessoaFisica pessoaFisica) {
+    public boolean validar(PessoaFisica pessoaFisica) throws BusinessExpection {
         String errorMessage = "";
 
         if (pessoaFisica.getNome() == null || pessoaFisica.getNome().length() == 0) {
@@ -84,11 +80,7 @@ public class BusinessPessoaFisica implements IBusinessPessoaFisica {
         if (errorMessage.length() == 0) {
             return true;
         } else {
-            Alerta alerta = Alerta.getInstace(AlertType.NONE);
-            alerta.alertar(AlertType.ERROR, "Erro", 
-                    "Erro ao validar campos.", errorMessage);
-           
-            return false;
+            throw new BusinessExpection("ERRO AO TENTAR INSERIR" + errorMessage);
         }
     }
 }

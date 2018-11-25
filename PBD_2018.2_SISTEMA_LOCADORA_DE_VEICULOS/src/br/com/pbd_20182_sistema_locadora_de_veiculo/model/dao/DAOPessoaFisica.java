@@ -30,6 +30,7 @@ public class DAOPessoaFisica extends DAOGenerico<PessoaFisica> implements IDAOPe
             pessoaFisicas = (ArrayList) em.createQuery("from PessoaFisica p").getResultList();
         } catch (Exception e) {
             e.printStackTrace();
+            throw  new DAOException("ERRO AO TENTAR BUSCAR NO BANCO DE DADOS");
 
         } finally {
             em.close();

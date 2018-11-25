@@ -23,7 +23,7 @@ public class DAOVeiculos extends DAOGenerico<Veiculo> implements IDAOVeiculos{
         ArrayList<Veiculo> veiculos = null;
 
         try {
-            veiculos = (ArrayList) em.createQuery("from veiculo c").getResultList();
+            veiculos = (ArrayList) em.createQuery("from Veiculo c").getResultList();
         } catch (Exception e) {
             e.printStackTrace();
 

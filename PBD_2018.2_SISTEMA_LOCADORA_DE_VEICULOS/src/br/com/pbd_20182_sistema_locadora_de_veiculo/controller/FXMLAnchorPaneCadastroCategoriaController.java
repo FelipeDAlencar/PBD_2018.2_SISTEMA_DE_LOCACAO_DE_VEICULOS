@@ -6,6 +6,7 @@
 package br.com.pbd_20182_sistema_locadora_de_veiculo.controller;
 
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.BusinessExpection;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.CaminhonetaDePassageiros;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
@@ -105,7 +106,7 @@ public class FXMLAnchorPaneCadastroCategoriaController implements Initializable 
     private FXMLAnchorPaneCadastroCategoriaDialogController controllerDialog;
 
     @FXML
-    void acaoDeBtns(ActionEvent event) throws BusinessExpection {
+    void acaoDeBtns(ActionEvent event) throws BusinessExpection, DAOException {
         if (event.getSource() == btInserir) {
             boolean confirmar = exibirTelaDeCadastroDeCategorias();
             
@@ -133,7 +134,11 @@ public class FXMLAnchorPaneCadastroCategoriaController implements Initializable 
     public void initialize(URL url, ResourceBundle rb) {
         fachada = Fachada.getInstance();
 
-        carregarTabela();
+        try {
+            carregarTabela();
+        } catch (DAOException ex) {
+            
+        }
         tableView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> selecionouDaTabela(newValue));
     }
@@ -157,7 +162,7 @@ public class FXMLAnchorPaneCadastroCategoriaController implements Initializable 
         }
     }
 
-    private void carregarTabela() {
+    private void carregarTabela() throws DAOException {
 
         categorias = fachada.listarTodosCategoria();
 

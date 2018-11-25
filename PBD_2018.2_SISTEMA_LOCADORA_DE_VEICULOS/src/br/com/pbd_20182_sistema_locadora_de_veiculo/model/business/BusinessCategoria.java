@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 /**
  *
  * @author Felipe
@@ -28,18 +27,15 @@ public class BusinessCategoria implements IBusinessCategoria {
     }
 
     @Override
-    public void salvar(Categoria categoria) throws BusinessExpection {
-        if(validar(categoria)){
-            try {
-                dAOCategoria.salvar(categoria);
-            } catch (DAOException ex) {
-                throw  new BusinessExpection("Erro ao tentar inserir Categoria");
-            }
-        }
+    public void salvar(Categoria categoria) throws DAOException,BusinessExpection{
+
+        validar(categoria);
+        dAOCategoria.salvar(categoria);
+
     }
 
     @Override
-    public ArrayList<Categoria> listarTodos() {
+    public ArrayList<Categoria> listarTodos() throws DAOException {
         return dAOCategoria.findAll();
     }
 
@@ -48,13 +44,19 @@ public class BusinessCategoria implements IBusinessCategoria {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private boolean validar(Categoria categoria) {
-       return true;
+    private boolean validar(Categoria categoria) throws BusinessExpection {
+
+        if (categoria != null) {
+            return true;
+        } else {
+            throw new BusinessExpection("ERRO DE TENTAR INSERIR!");
+        }
+
     }
 
     @Override
     public String buscarUltimoNomeCategoria() {
-        
+
         try {
             return dAOCategoria.buscarUltimoNome();
         } catch (DAOException ex) {

@@ -17,10 +17,9 @@ import javax.persistence.EntityManager;
  * @author Felipe
  */
 public class DAOCategoria extends DAOGenerico<Categoria> implements IDAOCategoria {
-    
-    
+
     @Override
-    public ArrayList<Categoria> findAll() {
+    public ArrayList<Categoria> findAll()throws DAOException{
         EntityManager em = ConnectionFactory.getInstance().getConnection();
         ArrayList<Categoria> categorias = null;
 
@@ -28,6 +27,7 @@ public class DAOCategoria extends DAOGenerico<Categoria> implements IDAOCategori
             categorias = (ArrayList) em.createQuery("from Categoria c").getResultList();
         } catch (Exception e) {
             e.printStackTrace();
+            throw new DAOException("ERRO AO TENTAR BUSCAR NO BANCO DE DADOS");
 
         } finally {
             em.close();
@@ -35,6 +35,7 @@ public class DAOCategoria extends DAOGenerico<Categoria> implements IDAOCategori
 
         return categorias;
     }
+
     public String buscarUltimoNome() throws DAOException {
         EntityManager em = ConnectionFactory.getInstance().getConnection();
         String nome = null;

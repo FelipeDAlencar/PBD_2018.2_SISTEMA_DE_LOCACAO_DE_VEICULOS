@@ -29,6 +29,11 @@ public class DAOPessoa extends DAOGenerico<Pessoa> implements IDAOPessoa {
 
     private static DAOPessoa dAOPessoa;
 
+//    public DAOPessoa(int a) {
+//    }
+    
+    
+
     public static DAOPessoa getInstace() {
         if (dAOPessoa != null) {
             return dAOPessoa;
@@ -130,6 +135,8 @@ public class DAOPessoa extends DAOGenerico<Pessoa> implements IDAOPessoa {
         String cripttografia = (String) query
                 .getOutputParameterValue("cript");
         System.out.println(cripttografia);
+        
+        em.close();
         return cripttografia;
 
     }

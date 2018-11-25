@@ -5,6 +5,7 @@
  */
 package br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao;
 
+import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
 import java.util.ArrayList;
 
@@ -14,5 +15,5 @@ import java.util.ArrayList;
  */
 public interface IDAOCategoria {
     
-    public ArrayList<Categoria> findAll();
+    public ArrayList<Categoria> findAll()throws DAOException;
 }

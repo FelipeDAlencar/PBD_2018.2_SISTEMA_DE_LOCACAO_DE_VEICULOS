@@ -18,12 +18,13 @@ public class Endereco implements Serializable, EntidadeBase{
     private Integer id;
     @Column(name = "uf", length = 2, nullable = false)
     private String uf;
-    @Column(nullable = false)
+    @Column(nullable = false, length = 200)
     private String rua;
     @Column(nullable = false)
     private String bairro;
     @Column(nullable = false)
     private int numero;
+    
 
     public Integer getId() {
         return id;

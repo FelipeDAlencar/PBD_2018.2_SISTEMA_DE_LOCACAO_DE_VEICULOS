@@ -6,7 +6,7 @@
 package br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao;
 
 import br.com.pbd_20182_sistema_locadora_de_veiculo.JPA.ConnectionFactory;
-import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Funcionario;
 import java.util.ArrayList;
 import javax.persistence.EntityManager;
@@ -15,10 +15,10 @@ import javax.persistence.EntityManager;
  *
  * @author Felipe
  */
-public class DAOFuncionario extends DAOGenerico<Funcionario> implements IDAOFuncionario{
+public class DAOFuncionario extends DAOGenerico<Funcionario> implements IDAOFuncionario {
 
     @Override
-    public ArrayList<Funcionario> findAll() {
+    public ArrayList<Funcionario> findAll()throws DAOException{
         EntityManager em = ConnectionFactory.getInstance().getConnection();
         ArrayList<Funcionario> funcionarios = null;
 
@@ -26,6 +26,7 @@ public class DAOFuncionario extends DAOGenerico<Funcionario> implements IDAOFunc
             funcionarios = (ArrayList) em.createQuery("from Funcionario c").getResultList();
         } catch (Exception e) {
             e.printStackTrace();
+            throw new DAOException("ERRO AO TENTAR BUSCAR NO BANCO DE DADOS");
 
         } finally {
             em.close();
@@ -33,6 +34,5 @@ public class DAOFuncionario extends DAOGenerico<Funcionario> implements IDAOFunc
 
         return funcionarios;
     }
-    
-    
+
 }

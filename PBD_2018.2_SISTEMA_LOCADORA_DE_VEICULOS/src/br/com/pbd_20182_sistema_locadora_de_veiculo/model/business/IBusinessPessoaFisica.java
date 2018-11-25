@@ -5,6 +5,7 @@
  */
 package br.com.pbd_20182_sistema_locadora_de_veiculo.model.business;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.BusinessExpection;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
 import java.util.ArrayList;
 
@@ -14,8 +15,8 @@ import java.util.ArrayList;
  */
 public interface IBusinessPessoaFisica {
     
-    public void salvar(PessoaFisica pessoaFisica)throws BusinessExpection;
-    public ArrayList<PessoaFisica> listarTodos()throws BusinessExpection;
-    public PessoaFisica buscarPorId(int id)throws BusinessExpection;
-    public void alterar(PessoaFisica pessoaFisica)throws BusinessExpection;
+    public void salvar(PessoaFisica pessoaFisica)throws DAOException,BusinessExpection;
+    public ArrayList<PessoaFisica> listarTodos()throws DAOException;
+    public PessoaFisica buscarPorId(int id)throws DAOException;
+    public void alterar(PessoaFisica pessoaFisica)throws DAOException;
 }

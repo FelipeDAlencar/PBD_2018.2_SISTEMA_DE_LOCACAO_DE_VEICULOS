@@ -5,6 +5,8 @@
  */
 package br.com.pbd_20182_sistema_locadora_de_veiculo.model.business;
 
+import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.BusinessExpection;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.CaminhonetaDeCarga;
 import java.util.ArrayList;
 
@@ -14,14 +16,14 @@ import java.util.ArrayList;
  */
 public interface IBusinessCategoriaCaminhonetaDeCarga {
 
-    public void salvar(CaminhonetaDeCarga caminhonetaDeCarga);
+    public void salvar(CaminhonetaDeCarga caminhonetaDeCarga)throws  DAOException,BusinessExpection;
 
-    public ArrayList<CaminhonetaDeCarga> listarTodos();
+    public ArrayList<CaminhonetaDeCarga> listarTodos()throws DAOException;
 
-    public CaminhonetaDeCarga buscarPorId(int id);
+    public CaminhonetaDeCarga buscarPorId(int id)throws DAOException;
 
-    public void alterar(CaminhonetaDeCarga caminhonetaDeCarga);
+    public void alterar(CaminhonetaDeCarga caminhonetaDeCarga)throws DAOException;
 
-    public String buscarUltimoNomeCaminhonetaDeCarga();
+    public String buscarUltimoNomeCaminhonetaDeCarga()throws DAOException;
 
 }

@@ -17,17 +17,18 @@ import javax.persistence.EntityManager;
  * @author Felipe
  */
 public class DAOPessoaJuridica extends DAOGenerico<PessoaJuridica> implements IDAOPessoaJuridica {
+
     private static DAOPessoaJuridica dAOPessoaJuridica;
-    
-    
-    public DAOPessoaJuridica getInstance(){
-        if(dAOPessoaJuridica != null){
+
+    public DAOPessoaJuridica getInstance() {
+        if (dAOPessoaJuridica != null) {
             return dAOPessoaJuridica;
         }
         return dAOPessoaJuridica = new DAOPessoaJuridica();
     }
+
     @Override
-    public ArrayList<PessoaJuridica> findAll()throws DAOException{
+    public ArrayList<PessoaJuridica> findAll() throws DAOException {
         EntityManager em = ConnectionFactory.getInstance().getConnection();
         ArrayList<PessoaJuridica> pessoaJuridicas = null;
 
@@ -35,6 +36,7 @@ public class DAOPessoaJuridica extends DAOGenerico<PessoaJuridica> implements ID
             pessoaJuridicas = (ArrayList) em.createQuery("from PessoaJuridica c").getResultList();
         } catch (Exception e) {
             e.printStackTrace();
+            throw new DAOException("ERRO AO TENTAR BUSCAR NO BANCO");
 
         } finally {
             em.close();
@@ -42,5 +44,5 @@ public class DAOPessoaJuridica extends DAOGenerico<PessoaJuridica> implements ID
 
         return pessoaJuridicas;
     }
-    
+
 }

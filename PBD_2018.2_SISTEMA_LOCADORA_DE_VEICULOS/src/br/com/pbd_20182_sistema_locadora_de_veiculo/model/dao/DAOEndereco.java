@@ -22,7 +22,7 @@ public class DAOEndereco extends DAOGenerico<Endereco> implements IDAOEndereco{
         ArrayList<Endereco> enderecos = null;
 
         try {
-            enderecos = (ArrayList) em.createQuery("from endereco c").getResultList();
+            enderecos = (ArrayList) em.createQuery("from Endereco c").getResultList();
             
         } catch (Exception e) {
             e.printStackTrace();

@@ -38,6 +38,7 @@ public class DAOGenerico <T extends EntidadeBase>{
         } catch (Exception e) {
             e.printStackTrace();
             em.getTransaction().rollback();
+            throw new DAOException("ERRO AO TENTAR INSERIR NO BANCO DE DADOS");
         } finally {
             em.close();
         }
@@ -51,9 +52,10 @@ public class DAOGenerico <T extends EntidadeBase>{
         try {
             t = em.find(classe, id);
         } catch (Exception e) {
-
+            e.printStackTrace();
+            throw  new DAOException("ERRO AO TENTAR BUSCAR NO BANCO DE DADOS");
         } finally {
-
+            em.close();
         }
         return t;
     }
@@ -88,6 +90,7 @@ public class DAOGenerico <T extends EntidadeBase>{
         }catch(Exception e){
             e.printStackTrace();
             em.getTransaction().rollback();
+            throw new DAOException("ERRO AO TENTAR REMOVER DO BANCO DE DADOS");
         }finally{
             em.close();
         }

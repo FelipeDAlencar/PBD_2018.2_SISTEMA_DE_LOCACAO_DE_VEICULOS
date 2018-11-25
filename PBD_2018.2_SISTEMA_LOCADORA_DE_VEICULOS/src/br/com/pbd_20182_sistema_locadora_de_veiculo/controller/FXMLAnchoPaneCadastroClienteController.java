@@ -8,6 +8,7 @@ package br.com.pbd_20182_sistema_locadora_de_veiculo.controller;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.BusinessExpection;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Endereco;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Funcionario;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Pessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
@@ -124,12 +125,18 @@ public class FXMLAnchoPaneCadastroClienteController implements Initializable {
 
         try {
             if (event.getSource() == BtnInserirCliente) {
-
+                
+                
                 boolean confirmacao = exibirTelaDecadastro();
 
                 if (confirmacao) {
                     Pessoa pessoa = controller.getPessoa();
-
+                    Endereco endereco = controller.getEndereco();
+                    
+                    pessoa.setEndereco(endereco);
+                   
+                    
+                    
                     if (pessoa instanceof PessoaFisica) {
                         fachada.salvarPessoaFisica((PessoaFisica) pessoa);
                     } else {
@@ -143,7 +150,7 @@ public class FXMLAnchoPaneCadastroClienteController implements Initializable {
 
                     pessoa.setSenha(dAOPessoa.criptografarSenha(pessoa.getSenha()));
                     dAOPessoa.salvar(pessoa);
-
+                    
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setContentText("Cadastrado");
                     alert.show();

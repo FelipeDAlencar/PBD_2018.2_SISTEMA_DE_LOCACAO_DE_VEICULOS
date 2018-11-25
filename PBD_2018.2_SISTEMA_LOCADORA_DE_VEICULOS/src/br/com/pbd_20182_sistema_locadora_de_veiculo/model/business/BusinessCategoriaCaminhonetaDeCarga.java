@@ -5,8 +5,10 @@
  */
 package br.com.pbd_20182_sistema_locadora_de_veiculo.model.business;
 
+import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.BusinessExpection;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.CaminhonetaDeCarga;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.CaminhonetaDePassageiros;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOCategoriaCaminhonetaDeCarga;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -26,8 +28,9 @@ public class BusinessCategoriaCaminhonetaDeCarga implements IBusinessCategoriaCa
     }
 
     @Override
-    public void salvar(CaminhonetaDeCarga caminhonetaDeCarga) {
+    public void salvar(CaminhonetaDeCarga caminhonetaDeCarga) throws DAOException, BusinessExpection {
         try {
+            validar(caminhonetaDeCarga);
             daoccdc.salvar(caminhonetaDeCarga);
         } catch (DAOException ex) {
 
@@ -37,40 +40,49 @@ public class BusinessCategoriaCaminhonetaDeCarga implements IBusinessCategoriaCa
     }
 
     @Override
-    public ArrayList<CaminhonetaDeCarga> listarTodos() {
+    public ArrayList<CaminhonetaDeCarga> listarTodos() throws DAOException {
 
         return daoccdc.findAll();
 
     }
 
     @Override
-    public CaminhonetaDeCarga buscarPorId(int id) {
+    public CaminhonetaDeCarga buscarPorId(int id) throws DAOException {
 
         try {
             return daoccdc.findById(CaminhonetaDeCarga.class, id);
         } catch (DAOException ex) {
             Logger.getLogger(BusinessCategoriaCaminhonetaDeCarga.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
         return null;
     }
 
     @Override
-    public void alterar(CaminhonetaDeCarga caminhonetaDeCarga) {
+    public void alterar(CaminhonetaDeCarga caminhonetaDeCarga) throws DAOException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public String buscarUltimoNomeCaminhonetaDeCarga() {
+    public String buscarUltimoNomeCaminhonetaDeCarga() throws DAOException {
 
         try {
             return daoccdc.buscarUltimoNome();
         } catch (DAOException ex) {
             Logger.getLogger(BusinessCategoriaCaminhonetaDeCarga.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
+
         return null;
+    }
+
+    private void validar(CaminhonetaDeCarga caminhonetaDeCarga) throws BusinessExpection {
+
+        if (caminhonetaDeCarga != null) {
+
+        } else {
+            throw new BusinessExpection("ERRO AO TENTAR INSERIR");
+        }
+
     }
 
 }

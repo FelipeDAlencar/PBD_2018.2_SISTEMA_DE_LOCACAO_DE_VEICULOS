@@ -19,6 +19,35 @@ import javafx.scene.control.Alert;
  */
 public abstract class Util {
 
+    public static String[] ufs = {"AC",
+         "AL",
+        "AM",
+        "AP",
+        "BA",
+        "CE",
+        "DF",
+        "ES",
+        "GO",
+        "MA",
+        "MG",
+        "MS",
+        "MT",
+        "PA",
+        "PB",
+        "PE",
+        "PI",
+        "PR",
+        "RJ",
+        "RN",
+        "RO",
+        "RR",
+        "RS",
+        "SC",
+        "SE",
+        "SP",
+        "TO"
+    };
+
     public static String gerarCodigoInterno(String nome, String ultimoCodigo) {
         int parteNumerica = Integer.parseInt(ultimoCodigo.substring(3));
         parteNumerica += 1;
@@ -33,12 +62,11 @@ public abstract class Util {
             int parteNumerica = Integer.parseInt(ultimoNome.substring(2));
             parteNumerica += 1;
 
-            String novoNome = ultimoNome.substring(0,2) + String.valueOf(parteNumerica);
+            String novoNome = ultimoNome.substring(0, 2) + String.valueOf(parteNumerica);
 
             return novoNome;
-        
-        
-        }else{
+
+        } else {
             switch (tipo) {
                 case 1:
                     return "CN1";
@@ -47,11 +75,9 @@ public abstract class Util {
                 default:
                     return "CP1";
             }
-            
-            
-            
+
         }
-            
+
     }
 
     public static String formatarData(Date data) {

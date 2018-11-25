@@ -6,8 +6,11 @@
 package App;
 
 import br.com.pbd_20182_sistema_locadora_de_veiculo.JPA.ConnectionFactory;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.JPA.SQLUtil;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.controller.FXMLLoginController;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Backup;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Endereco;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Funcionario;
@@ -28,6 +31,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 
 import javafx.fxml.FXMLLoader;
@@ -43,7 +48,10 @@ import javax.persistence.EntityManager;
  *
  * @author Felipe
  */
-public class App extends Application {
+public class App extends Application implements Runnable {
+
+    private Thread thread;
+    private Fachada fachada;
 
     @Override
     public void start(Stage primaryStage) throws IOException, DAOException {
@@ -150,8 +158,6 @@ public class App extends Application {
 //        System.out.println("esse 1"+teste.substring(0, 0));
 //        System.out.println("esse 2"+teste.substring(0, 1));
 //        System.out.println("esse 3"+teste.substring(0, 2));
-
-
 //        PessoaJuridica pessoaJuridica = new PessoaJuridica();
 //        pessoaJuridica.setCNPJ("123456");
 //        pessoaJuridica.setInscriçãoEstadual("00005");
@@ -160,11 +166,53 @@ public class App extends Application {
 //        pessoaJuridica.setLogin("jonas");
 //        pessoaJuridica.setSenha(pessoaJuridica.getCNPJ());
 //        dao.salvar(pessoaJuridica);
+        //new Backup().executeCommand("ls ~");
+        addNotify();
         
+
     }
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    public void addNotify() {
+        fachada = Fachada.getInstance();
+        if (thread == null) {
+            thread = new Thread(this);
+            thread.start();
+        }
+    }
+
+    @Override
+    public void run() {
+        
+        try {
+
+            while (true) {
+                ArrayList<ReservaPessoasCategorias> reservas = fachada.listarTodosReservaPessoasCategorias();
+                System.err.println("Entrou");
+                for(ReservaPessoasCategorias reserva: reservas){
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTime(reserva.getDataHora());
+                    calendar.add(Calendar.MINUTE, 60);
+                    
+                    if(calendar.after(new Date())){
+                        System.out.println("Reserva se venceu");
+                    }
+                    
+                    
+                    
+                    
+                }
+                
+                Thread.sleep(1000);
+            }
+
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
+
     }
 
 }

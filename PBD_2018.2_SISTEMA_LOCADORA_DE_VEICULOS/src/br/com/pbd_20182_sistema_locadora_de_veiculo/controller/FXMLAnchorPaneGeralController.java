@@ -81,8 +81,11 @@ public class FXMLAnchorPaneGeralController implements Initializable {
                 } else {
                     ((Funcionario) pessoa).setSenha(((Funcionario) pessoa).getMatricula());
                 }
+
+                pessoa.setSenha(dAOPessoa.criptografarSenha(pessoa.getSenha()));
                 dAOPessoa.salvar(pessoa);
-                Alerta alerta =Alerta.getInstace(Alert.AlertType.NONE);
+
+                Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
                 alerta.alertar(Alert.AlertType.CONFIRMATION, "Sucesso", "Senha resetada", "");
             } catch (NullPointerException e) {
                 Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
@@ -137,5 +140,5 @@ public class FXMLAnchorPaneGeralController implements Initializable {
     public Button getBtnResetar() {
         return btnResetar;
     }
-    
+
 }

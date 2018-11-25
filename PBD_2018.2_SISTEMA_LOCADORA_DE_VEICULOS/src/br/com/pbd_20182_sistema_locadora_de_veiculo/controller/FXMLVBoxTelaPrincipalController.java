@@ -95,10 +95,16 @@ public class FXMLVBoxTelaPrincipalController implements Initializable {
         }
 
         if (event.getSource() == menuItemCategoria) {
-            System.out.println("Entrou");
+
             pane = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAnchorPaneCadastroCategoria.fxml"));
             AnchorPaneContent.getChildren().setAll(pane);
 
+        }
+
+        if (event.getSource() == menuItemVeiculos) {
+
+            pane = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAnchorPaneCadastroVeiculos.fxml"));
+            AnchorPaneContent.getChildren().setAll(pane);
         }
     }
 

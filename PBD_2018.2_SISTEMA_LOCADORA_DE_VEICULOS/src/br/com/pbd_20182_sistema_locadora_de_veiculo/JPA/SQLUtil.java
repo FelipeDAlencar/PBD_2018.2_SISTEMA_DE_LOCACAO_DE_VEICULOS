@@ -5,6 +5,8 @@
  */
 package br.com.pbd_20182_sistema_locadora_de_veiculo.JPA;
 
+import java.io.File;
+
 /**
  *
  * @author Felipe
@@ -41,4 +43,8 @@ public class SQLUtil {
 
     }
 
+    
+    
+   
+    
 }
