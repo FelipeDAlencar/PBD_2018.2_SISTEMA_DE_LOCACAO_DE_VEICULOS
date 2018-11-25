@@ -151,7 +151,7 @@ public class FXMLAchorPaneCadastroClienteDialogController implements Initializab
                     }
                     Date s = Date.from(cpDataNascimento.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
 
-                    SimpleDateFormat spdf = new SimpleDateFormat("yyyy/MM/dddd");
+                    SimpleDateFormat spdf = new SimpleDateFormat("dd/MM/yyyy");
                     Calendar data_Nascimento = Calendar.getInstance();
                     data_Nascimento.setTime(s);
                     ((PessoaFisica) pessoa).setData_nascimento(data_Nascimento.getTime());
@@ -230,21 +230,17 @@ public class FXMLAchorPaneCadastroClienteDialogController implements Initializab
 
         gridPane2.add(lbInscricaoEstadual, 0, 3);
         gridPane2.add(tfInscricaoEstadual, 1, 3);
-        
-        
+
         ArrayList<String> ufs = new ArrayList<>();
         ObservableList<String> obsUfs;
-        
-        
-        for(int i = 0; i < Util.ufs.length; i++){
+
+        for (int i = 0; i < Util.ufs.length; i++) {
             ufs.add(Util.ufs[i]);
         }
-        
+
         obsUfs = FXCollections.observableArrayList(ufs);
-        
+
         comboUF.setItems(obsUfs);
-        
-        
 
     }
 

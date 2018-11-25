@@ -74,14 +74,23 @@ public class FXMLAnchorPaneCadastroReservaDialogController implements Initializa
 
             Date s = Date.from(dpData.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
 
-            SimpleDateFormat spdf = new SimpleDateFormat("yyyy/MM/dddd HH:MM:SS");
+            SimpleDateFormat spdf = new SimpleDateFormat("dd/yy/dddd HH:mm:ss");
             Calendar dataHora = Calendar.getInstance();
+
+            Calendar c1 = Calendar.getInstance();
+            c1.setTime(new Date());
             dataHora.setTime(s);
+
+            dataHora.set(Calendar.HOUR_OF_DAY, c1.get(Calendar.HOUR_OF_DAY));
+            dataHora.set(Calendar.MINUTE, c1.get(Calendar.MINUTE));
+            dataHora.set(Calendar.SECOND, c1.get(Calendar.SECOND));
+
+            
             reservaPessoasCategorias.setDataHora(dataHora.getTime());
             reservaPessoasCategorias.setValorPrevisto(Double.parseDouble(tfValor.getText()));
             confirmado = true;
             stage.close();
-            
+
         }
     }
 

@@ -169,6 +169,23 @@ public class App extends Application implements Runnable {
         //new Backup().executeCommand("ls ~");
         addNotify();
         
+        fachada = Fachada.getInstance();
+        
+        ReservaPessoasCategorias reserva = fachada.listarTodosReservaPessoasCategorias().get(0);
+        
+        
+        System.err.println("Data objeto antes: " + reserva.getDataHora());
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(reserva.getDataHora());
+        calendar.add(Calendar.MINUTE, 60);
+
+        System.err.println("Data objeto add + 60 min: " + calendar.getTime());
+        System.err.println("Data Atual: " + new Date());
+
+        if (calendar.after(new Date())) {
+            System.out.println("Venceu");
+        }
+        
 
     }
 
@@ -187,31 +204,34 @@ public class App extends Application implements Runnable {
     @Override
     public void run() {
         
-        try {
-
-            while (true) {
-                ArrayList<ReservaPessoasCategorias> reservas = fachada.listarTodosReservaPessoasCategorias();
-                System.err.println("Entrou");
-                for(ReservaPessoasCategorias reserva: reservas){
-                    Calendar calendar = Calendar.getInstance();
-                    calendar.setTime(reserva.getDataHora());
-                    calendar.add(Calendar.MINUTE, 60);
-                    
-                    if(calendar.after(new Date())){
-                        System.out.println("Reserva se venceu");
-                    }
-                    
-                    
-                    
-                    
-                }
-                
-                Thread.sleep(1000);
-            }
-
-        } catch (InterruptedException ex) {
-            ex.printStackTrace();
-        }
+//        try {
+//
+//            while (true) {
+//                ArrayList<ReservaPessoasCategorias> reservas = fachada.listarTodosReservaPessoasCategorias();
+//                System.err.println("Entrou");
+//                for(ReservaPessoasCategorias reserva: reservas){
+//                    Calendar calendar = Calendar.getInstance();
+//                    calendar.setTime(reserva.getDataHora());
+//                    calendar.add(Calendar.MINUTE, 60);
+//                    
+//                    System.err.println(calendar.getTime());
+//                    System.err.println(new Date());
+//                    
+//                    if(calendar.after(new Date())){
+//                        System.out.println("Venceu");
+//                    }
+//                    
+//                    
+//                    
+//                    
+//                }
+//                
+//                Thread.sleep(1000);
+//            }
+//
+//        } catch (InterruptedException ex) {
+//            ex.printStackTrace();
+//        }
 
     }
 
