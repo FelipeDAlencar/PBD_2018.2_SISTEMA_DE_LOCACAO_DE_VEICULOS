@@ -65,11 +65,7 @@ public class BusinessReservaPessoaCategoria implements IBusinessRerservaPessoaCa
                 + String.valueOf(dataHoraPrevista.get(Calendar.MINUTE)));
 
         String errorMessage = "";
-        
-        
-        
-        
-        System.err.println("Hora " + hora);
+
         if (hora < 8 || hora > 17) {
 
             errorMessage += "Horário não permitido \n";
@@ -81,6 +77,10 @@ public class BusinessReservaPessoaCategoria implements IBusinessRerservaPessoaCa
             errorMessage += "Categoria não disponível, sua categoria vai ser "
                     + "remanejada para uma categoria superior, porém com o mesmo valor.";
 
+            Categoria categoria = fachada.buscarPorIdCategoria(reservaPessoasCategorias.getCategoria().getId());
+            categoria.setDisponivel(false);
+            fachada.salvarCategoria(categoria);
+
         } else {
             veiculos.get(0).setDisponivel(false);
             fachada.salvarVeiculo(veiculos.get(0));
@@ -89,6 +89,26 @@ public class BusinessReservaPessoaCategoria implements IBusinessRerservaPessoaCa
             throw new BusinessExpection("Atenção \n " + errorMessage);
         }
 
+    }
+
+    public Categoria trocarDeCategoria(Categoria categoria) throws DAOException {
+
+        fachada = Fachada.getInstance();
+
+        int parteNumerica = Integer.parseInt(categoria.getNome().substring(2));
+        parteNumerica += 1;
+        String nomeCategoria = categoria.getNome().replaceAll("1234567890", "") + String.valueOf(parteNumerica);
+        
+        categoria = fachada.buscarCategoriaPorNome(nomeCategoria);
+        
+        if(categoria != null){
+            return categoria;
+        }
+        
+        
+        
+
+        return null;
     }
 
 }
