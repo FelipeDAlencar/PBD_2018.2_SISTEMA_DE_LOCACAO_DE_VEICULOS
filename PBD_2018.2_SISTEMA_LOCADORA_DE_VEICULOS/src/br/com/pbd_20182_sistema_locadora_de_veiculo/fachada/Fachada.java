@@ -95,8 +95,14 @@ public class Fachada implements IFachada {
     }
 
     @Override
-    public Categoria buscarPorIdCategoria(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Categoria buscarPorIdCategoria(int id) throws DAOException {
+        return businessCategoria.buscarPorId(id);
+    }
+    
+    @Override
+    public Categoria buscarCategoriaPorNome(String nome)throws DAOException{
+        return businessCategoria.buscarPorNome(nome);
+        
     }
 
     @Override
@@ -325,7 +331,7 @@ public class Fachada implements IFachada {
     }
 
     @Override
-    public void salvarReservaPessoasCategorias(ReservaPessoasCategorias reservaPessoasCategorias) throws BusinessExpection {
+    public void salvarReservaPessoasCategorias(ReservaPessoasCategorias reservaPessoasCategorias) throws BusinessExpection, DAOException {
         businessReservaPessoaCategoria.salvar(reservaPessoasCategorias);
 
     }
@@ -346,8 +352,8 @@ public class Fachada implements IFachada {
     }
 
     @Override
-    public void salvarVeiculo(Veiculo veiculo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void salvarVeiculo(Veiculo veiculo) throws DAOException, BusinessExpection {
+        businessVeiculo.salvar(veiculo);
     }
 
     @Override
@@ -365,6 +371,11 @@ public class Fachada implements IFachada {
     @Override
     public void alterarVeiculo(Veiculo veiculo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<Veiculo> buscarVeiculoPorCategoria(Categoria categoria) throws DAOException {
+        return businessVeiculo.buscarPorCategoria(categoria);
     }
 
 }

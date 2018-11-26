@@ -5,6 +5,9 @@
  */
 package br.com.pbd_20182_sistema_locadora_de_veiculo.exception;
 
+import br.com.pbd_20182_sistema_locadora_de_veiculo.view.Alerta;
+import javafx.scene.control.Alert;
+
 /**
  *
  * @author Felipe
@@ -12,7 +15,8 @@ package br.com.pbd_20182_sistema_locadora_de_veiculo.exception;
 public class DAOException extends Exception{
 
     public DAOException(String message) {
-        super(message);
+        Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
+        alerta.alertar(Alert.AlertType.ERROR, "Erro", "Erro presente", message);
     }
     
     

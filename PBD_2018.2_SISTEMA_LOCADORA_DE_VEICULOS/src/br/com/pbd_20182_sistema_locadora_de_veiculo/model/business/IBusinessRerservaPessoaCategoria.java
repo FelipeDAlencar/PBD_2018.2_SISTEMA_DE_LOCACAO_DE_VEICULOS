@@ -15,9 +15,9 @@ import java.util.ArrayList;
  */
 public interface IBusinessRerservaPessoaCategoria {
     
-    public void salvar(ReservaPessoasCategorias reservaPessoasCategorias)throws BusinessExpection;
-    public ArrayList<ReservaPessoasCategorias> listarTodos()throws  BusinessExpection;
-    public ReservaPessoasCategorias buscarPorId(int id)throws BusinessExpection;
-    public void alterar(ReservaPessoasCategorias reservaPessoasCategorias)throws BusinessExpection;
+    public void salvar(ReservaPessoasCategorias reservaPessoasCategorias)throws DAOException, BusinessExpection;
+    public ArrayList<ReservaPessoasCategorias> listarTodos()throws  DAOException;
+    public ReservaPessoasCategorias buscarPorId(int id)throws DAOException;
+    public void alterar(ReservaPessoasCategorias reservaPessoasCategorias)throws DAOException;
     
 }

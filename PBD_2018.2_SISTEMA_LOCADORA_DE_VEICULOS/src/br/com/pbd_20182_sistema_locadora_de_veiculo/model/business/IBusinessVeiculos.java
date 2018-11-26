@@ -6,6 +6,7 @@
 package br.com.pbd_20182_sistema_locadora_de_veiculo.model.business;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.BusinessExpection;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Veiculo;
 import java.util.ArrayList;
 
@@ -19,5 +20,7 @@ public interface IBusinessVeiculos {
     public ArrayList<Veiculo> listarTodos()throws DAOException;
     public Veiculo buscarPorId(int id)throws DAOException;
     public void alterar(Veiculo veiculo)throws DAOException;
+     public ArrayList<Veiculo> buscarPorCategoria(Categoria categoria) throws DAOException;
+    
     
 }

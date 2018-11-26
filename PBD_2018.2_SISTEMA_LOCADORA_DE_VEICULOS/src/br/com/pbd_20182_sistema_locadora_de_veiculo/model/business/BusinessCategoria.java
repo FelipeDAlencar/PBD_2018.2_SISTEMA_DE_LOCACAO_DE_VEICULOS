@@ -40,8 +40,8 @@ public class BusinessCategoria implements IBusinessCategoria {
     }
 
     @Override
-    public Categoria buscarPorId(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Categoria buscarPorId(int id) throws DAOException {
+        return dAOCategoria.findById(Categoria.class, id);
     }
 
     private boolean validar(Categoria categoria) throws BusinessExpection {
@@ -63,6 +63,10 @@ public class BusinessCategoria implements IBusinessCategoria {
             Logger.getLogger(BusinessCategoria.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+    
+    public Categoria buscarPorNome(String nome)throws DAOException{
+        return dAOCategoria.buscarPorNome(nome);
     }
 
 }

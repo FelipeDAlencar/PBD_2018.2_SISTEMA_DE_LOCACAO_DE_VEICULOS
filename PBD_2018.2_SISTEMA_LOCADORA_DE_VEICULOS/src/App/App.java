@@ -53,6 +53,7 @@ public class App extends Application implements Runnable {
 
     private Thread thread;
     private Fachada fachada;
+    private int hora;
 
     @Override
     public void start(Stage primaryStage) throws IOException, DAOException {
@@ -191,14 +192,14 @@ public class App extends Application implements Runnable {
             while (true) {
                 ArrayList<ReservaPessoasCategorias> reservas = fachada.listarTodosReservaPessoasCategorias();
                 for (ReservaPessoasCategorias reserva : reservas) {
-                    Calendar calendar = Calendar.getInstance();
-                    calendar.setTime(reserva.getDataHora());
-                    calendar.add(Calendar.MINUTE, 60);
-
+                    Calendar dataHoraDaReserva = Calendar.getInstance();
+                    dataHoraDaReserva.setTime(reserva.getDataHora());
                     Calendar dataHoraAtual = Calendar.getInstance();
                     dataHoraAtual.setTime(new Date());
 
-                    if (calendar.compareTo(dataHoraAtual) < 0) {
+                    dataHoraDaReserva.add(Calendar.MINUTE, 60);
+
+                    if (dataHoraDaReserva.compareTo(dataHoraAtual) < 0) {
                         reserva.setStatus(false);
                         fachada.salvarReservaPessoasCategorias(reserva);
                     }
@@ -211,7 +212,9 @@ public class App extends Application implements Runnable {
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         } catch (BusinessExpection ex) {
-            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+            ex.getMessage();
+        } catch (DAOException ex) {
+            ex.getMessage();
         }
     }
 

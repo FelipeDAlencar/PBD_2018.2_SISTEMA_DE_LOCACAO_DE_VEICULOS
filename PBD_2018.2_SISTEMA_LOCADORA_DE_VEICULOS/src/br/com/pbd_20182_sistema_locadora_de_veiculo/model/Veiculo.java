@@ -41,6 +41,7 @@ public class Veiculo implements Serializable, EntidadeBase{
     private String placa;
     @Column(name = "tipo_de_combustivel", length = 100)
     private String tipoDeCombustivel;
+    private boolean disponivel;
     
    
     @ManyToOne
@@ -145,6 +146,14 @@ public class Veiculo implements Serializable, EntidadeBase{
         this.categoria = categoria;
     }
 
+    public boolean isDisponivel() {
+        return disponivel;
+    }
+
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 7;

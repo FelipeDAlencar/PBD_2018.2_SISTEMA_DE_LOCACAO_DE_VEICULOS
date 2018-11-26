@@ -5,6 +5,10 @@
  */
 package App;
 
+import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Veiculo;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -19,30 +23,17 @@ import org.hibernate.type.descriptor.java.LocalDateJavaDescriptor;
  */
 public class teste {
 
-    public static void main(String[] args) {
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+    public static void main(String[] args) throws DAOException {
 
-        //System.out.println(format.format(new Date()));
-        Calendar calendar = new GregorianCalendar();
-
-        LocalDate localDate = LocalDate.now();
-
-        Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-
-        calendar.setTime(date);
-
-        Calendar c1 = Calendar.getInstance();
-        c1.setTime(new Date());
-
-        
-
-        calendar.set(Calendar.HOUR_OF_DAY, c1.get(Calendar.HOUR_OF_DAY));
-        calendar.set(Calendar.MINUTE, c1.get(Calendar.MINUTE));
-        calendar.set(Calendar.SECOND, c1.get(Calendar.SECOND));
+        Fachada fachada = Fachada.getInstance();
         
         
-        System.err.println(format.format(calendar.getTime()));
-
+        Categoria categoria = new Categoria();
+        categoria.setId(1);
+        
+        //Veiculo v = fachada.buscarVeiculoPorCategoria(categoria);
+        
+        
         
 
     }

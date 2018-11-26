@@ -34,6 +34,7 @@ public interface IFachada {
     public Categoria buscarPorIdCategoria(int id)throws DAOException;
     public void alterarCategoria(Categoria categoria)throws DAOException;
     public String buscarUltimoNomeCategoria()throws DAOException;
+    public Categoria buscarCategoriaPorNome(String nome)throws DAOException;
     
     
     public void salvarCaminhonetaDeCarga(CaminhonetaDeCarga caminhonetaDeCarga)throws BusinessExpection,DAOException;
@@ -105,4 +106,6 @@ public interface IFachada {
     public ArrayList<Veiculo> listarTodosVeiculo()throws DAOException;
     public Veiculo buscarPorIdVeiculo(int id)throws DAOException;
     public void alterarVeiculo(Veiculo veiculo)throws DAOException;
+    public ArrayList<Veiculo> buscarVeiculoPorCategoria(Categoria categoria) throws DAOException;
+    
 }

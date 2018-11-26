@@ -23,5 +23,7 @@ public interface IBusinessCategoria {
     public Categoria buscarPorId(int id)throws DAOException;
 
     public String buscarUltimoNomeCategoria()throws DAOException;
+    
+    public Categoria buscarPorNome(String nome)throws DAOException;
 
 }

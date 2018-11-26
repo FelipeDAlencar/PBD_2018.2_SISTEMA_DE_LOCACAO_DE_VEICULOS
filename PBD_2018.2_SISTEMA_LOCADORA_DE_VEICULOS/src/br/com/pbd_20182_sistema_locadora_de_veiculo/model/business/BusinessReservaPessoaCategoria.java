@@ -7,11 +7,18 @@ package br.com.pbd_20182_sistema_locadora_de_veiculo.model.business;
 
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.BusinessExpection;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ReservaPessoasCategorias;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Veiculo;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOReservaPessoaCategoria;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.view.Alerta;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.control.Alert;
 
 /**
  *
@@ -20,19 +27,18 @@ import java.util.logging.Logger;
 public class BusinessReservaPessoaCategoria implements IBusinessRerservaPessoaCategoria {
 
     private DAOReservaPessoaCategoria dAOReservaPessoaCategoria;
+    private Fachada fachada;
 
     public BusinessReservaPessoaCategoria() {
         dAOReservaPessoaCategoria = new DAOReservaPessoaCategoria();
+        
     }
 
     @Override
-    public void salvar(ReservaPessoasCategorias reservaPessoasCategorias)throws BusinessExpection{
+    public void salvar(ReservaPessoasCategorias reservaPessoasCategorias) throws DAOException, BusinessExpection {
 
-        try {
-            dAOReservaPessoaCategoria.salvar(reservaPessoasCategorias);
-        } catch (DAOException ex) {
-            throw  new BusinessExpection("Erro ao persistir reserva!");
-        }
+        validar(reservaPessoasCategorias);
+        dAOReservaPessoaCategoria.salvar(reservaPessoasCategorias);
 
     }
 
@@ -49,6 +55,37 @@ public class BusinessReservaPessoaCategoria implements IBusinessRerservaPessoaCa
     @Override
     public void alterar(ReservaPessoasCategorias reservaPessoasCategorias) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void validar(ReservaPessoasCategorias reservaPessoasCategorias) throws BusinessExpection, DAOException {
+        fachada = Fachada.getInstance();
+        Calendar dataHoraPrevista = Calendar.getInstance();
+        dataHoraPrevista.setTime(new Date());
+        dataHoraPrevista.add(Calendar.MINUTE, 60);
+        double hora = Double.parseDouble(String.valueOf(dataHoraPrevista.get(Calendar.HOUR_OF_DAY)) + "."
+                + String.valueOf(dataHoraPrevista.get(Calendar.MINUTE)));
+
+        String errorMessage = "";
+
+        if (hora < 8 || hora > 17) {
+
+            errorMessage += "Horário não permitido \n";
+        }
+
+        ArrayList<Veiculo> veiculos = fachada.buscarVeiculoPorCategoria(reservaPessoasCategorias.getCategoria());
+        
+        if(!(veiculos != null)){
+            errorMessage += "Categoria não disponível, sua categoria vai ser "
+                    + "remanejada para uma categoria superior, porém com o mesmo valor.";
+            
+            veiculos.get(0).setDisponivel(false);
+            fachada.salvarVeiculo(veiculos.get(0));
+            
+        }
+        if (errorMessage.length() != 0) {
+            throw new BusinessExpection("Atenção \n " + errorMessage);
+        }
+
     }
 
 }

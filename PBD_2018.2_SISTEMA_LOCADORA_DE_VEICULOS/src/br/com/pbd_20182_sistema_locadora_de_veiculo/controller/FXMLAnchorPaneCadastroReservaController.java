@@ -6,6 +6,7 @@
 package br.com.pbd_20182_sistema_locadora_de_veiculo.controller;
 
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.BusinessExpection;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Pessoa;
@@ -86,10 +87,11 @@ public class FXMLAnchorPaneCadastroReservaController implements Initializable {
 
     private ArrayList<ReservaPessoasCategorias> reservaPessoasCategoriases;
     private ObservableList<ReservaPessoasCategorias> obsReservaPessoasCategoriases;
+    
     private Fachada fachada;
 
     @FXML
-    void acaoBtns(ActionEvent event) throws BusinessExpection {
+    void acaoBtns(ActionEvent event) throws BusinessExpection, DAOException {
         if (event.getSource() == btnInserir) {
             ReservaPessoasCategorias reservaPessoasCategorias = new ReservaPessoasCategorias();
             boolean confirmacao = exibirTelaDecadastro(reservaPessoasCategorias);

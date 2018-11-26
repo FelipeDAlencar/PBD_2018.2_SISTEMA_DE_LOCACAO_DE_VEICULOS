@@ -21,6 +21,7 @@ public class SQLUtil {
 
         public static final String SQL_BUSCAPORBUSCA = "SELECT p FROM Pessoa p WHERE LOWER(p.nome) LIKE :nome or "
                 + "                    LOWER(p.login) LIKE :login or LOWER(p.codigo) LIKE :codigo";
+
         public static final String SQL_PROCEDURE_CRIPTOGRAFAR_SENHA = "criptografar_senha";
 
     }
@@ -28,6 +29,7 @@ public class SQLUtil {
     public static class Categoria {
 
         public static final String SQL_BUSCA_ULTIMONOME = "select MAX(nome) from Categoria";
+        public static final String SQL_BUSCAR_POR_NOME = "select c from Categoria c where c.nome = :nome";
 
     }
 
@@ -43,8 +45,9 @@ public class SQLUtil {
 
     }
 
-    
-    
-   
-    
+    public static class Veiculo {
+
+        public static final String SQL_BUSCAR_PORCATEGORIA = "select v from Veiculo v where v.categoria = :categoria";
+    }
+
 }

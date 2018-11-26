@@ -85,12 +85,13 @@ public class FXMLAnchorPaneCadastroReservaDialogController implements Initializa
             dataHora.set(Calendar.MINUTE, c1.get(Calendar.MINUTE));
             dataHora.set(Calendar.SECOND, c1.get(Calendar.SECOND));
 
-            
             reservaPessoasCategorias.setDataHora(dataHora.getTime());
             reservaPessoasCategorias.setValorPrevisto(Double.parseDouble(tfValor.getText()));
+            reservaPessoasCategorias.setStatus(true);
+            
             confirmado = true;
+            
             stage.close();
-
         }
     }
 
@@ -98,29 +99,30 @@ public class FXMLAnchorPaneCadastroReservaDialogController implements Initializa
     public void initialize(URL url, ResourceBundle rb) {
         dAOCategoria = new DAOCategoria();
         dAOPessoa = new DAOPessoa();
-        carregarCombos();
+        try {
+            carregarCombos();
+        } catch (DAOException ex) {
+            ex.getMessage();
+        }
 
     }
 
-    public void carregarCombos() {
-        try {
-            ArrayList<Pessoa> pessoas = dAOPessoa.buscarTodos();
-            ArrayList<Categoria> categorias = dAOCategoria.findAll();
+    public void carregarCombos() throws DAOException {
 
-            ObservableList<Categoria> obsCategorias;
-            ObservableList<Pessoa> obsPessoas;
+        ArrayList<Pessoa> pessoas = dAOPessoa.buscarTodos();
+        ArrayList<Categoria> categorias = dAOCategoria.findAll();
 
-            obsCategorias = FXCollections.observableArrayList(categorias);
-            obsPessoas = FXCollections.observableArrayList(pessoas);
+        ObservableList<Categoria> obsCategorias;
+        ObservableList<Pessoa> obsPessoas;
 
-            comboCategorias.setItems(obsCategorias);
-            comboClientes.setItems(obsPessoas);
+        obsCategorias = FXCollections.observableArrayList(categorias);
+        obsPessoas = FXCollections.observableArrayList(pessoas);
 
-        } catch (DAOException ex) {
-            Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
-            alerta.alertar(Alert.AlertType.INFORMATION, "Erro", "Erro no banco de dados", "Erro"
-                    + "tentar acessar o banco de dados.");
-        }
+        comboCategorias.setItems(obsCategorias);
+        comboClientes.setItems(obsPessoas);
+        
+        
+        
     }
 
     public Stage getStage() {
