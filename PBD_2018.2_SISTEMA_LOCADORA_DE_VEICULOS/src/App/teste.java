@@ -33,7 +33,10 @@ public class teste {
         
         //Veiculo v = fachada.buscarVeiculoPorCategoria(categoria);
         
+        Calendar dataHoraPrevista = Calendar.getInstance();
+        dataHoraPrevista.setTime(new Date());
         
+        System.err.println(dataHoraPrevista.get(Calendar.HOUR_OF_DAY));
         
 
     }

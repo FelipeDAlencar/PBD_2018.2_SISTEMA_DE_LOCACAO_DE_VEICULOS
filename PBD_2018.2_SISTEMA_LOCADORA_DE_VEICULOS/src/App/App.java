@@ -21,6 +21,7 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaJuridica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ReservaPessoasCategorias;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Util;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Veiculo;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOCategoria;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOFuncionario;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOPessoa;
@@ -191,6 +192,8 @@ public class App extends Application implements Runnable {
         try {
             while (true) {
                 ArrayList<ReservaPessoasCategorias> reservas = fachada.listarTodosReservaPessoasCategorias();
+                
+                
                 for (ReservaPessoasCategorias reserva : reservas) {
                     Calendar dataHoraDaReserva = Calendar.getInstance();
                     dataHoraDaReserva.setTime(reserva.getDataHora());
@@ -200,8 +203,13 @@ public class App extends Application implements Runnable {
                     dataHoraDaReserva.add(Calendar.MINUTE, 60);
 
                     if (dataHoraDaReserva.compareTo(dataHoraAtual) < 0) {
+                        ArrayList<Veiculo> veiculos = fachada.buscarVeiculoPorCategoria(reserva.getCategoria());
                         reserva.setStatus(false);
                         fachada.salvarReservaPessoasCategorias(reserva);
+                        
+                        veiculos.get(0).setDisponivel(true);
+                        fachada.salvarVeiculo(veiculos.get(0));
+                        
                     }
 
                 }

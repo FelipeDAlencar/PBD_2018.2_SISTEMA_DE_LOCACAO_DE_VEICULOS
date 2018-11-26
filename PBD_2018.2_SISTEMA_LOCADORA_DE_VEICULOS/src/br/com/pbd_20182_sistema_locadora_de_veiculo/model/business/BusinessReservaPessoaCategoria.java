@@ -31,7 +31,7 @@ public class BusinessReservaPessoaCategoria implements IBusinessRerservaPessoaCa
 
     public BusinessReservaPessoaCategoria() {
         dAOReservaPessoaCategoria = new DAOReservaPessoaCategoria();
-        
+
     }
 
     @Override
@@ -61,26 +61,29 @@ public class BusinessReservaPessoaCategoria implements IBusinessRerservaPessoaCa
         fachada = Fachada.getInstance();
         Calendar dataHoraPrevista = Calendar.getInstance();
         dataHoraPrevista.setTime(new Date());
-        dataHoraPrevista.add(Calendar.MINUTE, 60);
         double hora = Double.parseDouble(String.valueOf(dataHoraPrevista.get(Calendar.HOUR_OF_DAY)) + "."
                 + String.valueOf(dataHoraPrevista.get(Calendar.MINUTE)));
 
         String errorMessage = "";
-
+        
+        
+        
+        
+        System.err.println("Hora " + hora);
         if (hora < 8 || hora > 17) {
 
             errorMessage += "Horário não permitido \n";
         }
 
         ArrayList<Veiculo> veiculos = fachada.buscarVeiculoPorCategoria(reservaPessoasCategorias.getCategoria());
-        
-        if(!(veiculos != null)){
+
+        if (veiculos.isEmpty()) {
             errorMessage += "Categoria não disponível, sua categoria vai ser "
                     + "remanejada para uma categoria superior, porém com o mesmo valor.";
-            
+
+        } else {
             veiculos.get(0).setDisponivel(false);
             fachada.salvarVeiculo(veiculos.get(0));
-            
         }
         if (errorMessage.length() != 0) {
             throw new BusinessExpection("Atenção \n " + errorMessage);

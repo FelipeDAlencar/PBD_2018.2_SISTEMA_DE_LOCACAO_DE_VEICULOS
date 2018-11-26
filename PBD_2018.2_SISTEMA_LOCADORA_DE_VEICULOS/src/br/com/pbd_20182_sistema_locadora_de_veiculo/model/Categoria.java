@@ -16,6 +16,7 @@ import javax.persistence.SequenceGenerator;
 @SequenceGenerator(name = "categoria_sequence", sequenceName = "categoria_seq", initialValue = 1, allocationSize = 1)
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Categoria implements Serializable, EntidadeBase {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "categoria_sequence")
     private Integer id;
@@ -40,10 +41,10 @@ public class Categoria implements Serializable, EntidadeBase {
     private boolean tipoDeCambio;
     @Column(name = "camera_de_re")
     private boolean cameraDeRe;
-    
 
-        
-    
+    private boolean disponivel;
+    private boolean efetivada;
+
     @Override
     public Integer getId() {
         return id;
@@ -149,24 +150,40 @@ public class Categoria implements Serializable, EntidadeBase {
         this.cameraDeRe = cameraDeRe;
     }
 
-  
+    public boolean isDisponivel() {
+        return disponivel;
+    }
+
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
+    }
+
+    public boolean isEfetivada() {
+        return efetivada;
+    }
+
+    public void setEfetivada(boolean efetivada) {
+        this.efetivada = efetivada;
+    }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 79 * hash + Objects.hashCode(this.id);
-        hash = 79 * hash + Objects.hashCode(this.descricacao);
-        hash = 79 * hash + (int) (Double.doubleToLongBits(this.valor) ^ (Double.doubleToLongBits(this.valor) >>> 32));
-        hash = 79 * hash + Objects.hashCode(this.nome);
-        hash = 79 * hash + this.numeroDePortas;
-        hash = 79 * hash + this.numeroDePassageiros;
-        hash = 79 * hash + (this.arCondicionado ? 1 : 0);
-        hash = 79 * hash + (this.mp3 ? 1 : 0);
-        hash = 79 * hash + (this.dvd ? 1 : 0);
-        hash = 79 * hash + (this.direcaoHidraulica ? 1 : 0);
-        hash = 79 * hash + (this.radio ? 1 : 0);
-        hash = 79 * hash + (this.tipoDeCambio ? 1 : 0);
-        hash = 79 * hash + (this.cameraDeRe ? 1 : 0);
+        int hash = 3;
+        hash = 29 * hash + Objects.hashCode(this.id);
+        hash = 29 * hash + Objects.hashCode(this.descricacao);
+        hash = 29 * hash + (int) (Double.doubleToLongBits(this.valor) ^ (Double.doubleToLongBits(this.valor) >>> 32));
+        hash = 29 * hash + Objects.hashCode(this.nome);
+        hash = 29 * hash + this.numeroDePortas;
+        hash = 29 * hash + this.numeroDePassageiros;
+        hash = 29 * hash + (this.arCondicionado ? 1 : 0);
+        hash = 29 * hash + (this.mp3 ? 1 : 0);
+        hash = 29 * hash + (this.dvd ? 1 : 0);
+        hash = 29 * hash + (this.direcaoHidraulica ? 1 : 0);
+        hash = 29 * hash + (this.radio ? 1 : 0);
+        hash = 29 * hash + (this.tipoDeCambio ? 1 : 0);
+        hash = 29 * hash + (this.cameraDeRe ? 1 : 0);
+        hash = 29 * hash + (this.disponivel ? 1 : 0);
+        hash = 29 * hash + (this.efetivada ? 1 : 0);
         return hash;
     }
 
@@ -212,6 +229,12 @@ public class Categoria implements Serializable, EntidadeBase {
         if (this.cameraDeRe != other.cameraDeRe) {
             return false;
         }
+        if (this.disponivel != other.disponivel) {
+            return false;
+        }
+        if (this.efetivada != other.efetivada) {
+            return false;
+        }
         if (!Objects.equals(this.descricacao, other.descricacao)) {
             return false;
         }
@@ -228,6 +251,5 @@ public class Categoria implements Serializable, EntidadeBase {
     public String toString() {
         return getNome();
     }
-    
-   
+
 }
