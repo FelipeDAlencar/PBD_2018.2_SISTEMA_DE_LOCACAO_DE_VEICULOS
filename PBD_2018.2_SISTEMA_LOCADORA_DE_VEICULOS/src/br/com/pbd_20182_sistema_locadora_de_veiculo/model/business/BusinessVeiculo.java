@@ -59,4 +59,9 @@ public class BusinessVeiculo implements IBusinessVeiculos {
         return dAOVeiculos.buscarPorCategoria(categoria);
     }
 
+    @Override
+    public ArrayList<Veiculo> buscarPorCategoriaVeiculosIndisponiveis(Categoria categoria) throws DAOException {
+        return dAOVeiculos.buscarPorCategoriaVeiculosIndisponiveis(categoria);
+    }
+
 }

@@ -50,11 +50,11 @@ import javax.persistence.EntityManager;
  *
  * @author Felipe
  */
-public class App extends Application implements Runnable {
+public class App extends Application {
 
-    private Thread thread;
-    private Fachada fachada;
-    private int hora;
+//    private Thread thread;
+//    private Fachada fachada;
+//    private int hora;
 
     @Override
     public void start(Stage primaryStage) throws IOException, DAOException {
@@ -170,60 +170,57 @@ public class App extends Application implements Runnable {
 //        pessoaJuridica.setSenha(pessoaJuridica.getCNPJ());
 //        dao.salvar(pessoaJuridica);
         //new Backup().executeCommand("ls ~");
-        addNotify();
-
+        //addNotify();
     }
 
     public static void main(String[] args) {
         launch(args);
     }
 
-    public void addNotify() {
-        fachada = Fachada.getInstance();
-        if (thread == null) {
-            thread = new Thread(this);
-            thread.start();
-        }
-    }
-
-    @Override
-    public void run() {
-
-        try {
-            while (true) {
-                ArrayList<ReservaPessoasCategorias> reservas = fachada.listarTodosReservaPessoasCategorias();
-                
-                
-                for (ReservaPessoasCategorias reserva : reservas) {
-                    Calendar dataHoraDaReserva = Calendar.getInstance();
-                    dataHoraDaReserva.setTime(reserva.getDataHora());
-                    Calendar dataHoraAtual = Calendar.getInstance();
-                    dataHoraAtual.setTime(new Date());
-
-                    dataHoraDaReserva.add(Calendar.MINUTE, 60);
-
-                    if (dataHoraDaReserva.compareTo(dataHoraAtual) < 0) {
-                        ArrayList<Veiculo> veiculos = fachada.buscarVeiculoPorCategoria(reserva.getCategoria());
-                        reserva.setStatus(false);
-                        fachada.salvarReservaPessoasCategorias(reserva);
-                        
-                        veiculos.get(0).setDisponivel(true);
-                        fachada.salvarVeiculo(veiculos.get(0));
-                        
-                    }
-
-                }
-
-                Thread.sleep(500000);
-            }
-
-        } catch (InterruptedException ex) {
-            ex.printStackTrace();
-        } catch (BusinessExpection ex) {
-            ex.getMessage();
-        } catch (DAOException ex) {
-            ex.getMessage();
-        }
-    }
-
+//    public void addNotify() {
+//        fachada = Fachada.getInstance();
+//        if (thread == null) {
+//            thread = new Thread(this);
+//            thread.start();
+//        }
+//    }
+//    @Override
+//    public void run() {
+//
+//        try {
+//            while (true) {
+//                ArrayList<ReservaPessoasCategorias> reservas = fachada.listarTodosReservaPessoasCategorias();
+//                
+//                
+//                for (ReservaPessoasCategorias reserva : reservas) {
+//                    Calendar dataHoraDaReserva = Calendar.getInstance();
+//                    dataHoraDaReserva.setTime(reserva.getDataHora());
+//                    Calendar dataHoraAtual = Calendar.getInstance();
+//                    dataHoraAtual.setTime(new Date());
+//
+//                    dataHoraDaReserva.add(Calendar.MINUTE, 60);
+//
+//                    if (dataHoraDaReserva.compareTo(dataHoraAtual) < 0) {
+//                        ArrayList<Veiculo> veiculos = fachada.buscarVeiculoPorCategoria(reserva.getCategoria());
+//                        reserva.setStatus(false);
+//                        fachada.salvarReservaPessoasCategorias(reserva);
+//                        
+//                        veiculos.get(0).setDisponivel(true);
+//                        fachada.salvarVeiculo(veiculos.get(0));
+//                        
+//                    }
+//
+//                }
+//
+//                Thread.sleep(500000);
+//            }
+//
+//        } catch (InterruptedException ex) {
+//            ex.printStackTrace();
+//        } catch (BusinessExpection ex) {
+//            ex.getMessage();
+//        } catch (DAOException ex) {
+//            ex.getMessage();
+//        }
+//    }
 }

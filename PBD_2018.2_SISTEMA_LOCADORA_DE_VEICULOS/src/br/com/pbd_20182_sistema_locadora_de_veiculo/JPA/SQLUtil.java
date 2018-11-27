@@ -48,6 +48,8 @@ public class SQLUtil {
     public static class Veiculo {
 
         public static final String SQL_BUSCAR_PORCATEGORIA = "select v from Veiculo v where v.categoria = :categoria and v.disponivel = true";
+        public static final String SQL_BUSCAR_PORCATEGORIA_VEICULOS_NÃODISPONIVEIS = "select v from Veiculo v where v.categoria = :categoria and v.disponivel = false";
+    
     }
 
 }

@@ -59,5 +59,27 @@ public class DAOVeiculos extends DAOGenerico<Veiculo> implements IDAOVeiculos {
         }
 
     }
+    
+    
+    @Override
+    public ArrayList<Veiculo> buscarPorCategoriaVeiculosIndisponiveis(Categoria categoria)throws DAOException{
+        EntityManager em = ConnectionFactory.getInstance().getConnection();
+
+        try {
+            TypedQuery<Veiculo> query = em.createQuery(SQLUtil.Veiculo.SQL_BUSCAR_PORCATEGORIA_VEICULOS_NÃODISPONIVEIS, Veiculo.class);
+            query.setParameter("categoria", categoria);
+
+            ArrayList<Veiculo> veiculos = (ArrayList<Veiculo>) query.getResultList();
+            
+           
+            return veiculos;
+                    
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new DAOException("ERRO AO TENTAR BUSCAR VEICULO NO BANCO DE DADOS");
+        }finally{
+            em.close();
+        }
+    }
 
 }

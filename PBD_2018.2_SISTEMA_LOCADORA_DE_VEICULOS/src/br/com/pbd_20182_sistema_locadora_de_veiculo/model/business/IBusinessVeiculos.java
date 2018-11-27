@@ -21,6 +21,7 @@ public interface IBusinessVeiculos {
     public Veiculo buscarPorId(int id)throws DAOException;
     public void alterar(Veiculo veiculo)throws DAOException;
      public ArrayList<Veiculo> buscarPorCategoria(Categoria categoria) throws DAOException;
+      public ArrayList<Veiculo> buscarPorCategoriaVeiculosIndisponiveis(Categoria categoria)throws DAOException;
     
     
 }

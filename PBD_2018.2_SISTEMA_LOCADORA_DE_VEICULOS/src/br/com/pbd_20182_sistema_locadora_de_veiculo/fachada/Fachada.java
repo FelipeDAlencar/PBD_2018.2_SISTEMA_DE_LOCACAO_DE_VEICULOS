@@ -377,5 +377,10 @@ public class Fachada implements IFachada {
     public ArrayList<Veiculo> buscarVeiculoPorCategoria(Categoria categoria) throws DAOException {
         return businessVeiculo.buscarPorCategoria(categoria);
     }
+    
+    @Override
+     public ArrayList<Veiculo> buscarPorVeiculosIndisponiveisPorCategoria(Categoria categoria)throws DAOException{
+         return businessVeiculo.buscarPorCategoriaVeiculosIndisponiveis(categoria);
+     }
 
 }

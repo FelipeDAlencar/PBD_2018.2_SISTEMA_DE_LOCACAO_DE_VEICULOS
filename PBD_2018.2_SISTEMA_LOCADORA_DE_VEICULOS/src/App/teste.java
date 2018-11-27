@@ -15,30 +15,21 @@ import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import org.hibernate.type.descriptor.java.LocalDateJavaDescriptor;
 
 /**
  *
  * @author Felipe
  */
-public class teste {
+public class teste  {
 
     public static void main(String[] args) throws DAOException {
-
-        Fachada fachada = Fachada.getInstance();
-        
-        
-        Categoria categoria = new Categoria();
-        categoria.setId(1);
-        
-        //Veiculo v = fachada.buscarVeiculoPorCategoria(categoria);
-        
-        Calendar dataHoraPrevista = Calendar.getInstance();
-        dataHoraPrevista.setTime(new Date());
-        
-        System.err.println(dataHoraPrevista.get(Calendar.HOUR_OF_DAY));
         
 
     }
+
+    
 
 }

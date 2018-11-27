@@ -38,6 +38,7 @@ public class BusinessReservaPessoaCategoria implements IBusinessRerservaPessoaCa
     public void salvar(ReservaPessoasCategorias reservaPessoasCategorias) throws DAOException, BusinessExpection {
 
         validar(reservaPessoasCategorias);
+
         dAOReservaPessoaCategoria.salvar(reservaPessoasCategorias);
 
     }
@@ -98,15 +99,12 @@ public class BusinessReservaPessoaCategoria implements IBusinessRerservaPessoaCa
         int parteNumerica = Integer.parseInt(categoria.getNome().substring(2));
         parteNumerica += 1;
         String nomeCategoria = categoria.getNome().replaceAll("1234567890", "") + String.valueOf(parteNumerica);
-        
+
         categoria = fachada.buscarCategoriaPorNome(nomeCategoria);
-        
-        if(categoria != null){
+
+        if (categoria != null) {
             return categoria;
         }
-        
-        
-        
 
         return null;
     }

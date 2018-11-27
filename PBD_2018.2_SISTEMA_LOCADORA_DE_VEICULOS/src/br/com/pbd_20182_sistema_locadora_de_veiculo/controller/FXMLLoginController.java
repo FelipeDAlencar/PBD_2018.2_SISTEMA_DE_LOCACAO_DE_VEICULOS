@@ -9,6 +9,7 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.BusinessExpection;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Funcionario;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.MinhaThread;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Pessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaJuridica;
@@ -79,6 +80,13 @@ public class FXMLLoginController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        
+        MinhaThread task = new MinhaThread();
+        
+        Thread thread = new Thread(task);
+        thread.setDaemon(true);
+        thread.start();
+        
 
     }
 
