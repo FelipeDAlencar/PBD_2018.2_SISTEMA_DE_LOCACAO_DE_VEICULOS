@@ -66,7 +66,7 @@ public class DAOCategoria extends DAOGenerico<Categoria> implements IDAOCategori
             return categoria;
         
         }catch(Exception e){
-            throw new DAOException("ERRO AO TENTAR BUSCAR NO BANCO DE DADOS");
+            throw new DAOException("ERRO AO TENTAR BUSCAR NO BANCO DE DADOS.\nNÃO HÁ CATEGORIA.");
         }
        
     }

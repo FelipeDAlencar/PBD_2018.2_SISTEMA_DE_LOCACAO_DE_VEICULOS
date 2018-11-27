@@ -49,8 +49,7 @@ public class MinhaThread extends Task<Integer> {
 //    }
         try {
             while (true) {
-                System.err.println("Aqui");
-
+                
                 ArrayList<ReservaPessoasCategorias> reservas = fachada.listarTodosReservaPessoasCategorias();
 
                 for (ReservaPessoasCategorias reserva : reservas) {

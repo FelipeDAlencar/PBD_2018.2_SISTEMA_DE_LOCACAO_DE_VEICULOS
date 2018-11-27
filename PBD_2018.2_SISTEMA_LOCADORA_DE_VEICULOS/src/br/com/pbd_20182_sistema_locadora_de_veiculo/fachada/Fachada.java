@@ -95,7 +95,7 @@ public class Fachada implements IFachada {
     }
 
     @Override
-    public Categoria buscarPorIdCategoria(int id) throws DAOException {
+    public Categoria buscarCategoriaPorId(int id) throws DAOException {
         return businessCategoria.buscarPorId(id);
     }
     

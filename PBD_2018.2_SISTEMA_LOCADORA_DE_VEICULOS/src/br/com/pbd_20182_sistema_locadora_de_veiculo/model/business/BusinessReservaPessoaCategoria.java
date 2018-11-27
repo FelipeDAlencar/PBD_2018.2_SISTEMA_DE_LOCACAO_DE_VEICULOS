@@ -60,6 +60,7 @@ public class BusinessReservaPessoaCategoria implements IBusinessRerservaPessoaCa
 
     private void validar(ReservaPessoasCategorias reservaPessoasCategorias) throws BusinessExpection, DAOException {
         fachada = Fachada.getInstance();
+
         Calendar dataHoraPrevista = Calendar.getInstance();
         dataHoraPrevista.setTime(new Date());
         double hora = Double.parseDouble(String.valueOf(dataHoraPrevista.get(Calendar.HOUR_OF_DAY)) + "."
@@ -75,38 +76,49 @@ public class BusinessReservaPessoaCategoria implements IBusinessRerservaPessoaCa
         ArrayList<Veiculo> veiculos = fachada.buscarVeiculoPorCategoria(reservaPessoasCategorias.getCategoria());
 
         if (veiculos.isEmpty()) {
-            errorMessage += "Categoria não disponível, sua categoria vai ser "
-                    + "remanejada para uma categoria superior, porém com o mesmo valor.";
+            Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
+            alerta.alertar(Alert.AlertType.WARNING, "Atenção", "Categoria não disponível",
+                    "Categoria não disponível, sua categoria vai ser "
+                    + "remanejada para uma categoria superior, porém com o mesmo valor.");
 
-            Categoria categoria = fachada.buscarPorIdCategoria(reservaPessoasCategorias.getCategoria().getId());
-            categoria.setDisponivel(false);
-            fachada.salvarCategoria(categoria);
+            Categoria categoria = fachada.buscarCategoriaPorId(reservaPessoasCategorias.getCategoria().getId());
+
+            reservaPessoasCategorias.setCategoria(trocarDeCategoria(categoria));
+
+            validar(reservaPessoasCategorias);
 
         } else {
             veiculos.get(0).setDisponivel(false);
             fachada.salvarVeiculo(veiculos.get(0));
         }
+
         if (errorMessage.length() != 0) {
             throw new BusinessExpection("Atenção \n " + errorMessage);
         }
 
     }
 
-    public Categoria trocarDeCategoria(Categoria categoria) throws DAOException {
+    public Categoria trocarDeCategoria(Categoria categoria) throws DAOException, BusinessExpection {
 
         fachada = Fachada.getInstance();
 
+        categoria.setDisponivel(false);
+        fachada.salvarCategoria(categoria);
+
         int parteNumerica = Integer.parseInt(categoria.getNome().substring(2));
         parteNumerica += 1;
-        String nomeCategoria = categoria.getNome().replaceAll("1234567890", "") + String.valueOf(parteNumerica);
+        String parteTexto = categoria.getNome().substring(0, 2);
+        String nomeCategoria = parteTexto + parteNumerica;
 
-        categoria = fachada.buscarCategoriaPorNome(nomeCategoria);
+        try {
+            categoria = fachada.buscarCategoriaPorNome(nomeCategoria);
 
-        if (categoria != null) {
             return categoria;
+
+        } catch (DAOException e) {
+            throw new BusinessExpection("Nenhuma categoria disponível no momento!");
         }
 
-        return null;
     }
 
 }

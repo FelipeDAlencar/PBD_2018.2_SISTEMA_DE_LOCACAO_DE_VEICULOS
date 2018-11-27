@@ -33,7 +33,7 @@ public class Alerta extends Alert {
         alert.setTitle(titulo);
         alert.setHeaderText(cabecalho);
         alert.setContentText(conteudo);
-        alert.show();
+        alert.showAndWait();
     }
 
 }

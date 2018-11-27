@@ -31,7 +31,7 @@ public interface IFachada {
    
     public void salvarCategoria(Categoria categoria)throws BusinessExpection,DAOException;
     public ArrayList<Categoria> listarTodosCategoria()throws DAOException;
-    public Categoria buscarPorIdCategoria(int id)throws DAOException;
+    public Categoria buscarCategoriaPorId(int id)throws DAOException;
     public void alterarCategoria(Categoria categoria)throws DAOException;
     public String buscarUltimoNomeCategoria()throws DAOException;
     public Categoria buscarCategoriaPorNome(String nome)throws DAOException;
