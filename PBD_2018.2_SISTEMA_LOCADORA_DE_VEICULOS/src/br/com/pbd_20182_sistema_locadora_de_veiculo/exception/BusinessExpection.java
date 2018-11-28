@@ -16,7 +16,7 @@ public class BusinessExpection extends Exception{
     
     public BusinessExpection(String message){
         Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
-        alerta.alertar(Alert.AlertType.WARNING, "Atenção", "Atenção", message);
+        alerta.alertar(Alert.AlertType.WARNING, "Atenção", "Atenção",message);
     }
     
 }

@@ -87,7 +87,7 @@ public class DAOPessoa extends DAOGenerico<Pessoa> implements IDAOPessoa {
         EntityManager em = ConnectionFactory.getInstance().getConnection();
         String codigo = null;
         try {
-            codigo = em.createQuery(SQLUtil.Pessoa.SQL_BUSCA_ULTIMOCODIGO, String.class).getSingleResult();
+            codigo = em.createQuery(SQLUtil.Pessoa.SQL_BUSCA_ULTIMO_CODIGO_PESSOA, String.class).getSingleResult();
             return codigo;
         } catch (Exception e) {
             e.printStackTrace();
@@ -104,7 +104,7 @@ public class DAOPessoa extends DAOGenerico<Pessoa> implements IDAOPessoa {
         EntityManager em = ConnectionFactory.getInstance().getConnection();
         ArrayList<Pessoa> pessoas = null;
         try {
-            TypedQuery<Pessoa> query = em.createQuery(SQLUtil.Pessoa.SQL_BUSCAPORBUSCA, Pessoa.class);
+            TypedQuery<Pessoa> query = em.createQuery(SQLUtil.Pessoa.SQL_BUSCA_POR_BUSCA, Pessoa.class);
             query.setParameter("nome", "%" + texto + "%");
             query.setParameter("login", "%" + texto + "%");
             query.setParameter("codigo", "%" + texto + "%");
@@ -146,7 +146,7 @@ public class DAOPessoa extends DAOGenerico<Pessoa> implements IDAOPessoa {
         EntityManager em = ConnectionFactory.getInstance().getConnection();
         int id = 0;
         try {
-            id = em.createQuery(SQLUtil.Pessoa.SQL_BUSCA_ULTIMOID, Integer.class).getSingleResult();
+            id = em.createQuery(SQLUtil.Pessoa.SQL_BUSCA_ULTIMO_ID_PESSOA, Integer.class).getSingleResult();
             return id;
         } catch (Exception e) {
             e.printStackTrace();

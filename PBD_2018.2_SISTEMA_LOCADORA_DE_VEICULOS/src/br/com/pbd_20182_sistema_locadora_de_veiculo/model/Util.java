@@ -5,11 +5,14 @@
  */
 package br.com.pbd_20182_sistema_locadora_de_veiculo.model;
 
+import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.BusinessExpection;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.view.Alerta;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import javafx.scene.control.Alert;
 
@@ -100,5 +103,53 @@ public abstract class Util {
         }
         return null;
     }
-
+    
+    
+    
+    
+    
+//    ArrayList<Veiculo> veiculos = fachada.buscarVeiculoPorCategoria(reservaPessoasCategorias.getCategoria());
+//
+//        if (veiculos.isEmpty()) {
+//            Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
+//            alerta.alertar(Alert.AlertType.WARNING, "Atenção", "Categoria não disponível",
+//                    "Categoria não disponível, sua categoria vai ser "
+//                    + "remanejada para uma categoria superior, porém com o mesmo valor.");
+//
+//            Categoria categoria = fachada.buscarCategoriaPorId(reservaPessoasCategorias.getCategoria().getId());
+//
+//            reservaPessoasCategorias.setCategoria(trocarDeCategoria(categoria));
+//
+//            validar(reservaPessoasCategorias);
+//
+//        } else {
+//            veiculos.get(0).setDisponivel(false);
+//            fachada.salvarVeiculo(veiculos.get(0));
+//        }
+//
+//        if (errorMessage.length() != 0) {
+//            throw new BusinessExpection("Atenção \n " + errorMessage);
+//        }
+//public Categoria trocarDeCategoria(Categoria categoria) throws DAOException, BusinessExpection {
+//
+//        fachada = Fachada.getInstance();
+//
+//        categoria.setDisponivel(false);
+//        fachada.salvarCategoria(categoria);
+//
+//        int parteNumerica = Integer.parseInt(categoria.getNome().substring(2));
+//        parteNumerica += 1;
+//        String parteTexto = categoria.getNome().substring(0, 2);
+//        String nomeCategoria = parteTexto + parteNumerica;
+//
+//        try {
+//            categoria = fachada.buscarCategoriaPorNome(nomeCategoria);
+//
+//            return categoria;
+//
+//        } catch (DAOException e) {
+//            throw new BusinessExpection("Nenhuma categoria disponível no momento!");
+//        }
+//
+//    }
 }

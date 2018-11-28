@@ -25,8 +25,7 @@ public class MinhaThread extends Task<Integer> {
 
     @Override
     protected Integer call() {
-        
-        
+
 //        try{
 //            while (true) {
 //            ArrayList<ReservaPessoasCategorias> reservas = fachada.listarTodosReservaPessoasCategorias();
@@ -49,7 +48,7 @@ public class MinhaThread extends Task<Integer> {
 //    }
         try {
             while (true) {
-                
+
                 ArrayList<ReservaPessoasCategorias> reservas = fachada.listarTodosReservaPessoasCategorias();
 
                 for (ReservaPessoasCategorias reserva : reservas) {
@@ -58,7 +57,6 @@ public class MinhaThread extends Task<Integer> {
                     Calendar dataHoraAtual = Calendar.getInstance();
                     dataHoraAtual.setTime(new Date());
 
-                    
                     if (isCancelled()) {
                         System.err.println("Cancelou");
                     }
@@ -68,10 +66,8 @@ public class MinhaThread extends Task<Integer> {
                     if (dataHoraDaReserva.compareTo(dataHoraAtual) < 0) {
                         ArrayList<Veiculo> veiculos = fachada.buscarPorVeiculosIndisponiveisPorCategoria(reserva.getCategoria());
                         reserva.setStatus(false);
-                        fachada.salvarReservaPessoasCategorias(reserva);
 
-                        veiculos.get(0).setDisponivel(true);
-                        fachada.salvarVeiculo(veiculos.get(0));
+                        fachada.salvarReservaPessoasCategorias(reserva);
 
                     }
 
@@ -81,6 +77,7 @@ public class MinhaThread extends Task<Integer> {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            e.getMessage();
         }
         return null;
     }

@@ -41,7 +41,7 @@ public class DAOCategoria extends DAOGenerico<Categoria> implements IDAOCategori
         EntityManager em = ConnectionFactory.getInstance().getConnection();
         String nome = null;
         try {
-            nome = em.createQuery(SQLUtil.Categoria.SQL_BUSCA_ULTIMONOME, String.class).getSingleResult();
+            nome = em.createQuery(SQLUtil.Categoria.SQL_BUSCAR_CATEGORIA_POR_ULTIMO_NOME, String.class).getSingleResult();
             return nome;
         } catch (Exception e) {
             e.printStackTrace();
@@ -54,11 +54,11 @@ public class DAOCategoria extends DAOGenerico<Categoria> implements IDAOCategori
     }
     
     @Override
-    public Categoria buscarPorNome(String nome)throws DAOException{
+    public Categoria buscarPorNomeDisponivel(String nome)throws DAOException{
         
         EntityManager em = ConnectionFactory.getInstance().getConnection();
         try{
-            TypedQuery<Categoria> query =  em.createQuery(SQLUtil.Categoria.SQL_BUSCAR_POR_NOME, Categoria.class);
+            TypedQuery<Categoria> query =  em.createQuery(SQLUtil.Categoria.SQL_BUSCAR_CATEGORIA_POR_NOME_DISPONIVEL, Categoria.class);
             query.setParameter("nome", nome);
             Categoria categoria = query.getSingleResult();
             

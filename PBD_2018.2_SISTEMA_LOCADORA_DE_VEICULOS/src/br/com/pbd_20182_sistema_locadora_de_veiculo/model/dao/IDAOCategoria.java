@@ -16,5 +16,5 @@ import java.util.ArrayList;
 public interface IDAOCategoria {
     
     public ArrayList<Categoria> findAll()throws DAOException;
-    public Categoria buscarPorNome(String nome)throws DAOException;
+    public Categoria buscarPorNomeDisponivel(String nome)throws DAOException;
 }

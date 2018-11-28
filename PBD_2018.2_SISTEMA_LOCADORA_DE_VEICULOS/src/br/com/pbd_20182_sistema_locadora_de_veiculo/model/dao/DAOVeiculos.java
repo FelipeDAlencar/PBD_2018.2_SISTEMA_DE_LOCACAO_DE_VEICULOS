@@ -43,7 +43,7 @@ public class DAOVeiculos extends DAOGenerico<Veiculo> implements IDAOVeiculos {
         EntityManager em = ConnectionFactory.getInstance().getConnection();
 
         try {
-            TypedQuery<Veiculo> query = em.createQuery(SQLUtil.Veiculo.SQL_BUSCAR_PORCATEGORIA, Veiculo.class);
+            TypedQuery<Veiculo> query = em.createQuery(SQLUtil.Veiculo.SQL_BUSCAR_VEICULO_POR_CATEGORIA, Veiculo.class);
             query.setParameter("categoria", categoria);
 
             ArrayList<Veiculo> veiculos = (ArrayList<Veiculo>) query.getResultList();
@@ -66,7 +66,7 @@ public class DAOVeiculos extends DAOGenerico<Veiculo> implements IDAOVeiculos {
         EntityManager em = ConnectionFactory.getInstance().getConnection();
 
         try {
-            TypedQuery<Veiculo> query = em.createQuery(SQLUtil.Veiculo.SQL_BUSCAR_PORCATEGORIA_VEICULOS_NÃODISPONIVEIS, Veiculo.class);
+            TypedQuery<Veiculo> query = em.createQuery(SQLUtil.Veiculo.SQL_BUSCAR_VEICULO_NÃO_DISPONIVEIS_POR_CATEGORIA, Veiculo.class);
             query.setParameter("categoria", categoria);
 
             ArrayList<Veiculo> veiculos = (ArrayList<Veiculo>) query.getResultList();

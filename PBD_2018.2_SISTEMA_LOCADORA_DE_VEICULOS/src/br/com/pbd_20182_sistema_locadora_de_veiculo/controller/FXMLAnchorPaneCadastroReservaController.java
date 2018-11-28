@@ -97,6 +97,7 @@ public class FXMLAnchorPaneCadastroReservaController implements Initializable {
             boolean confirmacao = exibirTelaDecadastro(reservaPessoasCategorias);
             
             if(confirmacao){
+                
                 fachada.salvarReservaPessoasCategorias(reservaPessoasCategorias);
                 carregarReservas();
                 Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);

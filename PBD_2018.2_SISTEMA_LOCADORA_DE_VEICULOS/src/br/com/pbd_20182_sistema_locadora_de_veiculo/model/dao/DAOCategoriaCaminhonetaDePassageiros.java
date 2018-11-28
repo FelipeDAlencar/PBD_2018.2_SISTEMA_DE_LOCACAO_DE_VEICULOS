@@ -38,7 +38,7 @@ public class DAOCategoriaCaminhonetaDePassageiros extends DAOGenerico<Caminhonet
         EntityManager em = ConnectionFactory.getInstance().getConnection();
         String nome = null;
         try {
-            nome = em.createQuery(SQLUtil.CaminhonetaDePassageiros.SQL_BUSCA_ULTIMONOME, String.class).getSingleResult();
+            nome = em.createQuery(SQLUtil.CaminhonetaDePassageiros.SQL_BUSCAR_CAMINHONETA_DE_PASSAGEIROS_ULTIMONOME, String.class).getSingleResult();
             return nome;
         } catch (Exception e) {
             e.printStackTrace();

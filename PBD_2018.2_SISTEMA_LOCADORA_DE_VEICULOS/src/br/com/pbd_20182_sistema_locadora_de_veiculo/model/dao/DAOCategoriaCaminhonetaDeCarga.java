@@ -40,7 +40,7 @@ public class DAOCategoriaCaminhonetaDeCarga extends DAOGenerico<CaminhonetaDeCar
         EntityManager em = ConnectionFactory.getInstance().getConnection();
         String nome = null;
         try {
-            nome = em.createQuery(SQLUtil.CaminhonetaDeCarga.SQL_BUSCA_ULTIMONOME, String.class).getSingleResult();
+            nome = em.createQuery(SQLUtil.CaminhonetaDeCarga.SQL_BUSCAR_CAMINHONETA_DE_CARGA_ULTIMONOME, String.class).getSingleResult();
             return nome;
         } catch (Exception e) {
             e.printStackTrace();

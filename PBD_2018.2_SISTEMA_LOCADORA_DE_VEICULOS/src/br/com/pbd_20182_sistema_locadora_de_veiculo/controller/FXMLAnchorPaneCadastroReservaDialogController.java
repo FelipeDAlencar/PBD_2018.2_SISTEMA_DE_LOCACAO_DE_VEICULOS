@@ -5,6 +5,7 @@
  */
 package br.com.pbd_20182_sistema_locadora_de_veiculo.controller;
 
+import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.BusinessExpection;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Pessoa;
@@ -65,33 +66,40 @@ public class FXMLAnchorPaneCadastroReservaDialogController implements Initializa
     private Button btnCancelar;
 
     @FXML
-    void acaoBtns(ActionEvent event) {
+    void acaoBtns(ActionEvent event) throws BusinessExpection {
         if (event.getSource() == btnCancelar) {
             stage.close();
         } else {
-            reservaPessoasCategorias.setCategoria(comboCategorias.getValue());
-            reservaPessoasCategorias.setPessoa(comboClientes.getValue());
+            try {
+                reservaPessoasCategorias.setCategoria(comboCategorias.getValue());
+                reservaPessoasCategorias.setPessoa(comboClientes.getValue());
 
-            Date s = Date.from(dpData.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
+                Date s = Date.from(dpData.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
 
-            SimpleDateFormat spdf = new SimpleDateFormat("dd/yy/dddd HH:mm:ss");
-            Calendar dataHora = Calendar.getInstance();
+                SimpleDateFormat spdf = new SimpleDateFormat("dd/yy/dddd HH:mm:ss");
+                Calendar dataHora = Calendar.getInstance();
 
-            Calendar c1 = Calendar.getInstance();
-            c1.setTime(new Date());
-            dataHora.setTime(s);
+                Calendar c1 = Calendar.getInstance();
+                c1.setTime(new Date());
+                dataHora.setTime(s);
 
-            dataHora.set(Calendar.HOUR_OF_DAY, c1.get(Calendar.HOUR_OF_DAY));
-            dataHora.set(Calendar.MINUTE, c1.get(Calendar.MINUTE));
-            dataHora.set(Calendar.SECOND, c1.get(Calendar.SECOND));
+                dataHora.set(Calendar.HOUR_OF_DAY, c1.get(Calendar.HOUR_OF_DAY));
+                dataHora.set(Calendar.MINUTE, c1.get(Calendar.MINUTE));
+                dataHora.set(Calendar.SECOND, c1.get(Calendar.SECOND));
 
-            reservaPessoasCategorias.setDataHora(dataHora.getTime());
-            reservaPessoasCategorias.setValorPrevisto(Double.parseDouble(tfValor.getText()));
-            reservaPessoasCategorias.setStatus(true);
-            
-            confirmado = true;
-            
-            stage.close();
+                reservaPessoasCategorias.setDataHora(dataHora.getTime());
+                reservaPessoasCategorias.setValorPrevisto(Double.parseDouble(tfValor.getText()));
+                reservaPessoasCategorias.setStatus(true);
+
+                confirmado = true;
+
+                stage.close();
+            } catch (NullPointerException e) {
+                //throw new BusinessExpection("Informe o campos corretamente.");
+                confirmado = true;
+                stage.close();
+            }
+
         }
     }
 
@@ -120,9 +128,7 @@ public class FXMLAnchorPaneCadastroReservaDialogController implements Initializa
 
         comboCategorias.setItems(obsCategorias);
         comboClientes.setItems(obsPessoas);
-        
-        
-        
+
     }
 
     public Stage getStage() {

@@ -66,7 +66,7 @@ public class BusinessCategoria implements IBusinessCategoria {
     }
     
     public Categoria buscarPorNome(String nome)throws DAOException{
-        return dAOCategoria.buscarPorNome(nome);
+        return dAOCategoria.buscarPorNomeDisponivel(nome);
     }
 
 }
