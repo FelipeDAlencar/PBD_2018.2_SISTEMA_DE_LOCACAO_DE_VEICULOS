@@ -105,6 +105,9 @@ public class FXMLAchorPaneCadastroClienteDialogController implements Initializab
     private TextField tfBairro;
 
     @FXML
+    private TextField tfCidade;
+
+    @FXML
     private ComboBox<String> comboUF;
 
     @FXML
@@ -172,6 +175,7 @@ public class FXMLAchorPaneCadastroClienteDialogController implements Initializab
                 endereco.setRua(tfRua.getText());
                 endereco.setNumero(Integer.parseInt(tfNumero.getText()));
                 endereco.setUf(comboUF.getValue().toUpperCase());
+                endereco.setCidade(tfCidade.getText());
                 confirmou = true;
                 stage.close();
             }

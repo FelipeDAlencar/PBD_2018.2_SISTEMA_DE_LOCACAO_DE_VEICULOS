@@ -34,7 +34,9 @@ public class FXMLVBoxTelaPrincipalController implements Initializable {
 
     @FXML
     private MenuItem menuItemReservas;
-
+    @FXML
+    private MenuItem menuiItemFilial;
+    
     @FXML
     private MenuItem menuItemLocacoes;
 
@@ -104,6 +106,11 @@ public class FXMLVBoxTelaPrincipalController implements Initializable {
         if (event.getSource() == menuItemVeiculos) {
 
             pane = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAnchorPaneCadastroVeiculos.fxml"));
+            AnchorPaneContent.getChildren().setAll(pane);
+        }
+        
+        if(event.getSource() == menuiItemFilial){
+            pane = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAnchorPaneCadastroFilial.fxml"));
             AnchorPaneContent.getChildren().setAll(pane);
         }
     }

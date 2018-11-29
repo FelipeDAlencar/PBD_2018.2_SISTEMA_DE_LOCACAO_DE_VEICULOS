@@ -24,6 +24,8 @@ public class Endereco implements Serializable, EntidadeBase{
     private String bairro;
     @Column(nullable = false)
     private int numero;
+    @Column(name = "cidade", length = 200)
+    private String cidade;
     
 
     public Integer getId() {
@@ -66,14 +68,23 @@ public class Endereco implements Serializable, EntidadeBase{
         this.numero = numero;
     }
 
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 59 * hash + Objects.hashCode(this.id);
-        hash = 59 * hash + Objects.hashCode(this.uf);
-        hash = 59 * hash + Objects.hashCode(this.rua);
-        hash = 59 * hash + Objects.hashCode(this.bairro);
-        hash = 59 * hash + this.numero;
+        hash = 17 * hash + Objects.hashCode(this.id);
+        hash = 17 * hash + Objects.hashCode(this.uf);
+        hash = 17 * hash + Objects.hashCode(this.rua);
+        hash = 17 * hash + Objects.hashCode(this.bairro);
+        hash = 17 * hash + this.numero;
+        hash = 17 * hash + Objects.hashCode(this.cidade);
         return hash;
     }
 
@@ -101,12 +112,16 @@ public class Endereco implements Serializable, EntidadeBase{
         if (!Objects.equals(this.bairro, other.bairro)) {
             return false;
         }
+        if (!Objects.equals(this.cidade, other.cidade)) {
+            return false;
+        }
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
     }
     
+   
     
     
     

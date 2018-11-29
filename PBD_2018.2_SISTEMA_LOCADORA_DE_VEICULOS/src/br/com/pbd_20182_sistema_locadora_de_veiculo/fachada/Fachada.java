@@ -181,13 +181,13 @@ public class Fachada implements IFachada {
     }
 
     @Override
-    public void salvarFilial(Filial filial) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void salvarFilial(Filial filial) throws DAOException, BusinessExpection {
+        businessFilial.salvar(filial);
     }
 
     @Override
     public ArrayList<Filial> listarTodosFilial() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return businessFilial.listarTodos();
     }
 
     @Override

@@ -24,7 +24,7 @@ public class DAOFilial extends DAOGenerico<Filial> implements IDAOFilial{
         ArrayList<Filial> filiais = null;
 
         try {
-            filiais = (ArrayList) em.createQuery("from filial c").getResultList();
+            filiais = (ArrayList) em.createQuery("from Filial c").getResultList();
         } catch (Exception e) {
             e.printStackTrace();
 

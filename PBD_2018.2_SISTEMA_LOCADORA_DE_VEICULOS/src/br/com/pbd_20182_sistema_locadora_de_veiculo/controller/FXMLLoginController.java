@@ -66,7 +66,7 @@ public class FXMLLoginController implements Initializable {
         Pessoa pessoa = new Pessoa();
         pessoa.setLogin(tfLogin.getText());
         pessoa.setSenha(dAOPessoa.criptografarSenha(tfSenha.getText()));
-
+        System.err.println(dAOPessoa.criptografarSenha("000"));
 
         pessoa = dAOPessoa.buscarLogin(pessoa);
         if (pessoa != null) {
@@ -143,10 +143,10 @@ public class FXMLLoginController implements Initializable {
             }
 
             if (sucesso) {
-
-                int id = dAOPessoa.buscarUltimoID();
-                pessoa = dAOPessoa.findById(Pessoa.class, id);
+                
+                System.out.println("ID" + pessoa.getId());
                 pessoa.setSenha(dAOPessoa.criptografarSenha(pessoa.getSenha()));
+                System.out.println("Senha " + pessoa.getSenha());
                 dAOPessoa.salvar(pessoa);
                 exibirTelaPrincipal(pessoa);
             }

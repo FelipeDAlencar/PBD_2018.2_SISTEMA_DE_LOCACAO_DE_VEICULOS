@@ -31,6 +31,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -58,6 +59,9 @@ public class FXMLAnchorPaneCadastroReservaDialogController implements Initializa
 
     @FXML
     private DatePicker dpData;
+
+    @FXML
+    private RadioButton rbEfetivada;
 
     @FXML
     private Button btnSalvar;
@@ -90,6 +94,7 @@ public class FXMLAnchorPaneCadastroReservaDialogController implements Initializa
                 reservaPessoasCategorias.setDataHora(dataHora.getTime());
                 reservaPessoasCategorias.setValorPrevisto(Double.parseDouble(tfValor.getText()));
                 reservaPessoasCategorias.setStatus(true);
+                reservaPessoasCategorias.setStatus(rbEfetivada.isSelected());
 
                 confirmado = true;
 

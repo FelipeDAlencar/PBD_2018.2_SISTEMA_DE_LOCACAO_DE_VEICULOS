@@ -42,9 +42,6 @@ public class Categoria implements Serializable, EntidadeBase {
     @Column(name = "camera_de_re")
     private boolean cameraDeRe;
 
-    private boolean disponivel;
-    private boolean efetivada;
-
     @Override
     public Integer getId() {
         return id;
@@ -150,22 +147,6 @@ public class Categoria implements Serializable, EntidadeBase {
         this.cameraDeRe = cameraDeRe;
     }
 
-    public boolean isDisponivel() {
-        return disponivel;
-    }
-
-    public void setDisponivel(boolean disponivel) {
-        this.disponivel = disponivel;
-    }
-
-    public boolean isEfetivada() {
-        return efetivada;
-    }
-
-    public void setEfetivada(boolean efetivada) {
-        this.efetivada = efetivada;
-    }
-
     @Override
     public int hashCode() {
         int hash = 3;
@@ -182,8 +163,7 @@ public class Categoria implements Serializable, EntidadeBase {
         hash = 29 * hash + (this.radio ? 1 : 0);
         hash = 29 * hash + (this.tipoDeCambio ? 1 : 0);
         hash = 29 * hash + (this.cameraDeRe ? 1 : 0);
-        hash = 29 * hash + (this.disponivel ? 1 : 0);
-        hash = 29 * hash + (this.efetivada ? 1 : 0);
+
         return hash;
     }
 
@@ -229,12 +209,7 @@ public class Categoria implements Serializable, EntidadeBase {
         if (this.cameraDeRe != other.cameraDeRe) {
             return false;
         }
-        if (this.disponivel != other.disponivel) {
-            return false;
-        }
-        if (this.efetivada != other.efetivada) {
-            return false;
-        }
+
         if (!Objects.equals(this.descricacao, other.descricacao)) {
             return false;
         }

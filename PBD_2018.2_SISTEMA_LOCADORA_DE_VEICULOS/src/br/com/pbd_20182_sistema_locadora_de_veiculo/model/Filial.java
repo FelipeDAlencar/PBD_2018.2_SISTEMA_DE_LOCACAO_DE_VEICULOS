@@ -7,6 +7,7 @@ package br.com.pbd_20182_sistema_locadora_de_veiculo.model;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,7 +25,8 @@ public class Filial implements Serializable, EntidadeBase {
     private Integer id;
     @Column(nullable = false)
     private String nome;
-    @OneToOne
+    
+    @OneToOne(cascade = CascadeType.ALL)
     private Endereco endereco;
 
     @Override

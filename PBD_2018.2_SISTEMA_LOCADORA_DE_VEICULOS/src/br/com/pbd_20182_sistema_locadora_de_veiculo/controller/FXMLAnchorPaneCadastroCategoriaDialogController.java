@@ -165,7 +165,7 @@ public class FXMLAnchorPaneCadastroCategoriaDialogController implements Initiali
                     categoria.setValor(Double.parseDouble(tfValor.getText()));
                 }
                 
-                categoria.setDisponivel(true);
+                
                 
                 
                 confirmar = true;

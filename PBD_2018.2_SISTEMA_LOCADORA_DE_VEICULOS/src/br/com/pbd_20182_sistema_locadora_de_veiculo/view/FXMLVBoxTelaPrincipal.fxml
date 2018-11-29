@@ -21,6 +21,7 @@
                         <MenuItem fx:id="menuItemReservas" mnemonicParsing="false" onAction="#acaosMenuItensCadastros" text="Reservas" />
                         <MenuItem fx:id="menuItemLocacoes" mnemonicParsing="false" onAction="#acaosMenuItensCadastros" text="Locações" />
                         <MenuItem fx:id="menuItemCategoria" mnemonicParsing="false" onAction="#acaosMenuItensCadastros" text="Categoria" />
+                        <MenuItem fx:id="menuiItemFilial" mnemonicParsing="false" onAction="#acaosMenuItensCadastros" text="Filial" />
                   </items>
                 </Menu>
                 <Menu fx:id="menuRelatorios" mnemonicParsing="false" text="Relatorios">

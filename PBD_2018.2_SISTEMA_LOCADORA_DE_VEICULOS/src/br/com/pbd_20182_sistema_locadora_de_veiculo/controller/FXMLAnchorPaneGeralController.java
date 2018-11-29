@@ -81,7 +81,7 @@ public class FXMLAnchorPaneGeralController implements Initializable {
                 } else {
                     ((Funcionario) pessoa).setSenha(((Funcionario) pessoa).getMatricula());
                 }
-
+                
                 pessoa.setSenha(dAOPessoa.criptografarSenha(pessoa.getSenha()));
                 dAOPessoa.salvar(pessoa);
 
