@@ -201,7 +201,7 @@ public class Fachada implements IFachada {
     }
 
     @Override
-    public void salvarFuncionario(Funcionario funcionario) throws BusinessExpection {
+    public void salvarFuncionario(Funcionario funcionario) throws BusinessExpection, DAOException {
         businessFuncionario.salvar(funcionario);
     }
 

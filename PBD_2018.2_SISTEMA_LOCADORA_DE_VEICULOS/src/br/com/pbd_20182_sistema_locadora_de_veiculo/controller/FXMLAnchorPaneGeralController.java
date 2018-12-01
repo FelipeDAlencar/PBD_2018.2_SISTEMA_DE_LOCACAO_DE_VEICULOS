@@ -101,7 +101,7 @@ public class FXMLAnchorPaneGeralController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         try {
-            carregarTabela(dAOPessoa.buscarTodos());
+            carregarTabela(dAOPessoa.listarTodos());
         } catch (DAOException ex) {
             Logger.getLogger(FXMLAnchorPaneGeralController.class.getName()).log(Level.SEVERE, null, ex);
         }

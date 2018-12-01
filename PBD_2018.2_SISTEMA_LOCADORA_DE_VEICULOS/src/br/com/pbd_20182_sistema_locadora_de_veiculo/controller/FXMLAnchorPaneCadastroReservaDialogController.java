@@ -122,7 +122,7 @@ public class FXMLAnchorPaneCadastroReservaDialogController implements Initializa
 
     public void carregarCombos() throws DAOException {
 
-        ArrayList<Pessoa> pessoas = dAOPessoa.buscarTodos();
+        ArrayList<Pessoa> pessoas = dAOPessoa.listarTodos();
         ArrayList<Categoria> categorias = dAOCategoria.findAll();
 
         ObservableList<Categoria> obsCategorias;

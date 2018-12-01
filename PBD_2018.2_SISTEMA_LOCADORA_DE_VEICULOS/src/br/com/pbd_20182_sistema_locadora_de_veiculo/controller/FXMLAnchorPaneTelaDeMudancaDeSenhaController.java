@@ -73,7 +73,7 @@ public class FXMLAnchorPaneTelaDeMudancaDeSenhaController implements Initializab
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+       
     }
 
     public PasswordField getPtfSenha() {
@@ -107,5 +107,10 @@ public class FXMLAnchorPaneTelaDeMudancaDeSenhaController implements Initializab
     public void setStage(Stage stage) {
         this.stage = stage;
     }
+
+    public void setSucesso(boolean sucesso) {
+        this.sucesso = sucesso;
+    }
+    
 
 }

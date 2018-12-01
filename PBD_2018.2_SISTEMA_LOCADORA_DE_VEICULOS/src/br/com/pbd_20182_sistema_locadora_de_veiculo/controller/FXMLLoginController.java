@@ -66,12 +66,13 @@ public class FXMLLoginController implements Initializable {
         Pessoa pessoa = new Pessoa();
         pessoa.setLogin(tfLogin.getText());
         pessoa.setSenha(dAOPessoa.criptografarSenha(tfSenha.getText()));
-        System.err.println(dAOPessoa.criptografarSenha("000"));
+        System.err.println(dAOPessoa.criptografarSenha("123"));
 
         pessoa = dAOPessoa.buscarLogin(pessoa);
         if (pessoa != null) {
             if (!verificarPrimeiroAcesso(pessoa)) {
                 exibirTelaPrincipal(pessoa);
+
             }
 
         }
@@ -80,13 +81,12 @@ public class FXMLLoginController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
+
         MinhaThread task = new MinhaThread();
-        
+
         Thread thread = new Thread(task);
         thread.setDaemon(true);
         thread.start();
-        
 
     }
 
@@ -114,51 +114,79 @@ public class FXMLLoginController implements Initializable {
     private boolean verificarPrimeiroAcesso(Pessoa pessoa) throws BusinessExpection, DAOException {
 
         Fachada fachada = Fachada.getInstance();
-        boolean sucesso = false;
+        boolean PrimeiroAcesso = false;
 
         DAOPessoa dAOPessoa = new DAOPessoa();
 
-        try {
-            if (pessoa instanceof PessoaFisica) {
-                if (dAOPessoa.criptografarSenha(((PessoaFisica) pessoa).getCPF()).equals(((PessoaFisica) pessoa).getSenha())) {
-                    sucesso = exibirTelaRedefinirSenha(pessoa);
-                    if (sucesso) {
-                        fachada.salvarPessoaFisica((PessoaFisica) pessoa);
-                    }
-                }
-            } else if (pessoa instanceof PessoaJuridica) {
-                if (dAOPessoa.criptografarSenha(((PessoaJuridica) pessoa).getCNPJ()).equals(((PessoaJuridica) pessoa).getSenha())) {
-                    sucesso = exibirTelaRedefinirSenha(pessoa);
-                    if (sucesso) {
-                        fachada.salvarPessoaJuridica((PessoaJuridica) pessoa);
-                    }
-                }
-            } else if (pessoa instanceof Funcionario) {
-                if (dAOPessoa.criptografarSenha(((Funcionario) pessoa).getMatricula()).equals(((Funcionario) pessoa).getSenha())) {
-                    sucesso = exibirTelaRedefinirSenha(pessoa);
-                    if (sucesso) {
-                        fachada.salvarFuncionario((Funcionario) pessoa);
-                    }
-                }
+        //       try {
+        if (pessoa instanceof PessoaFisica) {
+            if (dAOPessoa.criptografarSenha(((PessoaFisica) pessoa).getCPF()).equals(((PessoaFisica) pessoa).getSenha())) {
+                pessoa = ((PessoaFisica) pessoa);
+                PrimeiroAcesso = true;
             }
-
-            if (sucesso) {
+        } else if (pessoa instanceof PessoaJuridica) {
+            if (dAOPessoa.criptografarSenha(((PessoaJuridica) pessoa).getCNPJ()).equals(((PessoaJuridica) pessoa).getSenha())) {
+                pessoa = ((PessoaJuridica) pessoa);
+                PrimeiroAcesso = true;
+            }
+        } else if (pessoa instanceof Funcionario) {
+            if (dAOPessoa.criptografarSenha(((Funcionario) pessoa).getMatricula()).equals(((Funcionario) pessoa).getSenha())) {
+                pessoa = ((Funcionario) pessoa);
                 
-                System.out.println("ID" + pessoa.getId());
+                PrimeiroAcesso = true;
+               
+            }
+        }
+
+        if (PrimeiroAcesso) {
+            boolean sucesso = exibirTelaRedefinirSenha(pessoa);
+            if (sucesso) {
                 pessoa.setSenha(dAOPessoa.criptografarSenha(pessoa.getSenha()));
-                System.out.println("Senha " + pessoa.getSenha());
                 dAOPessoa.salvar(pessoa);
                 exibirTelaPrincipal(pessoa);
             }
-
-        } catch (BusinessExpection e) {
-            throw new BusinessExpection("ERRO AO TENTAR REDEFINIR A SENHA");
         }
-
+//            if (pessoa instanceof PessoaFisica) {
+//                if (dAOPessoa.criptografarSenha(((PessoaFisica) pessoa).getCPF()).equals(((PessoaFisica) pessoa).getSenha())) {
+//                    sucesso = exibirTelaRedefinirSenha(pessoa);
+//                    if (sucesso) {
+//                        fachada.salvarPessoaFisica((PessoaFisica) pessoa);
+//                       
+//                    }
+//                }
+//            } else if (pessoa instanceof PessoaJuridica) {
+//                if (dAOPessoa.criptografarSenha(((PessoaJuridica) pessoa).getCNPJ()).equals(((PessoaJuridica) pessoa).getSenha())) {
+//                    sucesso = exibirTelaRedefinirSenha(pessoa);
+//                    if (sucesso) {
+//                        fachada.salvarPessoaJuridica((PessoaJuridica) pessoa);
+//                        
+//                    }
+//                }
+//            } else if (pessoa instanceof Funcionario) {
+//                if (dAOPessoa.criptografarSenha(((Funcionario) pessoa).getMatricula()).equals(((Funcionario) pessoa).getSenha())) {
+//                    sucesso = exibirTelaRedefinirSenha(pessoa);
+//                    System.err.println("Sucesso" + sucesso);
+//                    if (sucesso) {
+//                        fachada.salvarFuncionario((Funcionario) pessoa);
+//                        
+//                    }
+//                }
+//            }
+//            if (sucesso) {
+//
+//                pessoa.setSenha(dAOPessoa.criptografarSenha(pessoa.getSenha()));
+//                dAOPessoa.salvar(pessoa);
+//                exibirTelaPrincipal(pessoa);
+//            }
+//        } catch (BusinessExpection e) {
+//            throw new BusinessExpection("ERRO AO TENTAR REDEFINIR A SENHA");
+//        }
         //catch(DAOException e){
 //            e.printStackTrace();
 //        }
-        return sucesso;
+//        sucesso = controllerMudancaSenha.isSucesso();
+//        System.err.println(sucesso);
+        return PrimeiroAcesso;
 
     }
 
@@ -171,20 +199,22 @@ public class FXMLLoginController implements Initializable {
         try {
             root = load.load();
             Stage stageRedefinir = new Stage();
+
             Scene scene = new Scene(root);
             stageRedefinir.setScene(scene);
             controllerMudancaSenha = load.getController();
 
             controllerMudancaSenha.setPessoa(pessoa);
             controllerMudancaSenha.setStage(stageRedefinir);
+            stageRedefinir.setOnCloseRequest(event -> controllerMudancaSenha.setSucesso(false));
 
             stageRedefinir.showAndWait();
-
+            return controllerMudancaSenha.isSucesso();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
 
-        return controllerMudancaSenha.isSucesso();
+        return false;
 
     }
 
@@ -207,6 +237,7 @@ public class FXMLLoginController implements Initializable {
             controllerPrincipal.setStage(stage);
 
             stage.show();
+
         } catch (IOException ex) {
             Logger.getLogger(FXMLLoginController.class.getName()).log(Level.SEVERE, null, ex);
         }

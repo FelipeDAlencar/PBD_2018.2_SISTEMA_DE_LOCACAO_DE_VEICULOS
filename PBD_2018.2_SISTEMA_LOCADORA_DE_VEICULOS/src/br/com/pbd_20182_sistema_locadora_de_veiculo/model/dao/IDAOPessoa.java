@@ -18,7 +18,7 @@ public interface IDAOPessoa {
 
     public Pessoa buscarLogin(Pessoa pessoa) throws DAOException;
 
-    public ArrayList<Pessoa> buscarTodos() throws DAOException;
+    public ArrayList<Pessoa> listarTodos() throws DAOException;
 
     public String buscarUltimoCodigo() throws DAOException;
 

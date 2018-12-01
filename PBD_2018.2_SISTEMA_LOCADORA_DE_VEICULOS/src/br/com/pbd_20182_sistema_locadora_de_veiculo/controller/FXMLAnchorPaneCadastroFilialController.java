@@ -95,13 +95,13 @@ public class FXMLAnchorPaneCadastroFilialController implements Initializable {
 
     @FXML
     void acaoBtns(ActionEvent event) throws DAOException, BusinessExpection {
-        System.out.println("Aqui");
+
         if (event.getSource() == btnInserir) {
             Filial filial = new Filial();
             boolean sucesso = exibirTelaDeCadastro(filial);
 
             if (sucesso) {
-                
+
                 fachada.salvarFilial(filial);
                 Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
                 alerta.alertar(Alert.AlertType.INFORMATION, "Sucesso", "Inserir Filial", "Filial "
@@ -117,7 +117,7 @@ public class FXMLAnchorPaneCadastroFilialController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         fachada = Fachada.getInstance();
         carregarFiliais();
-        
+
         colunaNomeFilial.setCellValueFactory(new PropertyValueFactory<>("nome"));
         colunaRua.setCellValueFactory(new PropertyValueFactory<>("rua"));
         colunaUF.setCellValueFactory(new PropertyValueFactory<>("uf"));
@@ -148,7 +148,7 @@ public class FXMLAnchorPaneCadastroFilialController implements Initializable {
     }
 
     private boolean exibirTelaDeCadastro(Filial filial) {
-        
+
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(FXMLAnchorPaneCadastroFilialController.class.getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAnchorPaneCadastroFilialDialog.fxml"));

@@ -66,7 +66,7 @@ public class DAOPessoa extends DAOGenerico<Pessoa> implements IDAOPessoa {
     }
 
     @Override
-    public ArrayList<Pessoa> buscarTodos() throws DAOException {
+    public ArrayList<Pessoa> listarTodos() throws DAOException {
 
         EntityManager em = ConnectionFactory.getInstance().getConnection();
         ArrayList<Pessoa> pessoas = null;
@@ -134,7 +134,7 @@ public class DAOPessoa extends DAOGenerico<Pessoa> implements IDAOPessoa {
 
         String cripttografia = (String) query
                 .getOutputParameterValue("cript");
-        System.out.println(cripttografia);
+        
         
         em.close();
         return cripttografia;

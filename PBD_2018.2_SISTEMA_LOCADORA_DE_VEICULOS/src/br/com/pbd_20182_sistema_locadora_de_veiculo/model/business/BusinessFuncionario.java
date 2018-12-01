@@ -17,25 +17,21 @@ import java.util.logging.Logger;
  *
  * @author Felipe
  */
-public class BusinessFuncionario implements IBusinessFuncionario{
-    
-    private DAOFuncionario daof;
+public class BusinessFuncionario implements IBusinessFuncionario {
+
+    private DAOFuncionario dAOFuncionario;
 
     public BusinessFuncionario() {
-        daof = new DAOFuncionario();
-    
+        dAOFuncionario = new DAOFuncionario();
+
     }
 
     @Override
-    public void salvar(Funcionario funcionario)throws BusinessExpection{
+    public void salvar(Funcionario funcionario) throws DAOException, BusinessExpection {
 
-        try {
-            if(validar()){
-                daof.salvar(funcionario);
-             }
-        } catch (DAOException ex) {
-            throw  new BusinessExpection("ERRO NO BUS");
-        }
+        validar(funcionario);
+        dAOFuncionario.salvar(funcionario);
+
     }
 
     @Override
@@ -53,16 +49,51 @@ public class BusinessFuncionario implements IBusinessFuncionario{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private boolean validar() {
-        return true;
+    private void validar(Funcionario funcionario)throws BusinessExpection{
+        
+        String erroMessage = "";
+        
+        
+        if(funcionario.getCargo().length() == 0){
+            erroMessage = "Por favor, informe o cargo.";
+        }
+        
+        if(funcionario.getLogin().length() == 0){
+            erroMessage = "Por favor, informe o seu login.";
+        }
+        if(funcionario.getMatricula().length() == 0){
+            erroMessage = "Por favor, informe sua matricula.";
+            
+        }
+        if(funcionario.getNome().length() <= 0){
+            erroMessage = "Por favor, informe um nome valido nome";
+        }
+        if(funcionario.getEndereco().getBairro().length() == 0){
+            erroMessage = "Por favor, informe o bairro.";
+        }
+        if(funcionario.getEndereco().getCidade().length() == 0){
+            erroMessage = "Por favor, informe a cidade.";
+           
+        }
+        if(funcionario.getEndereco().getRua().length() == 0){
+            erroMessage = "Por favor, informe a Rua.";
+           
+        }
+        
+        if(funcionario.getEndereco().getNumero() <= 0){
+            erroMessage = "Por favor, informe um número válido.";
+           
+        }
+        
+        if(erroMessage.length() != 0){
+            throw new BusinessExpection(erroMessage);
+        }
+        
+        
+        
     }
+        
+        
     
-    
-   
-    
-    
-    
-    
-    
-    
+
 }
