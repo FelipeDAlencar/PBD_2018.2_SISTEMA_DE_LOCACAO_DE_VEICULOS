@@ -5,10 +5,16 @@
  */
 package br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao;
 
+import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Geral;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaJuridica;
+import java.util.ArrayList;
+
 /**
  *
  * @author Felipe
  */
 public interface IDAOGeral {
     
+    public Geral buscarGeral()throws DAOException;
 }

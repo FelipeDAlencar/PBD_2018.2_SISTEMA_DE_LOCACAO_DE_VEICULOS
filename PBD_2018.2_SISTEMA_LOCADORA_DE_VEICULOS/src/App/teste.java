@@ -12,6 +12,7 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Veiculo;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -26,19 +27,19 @@ import org.hibernate.type.descriptor.java.LocalDateJavaDescriptor;
 public class teste  {
 
     public static void main(String[] args) throws DAOException {
-        String nome = "CN1";
-        int parteNumerica = Integer.parseInt(nome.substring(2));
-        parteNumerica += 1;
-        String parteTexto = nome.substring(0,2);
-        String nomeCategoria = parteTexto + parteNumerica;
-        
-        System.err.println("parte numerica "  + parteNumerica);
-        System.err.println("parte texto" + parteTexto);
-        
-        System.err.println("Nome"  + nomeCategoria);
-        
-        
+//        String nome = "CN1";
+//        int parteNumerica = Integer.parseInt(nome.substring(2));
+//        parteNumerica += 1;
+//        String parteTexto = nome.substring(0,2);
+//        String nomeCategoria = parteTexto + parteNumerica;
+//        
+//        System.err.println("parte numerica "  + parteNumerica);
+//        System.err.println("parte texto" + parteTexto);
+//        
+//        System.err.println("Nome"  + nomeCategoria);
 
+
+        
     }
 
     

@@ -17,7 +17,8 @@ import javax.persistence.SequenceGenerator;
 
 @Entity
 @SequenceGenerator(name = "veiculo_sequencia", sequenceName = "veiculo_seq", initialValue = 1, allocationSize = 1)
-public class Veiculo implements Serializable, EntidadeBase{
+public class Veiculo implements Serializable, EntidadeBase {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "veiculo_sequencia")
     private Integer id;
@@ -25,8 +26,8 @@ public class Veiculo implements Serializable, EntidadeBase{
     private String cor;
     @Column(name = "quilometragem_atual", nullable = false)
     private double quilometragemAtual;
-    @Column(name = "numero_chassi", nullable = false)
-    private int numeroChassi;
+    @Column(name = "numero_chassi", nullable = false, length = 17)
+    private String numeroChassi;
     @Column(length = 70, nullable = false)
     private String modelo;
     @Column(name = "torque_do_motor")
@@ -42,12 +43,10 @@ public class Veiculo implements Serializable, EntidadeBase{
     @Column(name = "tipo_de_combustivel", length = 100)
     private String tipoDeCombustivel;
     private boolean disponivel;
-    
-   
+
     @ManyToOne
     private Categoria categoria;
-    
-    
+
     @Override
     public Integer getId() {
         return id;
@@ -73,11 +72,11 @@ public class Veiculo implements Serializable, EntidadeBase{
         this.quilometragemAtual = quilometragemAtual;
     }
 
-    public int getNumeroChassi() {
+    public String getNumeroChassi() {
         return numeroChassi;
     }
 
-    public void setNumeroChassi(int numeroChassi) {
+    public void setNumeroChassi(String numeroChassi) {
         this.numeroChassi = numeroChassi;
     }
 
@@ -137,7 +136,6 @@ public class Veiculo implements Serializable, EntidadeBase{
         this.tipoDeCombustivel = tipoDeCombustivel;
     }
 
-
     public Categoria getCategoria() {
         return categoria;
     }
@@ -153,14 +151,13 @@ public class Veiculo implements Serializable, EntidadeBase{
     public void setDisponivel(boolean disponivel) {
         this.disponivel = disponivel;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 7;
         hash = 79 * hash + Objects.hashCode(this.id);
         hash = 79 * hash + Objects.hashCode(this.cor);
         hash = 79 * hash + (int) (Double.doubleToLongBits(this.quilometragemAtual) ^ (Double.doubleToLongBits(this.quilometragemAtual) >>> 32));
-        hash = 79 * hash + this.numeroChassi;
         hash = 79 * hash + Objects.hashCode(this.modelo);
         hash = 79 * hash + (int) (Double.doubleToLongBits(this.torqueDoMotor) ^ (Double.doubleToLongBits(this.torqueDoMotor) >>> 32));
         hash = 79 * hash + this.anoDeFabricacao;
@@ -169,6 +166,7 @@ public class Veiculo implements Serializable, EntidadeBase{
         hash = 79 * hash + Objects.hashCode(this.placa);
         hash = 79 * hash + Objects.hashCode(this.tipoDeCombustivel);
         hash = 79 * hash + Objects.hashCode(this.categoria);
+        hash = 79 * hash + Objects.hashCode(this.numeroChassi);
         return hash;
     }
 
@@ -217,19 +215,15 @@ public class Veiculo implements Serializable, EntidadeBase{
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
-      
+
         if (!Objects.equals(this.categoria, other.categoria)) {
             return false;
         }
         return true;
     }
-    
-    
-    
-    
 
-    
-    
-   
-    
+    @Override
+    public String toString() {
+        return getModelo();
+    }
 }

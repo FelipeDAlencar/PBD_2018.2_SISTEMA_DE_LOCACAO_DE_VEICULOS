@@ -66,7 +66,7 @@ public interface IFachada {
     public void alterarFuncionario(Funcionario funcionario)throws DAOException;
     
     public void salvarGeral(Geral geral)throws DAOException,BusinessExpection;
-    public void alterarGeral(Geral geral)throws DAOException;
+    public Geral buscarGeral()throws DAOException;
     
     public void salvarLocacao(Locacao locacao)throws DAOException,BusinessExpection;
     public ArrayList<Locacao> listarTodosLocacao()throws DAOException;
@@ -107,6 +107,9 @@ public interface IFachada {
     public Veiculo buscarPorIdVeiculo(int id)throws DAOException;
     public void alterarVeiculo(Veiculo veiculo)throws DAOException;
     public ArrayList<Veiculo> buscarVeiculoPorCategoria(Categoria categoria) throws DAOException;
-     public ArrayList<Veiculo> buscarPorVeiculosIndisponiveisPorCategoria(Categoria categoria)throws DAOException;
+    public ArrayList<Veiculo> buscarPorVeiculosIndisponiveisPorCategoria(Categoria categoria)throws DAOException;
+    
+    
+    
     
 }

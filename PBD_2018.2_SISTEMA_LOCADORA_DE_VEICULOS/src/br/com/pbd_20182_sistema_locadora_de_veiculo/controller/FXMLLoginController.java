@@ -104,7 +104,7 @@ public class FXMLLoginController implements Initializable {
             if (funcionario.isSuperUsuario()) {
                 System.out.println("Tem privilegios");
             } else {
-                controllerPrincipal.getMenuAdministracao().setDisable(true);
+                controllerPrincipal.getMenuItemConfiguracoes().setDisable(true);
             }
 
         }

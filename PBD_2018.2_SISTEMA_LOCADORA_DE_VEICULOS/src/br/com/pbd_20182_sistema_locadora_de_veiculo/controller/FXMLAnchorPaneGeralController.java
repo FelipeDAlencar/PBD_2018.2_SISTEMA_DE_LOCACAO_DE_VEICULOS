@@ -6,7 +6,9 @@
 package br.com.pbd_20182_sistema_locadora_de_veiculo.controller;
 
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Funcionario;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Geral;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Pessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaJuridica;
@@ -55,20 +57,33 @@ public class FXMLAnchorPaneGeralController implements Initializable {
     private Button btnPesquisa;
 
     @FXML
+    private TextField tfTaxaHigienizacao;
+
+    @FXML
+    private TextField tfMetadePrimeiraDiaria;
+    
+    @FXML
+    private TextField tfTaxaCombustivel;
+
+    @FXML
+    private Button btnAlterarTaxas;
+
+    @FXML
     private Button btnResetar;
 
     private ArrayList<Pessoa> pessoas;
     private ObservableList<Pessoa> obsPessoas;
     private DAOPessoa dAOPessoa = new DAOPessoa();
     private Pessoa pessoa;
+    private Fachada fachada;
 
     @FXML
-    void acaoesBtns(ActionEvent event) {
+    void acaoBtns(ActionEvent event) throws DAOException {
         if (event.getSource() == btnPesquisa) {
             try {
                 carregarTabela((ArrayList<Pessoa>) dAOPessoa.buscarPorBusca(tfPesquisa.getText()));
             } catch (DAOException ex) {
-                Logger.getLogger(FXMLAnchorPaneGeralController.class.getName()).log(Level.SEVERE, null, ex);
+                ex.getMessage();
             }
         }
 
@@ -81,7 +96,7 @@ public class FXMLAnchorPaneGeralController implements Initializable {
                 } else {
                     ((Funcionario) pessoa).setSenha(((Funcionario) pessoa).getMatricula());
                 }
-                
+
                 pessoa.setSenha(dAOPessoa.criptografarSenha(pessoa.getSenha()));
                 dAOPessoa.salvar(pessoa);
 
@@ -92,9 +107,24 @@ public class FXMLAnchorPaneGeralController implements Initializable {
                 alerta.alertar(Alert.AlertType.INFORMATION, "Problema ao resetar senha.", "Usuario não selecionado.", "Selecione o usuario em que a senha deve ser resetada.");
             } catch (DAOException e2) {
                 Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
-                alerta.alertar(Alert.AlertType.INFORMATION, "Erro.", "Proble ao tentar atualizar.", "Probela ao atualizar cliente, tente mais tarde.");
+                alerta.alertar(Alert.AlertType.INFORMATION, "Erro.", "Problema ao tentar atualizar.", "Probela ao atualizar cliente, tente mais tarde.");
             }
         }
+
+        if (event.getSource() == btnAlterarTaxas) {
+            Geral geral = fachada.buscarGeral();
+
+            geral.setTaxaCombustivel(Double.parseDouble(tfTaxaCombustivel.getText()));
+            geral.setTaxaHigienizacao(Double.parseDouble(tfTaxaHigienizacao.getText()));
+            geral.setMetadePrimeiraDiaria(Double.parseDouble(tfMetadePrimeiraDiaria.getText()));
+
+            fachada.salvarGeral(geral);
+            Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
+            alerta.alertar(Alert.AlertType.CONFIRMATION, "Sucesso", "Alterção de taxas", "Alteração"
+                    + "realizada com sucesso!.");
+
+        }
+
     }
 
     @Override
@@ -108,6 +138,36 @@ public class FXMLAnchorPaneGeralController implements Initializable {
 
         tableView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> selecionouNaTabela(newValue));
+
+        fachada = Fachada.getInstance();
+
+        try {
+            Geral geral = fachada.buscarGeral();
+
+            if (geral != null) {
+
+                tfTaxaCombustivel.setText(String.valueOf(geral.getTaxaCombustivel()));
+                tfTaxaHigienizacao.setText(String.valueOf(geral.getTaxaHigienizacao()));
+                tfMetadePrimeiraDiaria.setText(String.valueOf(geral.getMetadePrimeiraDiaria()));
+                
+
+            } else {
+
+                geral = new Geral();
+
+                geral.setTaxaCombustivel(0);
+                geral.setTaxaHigienizacao(0);
+                geral.setMetadePrimeiraDiaria(0);
+                fachada.salvarGeral(geral);
+
+                tfTaxaCombustivel.setText(String.valueOf(geral.getTaxaCombustivel()));
+                tfTaxaHigienizacao.setText(String.valueOf(geral.getTaxaHigienizacao()));
+                tfTaxaCombustivel.setText(String.valueOf(geral.getMetadePrimeiraDiaria()));
+            }
+
+        } catch (DAOException ex) {
+            ex.printStackTrace();
+        }
 
     }
 

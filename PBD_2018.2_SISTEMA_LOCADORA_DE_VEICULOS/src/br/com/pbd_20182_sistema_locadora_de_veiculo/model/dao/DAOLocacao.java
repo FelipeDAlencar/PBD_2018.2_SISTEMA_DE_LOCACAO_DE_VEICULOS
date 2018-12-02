@@ -23,7 +23,7 @@ public class DAOLocacao extends DAOGenerico<Locacao> implements IDAOLocacao{
         ArrayList<Locacao> locacoes = null;
 
         try {
-            locacoes = (ArrayList) em.createQuery("from locacao c").getResultList();
+            locacoes = (ArrayList) em.createQuery("from Locacao l").getResultList();
         } catch (Exception e) {
             e.printStackTrace();
 

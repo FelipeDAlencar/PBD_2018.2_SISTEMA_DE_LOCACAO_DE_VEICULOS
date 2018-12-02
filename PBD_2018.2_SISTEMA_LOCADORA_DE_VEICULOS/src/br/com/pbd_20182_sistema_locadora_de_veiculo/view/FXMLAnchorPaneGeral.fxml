@@ -38,11 +38,27 @@
                   <HBox layoutX="26.0" layoutY="128.0" prefHeight="26.0" prefWidth="217.0">
                      <children>
                         <TextField fx:id="tfPesquisa" promptText="Pesquisar" />
-                        <Button fx:id="btnPesquisa" mnemonicParsing="false" onAction="#acaoesBtns" prefHeight="25.0" prefWidth="71.0" text="Pesquisar" />
+                        <Button fx:id="btnPesquisa" mnemonicParsing="false" onAction="#acaoBtns" prefHeight="25.0" prefWidth="71.0" text="Pesquisar" />
                      </children>
                   </HBox>
-                  <Button fx:id="btnResetar" layoutX="26.0" layoutY="170.0" mnemonicParsing="false" onAction="#acaoesBtns" text="Resetar" />
+                  <Button fx:id="btnResetar" layoutX="26.0" layoutY="170.0" mnemonicParsing="false" onAction="#acaoBtns" text="Resetar" />
                   <Separator layoutX="276.0" layoutY="70.0" orientation="VERTICAL" prefHeight="399.0" prefWidth="3.0" />
+                  <Separator layoutX="29.0" layoutY="204.0" prefHeight="9.0" prefWidth="217.0" />
+                  <Label layoutX="27.0" layoutY="222.0" text="Taxa de higienização" />
+                  <HBox layoutX="27.0" layoutY="245.0" prefHeight="25.0" prefWidth="149.0">
+                     <children>
+                        <TextField fx:id="tfTaxaHigienizacao" onAction="#acaoBtns" />
+                     </children>
+                  </HBox>
+                  <HBox layoutX="28.0" layoutY="308.0" prefHeight="26.0" prefWidth="149.0">
+                     <children>
+                        <TextField fx:id="tfTaxaCombustivel" />
+                     </children>
+                  </HBox>
+                  <Label layoutX="27.0" layoutY="278.0" text="Taxa de Combustivel" />
+                  <Button fx:id="btnAlterarTaxas" layoutX="29.0" layoutY="422.0" mnemonicParsing="false" onAction="#acaoBtns" text="Alterar Taxas" />
+                  <Label layoutX="26.0" layoutY="351.0" text="Metade da primeira diária" />
+                  <TextField fx:id="tfMetadePrimeiraDiaria" layoutX="27.0" layoutY="375.0" />
                </children>
             </AnchorPane>
         </items>

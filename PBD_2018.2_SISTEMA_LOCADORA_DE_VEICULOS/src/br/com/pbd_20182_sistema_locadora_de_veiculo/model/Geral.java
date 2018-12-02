@@ -31,6 +31,9 @@ public class Geral  implements Serializable, EntidadeBase{
     @Column(name = "hora_de_backup")
     @Temporal(TemporalType.TIME)
     private Date horaDeBackup;
+    @Column(name = "metade_da_primeira_diaria")
+    private double metadePrimeiraDiaria;
+    
     
     
     
@@ -67,13 +70,22 @@ public class Geral  implements Serializable, EntidadeBase{
         this.id = id;
     }
 
+    public double getMetadePrimeiraDiaria() {
+        return metadePrimeiraDiaria;
+    }
+
+    public void setMetadePrimeiraDiaria(double metadePrimeiraDiaria) {
+        this.metadePrimeiraDiaria = metadePrimeiraDiaria;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 79 * hash + Objects.hashCode(this.id);
-        hash = 79 * hash + (int) (Double.doubleToLongBits(this.taxaHigienizacao) ^ (Double.doubleToLongBits(this.taxaHigienizacao) >>> 32));
-        hash = 79 * hash + (int) (Double.doubleToLongBits(this.taxaCombustivel) ^ (Double.doubleToLongBits(this.taxaCombustivel) >>> 32));
-        hash = 79 * hash + Objects.hashCode(this.horaDeBackup);
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.id);
+        hash = 97 * hash + (int) (Double.doubleToLongBits(this.taxaHigienizacao) ^ (Double.doubleToLongBits(this.taxaHigienizacao) >>> 32));
+        hash = 97 * hash + (int) (Double.doubleToLongBits(this.taxaCombustivel) ^ (Double.doubleToLongBits(this.taxaCombustivel) >>> 32));
+        hash = 97 * hash + Objects.hashCode(this.horaDeBackup);
+        hash = 97 * hash + (int) (Double.doubleToLongBits(this.metadePrimeiraDiaria) ^ (Double.doubleToLongBits(this.metadePrimeiraDiaria) >>> 32));
         return hash;
     }
 
@@ -95,6 +107,9 @@ public class Geral  implements Serializable, EntidadeBase{
         if (Double.doubleToLongBits(this.taxaCombustivel) != Double.doubleToLongBits(other.taxaCombustivel)) {
             return false;
         }
+        if (Double.doubleToLongBits(this.metadePrimeiraDiaria) != Double.doubleToLongBits(other.metadePrimeiraDiaria)) {
+            return false;
+        }
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
@@ -103,8 +118,7 @@ public class Geral  implements Serializable, EntidadeBase{
         }
         return true;
     }
-
-   
+    
     
     
     

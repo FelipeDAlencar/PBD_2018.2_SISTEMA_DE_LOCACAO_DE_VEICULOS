@@ -14,5 +14,6 @@ import java.util.ArrayList;
  * @author Felipe
  */
 public interface IDAOPessoaJuridica {
-     public ArrayList<PessoaJuridica> findAll()throws DAOException;
+
+    public ArrayList<PessoaJuridica> findAll() throws DAOException;
 }

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane id="AnchorPane" prefHeight="300.0" prefWidth="398.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.pbd_20182_sistema_locadora_de_veiculo.controller.FXMLAnchorPaneCadastroLocacaoDialogController">
+   <children>
+      <ScrollPane layoutY="5.0" prefHeight="300.0" prefWidth="400.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="464.0" prefWidth="382.0">
+               <children>
+                  <GridPane layoutX="56.0" layoutY="27.0" prefHeight="353.0" prefWidth="310.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="173.0" minWidth="10.0" prefWidth="151.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.0" minWidth="10.0" prefWidth="139.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Motorista" GridPane.rowIndex="1" />
+                        <Label text="veiculo" GridPane.rowIndex="2" />
+                        <Label text="Km incial" GridPane.rowIndex="3" />
+                        <Label text="Km final" GridPane.rowIndex="4" />
+                        <Label text="Metade da primeira diária" GridPane.rowIndex="5" />
+                        <Label text="Data ida" GridPane.rowIndex="6" />
+                        <Label text="Data volta" GridPane.rowIndex="7" />
+                        <Label text="Km livre" GridPane.rowIndex="10" />
+                        <Label text="Finalizada" GridPane.rowIndex="11" />
+                        <Label text="Valor" GridPane.rowIndex="12" />
+                        <ComboBox fx:id="comboMotorista" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <ComboBox fx:id="comboVeiculo" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="tfKmInicial" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="tfKmFinal" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField fx:id="tfMetadeprimeiraDiaria" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <DatePicker fx:id="dpDataIda" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <DatePicker fx:id="dpDataVolta" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <CheckBox fx:id="cbKmLivre" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                        <CheckBox fx:id="cbFinalizada" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                        <TextField fx:id="tfValor" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                        <Label text="Cliente" />
+                        <ComboBox fx:id="comboCliente" prefWidth="150.0" GridPane.columnIndex="1" />
+                        <Label text="Taxa de higiênização" GridPane.rowIndex="8" />
+                        <Label text="Taxa de Combustível" GridPane.rowIndex="9" />
+                        <CheckBox fx:id="cbTaxaHigienizacao" mnemonicParsing="false" onAction="#acaoCBs" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <CheckBox fx:id="cbTaxaCombustivel" mnemonicParsing="false" onAction="#acaoCBs" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                     </children>
+                  </GridPane>
+                  <Group layoutX="122.0" layoutY="403.0">
+                     <children>
+                        <Button fx:id="btnConfirmar" mnemonicParsing="false" onAction="#acaoBtns" prefHeight="25.0" prefWidth="80.0" text="Confirmar" />
+                        <Button fx:id="btnCancelar" layoutX="99.0" mnemonicParsing="false" onAction="#acaoBtns" prefHeight="25.0" prefWidth="80.0" text="Cancelar" />
+                     </children>
+                  </Group>
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

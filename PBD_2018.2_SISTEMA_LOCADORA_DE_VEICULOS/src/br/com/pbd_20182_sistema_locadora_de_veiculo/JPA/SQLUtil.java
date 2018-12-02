@@ -28,7 +28,7 @@ public class SQLUtil {
 
     public static class Categoria {
 
-        public static final String SQL_BUSCAR_CATEGORIA_POR_ULTIMO_NOME = "select MAX(nome) from Categoria";
+        public static final String SQL_BUSCAR_CATEGORIA_POR_ULTIMO_NOME = "select max(nome) from Categoria where  nome like 'CN%'";
         public static final String SQL_BUSCAR_CATEGORIA_POR_NOME_DISPONIVEL = "select c from Categoria c where c.nome = :nome and disponivel = true";
 
     }
@@ -49,7 +49,11 @@ public class SQLUtil {
 
         public static final String SQL_BUSCAR_VEICULO_POR_CATEGORIA = "select v from Veiculo v where v.categoria = :categoria and v.disponivel = true";
         public static final String SQL_BUSCAR_VEICULO_NÃO_DISPONIVEIS_POR_CATEGORIA = "select v from Veiculo v where v.categoria = :categoria and v.disponivel = false";
-    
+
+    }
+
+    public static class Geral{
+        public static final String SQL_BUSCAR_GERAL = "select p from Geral p where p.id = 1";
     }
 
 }

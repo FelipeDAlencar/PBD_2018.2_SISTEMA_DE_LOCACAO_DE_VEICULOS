@@ -7,6 +7,7 @@ package br.com.pbd_20182_sistema_locadora_de_veiculo.controller;
 
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.CaminhonetaDeCarga;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.CaminhonetaDePassageiros;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Util;
@@ -25,6 +26,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 /**
@@ -41,16 +44,7 @@ public class FXMLAnchorPaneCadastroCategoriaDialogController implements Initiali
     private String ultimoNome = "";
 
     @FXML
-    private Label lbAirbag;
-
-    @FXML
-    private Label lbCintoSeguranca;
-
-    @FXML
-    private Label lbDirecaoAssistida;
-
-    @FXML
-    private Label lbRodasDeLigaLeve;
+    private GridPane grid;
 
     @FXML
     private TextField tfNome;
@@ -89,13 +83,25 @@ public class FXMLAnchorPaneCadastroCategoriaDialogController implements Initiali
     private CheckBox cbCameraDeRe;
 
     @FXML
+    private RadioButton rbCategoria;
+
+    @FXML
+    private RadioButton rbCategoriaCarga;
+
+    @FXML
+    private RadioButton rbCategoriaPassageiros;
+
+    @FXML
+    private Button btnConfirmar;
+
+    @FXML
+    private GridPane gridPassageiros;
+
+    @FXML
     private CheckBox cbCintoSeguranca;
 
     @FXML
     private CheckBox cbDirecaoAssistida;
-
-    @FXML
-    private Label lbControleDePoluicaoDoAr;
 
     @FXML
     private CheckBox cbAirBag;
@@ -107,16 +113,46 @@ public class FXMLAnchorPaneCadastroCategoriaDialogController implements Initiali
     private CheckBox cbControleDePoluicaoDoAr;
 
     @FXML
-    private RadioButton rbCategoria;
+    private GridPane gridCarga;
 
     @FXML
-    private RadioButton rbCategoriaCarga;
+    private TextField tfPotenciaDoMotor;
 
     @FXML
-    private RadioButton rbCategoriaPassageiros;
+    private TextField tfDistanciaEntreEixos;
 
     @FXML
-    private Button btnConfirmar;
+    private TextField tfCapacidadeDeCarga;
+
+    @FXML
+    private TextField tfAcionamentoDaEmbreagem;
+
+    @FXML
+    private TextField tfDesempenho;
+
+    @FXML
+    private TextField tfVolumeSuportado;
+
+    @FXML
+    private AnchorPane paneScroll;
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        ToggleGroup tg = new ToggleGroup();
+        rbCategoria.setToggleGroup(tg);
+        rbCategoriaCarga.setToggleGroup(tg);
+        rbCategoriaPassageiros.setToggleGroup(tg);
+
+        fachada = Fachada.getInstance();
+
+        try {
+            ultimoNome = fachada.buscarUltimoNomeCategoria();
+        } catch (DAOException ex) {
+            Logger.getLogger(FXMLAnchorPaneCadastroCategoriaDialogController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        tfNome.setText(Util.gerarNomeCategoria(ultimoNome, 1));
+
+    }
 
     @FXML
     void acoesBtns(ActionEvent event) {
@@ -139,7 +175,8 @@ public class FXMLAnchorPaneCadastroCategoriaDialogController implements Initiali
                     categoria.setNumeroDePortas(Integer.parseInt(tfNPortas.getText()));
                     categoria.setValor(Double.parseDouble(tfValor.getText()));
 
-                } else if (rbCategoriaPassageiros.isSelected()) {
+                } 
+                if (rbCategoriaPassageiros.isSelected()) {
                     categoria = new CaminhonetaDePassageiros();
 
                     categoria.setArCondicionado(cbArCondicionado.isSelected());
@@ -156,18 +193,42 @@ public class FXMLAnchorPaneCadastroCategoriaDialogController implements Initiali
                     ((CaminhonetaDePassageiros) categoria).setAirBag(cbAirBag.isSelected());
                     ((CaminhonetaDePassageiros) categoria).setRodaDeLigaLeve(cbRodasDeLigaLeve.isSelected());
                     ((CaminhonetaDePassageiros) categoria).setControleDePoluicaoDoAr(cbControleDePoluicaoDoAr.isSelected());
-                    
-                    
-                    
+
                     categoria.setNome(tfNome.getText());
                     categoria.setNumeroDePassageiros(Integer.parseInt(tfNPassageiros.getText()));
                     categoria.setNumeroDePortas(Integer.parseInt(tfNPortas.getText()));
                     categoria.setValor(Double.parseDouble(tfValor.getText()));
+                } 
+                
+                if (rbCategoriaCarga.isSelected()) {
+                    System.err.println("Entrou selecionado carga");
+                    categoria = new CaminhonetaDeCarga();
+
+                    categoria.setArCondicionado(cbArCondicionado.isSelected());
+                    categoria.setCameraDeRe(cbCameraDeRe.isSelected());
+                    categoria.setDescricacao(tfDescricao.getText());
+                    categoria.setDirecaoHidraulica(cbDirecaoHidraulica.isSelected());
+                    categoria.setRadio(cbRadio.isSelected());
+                    categoria.setTipoDeCambio(cbTipoCambio.isSelected());
+                    categoria.setDvd(cbDVD.isSelected());
+                    categoria.setMp3(cbMP3.isSelected());
+                    categoria.setNome(tfNome.getText());
+                    categoria.setNumeroDePassageiros(Integer.parseInt(tfNPassageiros.getText()));
+                    categoria.setNumeroDePortas(Integer.parseInt(tfNPortas.getText()));
+                    categoria.setValor(Double.parseDouble(tfValor.getText()));
+
+                    ((CaminhonetaDeCarga) categoria).setPotenciaDoMotor(Double.parseDouble(tfPotenciaDoMotor.getText()));
+                    ((CaminhonetaDeCarga) categoria).setDistanciaEntreEixos(Double.parseDouble(tfDistanciaEntreEixos.getText()));
+                    ((CaminhonetaDeCarga) categoria).setCapacidadeDeCarga(Double.parseDouble(tfCapacidadeDeCarga.getText()));
+                    ((CaminhonetaDeCarga) categoria).setAcionamentoDeEmbragem(tfAcionamentoDaEmbreagem.getText());
+                    ((CaminhonetaDeCarga) categoria).setDesempenho(tfDesempenho.getText());
+                    ((CaminhonetaDeCarga) categoria).setVolumeDeAbastecimento(Double.parseDouble(tfVolumeSuportado.getText()));
+                    
+                    
+                    
+                
                 }
-                
-                
-                
-                
+
                 confirmar = true;
                 stage.close();
 
@@ -185,69 +246,28 @@ public class FXMLAnchorPaneCadastroCategoriaDialogController implements Initiali
     void acoesRadios(ActionEvent event) throws DAOException {
         if (event.getSource() == rbCategoriaPassageiros) {
 
-            lbAirbag.setVisible(true);
-            lbCintoSeguranca.setVisible(true);
-            lbControleDePoluicaoDoAr.setVisible(true);
-            lbDirecaoAssistida.setVisible(true);
-            lbRodasDeLigaLeve.setVisible(true);
-
-            cbAirBag.setVisible(true);
-            cbCintoSeguranca.setVisible(true);
-            cbControleDePoluicaoDoAr.setVisible(true);
-            cbDirecaoAssistida.setVisible(true);
-            cbRodasDeLigaLeve.setVisible(true);
+            gridCarga.setVisible(false);
+            gridPassageiros.setVisible(true);
 
             ultimoNome = fachada.buscarUltimoNomeCaminhonetaDePassageiros();
             tfNome.setText(Util.gerarNomeCategoria(ultimoNome, 3));
 
         } else if (event.getSource() == rbCategoria) {
 
-            lbAirbag.setVisible(false);
-            lbCintoSeguranca.setVisible(false);
-            lbControleDePoluicaoDoAr.setVisible(false);
-            lbDirecaoAssistida.setVisible(false);
-            lbRodasDeLigaLeve.setVisible(false);
-
-            cbAirBag.setVisible(false);
-            cbCintoSeguranca.setVisible(false);
-            cbControleDePoluicaoDoAr.setVisible(false);
-            cbDirecaoAssistida.setVisible(false);
-            cbRodasDeLigaLeve.setVisible(false);
+            gridCarga.setVisible(false);
+            gridPassageiros.setVisible(false);
 
             ultimoNome = fachada.buscarUltimoNomeCategoria();
-            tfNome.setText(Util.gerarNomeCategoria(ultimoNome, 1));
+            tfNome.setText(Util.gerarNomeCategoria(ultimoNome, 2));
 
+        } else if (event.getSource() == rbCategoriaCarga) {
+            
+            gridCarga.setVisible(true);
+            gridPassageiros.setVisible(false);
+
+            ultimoNome = fachada.buscarUltimoNomeCaminhonetaDeCarga();
+            tfNome.setText(Util.gerarNomeCategoria(ultimoNome, 2));
         }
-
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        ToggleGroup tg = new ToggleGroup();
-        rbCategoria.setToggleGroup(tg);
-        rbCategoriaCarga.setToggleGroup(tg);
-        rbCategoriaPassageiros.setToggleGroup(tg);
-
-        lbAirbag.setVisible(false);
-        lbCintoSeguranca.setVisible(false);
-        lbControleDePoluicaoDoAr.setVisible(false);
-        lbDirecaoAssistida.setVisible(false);
-        lbRodasDeLigaLeve.setVisible(false);
-
-        cbAirBag.setVisible(false);
-        cbCintoSeguranca.setVisible(false);
-        cbControleDePoluicaoDoAr.setVisible(false);
-        cbDirecaoAssistida.setVisible(false);
-        cbRodasDeLigaLeve.setVisible(false);
-
-        fachada = Fachada.getInstance();
-
-        try {
-            ultimoNome = fachada.buscarUltimoNomeCategoria();
-        } catch (DAOException ex) {
-            Logger.getLogger(FXMLAnchorPaneCadastroCategoriaDialogController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        tfNome.setText(Util.gerarNomeCategoria(ultimoNome, 1));
 
     }
 

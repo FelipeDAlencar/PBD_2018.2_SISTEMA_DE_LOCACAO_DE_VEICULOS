@@ -118,7 +118,7 @@ public class FXMLAnchoPaneCadastroClienteController implements Initializable {
     private DAOPessoaFisica dAOPessoaFisica = new DAOPessoaFisica();
     private DAOPessoaJuridica dAOPessoaJuridica = new DAOPessoaJuridica();
     private Fachada fachada = Fachada.getInstance();
-    FXMLAchorPaneCadastroClienteDialogController controller;
+    private FXMLAchorPaneCadastroClienteDialogController controller;
 
     @FXML
     void acoesDeBotao(ActionEvent event) throws BusinessExpection, DAOException {

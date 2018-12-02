@@ -7,7 +7,6 @@ package br.com.pbd_20182_sistema_locadora_de_veiculo.model;
 
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,7 +19,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@SequenceGenerator(name = "locacao_sequencia", sequenceName = "locacao_seq", initialValue = 1, allocationSize = 1)
+@SequenceGenerator(name = "locacao_sequencia", sequenceName = "locacao_seq", initialValue = 2, allocationSize = 1)
 public class Locacao implements Serializable, EntidadeBase{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "locacao_sequencia")
@@ -46,6 +45,9 @@ public class Locacao implements Serializable, EntidadeBase{
     private Calendar dataVolta;
     @Column(name = "km_livre")
     private boolean kmLivre;
+    
+    @OneToOne
+    private Pessoa cliente;
     
     @OneToOne
     private PessoaFisica motorista;
@@ -157,22 +159,31 @@ public class Locacao implements Serializable, EntidadeBase{
         this.motorista = motorista;
     }
 
+    public Pessoa getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Pessoa pessoa) {
+        this.cliente = pessoa;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 97 * hash + Objects.hashCode(this.id);
-        hash = 97 * hash + (this.finalizada ? 1 : 0);
-        hash = 97 * hash + (int) (Double.doubleToLongBits(this.valor) ^ (Double.doubleToLongBits(this.valor) >>> 32));
-        hash = 97 * hash + (int) (Double.doubleToLongBits(this.KmInicialDoVeiculo) ^ (Double.doubleToLongBits(this.KmInicialDoVeiculo) >>> 32));
-        hash = 97 * hash + (int) (Double.doubleToLongBits(this.metadeDaPrimeiraDiaria) ^ (Double.doubleToLongBits(this.metadeDaPrimeiraDiaria) >>> 32));
-        hash = 97 * hash + (int) (Double.doubleToLongBits(this.kmFinalVeiculo) ^ (Double.doubleToLongBits(this.kmFinalVeiculo) >>> 32));
-        hash = 97 * hash + (int) (Double.doubleToLongBits(this.taxaCombustivel) ^ (Double.doubleToLongBits(this.taxaCombustivel) >>> 32));
-        hash = 97 * hash + (int) (Double.doubleToLongBits(this.taxaHigienizacao) ^ (Double.doubleToLongBits(this.taxaHigienizacao) >>> 32));
-        hash = 97 * hash + Objects.hashCode(this.dataIda);
-        hash = 97 * hash + Objects.hashCode(this.dataVolta);
-        hash = 97 * hash + (this.kmLivre ? 1 : 0);
-        hash = 97 * hash + Objects.hashCode(this.motorista);
-        hash = 97 * hash + Objects.hashCode(this.veiculo);
+        int hash = 7;
+        hash = 79 * hash + Objects.hashCode(this.id);
+        hash = 79 * hash + (this.finalizada ? 1 : 0);
+        hash = 79 * hash + (int) (Double.doubleToLongBits(this.valor) ^ (Double.doubleToLongBits(this.valor) >>> 32));
+        hash = 79 * hash + (int) (Double.doubleToLongBits(this.KmInicialDoVeiculo) ^ (Double.doubleToLongBits(this.KmInicialDoVeiculo) >>> 32));
+        hash = 79 * hash + (int) (Double.doubleToLongBits(this.metadeDaPrimeiraDiaria) ^ (Double.doubleToLongBits(this.metadeDaPrimeiraDiaria) >>> 32));
+        hash = 79 * hash + (int) (Double.doubleToLongBits(this.kmFinalVeiculo) ^ (Double.doubleToLongBits(this.kmFinalVeiculo) >>> 32));
+        hash = 79 * hash + (int) (Double.doubleToLongBits(this.taxaCombustivel) ^ (Double.doubleToLongBits(this.taxaCombustivel) >>> 32));
+        hash = 79 * hash + (int) (Double.doubleToLongBits(this.taxaHigienizacao) ^ (Double.doubleToLongBits(this.taxaHigienizacao) >>> 32));
+        hash = 79 * hash + Objects.hashCode(this.dataIda);
+        hash = 79 * hash + Objects.hashCode(this.dataVolta);
+        hash = 79 * hash + (this.kmLivre ? 1 : 0);
+        hash = 79 * hash + Objects.hashCode(this.cliente);
+        hash = 79 * hash + Objects.hashCode(this.motorista);
+        hash = 79 * hash + Objects.hashCode(this.veiculo);
         return hash;
     }
 
@@ -221,6 +232,9 @@ public class Locacao implements Serializable, EntidadeBase{
         if (!Objects.equals(this.dataVolta, other.dataVolta)) {
             return false;
         }
+        if (!Objects.equals(this.cliente, other.cliente)) {
+            return false;
+        }
         if (!Objects.equals(this.motorista, other.motorista)) {
             return false;
         }
@@ -229,9 +243,7 @@ public class Locacao implements Serializable, EntidadeBase{
         }
         return true;
     }
-    
-   
-    
+
     
     
     

@@ -118,6 +118,11 @@ public class FXMLVBoxTelaPrincipalController implements Initializable {
             pane = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAnchorPaneCadastroFuncionario.fxml"));
             AnchorPaneContent.getChildren().setAll(pane);
         }
+        
+        if(event.getSource() == menuItemLocacoes){
+            pane = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAnchorPaneCadastroLocacao.fxml"));
+            AnchorPaneContent.getChildren().setAll(pane);
+        }
     }
 
     @FXML

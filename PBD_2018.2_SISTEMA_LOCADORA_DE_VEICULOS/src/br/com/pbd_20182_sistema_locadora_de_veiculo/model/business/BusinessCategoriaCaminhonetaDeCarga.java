@@ -29,14 +29,10 @@ public class BusinessCategoriaCaminhonetaDeCarga implements IBusinessCategoriaCa
 
     @Override
     public void salvar(CaminhonetaDeCarga caminhonetaDeCarga) throws DAOException, BusinessExpection {
-        try {
-            validar(caminhonetaDeCarga);
-            daoccdc.salvar(caminhonetaDeCarga);
-        } catch (DAOException ex) {
 
-            ex.printStackTrace();
+        validar(caminhonetaDeCarga);
+        daoccdc.salvar(caminhonetaDeCarga);
 
-        }
     }
 
     @Override
@@ -77,10 +73,10 @@ public class BusinessCategoriaCaminhonetaDeCarga implements IBusinessCategoriaCa
 
     private void validar(CaminhonetaDeCarga caminhonetaDeCarga) throws BusinessExpection {
 
-        if (caminhonetaDeCarga != null) {
+        if (!(caminhonetaDeCarga != null)) {
 
-        } else {
             throw new BusinessExpection("ERRO AO TENTAR INSERIR");
+
         }
 
     }

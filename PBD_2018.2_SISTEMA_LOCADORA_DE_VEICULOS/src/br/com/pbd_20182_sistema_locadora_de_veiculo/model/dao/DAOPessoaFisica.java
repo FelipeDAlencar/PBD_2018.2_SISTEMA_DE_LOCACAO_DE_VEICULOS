@@ -16,26 +16,24 @@ import javax.persistence.EntityManager;
  * @author Felipe
  */
 public class DAOPessoaFisica extends DAOGenerico<PessoaFisica> implements IDAOPessoaFisica {
-    
+
     private static DAOPessoaFisica dAOPessoaFisica;
-    
-    
-    
+
     @Override
-    public ArrayList<PessoaFisica> findAll() throws DAOException{
+    public ArrayList<PessoaFisica> findAll() throws DAOException {
         EntityManager em = ConnectionFactory.getInstance().getConnection();
         ArrayList<PessoaFisica> pessoaFisicas = null;
 
         try {
             pessoaFisicas = (ArrayList) em.createQuery("from PessoaFisica p").getResultList();
+            return pessoaFisicas;
         } catch (Exception e) {
             e.printStackTrace();
-            throw  new DAOException("ERRO AO TENTAR BUSCAR NO BANCO DE DADOS");
+            throw new DAOException("ERRO AO TENTAR BUSCAR NO BANCO DE DADOS");
 
         } finally {
             em.close();
         }
 
-        return pessoaFisicas;
     }
 }

@@ -17,26 +17,22 @@ import java.util.logging.Logger;
  *
  * @author Felipe
  */
-public class BusinessCategoriaCaminhonetaDePassageiros implements IBusinessCategoriaCaminhonetaDePassageiros{
+public class BusinessCategoriaCaminhonetaDePassageiros implements IBusinessCategoriaCaminhonetaDePassageiros {
 
     private DAOCategoriaCaminhonetaDePassageiros daoccdp;
 
     public BusinessCategoriaCaminhonetaDePassageiros() {
-        
+
         daoccdp = new DAOCategoriaCaminhonetaDePassageiros();
-    
+
     }
-    
-    
-    
-    
+
     @Override
-    public void salvar(CaminhonetaDePassageiros caminhonetaDePassageiros)throws DAOException,BusinessExpection{
-        
-            validar(caminhonetaDePassageiros);
-            
-            daoccdp.salvar(caminhonetaDePassageiros);
-        
+    public void salvar(CaminhonetaDePassageiros caminhonetaDePassageiros) throws DAOException, BusinessExpection {
+
+        validar(caminhonetaDePassageiros);
+
+        daoccdp.salvar(caminhonetaDePassageiros);
 
     }
 
@@ -52,7 +48,7 @@ public class BusinessCategoriaCaminhonetaDePassageiros implements IBusinessCateg
         } catch (DAOException ex) {
             ex.printStackTrace();
         }
-        
+
         return null;
     }
 
@@ -62,27 +58,20 @@ public class BusinessCategoriaCaminhonetaDePassageiros implements IBusinessCateg
     }
 
     @Override
-    public String buscarUltimoNomeCaminhonetaDePassageiros() {
-        
-        try {
-            return daoccdp.buscarUltimoNome();
-        } catch (DAOException ex) {
-            ex.printStackTrace();
-        }
-        
-        return null;
-        
+    public String buscarUltimoNomeCaminhonetaDePassageiros() throws DAOException {
+
+        return daoccdp.buscarUltimoNome();
+
     }
 
-    private void validar(CaminhonetaDePassageiros caminhonetaDePassageiros)throws BusinessExpection{
-        
-        if(caminhonetaDePassageiros != null){
-            
-        }else {
-            throw  new BusinessExpection("ERRO AO TENTAR INSERIR");
+    private void validar(CaminhonetaDePassageiros caminhonetaDePassageiros) throws BusinessExpection {
+
+        if (caminhonetaDePassageiros != null) {
+
+        } else {
+            throw new BusinessExpection("ERRO AO TENTAR INSERIR");
         }
-        
-        
+
     }
-    
+
 }
