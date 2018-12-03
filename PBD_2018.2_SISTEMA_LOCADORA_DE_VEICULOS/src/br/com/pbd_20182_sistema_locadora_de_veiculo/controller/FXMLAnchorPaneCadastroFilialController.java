@@ -107,16 +107,66 @@ public class FXMLAnchorPaneCadastroFilialController implements Initializable {
                 alerta.alertar(Alert.AlertType.INFORMATION, "Sucesso", "Inserir Filial", "Filial "
                         + "Inserida com Sucesso.");
 
-                carregarFiliais();
+                carregarFiliais(fachada.listarTodosFilial());
             }
         }
+
+        if (event.getSource() == btnEditar) {
+
+            Filial filial = tableView.getSelectionModel().getSelectedItem();
+
+            if (filial != null) {
+
+                boolean sucesso = exibirTelaDeCadastro(filial);
+
+                if (sucesso) {
+                    fachada.salvarFilial(filial);
+                    
+                    
+                    Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
+                    alerta.alertar(Alert.AlertType.INFORMATION , "Sucesso", "Sucesso", "Edição realizada "
+                            + "com sucesso");
+                    
+                    carregarFiliais(fachada.listarTodosFilial());
+                }
+
+            } else {
+                Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
+                alerta.alertar(Alert.AlertType.WARNING, "Atenção", "Atenção", "Por favor, selecione "
+                        + "a filial que deseja editar");
+            }
+
+        }
+        
+        
+        if(event.getSource() == btnExcluir){
+            Filial filial = tableView.getSelectionModel().getSelectedItem();
+            
+            if(filial != null){
+                filial.setAtivo(false);
+                fachada.salvarFilial(filial);
+                carregarFiliais(fachada.listarTodosFilial());
+                
+            }else{
+                Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
+                alerta.alertar(Alert.AlertType.WARNING, "Atenção", "Atenção", "Por favor, selecione "
+                        + "a filial que deseja excluir");
+            }
+            
+            
+        }
+        
 
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         fachada = Fachada.getInstance();
-        carregarFiliais();
+        try {
+            carregarFiliais(fachada.listarTodosFilial());
+        } catch (DAOException ex) {
+            ex.printStackTrace();
+        }
 
         colunaNomeFilial.setCellValueFactory(new PropertyValueFactory<>("nome"));
         colunaRua.setCellValueFactory(new PropertyValueFactory<>("rua"));
@@ -127,10 +177,10 @@ public class FXMLAnchorPaneCadastroFilialController implements Initializable {
 
     }
 
-    private void carregarFiliais() {
-        filiais = fachada.listarTodosFilial();
-
-        obsFiliais = FXCollections.observableArrayList(filiais);
+    private void carregarFiliais(ArrayList<Filial> filials) throws DAOException {
+        
+       
+        obsFiliais = FXCollections.observableArrayList(filials);
 
         tableView.setItems(obsFiliais);
     }
@@ -161,8 +211,7 @@ public class FXMLAnchorPaneCadastroFilialController implements Initializable {
             FXMLAnchorPaneCadastroFilialDialogController controller = loader.getController();
             controller.setStage(stage);
             controller.setFilial(filial);
-            
-            
+
             stage.showAndWait();
 
             return controller.isSucesso();

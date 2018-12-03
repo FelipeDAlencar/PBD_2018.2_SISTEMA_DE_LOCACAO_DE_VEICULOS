@@ -26,7 +26,7 @@ public class DAOVeiculos extends DAOGenerico<Veiculo> implements IDAOVeiculos {
         ArrayList<Veiculo> veiculos = null;
 
         try {
-            veiculos = (ArrayList) em.createQuery("from Veiculo c").getResultList();
+            veiculos = (ArrayList) em.createQuery("from Veiculo c where ativo = true").getResultList();
         } catch (Exception e) {
             e.printStackTrace();
 
@@ -47,22 +47,20 @@ public class DAOVeiculos extends DAOGenerico<Veiculo> implements IDAOVeiculos {
             query.setParameter("categoria", categoria);
 
             ArrayList<Veiculo> veiculos = (ArrayList<Veiculo>) query.getResultList();
-            
-           
+
             return veiculos;
-                    
+
         } catch (Exception e) {
             e.printStackTrace();
             throw new DAOException("ERRO AO TENTAR BUSCAR VEICULO NO BANCO DE DADOS");
-        }finally{
+        } finally {
             em.close();
         }
 
     }
-    
-    
+
     @Override
-    public ArrayList<Veiculo> buscarPorCategoriaVeiculosIndisponiveis(Categoria categoria)throws DAOException{
+    public ArrayList<Veiculo> buscarPorCategoriaVeiculosIndisponiveis(Categoria categoria) throws DAOException {
         EntityManager em = ConnectionFactory.getInstance().getConnection();
 
         try {
@@ -70,14 +68,35 @@ public class DAOVeiculos extends DAOGenerico<Veiculo> implements IDAOVeiculos {
             query.setParameter("categoria", categoria);
 
             ArrayList<Veiculo> veiculos = (ArrayList<Veiculo>) query.getResultList();
-            
-           
+
             return veiculos;
-                    
+
         } catch (Exception e) {
             e.printStackTrace();
             throw new DAOException("ERRO AO TENTAR BUSCAR VEICULO NO BANCO DE DADOS");
-        }finally{
+        } finally {
+            em.close();
+        }
+    }
+
+    @Override
+    public ArrayList<Veiculo> buscarPorBusca(String busca) throws DAOException {
+        EntityManager em = ConnectionFactory.getInstance().getConnection();
+
+        try {
+            TypedQuery<Veiculo> query = em.createQuery(SQLUtil.Veiculo.SQL_BUSCA_POR_BUSCA, Veiculo.class);
+            query.setParameter("modelo", "%" + busca + "%");
+            query.setParameter("cor", "%" + busca + "%");
+            query.setParameter("anoDoModelo", "%" + busca + "%");
+
+            ArrayList<Veiculo> veiculos = (ArrayList<Veiculo>) query.getResultList();
+
+            return veiculos;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new DAOException("ERRO AO TENTAR BUSCAR VEICULO NO BANCO DE DADOS");
+        } finally {
             em.close();
         }
     }

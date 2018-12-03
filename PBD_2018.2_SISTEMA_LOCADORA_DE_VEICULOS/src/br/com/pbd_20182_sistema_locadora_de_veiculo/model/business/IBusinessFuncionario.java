@@ -18,5 +18,5 @@ public interface IBusinessFuncionario {
     public void salvar(Funcionario funcionario)throws DAOException,BusinessExpection;
     public ArrayList<Funcionario> listarTodos()throws DAOException;
     public Funcionario buscarPorId(int id)throws DAOException;
-    public void alterar(Funcionario funcionario)throws DAOException;
+    public ArrayList<Funcionario> buscarPorBusca(String busca)throws DAOException;
 }

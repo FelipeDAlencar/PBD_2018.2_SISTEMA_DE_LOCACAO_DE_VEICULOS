@@ -27,39 +27,39 @@ import javafx.stage.Stage;
  * @author Felipe
  */
 public class FXMLAnchorPaneCadastroFilialDialogController implements Initializable {
-
+    
     @FXML
     private TextField tfNomeFilial;
-
+    
     @FXML
     private TextField tfCidade;
-
+    
     @FXML
     private TextField tfRua;
-
+    
     @FXML
     private TextField tfBairro;
-
+    
     @FXML
     private ComboBox<String> comboUF;
-
+    
     @FXML
     private TextField tfNumero;
-
+    
     @FXML
     private Button btnConfirmar;
-
+    
     @FXML
     private Button btnCancelar;
-
+    
     private Stage stage;
     private boolean sucesso;
     private Filial filial;
-
+    
     @FXML
     void acaoBtns(ActionEvent event) {
         if (event.getSource() == btnConfirmar) {
-
+            
             filial.setNome(tfNomeFilial.getText());
             Endereco endereco = new Endereco();
             endereco.setBairro(tfBairro.getText());
@@ -69,52 +69,64 @@ public class FXMLAnchorPaneCadastroFilialDialogController implements Initializab
             endereco.setNumero(Integer.parseInt(tfNumero.getText()));
             
             filial.setEndereco(endereco);
+            filial.setAtivo(true);
             
             sucesso = true;
             stage.close();
-
+            
         } else {
             stage.close();
         }
     }
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        
         ArrayList<String> ufs = new ArrayList<>();
         ObservableList<String> obsUfs;
-
+        
         for (int i = 0; i < Util.ufs.length; i++) {
             ufs.add(Util.ufs[i]);
         }
-
+        
         obsUfs = FXCollections.observableArrayList(ufs);
-
+        
         comboUF.setItems(obsUfs);
     }
-
+    
     public Stage getStage() {
         return stage;
     }
-
+    
     public void setStage(Stage stage) {
         this.stage = stage;
     }
-
+    
     public boolean isSucesso() {
         return sucesso;
     }
-
+    
     public void setSucesso(boolean sucesso) {
         this.sucesso = sucesso;
     }
-
+    
     public Filial getFilial() {
         return filial;
     }
-
+    
     public void setFilial(Filial filial) {
         this.filial = filial;
+        
+        if (filial.getId() != null) {
+            tfBairro.setText(filial.getEndereco().getBairro());
+            tfCidade.setText(filial.getEndereco().getCidade());
+            tfNumero.setText(String.valueOf(filial.getEndereco().getNumero()));
+            tfRua.setText(filial.getEndereco().getRua());
+            comboUF.setValue(filial.getEndereco().getUf());
+            
+            tfNomeFilial.setText(filial.getNome());
+            
+        }
     }
-
+    
 }

@@ -18,6 +18,7 @@ public interface IBusinessFilial {
     public void salvar(Filial filial)throws DAOException,BusinessExpection;
     public ArrayList<Filial> listarTodos()throws DAOException;
     public Filial buscarPorId(int id)throws DAOException;
-    public void alterar(Filial filial)throws DAOException;
+    public ArrayList<Filial> buscarPorBusca(String busca)throws DAOException;
+    
     
 }

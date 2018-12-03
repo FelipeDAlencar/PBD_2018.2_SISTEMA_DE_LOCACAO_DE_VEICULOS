@@ -25,6 +25,9 @@ public class Filial implements Serializable, EntidadeBase {
     private Integer id;
     @Column(nullable = false)
     private String nome;
+    @Column()
+    private boolean ativo;
+    
     
     @OneToOne(cascade = CascadeType.ALL)
     private Endereco endereco;
@@ -54,12 +57,21 @@ public class Filial implements Serializable, EntidadeBase {
         this.endereco = endereco;
     }
 
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 53 * hash + Objects.hashCode(this.id);
-        hash = 53 * hash + Objects.hashCode(this.nome);
-        hash = 53 * hash + Objects.hashCode(this.endereco);
+        hash = 37 * hash + Objects.hashCode(this.id);
+        hash = 37 * hash + Objects.hashCode(this.nome);
+        hash = 37 * hash + (this.ativo ? 1 : 0);
+        hash = 37 * hash + Objects.hashCode(this.endereco);
         return hash;
     }
 
@@ -75,6 +87,9 @@ public class Filial implements Serializable, EntidadeBase {
             return false;
         }
         final Filial other = (Filial) obj;
+        if (this.ativo != other.ativo) {
+            return false;
+        }
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
@@ -86,5 +101,8 @@ public class Filial implements Serializable, EntidadeBase {
         }
         return true;
     }
+
+    
+    
 
 }

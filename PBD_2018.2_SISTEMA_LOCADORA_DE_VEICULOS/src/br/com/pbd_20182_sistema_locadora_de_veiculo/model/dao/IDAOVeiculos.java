@@ -15,7 +15,14 @@ import java.util.ArrayList;
  * @author Felipe
  */
 public interface IDAOVeiculos {
-     public ArrayList<Veiculo> findAll();
-      public ArrayList<Veiculo> buscarPorCategoria(Categoria categoria) throws DAOException;
-       public ArrayList<Veiculo> buscarPorCategoriaVeiculosIndisponiveis(Categoria categoria)throws DAOException;
+
+    public ArrayList<Veiculo> findAll();
+
+    public ArrayList<Veiculo> buscarPorCategoria(Categoria categoria) throws DAOException;
+
+    public ArrayList<Veiculo> buscarPorCategoriaVeiculosIndisponiveis(Categoria categoria) throws DAOException;
+
+    public ArrayList<Veiculo> buscarPorBusca(String busca)throws DAOException;
+        
+    
 }

@@ -41,137 +41,182 @@ import javafx.stage.Stage;
  * @author Felipe
  */
 public class FXMLAnchorPaneCadastroVeiculosController implements Initializable {
-
+    
     @FXML
     private TableView<Veiculo> tableView;
-
+    
     @FXML
     private TableColumn<Veiculo, String> colunaModelo;
-
+    
     @FXML
     private TableColumn<Veiculo, String> colunaCor;
-
+    
     @FXML
     private TableColumn<Veiculo, Integer> colunaAnoModelo;
-
+    
     @FXML
-    private AnchorPane btnPesquisar;
-
+    private Button btnPesquisar;
+    
     @FXML
     private Label lbModelo;
-
+    
     @FXML
     private Label lbFabricante;
-
+    
     @FXML
     private Label lbAnoModelo;
-
+    
     @FXML
     private Label lbAnoDeFabricacao;
-
+    
     @FXML
     private Label lbCor;
-
+    
     @FXML
     private Label lbPlaca;
-
+    
     @FXML
     private Label lbNChassi;
-
+    
     @FXML
     private Label lbKmAtual;
-
+    
     @FXML
     private Label lbTipoCombustivel;
-
+    
     @FXML
     private Label lbTorqueDoMotor;
-
+    
     @FXML
     private Label lbCategoria;
-
+    
     @FXML
     private TextField tfPesquisa;
-
+    
     @FXML
     private CheckBox cbDisponível;
     @FXML
     private Button btnInserir;
-
+    
     @FXML
     private Button btnEditar;
-
+    
     @FXML
     private Button btnExcluir;
-
+    
     private Fachada fachada;
     private ArrayList<Veiculo> veiculos;
     private ObservableList<Veiculo> obsVeiculos;
-
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         fachada = Fachada.getInstance();
         try {
-            carregaVeiculos();
+            carregaVeiculos(fachada.listarTodosVeiculo());
         } catch (DAOException ex) {
             ex.getMessage();
         }
         
         tableView.getSelectionModel().selectedItemProperty().addListener(
-        (observable, oldValue, newValue) -> selecionouDaTabela(newValue));
+                (observable, oldValue, newValue) -> selecionouDaTabela(newValue));
         
         cbDisponível.setDisable(true);
     }
-
     
     @FXML
     void acaoBtns(ActionEvent event) throws DAOException, BusinessExpection {
-        if(event.getSource() == btnInserir){
+        if (event.getSource() == btnInserir) {
             Veiculo veiculo = new Veiculo();
             
-           boolean sucesso = exibirTelaDeCadastro(veiculo);
-           
-           
-           if(sucesso){
-               
-               fachada.salvarVeiculo(veiculo);
-               
-               
-               Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
-               alerta.alertar(Alert.AlertType.CONFIRMATION, "Sucesso", "Inserção de Veículos", ""
-                       + "Inserção realidade com sucesso!");
-               
-               carregaVeiculos();
-               
-           }
+            boolean sucesso = exibirTelaDeCadastro(veiculo);
+            
+            if (sucesso) {
+                
+                fachada.salvarVeiculo(veiculo);
+                
+                Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
+                alerta.alertar(Alert.AlertType.CONFIRMATION, "Sucesso", "Inserção de Veículos", ""
+                        + "Inserção realidade com sucesso!");
+                
+                carregaVeiculos(fachada.listarTodosVeiculo());
+                
+            }
             
         }
+        
+        if (event.getSource() == btnEditar) {
+            Veiculo veiculo = tableView.getSelectionModel().getSelectedItem();
+            
+            if (veiculo != null) {
+                boolean sucesso = exibirTelaDeCadastro(veiculo);
+                
+                if (sucesso) {
+                    
+                    fachada.salvarVeiculo(veiculo);
+                    
+                    Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
+                    alerta.alertar(Alert.AlertType.CONFIRMATION, "Sucesso", "Inserção de Veículos", ""
+                            + "Inserção realizada com sucesso!");
+                    
+                    carregaVeiculos(fachada.listarTodosVeiculo());
+                    
+                }
+                
+            } else {
+                Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
+                alerta.alertar(Alert.AlertType.WARNING, "Atenção", "Atenção", ""
+                        + "Selecione o veículo na tabela para edição!");
+            }
+        }
+        
+        if (event.getSource() == btnExcluir) {
+            Veiculo veiculo = tableView.getSelectionModel().getSelectedItem();
+            
+            if (veiculo != null) {
+                
+                veiculo.setAtivo(false);
+                fachada.salvarVeiculo(veiculo);
+                
+                Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
+                alerta.alertar(Alert.AlertType.CONFIRMATION, "Sucesso", "Exclusão de Veículos", ""
+                        + "Exclusão realizada com sucesso!");
+                
+                carregaVeiculos(fachada.listarTodosVeiculo());
+                
+            } else {
+                Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
+                alerta.alertar(Alert.AlertType.WARNING, "Atenção", "Atenção", ""
+                        + "Selecione o veículo na tabela para exclusão!");
+            }
+        }
+        
+        if(event.getSource() == btnPesquisar){
+            System.err.println("Entrou");
+            if(tfPesquisa.getText().length() != 0){
+                carregaVeiculos(fachada.buscarPorBuscaVeiculo(tfPesquisa.getText()));
+                System.err.println(fachada.buscarPorBuscaVeiculo(tfPesquisa.getText()));
+            }else{
+                carregaVeiculos(fachada.listarTodosVeiculo());
+            }
+        }
     }
-
     
-    
-    
-    
-    
-    
-    
-    private void carregaVeiculos() throws DAOException {
-
-        veiculos = fachada.listarTodosVeiculo();
-
+    private void carregaVeiculos(ArrayList<Veiculo> veiculos) throws DAOException {
+        
+        
+        
         colunaAnoModelo.setCellValueFactory(new PropertyValueFactory<>("anoDoModelo"));
         colunaCor.setCellValueFactory(new PropertyValueFactory<>("cor"));
         colunaModelo.setCellValueFactory(new PropertyValueFactory<>("modelo"));
-
+        
         obsVeiculos = FXCollections.observableArrayList(veiculos);
-
+        
         tableView.setItems(obsVeiculos);
     }
-
+    
     private void selecionouDaTabela(Veiculo veiculo) {
         
-        if(veiculo != null){
+        if (veiculo != null) {
             
             lbAnoDeFabricacao.setText(String.valueOf(veiculo.getAnoDeFabricacao()));
             lbAnoModelo.setText(String.valueOf(veiculo.getAnoDoModelo()));
@@ -188,15 +233,14 @@ public class FXMLAnchorPaneCadastroVeiculosController implements Initializable {
         }
         
     }
-
+    
     private boolean exibirTelaDeCadastro(Veiculo veiculo) {
         
-        try{
+        try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(FXMLAnchorPaneCadastroVeiculosDialogController.class.getResource("/br/com"
                     + "/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAnchorPaneCadastroVeiculosDialog.fxml"));
             Pane pane = loader.load();
-            
             
             FXMLAnchorPaneCadastroVeiculosDialogController controller = loader.getController();
             
@@ -206,22 +250,16 @@ public class FXMLAnchorPaneCadastroVeiculosController implements Initializable {
             
             controller.setStage(stage);
             controller.setVeiculo(veiculo);
-                    
+            
             stage.showAndWait();
             
-            
-            
-            
             return controller.isSucesso();
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         
-        
         return false;
         
-        
-        
     }
-
+    
 }

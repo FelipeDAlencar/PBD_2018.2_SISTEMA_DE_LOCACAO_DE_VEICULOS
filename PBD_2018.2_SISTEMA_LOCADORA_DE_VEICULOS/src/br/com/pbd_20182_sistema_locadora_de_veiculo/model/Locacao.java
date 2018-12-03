@@ -45,6 +45,8 @@ public class Locacao implements Serializable, EntidadeBase{
     private Calendar dataVolta;
     @Column(name = "km_livre")
     private boolean kmLivre;
+    @Column()
+    private boolean ativo;
     
     @OneToOne
     private Pessoa cliente;
@@ -167,6 +169,14 @@ public class Locacao implements Serializable, EntidadeBase{
         this.cliente = pessoa;
     }
 
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -181,6 +191,7 @@ public class Locacao implements Serializable, EntidadeBase{
         hash = 79 * hash + Objects.hashCode(this.dataIda);
         hash = 79 * hash + Objects.hashCode(this.dataVolta);
         hash = 79 * hash + (this.kmLivre ? 1 : 0);
+        hash = 79 * hash + (this.ativo ? 1 : 0);
         hash = 79 * hash + Objects.hashCode(this.cliente);
         hash = 79 * hash + Objects.hashCode(this.motorista);
         hash = 79 * hash + Objects.hashCode(this.veiculo);
@@ -223,6 +234,9 @@ public class Locacao implements Serializable, EntidadeBase{
         if (this.kmLivre != other.kmLivre) {
             return false;
         }
+        if (this.ativo != other.ativo) {
+            return false;
+        }
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
@@ -243,8 +257,8 @@ public class Locacao implements Serializable, EntidadeBase{
         }
         return true;
     }
-
     
+
     
     
 }

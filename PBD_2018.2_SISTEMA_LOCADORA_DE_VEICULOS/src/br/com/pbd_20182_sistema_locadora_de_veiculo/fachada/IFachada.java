@@ -58,12 +58,13 @@ public interface IFachada {
     public void salvarFilial(Filial filial)throws DAOException, BusinessExpection;
     public ArrayList<Filial> listarTodosFilial()throws DAOException;
     public Filial buscarPorIdFilial(int id)throws DAOException;
-    public void alterarFilial(Filial filial)throws DAOException;
+    public ArrayList<Filial> buscarPorBuscaFilial(String busca)throws DAOException;
+    
     
     public void salvarFuncionario(Funcionario funcionario)throws DAOException,BusinessExpection;
     public ArrayList<Funcionario> listarTodosFuncionario()throws DAOException;
     public Funcionario buscarPorIdFuncionario(int id)throws DAOException;
-    public void alterarFuncionario(Funcionario funcionario)throws DAOException;
+    public ArrayList<Funcionario> buscarPorBuscaFuncionario(String busca)throws DAOException;
     
     public void salvarGeral(Geral geral)throws DAOException,BusinessExpection;
     public Geral buscarGeral()throws DAOException;
@@ -108,7 +109,7 @@ public interface IFachada {
     public void alterarVeiculo(Veiculo veiculo)throws DAOException;
     public ArrayList<Veiculo> buscarVeiculoPorCategoria(Categoria categoria) throws DAOException;
     public ArrayList<Veiculo> buscarPorVeiculosIndisponiveisPorCategoria(Categoria categoria)throws DAOException;
-    
+    public ArrayList<Veiculo> buscarPorBuscaVeiculo(String busca)throws DAOException;
     
     
     

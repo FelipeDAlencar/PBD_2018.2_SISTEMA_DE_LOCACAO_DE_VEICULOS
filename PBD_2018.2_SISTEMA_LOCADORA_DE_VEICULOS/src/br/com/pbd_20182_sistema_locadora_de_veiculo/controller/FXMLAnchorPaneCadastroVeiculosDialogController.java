@@ -103,9 +103,11 @@ public class FXMLAnchorPaneCadastroVeiculosDialogController implements Initializ
             veiculo.setModelo(tfModelo.getText());
             veiculo.setNumeroChassi(tfNChassi.getText());
             veiculo.setPlaca(tfPlaca.getText());
-            veiculo.setQuilometragemAtual(Integer.parseInt(tfKmAtual.getText()));
+            veiculo.setQuilometragemAtual(Double.parseDouble(tfKmAtual.getText()));
             veiculo.setTipoDeCombustivel(tfTipoCombustivel.getText());
-            veiculo.setTorqueDoMotor(Integer.parseInt(tfTorqueDoMotor.getText()));
+            veiculo.setTorqueDoMotor(Double.parseDouble(tfTorqueDoMotor.getText()));
+            
+            veiculo.setAtivo(true);
 
             sucesso = true;
             stage.close();
@@ -145,6 +147,24 @@ public class FXMLAnchorPaneCadastroVeiculosDialogController implements Initializ
 
     public void setVeiculo(Veiculo veiculo) {
         this.veiculo = veiculo;
+        
+        if(veiculo.getId() != null){
+            tfAnoDeFabricacao.setText(String.valueOf(veiculo.getAnoDeFabricacao()));
+            tfAnoDoModelo.setText(String.valueOf(veiculo.getAnoDoModelo()));
+            tfCor.setText(veiculo.getCor());
+            tfFabricante.setText(veiculo.getFabricante());
+            tfKmAtual.setText(String.valueOf(veiculo.getQuilometragemAtual()));
+            tfModelo.setText(veiculo.getModelo());
+            tfNChassi.setText(veiculo.getNumeroChassi());
+            tfPlaca.setText(veiculo.getPlaca());
+            tfTipoCombustivel.setText(veiculo.getTipoDeCombustivel());
+            tfTorqueDoMotor.setText(String.valueOf(veiculo.getTorqueDoMotor()));
+            
+            comboCategoria.setValue(veiculo.getCategoria());
+            
+            cbDisponivel.setSelected(veiculo.isDisponivel());
+            
+        }
     }
     
     

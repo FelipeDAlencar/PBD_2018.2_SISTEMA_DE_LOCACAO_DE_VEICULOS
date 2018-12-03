@@ -5,14 +5,14 @@
  */
 package br.com.pbd_20182_sistema_locadora_de_veiculo.model;
 
-import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.BusinessExpection;
-import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
-import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.view.Alerta;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 import javafx.scene.control.Alert;
 
@@ -23,7 +23,7 @@ import javafx.scene.control.Alert;
 public abstract class Util {
 
     public static String[] ufs = {"AC",
-         "AL",
+        "AL",
         "AM",
         "AP",
         "BA",
@@ -103,11 +103,14 @@ public abstract class Util {
         }
         return null;
     }
-    
-    
-    
-    
-    
+
+    public static LocalDate converterDateEmLocalDate(Date d) {
+        
+        Instant instant = Instant.ofEpochMilli(d.getTime());
+        LocalDate localDate = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate();
+        return localDate;
+    }
+
 //    ArrayList<Veiculo> veiculos = fachada.buscarVeiculoPorCategoria(reservaPessoasCategorias.getCategoria());
 //
 //        if (veiculos.isEmpty()) {

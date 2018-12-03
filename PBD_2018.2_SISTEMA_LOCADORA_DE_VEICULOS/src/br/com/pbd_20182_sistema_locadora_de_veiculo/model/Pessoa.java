@@ -46,6 +46,8 @@ public class Pessoa implements EntidadeBase, Serializable{
     @Column(length = 50, nullable = false)
     private String senha;
     
+    private boolean ativo;
+    
     
     @OneToOne(cascade = CascadeType.ALL)
     private Endereco endereco;
@@ -123,14 +125,23 @@ public class Pessoa implements EntidadeBase, Serializable{
         this.reservaPessoasCategorias = reservaPessoasCategorias;
     }
 
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 3;
+        int hash = 7;
         hash = 47 * hash + Objects.hashCode(this.id);
         hash = 47 * hash + Objects.hashCode(this.nome);
         hash = 47 * hash + Objects.hashCode(this.codigo);
         hash = 47 * hash + Objects.hashCode(this.login);
         hash = 47 * hash + Objects.hashCode(this.senha);
+        hash = 47 * hash + (this.ativo ? 1 : 0);
         hash = 47 * hash + Objects.hashCode(this.endereco);
         hash = 47 * hash + Objects.hashCode(this.reservaPessoasCategorias);
         return hash;
@@ -148,6 +159,9 @@ public class Pessoa implements EntidadeBase, Serializable{
             return false;
         }
         final Pessoa other = (Pessoa) obj;
+        if (this.ativo != other.ativo) {
+            return false;
+        }
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
@@ -171,7 +185,9 @@ public class Pessoa implements EntidadeBase, Serializable{
         }
         return true;
     }
-
+    
+    
+    
     @Override
     public String toString() {
         return getNome();

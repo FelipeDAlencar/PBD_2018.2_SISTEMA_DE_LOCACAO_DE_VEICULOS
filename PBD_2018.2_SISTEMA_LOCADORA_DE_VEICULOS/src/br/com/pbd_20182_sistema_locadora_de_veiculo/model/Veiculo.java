@@ -43,7 +43,10 @@ public class Veiculo implements Serializable, EntidadeBase {
     @Column(name = "tipo_de_combustivel", length = 100)
     private String tipoDeCombustivel;
     private boolean disponivel;
-
+    
+    private boolean ativo;
+    
+    
     @ManyToOne
     private Categoria categoria;
 
@@ -152,21 +155,31 @@ public class Veiculo implements Serializable, EntidadeBase {
         this.disponivel = disponivel;
     }
 
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 79 * hash + Objects.hashCode(this.id);
-        hash = 79 * hash + Objects.hashCode(this.cor);
-        hash = 79 * hash + (int) (Double.doubleToLongBits(this.quilometragemAtual) ^ (Double.doubleToLongBits(this.quilometragemAtual) >>> 32));
-        hash = 79 * hash + Objects.hashCode(this.modelo);
-        hash = 79 * hash + (int) (Double.doubleToLongBits(this.torqueDoMotor) ^ (Double.doubleToLongBits(this.torqueDoMotor) >>> 32));
-        hash = 79 * hash + this.anoDeFabricacao;
-        hash = 79 * hash + this.anoDoModelo;
-        hash = 79 * hash + Objects.hashCode(this.fabricante);
-        hash = 79 * hash + Objects.hashCode(this.placa);
-        hash = 79 * hash + Objects.hashCode(this.tipoDeCombustivel);
-        hash = 79 * hash + Objects.hashCode(this.categoria);
-        hash = 79 * hash + Objects.hashCode(this.numeroChassi);
+        int hash = 3;
+        hash = 23 * hash + Objects.hashCode(this.id);
+        hash = 23 * hash + Objects.hashCode(this.cor);
+        hash = 23 * hash + (int) (Double.doubleToLongBits(this.quilometragemAtual) ^ (Double.doubleToLongBits(this.quilometragemAtual) >>> 32));
+        hash = 23 * hash + Objects.hashCode(this.numeroChassi);
+        hash = 23 * hash + Objects.hashCode(this.modelo);
+        hash = 23 * hash + (int) (Double.doubleToLongBits(this.torqueDoMotor) ^ (Double.doubleToLongBits(this.torqueDoMotor) >>> 32));
+        hash = 23 * hash + this.anoDeFabricacao;
+        hash = 23 * hash + this.anoDoModelo;
+        hash = 23 * hash + Objects.hashCode(this.fabricante);
+        hash = 23 * hash + Objects.hashCode(this.placa);
+        hash = 23 * hash + Objects.hashCode(this.tipoDeCombustivel);
+        hash = 23 * hash + (this.disponivel ? 1 : 0);
+        hash = 23 * hash + (this.ativo ? 1 : 0);
+        hash = 23 * hash + Objects.hashCode(this.categoria);
         return hash;
     }
 
@@ -185,9 +198,6 @@ public class Veiculo implements Serializable, EntidadeBase {
         if (Double.doubleToLongBits(this.quilometragemAtual) != Double.doubleToLongBits(other.quilometragemAtual)) {
             return false;
         }
-        if (this.numeroChassi != other.numeroChassi) {
-            return false;
-        }
         if (Double.doubleToLongBits(this.torqueDoMotor) != Double.doubleToLongBits(other.torqueDoMotor)) {
             return false;
         }
@@ -197,7 +207,16 @@ public class Veiculo implements Serializable, EntidadeBase {
         if (this.anoDoModelo != other.anoDoModelo) {
             return false;
         }
+        if (this.disponivel != other.disponivel) {
+            return false;
+        }
+        if (this.ativo != other.ativo) {
+            return false;
+        }
         if (!Objects.equals(this.cor, other.cor)) {
+            return false;
+        }
+        if (!Objects.equals(this.numeroChassi, other.numeroChassi)) {
             return false;
         }
         if (!Objects.equals(this.modelo, other.modelo)) {
@@ -215,15 +234,12 @@ public class Veiculo implements Serializable, EntidadeBase {
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
-
         if (!Objects.equals(this.categoria, other.categoria)) {
             return false;
         }
         return true;
     }
-
-    @Override
-    public String toString() {
-        return getModelo();
-    }
+    
+    
+    
 }

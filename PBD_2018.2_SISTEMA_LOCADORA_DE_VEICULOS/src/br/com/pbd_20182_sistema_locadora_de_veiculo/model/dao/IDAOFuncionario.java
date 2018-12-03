@@ -16,4 +16,8 @@ import java.util.ArrayList;
 public interface IDAOFuncionario {
     
      public ArrayList<Funcionario> findAll()throws DAOException;
+     public ArrayList<Funcionario> buscarPorBusca(String busca)throws DAOException;
+     
+     
+     
 }

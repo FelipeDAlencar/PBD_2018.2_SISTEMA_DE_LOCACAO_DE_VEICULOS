@@ -31,7 +31,7 @@ public class BusinessFilial implements IBusinessFilial {
     }
 
     @Override
-    public ArrayList<Filial> listarTodos() {
+    public ArrayList<Filial> listarTodos()throws DAOException{
         return dAOFilial.findAll();
     }
 
@@ -39,12 +39,12 @@ public class BusinessFilial implements IBusinessFilial {
     public Filial buscarPorId(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    @Override
-    public void alterar(Filial filial) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     @Override
+    public ArrayList<Filial> buscarPorBusca(String busca) throws DAOException {
+        return dAOFilial.buscarPorBusca(busca);
     }
 
+   
     private void validar(Filial filial)throws BusinessExpection{
         String erroMessage = "";
         
@@ -69,5 +69,7 @@ public class BusinessFilial implements IBusinessFilial {
             throw new BusinessExpection("Atenção" + erroMessage );
         }
     }
+
+   
 
 }

@@ -43,126 +43,172 @@ import javafx.stage.Stage;
  * @author Felipe
  */
 public class FXMLAnchorPaneCadastroLocacaoController implements Initializable {
-
+    
     @FXML
     private TableView<Locacao> tableView;
-
+    
     @FXML
     private TableColumn<Locacao, PessoaFisica> colunaMotorista;
-
+    
     @FXML
     private TableColumn<Locacao, Veiculo> colunaVeiculo;
-
+    
     @FXML
     private TableColumn<Locacao, Double> colunaValor;
-
+    
     @FXML
     private Label lbCliente;
-
+    
     @FXML
     private Label lbMotorista;
-
+    
     @FXML
     private Label lbVeiculo;
-
+    
     @FXML
     private Label lbKmInicial;
-
+    
     @FXML
     private Label lbKmFinal;
-
+    
     @FXML
     private Label lbMetadePrimeiraDiaria;
-
+    
     @FXML
     private Label lbTaxaCombustivel;
-
+    
     @FXML
     private Label lbTaxaIgienizacao;
-
+    
     @FXML
     private Label lbDataIda;
-
+    
     @FXML
     private Label lbDataVolta;
-
+    
     @FXML
     private Label lbValor;
-
+    
     @FXML
     private CheckBox cbKmLivre;
     @FXML
     private CheckBox cbFinalizada;
-
+    
     @FXML
     private TextField tfPesquisar;
-
+    
     @FXML
     private Button btnPesquisar;
-
+    
     @FXML
     private Button btnInserir;
-
+    
     @FXML
     private Button btnEditar;
-
+    
     @FXML
     private Button btnExcluir;
-
+    
     private Fachada fachada;
     private ArrayList<Locacao> locacaos;
     private ObservableList<Locacao> obsLocacoes;
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         fachada = Fachada.getInstance();
         cbKmLivre.setDisable(true);
         cbFinalizada.setDisable(true);
-
+        
         try {
-            carregarLocacoes();
+            carregarLocacoes(fachada.listarTodosLocacao());
         } catch (DAOException ex) {
             ex.getMessage();
         }
-
+        
         tableView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> selecionouDaTabela(newValue));
     }
-
+    
     @FXML
     void acaoBtns(ActionEvent event) throws DAOException, BusinessExpection {
-
+        
         if (event.getSource() == btnInserir) {
-
+            
             Locacao locacao = new Locacao();
             boolean sucesso = exibirTelaDeCadastro(locacao);
-
+            
             if (sucesso) {
                 fachada.salvarLocacao(locacao);
                 Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
                 alerta.alertar(Alert.AlertType.CONFIRMATION, "Sucesso", "Inserir locaçao", "Inserção"
                         + "da categoria foi efetuada com sucesso!.");
-                carregarLocacoes();
+               carregarLocacoes(fachada.listarTodosLocacao());
             }
         }
+        
+        if (event.getSource() == btnEditar) {
+            
+            Locacao locacao = tableView.getSelectionModel().getSelectedItem();
+            
+            if (locacao != null) {
+                boolean sucesso = exibirTelaDeCadastro(locacao);
+                
+                if (sucesso) {
+                    
+                    fachada.salvarLocacao(locacao);
+                    Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
+                    alerta.alertar(Alert.AlertType.CONFIRMATION, "Sucesso", "Inserir locaçao", "Inserção"
+                            + "da categoria foi efetuada com sucesso!.");
+                    carregarLocacoes(fachada.listarTodosLocacao());
+                }
+            } else {
+                Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
+                alerta.alertar(Alert.AlertType.CONFIRMATION, "Atençãoo", "Atenção", ""
+                        + "Selecione a locação na tabela para edição.");
+                
+            }
+            
+        }
+        
+        if (event.getSource() == btnExcluir) {
+            Locacao locacao = tableView.getSelectionModel().getSelectedItem();
+            
+            if (locacao != null) {
+               
+                    locacao.setAtivo(false);
+                    fachada.salvarLocacao(locacao);
+                    Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
+                    alerta.alertar(Alert.AlertType.CONFIRMATION, "Sucesso", "Excluir locaçao", "Exclusão "
+                            + "da categoria foi efetuada com sucesso!.");
+                    carregarLocacoes(fachada.listarTodosLocacao());
+                
+            } else {
+                Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
+                alerta.alertar(Alert.AlertType.CONFIRMATION, "Atençãoo", "Atenção", ""
+                        + "Selecione a locação na tabela para exclusão.");
+                
+            }
+            
+        }
+        
     }
-
-    private void carregarLocacoes() throws DAOException {
-
+    
+    private void carregarLocacoes(ArrayList<Locacao> locacaos) throws DAOException {
+        
         colunaMotorista.setCellValueFactory(new PropertyValueFactory<>("motorista"));
         colunaVeiculo.setCellValueFactory(new PropertyValueFactory<>("veiculo"));
         colunaValor.setCellValueFactory(new PropertyValueFactory<>("valor"));
-
-        locacaos = fachada.listarTodosLocacao();
+        
+       
         obsLocacoes = FXCollections.observableArrayList(locacaos);
-
+        
         tableView.setItems(obsLocacoes);
     }
-
+    
     private void selecionouDaTabela(Locacao locacao) {
-
+        
         if (locacao != null) {
-
+            
             lbDataIda.setText(Util.formatarData(locacao.getDataIda().getTime()));
             lbDataVolta.setText(Util.formatarData(locacao.getDataVolta().getTime()));
             lbKmFinal.setText(String.valueOf(locacao.getKmFinalVeiculo()));
@@ -174,39 +220,39 @@ public class FXMLAnchorPaneCadastroLocacaoController implements Initializable {
             lbVeiculo.setText(locacao.getVeiculo().toString());
             lbMotorista.setText(locacao.getMotorista().toString());
             lbCliente.setText(locacao.getCliente().toString());
-
+            
             cbKmLivre.setSelected(locacao.isKmLivre());
             cbFinalizada.setSelected(locacao.isFinalizada());
-
+            
         }
     }
-
+    
     private boolean exibirTelaDeCadastro(Locacao locacao) {
         
         try {
-
+            
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(FXMLAnchorPaneCadastroLocacaoDialogController.class.getResource(""
                     + "/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAnchorPaneCadastroLocacaoDialog.fxml"));
             Pane pane = loader.load();
-
+            
             Stage stage = new Stage();
             Scene scene = new Scene(pane);
             stage.setScene(scene);
-
+            
             FXMLAnchorPaneCadastroLocacaoDialogController controller = loader.getController();
             controller.setStage(stage);
             controller.setLocacao(locacao);
-
+            
             stage.showAndWait();
-
+            
             return controller.isSucesso();
-
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        
         return false;
     }
-
+    
 }

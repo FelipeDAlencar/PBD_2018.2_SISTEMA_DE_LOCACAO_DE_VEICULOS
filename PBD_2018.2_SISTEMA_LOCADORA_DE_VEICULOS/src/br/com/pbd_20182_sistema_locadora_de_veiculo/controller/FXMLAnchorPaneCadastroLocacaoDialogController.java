@@ -11,6 +11,7 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Geral;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Locacao;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Pessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Util;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Veiculo;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.view.Alerta;
 import java.net.URL;
@@ -163,7 +164,8 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
             locacao.setMotorista(comboMotorista.getValue());
             locacao.setVeiculo(comboVeiculo.getValue());
             locacao.setCliente(comboCliente.getValue());
-
+            
+            locacao.setAtivo(true);
             if (cbTaxaCombustivel.isSelected()) {
                 locacao.setTaxaCombustivel(TAXA_COM);
             }
@@ -191,7 +193,7 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
         if (cbTaxaHigienizacao.isSelected()) {
             soma += TAXA_HI;
         }
-        System.err.println("Entrou");
+        
         calcularValor(soma);
 
     }
@@ -220,6 +222,36 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
 
     public void setLocacao(Locacao locacao) {
         this.locacao = locacao;
+        
+        if(locacao.getId() != null){
+            comboCliente.setValue(locacao.getCliente());
+            comboMotorista.setValue(locacao.getMotorista());
+            comboVeiculo.setValue(locacao.getVeiculo());
+            
+            tfKmFinal.setText(String.valueOf(locacao.getKmFinalVeiculo()));
+            tfKmInicial.setText(String.valueOf(locacao.getKmInicialDoVeiculo()));
+            tfMetadeprimeiraDiaria.setText(String.valueOf(locacao.getMetadeDaPrimeiraDiaria()));
+            tfValor.setText(String.valueOf(locacao.getValor()));
+            
+            dpDataIda.setValue((Util.converterDateEmLocalDate(locacao.getDataIda().getTime())));
+            dpDataVolta.setValue((Util.converterDateEmLocalDate(locacao.getDataVolta().getTime())));
+            
+            cbFinalizada.setSelected(locacao.isFinalizada());
+            cbKmLivre.setSelected(locacao.isKmLivre());
+            
+            if(locacao.getTaxaCombustivel() != 0){
+                cbTaxaCombustivel.setSelected(true);
+            }
+            
+            if(locacao.getTaxaHigienizacao() != 0){
+                cbTaxaHigienizacao.setSelected(true);
+            }
+            
+            
+            
+            
+        }
+        
     }
 
     public boolean isSucesso() {

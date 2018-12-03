@@ -49,11 +49,27 @@ public class SQLUtil {
 
         public static final String SQL_BUSCAR_VEICULO_POR_CATEGORIA = "select v from Veiculo v where v.categoria = :categoria and v.disponivel = true";
         public static final String SQL_BUSCAR_VEICULO_NÃO_DISPONIVEIS_POR_CATEGORIA = "select v from Veiculo v where v.categoria = :categoria and v.disponivel = false";
+        public static final String SQL_BUSCA_POR_BUSCA = "SELECT v FROM Veiculo v WHERE LOWER(v.modelo) LIKE :modelo or "
+                + " LOWER(v.cor) LIKE :cor or LOWER(to_char(v.anoDoModelo, '999')) LIKE :anoDoModelo";
 
     }
 
-    public static class Geral{
+    public static class Geral {
+
         public static final String SQL_BUSCAR_GERAL = "select p from Geral p where p.id = 1";
+    }
+
+    public static class Funcionario {
+
+        public static final String SQL_BUSCA_POR_BUSCA = "SELECT p FROM Funcionario p WHERE LOWER(p.nome) LIKE :nome or "
+                + "                    LOWER(p.login) LIKE :login or LOWER(p.matricula) LIKE :matricula and ativo = true";
+
+    }
+
+    public static class Filial {
+
+        public static final String SQL_BUSCA_POR_BUSCA = "SELECT p FROM Filial  p where p.nome = :nome and ativo = true";
+
     }
 
 }

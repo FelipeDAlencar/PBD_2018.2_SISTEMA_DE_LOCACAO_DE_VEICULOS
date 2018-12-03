@@ -35,20 +35,21 @@ public class BusinessFuncionario implements IBusinessFuncionario {
     }
 
     @Override
-    public ArrayList<Funcionario> listarTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<Funcionario> listarTodos() throws DAOException {
+        return dAOFuncionario.findAll();
     }
 
     @Override
     public Funcionario buscarPorId(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
+    
     @Override
-    public void alterar(Funcionario funcionario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<Funcionario> buscarPorBusca(String busca) throws DAOException {
+        return dAOFuncionario.buscarPorBusca(busca);
     }
-
+    
     private void validar(Funcionario funcionario)throws BusinessExpection{
         
         String erroMessage = "";
@@ -92,6 +93,7 @@ public class BusinessFuncionario implements IBusinessFuncionario {
         
         
     }
+
         
         
     

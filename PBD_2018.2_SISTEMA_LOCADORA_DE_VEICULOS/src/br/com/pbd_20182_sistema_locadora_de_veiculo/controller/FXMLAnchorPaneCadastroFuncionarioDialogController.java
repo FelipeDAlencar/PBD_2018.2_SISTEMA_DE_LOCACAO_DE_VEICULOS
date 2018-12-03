@@ -84,6 +84,8 @@ public class FXMLAnchorPaneCadastroFuncionarioDialogController implements Initia
                 endereco.setNumero(Integer.parseInt(tfNumero.getText()));
                 endereco.setRua(tfRua.getText());
                 endereco.setUf(ufCombo.getValue());
+                tfCargo.setText(funcionario.getCargo());
+                cbSuperUsuario.setSelected(funcionario.isSuperUsuario());
 
                 funcionario.setEndereco(endereco);
                 funcionario.setCargo(tfCargo.getText());
@@ -94,7 +96,7 @@ public class FXMLAnchorPaneCadastroFuncionarioDialogController implements Initia
                 funcionario.setSuperUsuario(cbSuperUsuario.isSelected());
 
                 funcionario.setCodigo(Util.gerarCodigoInterno(funcionario.getNome(), new DAOPessoa().buscarUltimoCodigo()));
-
+                funcionario.setAtivo(true);
                 sucesso = true;
 
                 stage.close();
@@ -122,6 +124,24 @@ public class FXMLAnchorPaneCadastroFuncionarioDialogController implements Initia
 
     public void setFuncionario(Funcionario funcionario) {
         this.funcionario = funcionario;
+        
+        if(funcionario.getId() != null){
+            tfBairro.setText(funcionario.getEndereco().getBairro());
+            tfCidade.setText(funcionario.getEndereco().getCidade());
+            tfNumero.setText(String.valueOf(funcionario.getEndereco().getNumero()));
+            tfRua.setText(funcionario.getEndereco().getRua());
+            ufCombo.setValue(funcionario.getEndereco().getUf());
+            tfNome.setText(funcionario.getNome());
+            tfMatricula.setText(funcionario.getMatricula());
+            tfLogin.setText(funcionario.getLogin());
+            tfCargo.setText(funcionario.getCargo());
+            
+            
+            
+        }
+        
+        
+        
     }
 
     public Stage getStage() {
