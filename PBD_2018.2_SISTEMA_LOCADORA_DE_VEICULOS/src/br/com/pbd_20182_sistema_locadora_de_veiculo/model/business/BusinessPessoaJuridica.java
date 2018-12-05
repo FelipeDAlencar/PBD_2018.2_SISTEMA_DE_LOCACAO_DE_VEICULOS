@@ -19,49 +19,44 @@ import javafx.scene.control.Alert;
  *
  * @author Felipe
  */
-public class BusinessPessoaJuridica implements IBusinessPessoaJuridica{
-    
+public class BusinessPessoaJuridica implements IBusinessPessoaJuridica {
+
     private DAOPessoaJuridica dAOPessoaJuridica;
 
     public BusinessPessoaJuridica() {
         dAOPessoaJuridica = new DAOPessoaJuridica();
     }
-    
-    
-    @Override
-    public void salvar(PessoaJuridica pessoaJuridica) throws BusinessExpection {
 
-        if(validar(pessoaJuridica)){
-            try {
-                dAOPessoaJuridica.salvar(pessoaJuridica);
-            } catch (DAOException ex) {
-                throw new BusinessExpection("Erro no bus");
-            }
-        }
+    @Override
+    public void salvar(PessoaJuridica pessoaJuridica) throws BusinessExpection, DAOException {
+
+        validar(pessoaJuridica);
+        dAOPessoaJuridica.salvar(pessoaJuridica);
+
     }
 
     @Override
-    public ArrayList<PessoaJuridica> listarTodos() throws BusinessExpection {
+    public ArrayList<PessoaJuridica> listarTodos() throws DAOException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public PessoaJuridica buscarPorId(int id) throws BusinessExpection {
+    public PessoaJuridica buscarPorId(int id) throws DAOException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void alterar(PessoaJuridica pessoaJuridica) throws BusinessExpection {
+    public void alterar(PessoaJuridica pessoaJuridica) throws DAOException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    public boolean validar(PessoaJuridica pessoaJuridica) {
+
+    public void validar(PessoaJuridica pessoaJuridica) throws BusinessExpection {
         String errorMessage = "";
-        
+
         if (pessoaJuridica.getNome() == null || pessoaJuridica.getNome().length() == 0) {
             errorMessage += "Nome inválido\n";
         }
-        if (pessoaJuridica.getCNPJ()== null || pessoaJuridica.getCNPJ().length() == 0) {
+        if (pessoaJuridica.getCNPJ() == null || pessoaJuridica.getCNPJ().length() == 0) {
             errorMessage += "CNPJ inválido\n";
         }
         if (pessoaJuridica.getLogin() == null || pessoaJuridica.getLogin().length() == 0) {
@@ -73,15 +68,10 @@ public class BusinessPessoaJuridica implements IBusinessPessoaJuridica{
         if (pessoaJuridica.getInscriçãoEstadual() == null || pessoaJuridica.getInscriçãoEstadual().length() == 0) {
             errorMessage += "Numero de incrição estadual inválido\n";
         }
-        
-        if (errorMessage.length() == 0) {
-            return true;
-        } else {
-            Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
-            alerta.alertar(Alert.AlertType.ERROR, "Erro", 
-                    "Erro ao validar campos.", errorMessage);
-            return false;
+
+        if (errorMessage.length() != 0) {
+            throw new BusinessExpection(errorMessage);
         }
     }
-    
+
 }

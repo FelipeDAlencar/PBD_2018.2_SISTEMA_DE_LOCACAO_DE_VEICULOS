@@ -24,9 +24,11 @@ public class PessoaFisica extends Pessoa{
     @Column(name = "cpf", length = 11, nullable = false, unique = true)
     private String CPF;
    
+    @Column(name = "data_nascimento")
     @Temporal(TemporalType.DATE)
     private Date dataNascimento;
    
+    @Column(name = "data_vencimentocnh")
     @Temporal(TemporalType.DATE)
     private Date data_vencimentoCNH;
     

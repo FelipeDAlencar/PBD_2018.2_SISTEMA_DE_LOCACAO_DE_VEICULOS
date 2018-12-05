@@ -46,6 +46,7 @@ public class FXMLAchorPaneCadastroClienteDialogController implements Initializab
     private Pessoa pessoa;
     private boolean confirmou;
     private Endereco endereco;
+    private boolean isEdicao;
 
     @FXML
     private Label lbDataNascimento;
@@ -123,66 +124,20 @@ public class FXMLAchorPaneCadastroClienteDialogController implements Initializab
             } else {
 
                 if (rbPessoaJuridica.isSelected()) {
-                    pessoa = new PessoaJuridica();
-                    pessoa.setNome(tfNome.getText());
-                    ((PessoaJuridica) pessoa).setCNPJ(tfCPFCNPJ.getText());
-
-                    pessoa.setLogin(tfLogin.getText());
-
-                    pessoa.setSenha(((PessoaJuridica) pessoa).getCNPJ());
-                    ((PessoaJuridica) pessoa).setInscriçãoEstadual(tfInscricaoEstadual.getText());
-                    String UltimoCodigo;
-                    try {
-                        UltimoCodigo = dAOPessoa.buscarUltimoCodigo();
-                        pessoa.setCodigo(Util.gerarCodigoInterno(pessoa.getNome(), UltimoCodigo));
-
-                    } catch (DAOException ex) {
-                        throw new DAOException("ERRO AO BUSCAR ULTIMO CÓDIGO!");
-                    }
+                    pegarValoresPessoaJuridica();
+                    pegarValoresEndereco();
                 } else {
-                    pessoa = new PessoaFisica();
-                    pessoa.setNome(tfNome.getText());
-                    ((PessoaFisica) pessoa).setCPF(tfCPFCNPJ.getText());
-                    pessoa.setLogin(tfLogin.getText());
-                    pessoa.setSenha(((PessoaFisica) pessoa).getCPF());
-                    try {
-                        String UltimoCodigo = dAOPessoa.buscarUltimoCodigo();
-                        pessoa.setCodigo(Util.gerarCodigoInterno(pessoa.getNome(), UltimoCodigo));
-
-                    } catch (DAOException ex) {
-                        throw new DAOException("ERRO AO BUSCAR ULTIMO CÓDIGO!");
-                    }
-                    Date s = Date.from(cpDataNascimento.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
-
-                    SimpleDateFormat spdf = new SimpleDateFormat("dd/MM/yyyy");
-                    Calendar data_Nascimento = Calendar.getInstance();
-                    data_Nascimento.setTime(s);
-                    ((PessoaFisica) pessoa).setData_nascimento(data_Nascimento.getTime());
-
-                    s = Date.from(cpVencimentoCNH.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
-                    Calendar dataVencimentoCNH = Calendar.getInstance();
-                    dataVencimentoCNH.setTime(s);
-
-                    ((PessoaFisica) pessoa).setData_vencimentoCNH(dataVencimentoCNH.getTime());
-
-                    ((PessoaFisica) pessoa).setIdentificacao(tfIdentificacao.getText());
-
-                    ((PessoaFisica) pessoa).setNumero_CNH(tfNCNH.getText());
-
+                    pegarValoresPessoaFisica();
+                    pegarValoresEndereco();
                 }
-                endereco = new Endereco();
-                endereco.setBairro(tfBairro.getText());
-                endereco.setRua(tfRua.getText());
-                endereco.setNumero(Integer.parseInt(tfNumero.getText()));
-                endereco.setUf(comboUF.getValue().toUpperCase());
-                endereco.setCidade(tfCidade.getText());
+
                 confirmou = true;
                 stage.close();
             }
         } catch (NumberFormatException e) {
             Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
             alerta.alertar(Alert.AlertType.WARNING, "Atenção", "Erro ao tentar inserir", "Não se"
-                    + "deve ter letrar no lugar de números.");
+                    + "deve ter letras no lugar de números.");
         }
 
     }
@@ -248,6 +203,83 @@ public class FXMLAchorPaneCadastroClienteDialogController implements Initializab
 
     }
 
+    public void pegarValoresEndereco() {
+
+        pessoa.getEndereco().setBairro(tfBairro.getText());
+        pessoa.getEndereco().setRua(tfRua.getText());
+        pessoa.getEndereco().setNumero(Integer.parseInt(tfNumero.getText()));
+        pessoa.getEndereco().setUf(comboUF.getValue().toUpperCase());
+        pessoa.getEndereco().setCidade(tfCidade.getText());
+
+    }
+
+    public void pegarValoresPessoaFisica() throws DAOException {
+        if (!(pessoa != null)) {
+            pessoa = new PessoaFisica();
+            endereco = new Endereco();
+            pessoa.setEndereco(endereco);
+        }
+        pessoa.setNome(tfNome.getText());
+        ((PessoaFisica) pessoa).setCPF(tfCPFCNPJ.getText());
+        pessoa.setLogin(tfLogin.getText());
+        if (!isEdicao) {
+            pessoa.setSenha(((PessoaFisica) pessoa).getCPF());
+            try {
+                String UltimoCodigo = dAOPessoa.buscarUltimoCodigo();
+                pessoa.setCodigo(Util.gerarCodigoInterno(pessoa.getNome(), UltimoCodigo));
+
+            } catch (DAOException ex) {
+                throw new DAOException("ERRO AO BUSCAR ULTIMO CÓDIGO!");
+            }
+        }
+        Date s = Date.from(cpDataNascimento.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+        SimpleDateFormat spdf = new SimpleDateFormat("dd/MM/yyyy");
+        Calendar data_Nascimento = Calendar.getInstance();
+        data_Nascimento.setTime(s);
+        ((PessoaFisica) pessoa).setData_nascimento(data_Nascimento.getTime());
+
+        s = Date.from(cpVencimentoCNH.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
+        Calendar dataVencimentoCNH = Calendar.getInstance();
+        dataVencimentoCNH.setTime(s);
+
+        ((PessoaFisica) pessoa).setData_vencimentoCNH(dataVencimentoCNH.getTime());
+
+        ((PessoaFisica) pessoa).setIdentificacao(tfIdentificacao.getText());
+
+        ((PessoaFisica) pessoa).setNumero_CNH(tfNCNH.getText());
+
+    }
+
+    public void pegarValoresPessoaJuridica() throws DAOException {
+        System.err.println("pegarValoresPessoaJuridica");
+        if (!(pessoa != null)) {
+            pessoa = new PessoaJuridica();
+            endereco = new Endereco();
+            pessoa.setEndereco(endereco);
+
+        }
+
+        pessoa.setNome(tfNome.getText());
+        ((PessoaJuridica) pessoa).setCNPJ(tfCPFCNPJ.getText());
+
+        pessoa.setLogin(tfLogin.getText());
+
+        if (!isEdicao) {
+
+            pessoa.setSenha(((PessoaJuridica) pessoa).getCNPJ());
+            ((PessoaJuridica) pessoa).setInscriçãoEstadual(tfInscricaoEstadual.getText());
+            String UltimoCodigo;
+            try {
+                UltimoCodigo = dAOPessoa.buscarUltimoCodigo();
+                pessoa.setCodigo(Util.gerarCodigoInterno(pessoa.getNome(), UltimoCodigo));
+
+            } catch (DAOException ex) {
+                throw new DAOException("ERRO AO BUSCAR ULTIMO CÓDIGO!");
+            }
+        }
+    }
+
     public Stage getStage() {
         return stage;
     }
@@ -262,6 +294,60 @@ public class FXMLAchorPaneCadastroClienteDialogController implements Initializab
 
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
+        if (pessoa != null) {
+            isEdicao = true;
+            if (pessoa.getId() != null) {
+
+                tfBairro.setText(pessoa.getEndereco().getBairro());
+                tfCidade.setText(pessoa.getEndereco().getCidade());
+                tfRua.setText(pessoa.getEndereco().getRua());
+                comboUF.setValue(pessoa.getEndereco().getUf());
+                tfNumero.setText(String.valueOf(pessoa.getEndereco().getNumero()));
+
+                tfNome.setText(pessoa.getNome());
+                tfLogin.setText(pessoa.getLogin());
+
+                if (pessoa instanceof PessoaFisica) {
+                    this.pessoa = ((PessoaFisica) pessoa);
+
+                    cpDataNascimento.setValue(Util.converterDateEmLocalDate(((PessoaFisica) pessoa).getData_nascimento()));
+                    cpVencimentoCNH.setValue(Util.converterDateEmLocalDate(((PessoaFisica) pessoa).getData_vencimentoCNH()));
+                    tfCPFCNPJ.setText(((PessoaFisica) pessoa).getCPF());
+                    tfNCNH.setText(((PessoaFisica) pessoa).getNumero_CNH());
+                    tfIdentificacao.setText(((PessoaFisica) pessoa).getIdentificacao());
+                    rbPessoaJuridica.setDisable(true);
+
+                } else {
+
+                    this.pessoa = ((PessoaJuridica) pessoa);
+
+                    lbDataDeVencimentoCNH.setVisible(false);
+                    lbDataNascimento.setVisible(false);
+                    lbIndentificacao.setVisible(false);
+                    lbNCNH.setVisible(false);
+
+                    cpDataNascimento.setVisible(false);
+                    cpVencimentoCNH.setVisible(false);
+                    tfNCNH.setVisible(false);
+                    tfIdentificacao.setVisible(false);
+
+                    lbInscricaoEstadual.setVisible(true);
+                    tfInscricaoEstadual.setVisible(true);
+
+                    lbCPFCNPJ.setText("CNPJ");
+
+                    tfCPFCNPJ.setText(((PessoaJuridica) this.pessoa).getCNPJ());
+                    tfInscricaoEstadual.setText(((PessoaJuridica) this.pessoa).getInscriçãoEstadual());
+                    tfCPFCNPJ.setText(((PessoaJuridica) pessoa).getCNPJ());
+
+                    rbPessoaJuridica.setSelected(true);
+                    rbPessoaJuridica.setDisable(true);
+
+                }
+
+            }
+        }
+
     }
 
     public boolean isConfirmou() {

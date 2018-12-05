@@ -48,7 +48,7 @@ public class SQLUtil {
     public static class Veiculo {
 
         public static final String SQL_BUSCAR_VEICULO_POR_CATEGORIA = "select v from Veiculo v where v.categoria = :categoria and v.disponivel = true";
-        public static final String SQL_BUSCAR_VEICULO_NÃO_DISPONIVEIS_POR_CATEGORIA = "select v from Veiculo v where v.categoria = :categoria and v.disponivel = false";
+        public static final String SQL_BUSCAR_VEICULO_NAO_DISPONIVEIS_POR_CATEGORIA = "select v from Veiculo v where v.categoria = :categoria and v.disponivel = false";
         public static final String SQL_BUSCA_POR_BUSCA = "SELECT v FROM Veiculo v WHERE LOWER(v.modelo) LIKE :modelo or "
                 + " LOWER(v.cor) LIKE :cor or LOWER(to_char(v.anoDoModelo, '999')) LIKE :anoDoModelo";
 
@@ -68,7 +68,10 @@ public class SQLUtil {
 
     public static class Filial {
 
-        public static final String SQL_BUSCA_POR_BUSCA = "SELECT p FROM Filial  p where p.nome = :nome and ativo = true";
+        public static final String SQL_BUSCA_POR_BUSCA = "SELECT F\n"
+                + "FROM Filial as F\n"
+                + "INNER JOIN Endereco as E\n"
+                + "                on F.endereco = E.id  where LOWER(F.nome) like :nome or LOWER(E.rua) like :rua and F.ativo = true ";
 
     }
 

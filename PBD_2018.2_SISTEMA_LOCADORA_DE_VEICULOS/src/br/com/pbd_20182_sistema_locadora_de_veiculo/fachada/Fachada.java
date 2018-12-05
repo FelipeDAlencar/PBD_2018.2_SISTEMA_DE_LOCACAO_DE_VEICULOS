@@ -276,8 +276,8 @@ public class Fachada implements IFachada {
     }
 
     @Override
-    public void salvarPessoa(Pessoa pessoa) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void salvarPessoa(Pessoa pessoa) throws DAOException, BusinessExpection {
+        businessPessoa.salvar(pessoa);
     }
 
     @Override
@@ -306,8 +306,8 @@ public class Fachada implements IFachada {
     }
 
     @Override
-    public PessoaFisica buscarPorIdPessoaFisica(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public PessoaFisica buscarPorIdPessoaFisica(int id) throws DAOException {
+        return businessPessoaFisica.buscarPorId(id);
     }
 
     @Override
@@ -316,7 +316,7 @@ public class Fachada implements IFachada {
     }
 
     @Override
-    public void salvarPessoaJuridica(PessoaJuridica pessoaJuridica) throws BusinessExpection {
+    public void salvarPessoaJuridica(PessoaJuridica pessoaJuridica) throws BusinessExpection, DAOException {
         businessPessoaJuridica.salvar(pessoaJuridica);
     }
 

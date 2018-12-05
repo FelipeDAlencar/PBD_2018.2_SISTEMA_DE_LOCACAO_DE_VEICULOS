@@ -201,7 +201,7 @@ public class FXMLAnchorPaneCadastroCategoriaDialogController implements Initiali
                 } 
                 
                 if (rbCategoriaCarga.isSelected()) {
-                    System.err.println("Entrou selecionado carga");
+                    
                     categoria = new CaminhonetaDeCarga();
 
                     categoria.setArCondicionado(cbArCondicionado.isSelected());

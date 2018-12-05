@@ -17,6 +17,7 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Util;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOPessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOPessoaFisica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOPessoaJuridica;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.view.Alerta;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -123,43 +124,72 @@ public class FXMLAnchoPaneCadastroClienteController implements Initializable {
     @FXML
     void acoesDeBotao(ActionEvent event) throws BusinessExpection, DAOException {
 
-        try {
-            if (event.getSource() == BtnInserirCliente) {
-                
-                
-                boolean confirmacao = exibirTelaDecadastro();
+        if (event.getSource() == BtnInserirCliente) {
+            Pessoa pessoa = null;
+            boolean confirmacao = exibirTelaDecadastro(pessoa);
 
-                if (confirmacao) {
-                    Pessoa pessoa = controller.getPessoa();
-                    Endereco endereco = controller.getEndereco();
+            if (confirmacao) {
+                Pessoa pessoaRetorno = controller.getPessoa();
+                Endereco endereco = controller.getEndereco();
+
+                pessoaRetorno.setEndereco(endereco);
+
+                if (pessoa instanceof PessoaFisica) {
+                    fachada.salvarPessoaFisica((PessoaFisica) pessoaRetorno);
+                } else {
+
+                    fachada.salvarPessoaJuridica((PessoaJuridica) pessoaRetorno);
+                }
+
+                DAOPessoa dAOPessoa = new DAOPessoa();
+                int id = dAOPessoa.buscarUltimoID();
+                pessoaRetorno = dAOPessoa.findById(Pessoa.class, id);
+
+                pessoaRetorno.setSenha(dAOPessoa.criptografarSenha(pessoaRetorno.getSenha()));
+                dAOPessoa.salvar(pessoaRetorno);
+
+                Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
+                alerta.alertar(Alert.AlertType.INFORMATION, "Sucesso", "Inserção de Clientes", ""
+                        + "Inserção realizada com sucesso");
+                carregarClientes();
+
+            }
+
+        }
+
+        if (event.getSource() == btnAlterar) {
+
+            Pessoa pessoa = tableViewClientes.getSelectionModel().getSelectedItem();
+
+            if (pessoa != null) {
+
+                boolean sucesso = exibirTelaDecadastro(pessoa);
+
+                if (sucesso) {
+                    pessoa = controller.getPessoa();
                     
-                    pessoa.setEndereco(endereco);
-                   
                     
-                    
+
                     if (pessoa instanceof PessoaFisica) {
                         fachada.salvarPessoaFisica((PessoaFisica) pessoa);
                     } else {
 
                         fachada.salvarPessoaJuridica((PessoaJuridica) pessoa);
+                        
                     }
-                    
-                    DAOPessoa dAOPessoa =  new DAOPessoa();
-                    int id = dAOPessoa.buscarUltimoID();
-                    pessoa = dAOPessoa.findById(Pessoa.class, id);
 
-                    pessoa.setSenha(dAOPessoa.criptografarSenha(pessoa.getSenha()));
-                    dAOPessoa.salvar(pessoa);
-                    
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setContentText("Cadastrado");
-                    alert.show();
+                    Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
+                    alerta.alertar(Alert.AlertType.INFORMATION, "Sucesso", "Edição de clientes", ""
+                            + "Edição realizada com sucesso!");
+
                     carregarClientes();
-
                 }
 
+            } else {
+                Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
+                alerta.alertar(Alert.AlertType.INFORMATION, "Atenção", "Edição de clientes", ""
+                        + "Selecione o cliente para edição");
             }
-        } catch (BusinessExpection e) {
 
         }
 
@@ -193,6 +223,7 @@ public class FXMLAnchoPaneCadastroClienteController implements Initializable {
                 lbNumeroCNH.setVisible(false);
 
             } else if (pessoa instanceof PessoaFisica) {
+                pessoa = (PessoaFisica) pessoa;
 
                 lbDataNascimentoD.setVisible(true);
                 lbDatavencimentoCNHD.setVisible(true);
@@ -239,7 +270,7 @@ public class FXMLAnchoPaneCadastroClienteController implements Initializable {
 
     }
 
-    private boolean exibirTelaDecadastro() {
+    private boolean exibirTelaDecadastro(Pessoa pessoa) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAchorPaneCadastroClienteDialog.fxml"));
@@ -252,7 +283,7 @@ public class FXMLAnchoPaneCadastroClienteController implements Initializable {
 
             controller = loader.getController();
             controller.setStage(stage);
-            Pessoa pessoa = null;
+
             controller.setPessoa(pessoa);
 
             stage.showAndWait();
@@ -260,6 +291,7 @@ public class FXMLAnchoPaneCadastroClienteController implements Initializable {
             return controller.isConfirmou();
 
         } catch (IOException e) {
+            e.printStackTrace();
         }
         return false;
     }

@@ -27,7 +27,7 @@ public class BusinessPessoa implements IBusinessPessoa{
     
     @Override
     public void salvar(Pessoa pessoa) throws DAOException, BusinessExpection {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        dAOPessoa.salvar(pessoa);
     }
 
     @Override

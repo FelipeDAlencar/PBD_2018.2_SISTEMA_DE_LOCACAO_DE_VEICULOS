@@ -42,14 +42,16 @@ public class DAOFilial extends DAOGenerico<Filial> implements IDAOFilial{
 
     @Override
     public ArrayList<Filial> buscarPorBusca(String busca) throws DAOException {
+        
+       
         EntityManager em = ConnectionFactory.getInstance().getConnection();
         ArrayList<Filial> filial = null;
 
         try {
 
             TypedQuery<Filial> query = em.createQuery(SQLUtil.Filial.SQL_BUSCA_POR_BUSCA, Filial.class);
-            query.setParameter("nome", "%" + busca + "%");
-            
+            query.setParameter("nome", "%" + busca.toLowerCase() + "%");
+            query.setParameter("rua", "%" + busca.toLowerCase() + "%");
 
             filial = (ArrayList<Filial>) query.getResultList();
 

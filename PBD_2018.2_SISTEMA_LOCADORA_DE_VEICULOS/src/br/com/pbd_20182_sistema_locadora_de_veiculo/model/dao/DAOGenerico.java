@@ -10,9 +10,8 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.JPA.ConnectionFactory;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import javax.persistence.EntityManager;
 
+public class DAOGenerico<T extends EntidadeBase> {
 
-public class DAOGenerico <T extends EntidadeBase>{
-    
     private static DAOGenerico dAOGenerico;
 
     public static DAOGenerico getInstace() {
@@ -24,7 +23,7 @@ public class DAOGenerico <T extends EntidadeBase>{
 
     }
 
-    public void salvar(T t) throws DAOException{
+    public void salvar(T t) throws DAOException {
         EntityManager em = ConnectionFactory.getInstance().getConnection();
         try {
             em.getTransaction().begin();
@@ -45,7 +44,7 @@ public class DAOGenerico <T extends EntidadeBase>{
 
     }
 
-    public T findById(Class<T> classe, int id)throws DAOException{
+    public T findById(Class<T> classe, int id) throws DAOException {
         EntityManager em = ConnectionFactory.getInstance().getConnection();
         T t = null;
 
@@ -53,14 +52,13 @@ public class DAOGenerico <T extends EntidadeBase>{
             t = em.find(classe, id);
         } catch (Exception e) {
             e.printStackTrace();
-            throw  new DAOException("ERRO AO TENTAR BUSCAR NO BANCO DE DADOS");
+            throw new DAOException("ERRO AO TENTAR BUSCAR NO BANCO DE DADOS");
         } finally {
             em.close();
         }
         return t;
     }
-    
-    
+
 //    public ArrayList<T> findAll(){
 //        EntityManager em = ConnectionFactory.getInstance().getConnection();
 //        ArrayList<T> entidades = null;
@@ -76,28 +74,22 @@ public class DAOGenerico <T extends EntidadeBase>{
 //        
 //        return entidades;
 //    }
-    
-    public void remove(Class<T> classe, int id)throws DAOException{
+    public void remove(Class<T> classe, int id) throws DAOException {
         EntityManager em = ConnectionFactory.getInstance().getConnection();
         T entidade = null;
-        
-        
-        try{
+
+        try {
             em.getTransaction().begin();
             entidade = em.find(classe, id);
             em.remove(entidade);
             em.getTransaction().commit();
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             em.getTransaction().rollback();
             throw new DAOException("ERRO AO TENTAR REMOVER DO BANCO DE DADOS");
-        }finally{
+        } finally {
             em.close();
         }
     }
-    
-    
-    
-    
-    
+
 }
