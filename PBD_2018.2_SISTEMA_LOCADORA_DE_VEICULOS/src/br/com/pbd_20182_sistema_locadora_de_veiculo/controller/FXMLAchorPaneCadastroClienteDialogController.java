@@ -132,15 +132,12 @@ public class FXMLAchorPaneCadastroClienteDialogController implements Initializab
                     pegarValoresPessoaJuridica();
                     pegarValoresEndereco();
                 } else {
-                    System.err.println("Entrou Aqui");
+
                     pegarValoresPessoaFisica();
                     pegarValoresEndereco();
 
-                    if (pessoa instanceof PessoaFisica) {
-                        System.err.println("É física mesmo fdp");
-                    }
                 }
-
+                pessoa.setAtivo(true);
                 confirmou = true;
                 stage.close();
             }
@@ -273,7 +270,7 @@ public class FXMLAchorPaneCadastroClienteDialogController implements Initializab
     }
 
     public void pegarValoresPessoaJuridica() throws DAOException {
-        System.err.println("pegarValoresPessoaJuridica");
+
         if (!(pessoa != null)) {
             pessoa = new PessoaJuridica();
             endereco = new Endereco();

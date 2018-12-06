@@ -41,6 +41,8 @@ public class Categoria implements Serializable, EntidadeBase {
     private boolean tipoDeCambio;
     @Column(name = "camera_de_re")
     private boolean cameraDeRe;
+    @Column()
+    private boolean ativo; 
 
     @Override
     public Integer getId() {
@@ -147,23 +149,33 @@ public class Categoria implements Serializable, EntidadeBase {
         this.cameraDeRe = cameraDeRe;
     }
 
+   
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 29 * hash + Objects.hashCode(this.id);
-        hash = 29 * hash + Objects.hashCode(this.descricacao);
-        hash = 29 * hash + (int) (Double.doubleToLongBits(this.valor) ^ (Double.doubleToLongBits(this.valor) >>> 32));
-        hash = 29 * hash + Objects.hashCode(this.nome);
-        hash = 29 * hash + this.numeroDePortas;
-        hash = 29 * hash + this.numeroDePassageiros;
-        hash = 29 * hash + (this.arCondicionado ? 1 : 0);
-        hash = 29 * hash + (this.mp3 ? 1 : 0);
-        hash = 29 * hash + (this.dvd ? 1 : 0);
-        hash = 29 * hash + (this.direcaoHidraulica ? 1 : 0);
-        hash = 29 * hash + (this.radio ? 1 : 0);
-        hash = 29 * hash + (this.tipoDeCambio ? 1 : 0);
-        hash = 29 * hash + (this.cameraDeRe ? 1 : 0);
-
+        int hash = 5;
+        hash = 47 * hash + Objects.hashCode(this.id);
+        hash = 47 * hash + Objects.hashCode(this.descricacao);
+        hash = 47 * hash + (int) (Double.doubleToLongBits(this.valor) ^ (Double.doubleToLongBits(this.valor) >>> 32));
+        hash = 47 * hash + Objects.hashCode(this.nome);
+        hash = 47 * hash + this.numeroDePortas;
+        hash = 47 * hash + this.numeroDePassageiros;
+        hash = 47 * hash + (this.arCondicionado ? 1 : 0);
+        hash = 47 * hash + (this.mp3 ? 1 : 0);
+        hash = 47 * hash + (this.dvd ? 1 : 0);
+        hash = 47 * hash + (this.direcaoHidraulica ? 1 : 0);
+        hash = 47 * hash + (this.radio ? 1 : 0);
+        hash = 47 * hash + (this.tipoDeCambio ? 1 : 0);
+        hash = 47 * hash + (this.cameraDeRe ? 1 : 0);
+        hash = 47 * hash + (this.ativo ? 1 : 0);
         return hash;
     }
 
@@ -209,7 +221,9 @@ public class Categoria implements Serializable, EntidadeBase {
         if (this.cameraDeRe != other.cameraDeRe) {
             return false;
         }
-
+        if (this.ativo != other.ativo) {
+            return false;
+        }
         if (!Objects.equals(this.descricacao, other.descricacao)) {
             return false;
         }
@@ -221,7 +235,9 @@ public class Categoria implements Serializable, EntidadeBase {
         }
         return true;
     }
-
+    
+    
+    
     @Override
     public String toString() {
         return getNome();

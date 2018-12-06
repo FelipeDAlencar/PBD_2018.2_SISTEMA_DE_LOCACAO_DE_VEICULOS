@@ -17,4 +17,6 @@ public interface IDAOCategoria {
     
     public ArrayList<Categoria> findAll()throws DAOException;
     public Categoria buscarPorNomeDisponivel(String nome)throws DAOException;
+    public ArrayList<Categoria> buscarPorBusca(String busca)throws DAOException;
+    
 }

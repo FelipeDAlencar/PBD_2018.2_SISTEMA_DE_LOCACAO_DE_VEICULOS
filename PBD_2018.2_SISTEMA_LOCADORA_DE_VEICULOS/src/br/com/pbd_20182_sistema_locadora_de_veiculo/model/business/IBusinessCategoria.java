@@ -16,14 +16,16 @@ import java.util.ArrayList;
  */
 public interface IBusinessCategoria {
 
-    public void salvar(Categoria categoria) throws DAOException,BusinessExpection;
+    public void salvar(Categoria categoria) throws DAOException, BusinessExpection;
 
-    public ArrayList<Categoria> listarTodos()throws DAOException;
+    public ArrayList<Categoria> listarTodos() throws DAOException;
 
-    public Categoria buscarPorId(int id)throws DAOException;
+    public Categoria buscarPorId(int id) throws DAOException;
 
-    public String buscarUltimoNomeCategoria()throws DAOException;
-    
-    public Categoria buscarPorNome(String nome)throws DAOException;
+    public String buscarUltimoNomeCategoria() throws DAOException;
+
+    public Categoria buscarPorNome(String nome) throws DAOException;
+
+    public ArrayList<Categoria> buscarPorBusca(String busca) throws DAOException;
 
 }

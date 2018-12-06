@@ -218,24 +218,7 @@ public class FXMLAnchoPaneCadastroClienteController implements Initializable {
             if (tfPesquisa.getText().length() == 0) {
                 carregarClientes(fachada.listarTodosPessoa());
             } else {
-//                ArrayList<Pessoa> clientes = new ArrayList<>();
-//
-//                System.err.println(tfPesquisa.getText());
-//                System.err.println(fachada.buscarPorBuscaPessoa(tfPesquisa
-//                        .getText()));
-//                
-//
-//                for (Pessoa pessoa : fachada.buscarPorBuscaPessoa(tfPesquisa.getText())) {
-//                    if (pessoa instanceof PessoaFisica) {
-//                        clientes.add(pessoa);
-//                    }
-//
-//                    if (pessoa instanceof PessoaJuridica) {
-//                        clientes.add(pessoa);
-//                    }
-//                }
 
-                System.err.println(fachada.buscarPorBuscaPessoa(tfPesquisa.getText()));
                 carregarClientes(fachada.buscarPorBuscaPessoa(tfPesquisa.getText()));
 
             }

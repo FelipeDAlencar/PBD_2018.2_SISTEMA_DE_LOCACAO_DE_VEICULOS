@@ -27,7 +27,7 @@ public class BusinessCategoria implements IBusinessCategoria {
     }
 
     @Override
-    public void salvar(Categoria categoria) throws DAOException,BusinessExpection{
+    public void salvar(Categoria categoria) throws DAOException, BusinessExpection {
 
         validar(categoria);
         dAOCategoria.salvar(categoria);
@@ -64,9 +64,14 @@ public class BusinessCategoria implements IBusinessCategoria {
         }
         return null;
     }
-    
-    public Categoria buscarPorNome(String nome)throws DAOException{
+
+    public Categoria buscarPorNome(String nome) throws DAOException {
         return dAOCategoria.buscarPorNomeDisponivel(nome);
+    }
+
+    @Override
+    public ArrayList<Categoria> buscarPorBusca(String busca) throws DAOException {
+        return dAOCategoria.buscarPorBusca(busca);
     }
 
 }

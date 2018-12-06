@@ -42,6 +42,7 @@ public class FXMLAnchorPaneCadastroCategoriaDialogController implements Initiali
     private Categoria categoria;
     private Fachada fachada;
     private String ultimoNome = "";
+    private boolean isEditar;
 
     @FXML
     private GridPane grid;
@@ -160,75 +161,18 @@ public class FXMLAnchorPaneCadastroCategoriaDialogController implements Initiali
             if (event.getSource() == btnConfirmar) {
                 if (rbCategoria.isSelected()) {
 
-                    categoria = new Categoria();
+                    pegarValoresCategoria();
 
-                    categoria.setArCondicionado(cbArCondicionado.isSelected());
-                    categoria.setCameraDeRe(cbCameraDeRe.isSelected());
-                    categoria.setDescricacao(tfDescricao.getText());
-                    categoria.setDirecaoHidraulica(cbDirecaoHidraulica.isSelected());
-                    categoria.setRadio(cbRadio.isSelected());
-                    categoria.setTipoDeCambio(cbTipoCambio.isSelected());
-                    categoria.setDvd(cbDVD.isSelected());
-                    categoria.setMp3(cbMP3.isSelected());
-                    categoria.setNome(tfNome.getText());
-                    categoria.setNumeroDePassageiros(Integer.parseInt(tfNPassageiros.getText()));
-                    categoria.setNumeroDePortas(Integer.parseInt(tfNPortas.getText()));
-                    categoria.setValor(Double.parseDouble(tfValor.getText()));
-
-                } 
+                }
                 if (rbCategoriaPassageiros.isSelected()) {
-                    categoria = new CaminhonetaDePassageiros();
-
-                    categoria.setArCondicionado(cbArCondicionado.isSelected());
-                    categoria.setCameraDeRe(cbCameraDeRe.isSelected());
-                    categoria.setDescricacao(tfDescricao.getText());
-                    categoria.setDirecaoHidraulica(cbDirecaoHidraulica.isSelected());
-                    categoria.setRadio(cbRadio.isSelected());
-                    categoria.setTipoDeCambio(cbTipoCambio.isSelected());
-                    categoria.setDvd(cbDVD.isSelected());
-                    categoria.setMp3(cbMP3.isSelected());
-
-                    ((CaminhonetaDePassageiros) categoria).setCintoDeSeguranca(cbCintoSeguranca.isSelected());
-                    ((CaminhonetaDePassageiros) categoria).setDirecaoAssistida(cbDirecaoAssistida.isSelected());
-                    ((CaminhonetaDePassageiros) categoria).setAirBag(cbAirBag.isSelected());
-                    ((CaminhonetaDePassageiros) categoria).setRodaDeLigaLeve(cbRodasDeLigaLeve.isSelected());
-                    ((CaminhonetaDePassageiros) categoria).setControleDePoluicaoDoAr(cbControleDePoluicaoDoAr.isSelected());
-
-                    categoria.setNome(tfNome.getText());
-                    categoria.setNumeroDePassageiros(Integer.parseInt(tfNPassageiros.getText()));
-                    categoria.setNumeroDePortas(Integer.parseInt(tfNPortas.getText()));
-                    categoria.setValor(Double.parseDouble(tfValor.getText()));
-                } 
-                
-                if (rbCategoriaCarga.isSelected()) {
-                    
-                    categoria = new CaminhonetaDeCarga();
-
-                    categoria.setArCondicionado(cbArCondicionado.isSelected());
-                    categoria.setCameraDeRe(cbCameraDeRe.isSelected());
-                    categoria.setDescricacao(tfDescricao.getText());
-                    categoria.setDirecaoHidraulica(cbDirecaoHidraulica.isSelected());
-                    categoria.setRadio(cbRadio.isSelected());
-                    categoria.setTipoDeCambio(cbTipoCambio.isSelected());
-                    categoria.setDvd(cbDVD.isSelected());
-                    categoria.setMp3(cbMP3.isSelected());
-                    categoria.setNome(tfNome.getText());
-                    categoria.setNumeroDePassageiros(Integer.parseInt(tfNPassageiros.getText()));
-                    categoria.setNumeroDePortas(Integer.parseInt(tfNPortas.getText()));
-                    categoria.setValor(Double.parseDouble(tfValor.getText()));
-
-                    ((CaminhonetaDeCarga) categoria).setPotenciaDoMotor(Double.parseDouble(tfPotenciaDoMotor.getText()));
-                    ((CaminhonetaDeCarga) categoria).setDistanciaEntreEixos(Double.parseDouble(tfDistanciaEntreEixos.getText()));
-                    ((CaminhonetaDeCarga) categoria).setCapacidadeDeCarga(Double.parseDouble(tfCapacidadeDeCarga.getText()));
-                    ((CaminhonetaDeCarga) categoria).setAcionamentoDeEmbragem(tfAcionamentoDaEmbreagem.getText());
-                    ((CaminhonetaDeCarga) categoria).setDesempenho(tfDesempenho.getText());
-                    ((CaminhonetaDeCarga) categoria).setVolumeDeAbastecimento(Double.parseDouble(tfVolumeSuportado.getText()));
-                    
-                    
-                    
-                
+                    pegarValorCaminhonetaDePassageiros();
                 }
 
+                if (rbCategoriaCarga.isSelected()) {
+                    pegarValoresCaminhonetaDeCarga();
+
+                }
+                categoria.setAtivo(true);
                 confirmar = true;
                 stage.close();
 
@@ -261,7 +205,7 @@ public class FXMLAnchorPaneCadastroCategoriaDialogController implements Initiali
             tfNome.setText(Util.gerarNomeCategoria(ultimoNome, 2));
 
         } else if (event.getSource() == rbCategoriaCarga) {
-            
+
             gridCarga.setVisible(true);
             gridPassageiros.setVisible(false);
 
@@ -269,6 +213,78 @@ public class FXMLAnchorPaneCadastroCategoriaDialogController implements Initiali
             tfNome.setText(Util.gerarNomeCategoria(ultimoNome, 2));
         }
 
+    }
+
+    public void pegarValoresCategoria() {
+        if (!(categoria != null)) {
+            categoria = new Categoria();
+        }
+
+        categoria.setArCondicionado(cbArCondicionado.isSelected());
+        categoria.setCameraDeRe(cbCameraDeRe.isSelected());
+        categoria.setDescricacao(tfDescricao.getText());
+        categoria.setDirecaoHidraulica(cbDirecaoHidraulica.isSelected());
+        categoria.setRadio(cbRadio.isSelected());
+        categoria.setTipoDeCambio(cbTipoCambio.isSelected());
+        categoria.setDvd(cbDVD.isSelected());
+        categoria.setMp3(cbMP3.isSelected());
+        categoria.setNome(tfNome.getText());
+        categoria.setNumeroDePassageiros(Integer.parseInt(tfNPassageiros.getText()));
+        categoria.setNumeroDePortas(Integer.parseInt(tfNPortas.getText()));
+        categoria.setValor(Double.parseDouble(tfValor.getText()));
+    }
+
+    public void pegarValoresCaminhonetaDeCarga() {
+        if (!(categoria != null)) {
+            categoria = new CaminhonetaDeCarga();
+        }
+
+        categoria.setArCondicionado(cbArCondicionado.isSelected());
+        categoria.setCameraDeRe(cbCameraDeRe.isSelected());
+        categoria.setDescricacao(tfDescricao.getText());
+        categoria.setDirecaoHidraulica(cbDirecaoHidraulica.isSelected());
+        categoria.setRadio(cbRadio.isSelected());
+        categoria.setTipoDeCambio(cbTipoCambio.isSelected());
+        categoria.setDvd(cbDVD.isSelected());
+        categoria.setMp3(cbMP3.isSelected());
+        categoria.setNome(tfNome.getText());
+        categoria.setNumeroDePassageiros(Integer.parseInt(tfNPassageiros.getText()));
+        categoria.setNumeroDePortas(Integer.parseInt(tfNPortas.getText()));
+        categoria.setValor(Double.parseDouble(tfValor.getText()));
+
+        ((CaminhonetaDeCarga) categoria).setPotenciaDoMotor(Double.parseDouble(tfPotenciaDoMotor.getText()));
+        ((CaminhonetaDeCarga) categoria).setDistanciaEntreEixos(Double.parseDouble(tfDistanciaEntreEixos.getText()));
+        ((CaminhonetaDeCarga) categoria).setCapacidadeDeCarga(Double.parseDouble(tfCapacidadeDeCarga.getText()));
+        ((CaminhonetaDeCarga) categoria).setAcionamentoDeEmbragem(tfAcionamentoDaEmbreagem.getText());
+        ((CaminhonetaDeCarga) categoria).setDesempenho(tfDesempenho.getText());
+        ((CaminhonetaDeCarga) categoria).setVolumeDeAbastecimento(Double.parseDouble(tfVolumeSuportado.getText()));
+
+    }
+
+    public void pegarValorCaminhonetaDePassageiros() {
+        if (!(categoria != null)) {
+            categoria = new CaminhonetaDePassageiros();
+        }
+
+        categoria.setArCondicionado(cbArCondicionado.isSelected());
+        categoria.setCameraDeRe(cbCameraDeRe.isSelected());
+        categoria.setDescricacao(tfDescricao.getText());
+        categoria.setDirecaoHidraulica(cbDirecaoHidraulica.isSelected());
+        categoria.setRadio(cbRadio.isSelected());
+        categoria.setTipoDeCambio(cbTipoCambio.isSelected());
+        categoria.setDvd(cbDVD.isSelected());
+        categoria.setMp3(cbMP3.isSelected());
+
+        ((CaminhonetaDePassageiros) categoria).setCintoDeSeguranca(cbCintoSeguranca.isSelected());
+        ((CaminhonetaDePassageiros) categoria).setDirecaoAssistida(cbDirecaoAssistida.isSelected());
+        ((CaminhonetaDePassageiros) categoria).setAirBag(cbAirBag.isSelected());
+        ((CaminhonetaDePassageiros) categoria).setRodaDeLigaLeve(cbRodasDeLigaLeve.isSelected());
+        ((CaminhonetaDePassageiros) categoria).setControleDePoluicaoDoAr(cbControleDePoluicaoDoAr.isSelected());
+
+        categoria.setNome(tfNome.getText());
+        categoria.setNumeroDePassageiros(Integer.parseInt(tfNPassageiros.getText()));
+        categoria.setNumeroDePortas(Integer.parseInt(tfNPortas.getText()));
+        categoria.setValor(Double.parseDouble(tfValor.getText()));
     }
 
     public Stage getStage() {
@@ -293,6 +309,68 @@ public class FXMLAnchorPaneCadastroCategoriaDialogController implements Initiali
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
+
+        if (categoria != null) {
+            isEditar = true;
+            if (categoria.getId() != null) {
+                tfDescricao.setText(categoria.getDescricacao());
+                tfNome.setText(categoria.getNome());
+                tfValor.setText(String.valueOf(categoria.getValor()));
+                tfNPortas.setText(String.valueOf(categoria.getNumeroDePortas()));
+                tfNPassageiros.setText(String.valueOf(categoria.getNumeroDePassageiros()));
+
+                cbArCondicionado.setSelected(categoria.isArCondicionado());
+                cbMP3.setSelected(categoria.isMp3());
+                cbDVD.setSelected(categoria.isDvd());
+                cbDirecaoHidraulica.setSelected(categoria.isDirecaoHidraulica());
+                cbRadio.setSelected(categoria.isRadio());
+                cbCameraDeRe.setSelected(categoria.isCameraDeRe());
+
+                if (categoria instanceof CaminhonetaDeCarga) {
+                    gridCarga.setVisible(true);
+                    gridPassageiros.setVisible(false);
+
+                    tfPotenciaDoMotor.setText(String.valueOf(((CaminhonetaDeCarga) categoria).
+                            getPotenciaDoMotor()));
+
+                    tfDistanciaEntreEixos.setText(String.valueOf(((CaminhonetaDeCarga) categoria).
+                            getDistanciaEntreEixos()));
+
+                    tfCapacidadeDeCarga.setText(String.valueOf(((CaminhonetaDeCarga) categoria).getCapacidadeDeCarga()));
+                    tfAcionamentoDaEmbreagem.setText(String.valueOf(((CaminhonetaDeCarga) categoria).getAcionamentoDeEmbragem()));
+                    tfDescricao.setText(((CaminhonetaDeCarga) categoria).getDescricacao());
+                    tfVolumeSuportado.setText(String.valueOf(((CaminhonetaDeCarga) categoria).getVolumeDeAbastecimento()));
+                    tfDesempenho.setText(String.valueOf(((CaminhonetaDeCarga) categoria).getDesempenho()));
+                    rbCategoriaCarga.setSelected(true);
+                    
+                    
+                } else if (categoria instanceof CaminhonetaDePassageiros) {
+
+                    gridCarga.setVisible(false);
+                    gridPassageiros.setVisible(true);
+
+                    cbCintoSeguranca.setSelected(((CaminhonetaDePassageiros) categoria).
+                            isCintoDeSeguranca());
+                    cbDirecaoAssistida.setSelected(((CaminhonetaDePassageiros) categoria).isDirecaoAssistida());
+                    cbAirBag.setSelected(((CaminhonetaDePassageiros) categoria).isAirBag());
+                    cbRodasDeLigaLeve.setSelected(((CaminhonetaDePassageiros) categoria).isRodaDeLigaLeve());
+                    cbControleDePoluicaoDoAr.setSelected(((CaminhonetaDePassageiros) categoria).isControleDePoluicaoDoAr());
+                    
+                    rbCategoriaPassageiros.setSelected(true);
+                } else {
+                    System.err.println("Entrou");
+                    gridCarga.setVisible(false);
+                    gridPassageiros.setVisible(false);
+                }
+                
+                
+                rbCategoria.setDisable(true);
+                rbCategoriaCarga.setDisable(true);
+                rbCategoriaPassageiros.setDisable(true);
+            }
+
+        }
+
     }
 
 }

@@ -37,115 +37,188 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class FXMLAnchorPaneCadastroCategoriaController implements Initializable {
-    
+
     @FXML
     private TableView<Categoria> tableView;
-    
+
     @FXML
     private TableColumn<Categoria, String> colunaNome;
-    
+
     @FXML
     private TableColumn<Categoria, String> colunaDescricao;
-    
+
     @FXML
     private TableColumn<Categoria, Double> colunaValor;
-    
+
     @FXML
     private TextField tfBusca;
-    
+
     @FXML
     private Button btnBusca;
-    
+
     @FXML
     private Button btInserir;
-    
+
     @FXML
     private Button BtnEditar;
-    
+
     @FXML
     private Button btnExcluir;
-    
+
     @FXML
     private Label lbNome;
-    
+
     @FXML
     private Label lbDescricao;
-    
+
     @FXML
     private Label lbValor;
-    
+
     @FXML
     private Label lbNumeroDePortas;
-    
+
     @FXML
     private Label lbArCondicionado;
-    
+
     @FXML
     private Label lbMP3;
-    
+
     @FXML
     private Label lbNumeroDePassageiros;
-    
+
     @FXML
     private Label lbDVD;
-    
+
     @FXML
     private Label lbDirecaoHidraulica;
-    
+
     @FXML
     private Label lbRadio;
-    
+
     @FXML
     private Label lbTipoCambio;
-    
+
     @FXML
     private Label lbCameraDeRe;
-    
+
     private Fachada fachada;
     private ArrayList<Categoria> categorias;
     private ObservableList<Categoria> obsCategorias;
     private FXMLAnchorPaneCadastroCategoriaDialogController controllerDialog;
-    
+
     @FXML
     void acaoDeBtns(ActionEvent event) throws BusinessExpection, DAOException {
         if (event.getSource() == btInserir) {
-            boolean confirmar = exibirTelaDeCadastroDeCategorias();
-            
+
+            Categoria categoria = null;
+
+            boolean confirmar = exibirTelaDeCadastroDeCategorias(categoria);
+
             if (confirmar) {
-                Categoria categoria = controllerDialog.getCategoria();
-                
-                if (categoria instanceof Categoria) {
-                    fachada.salvarCategoria(categoria);
-                } else if (categoria instanceof CaminhonetaDePassageiros) {
-                    fachada.salvarCaminhonetaDePassageiros(((CaminhonetaDePassageiros) categoria));
-                } else if (categoria instanceof CaminhonetaDeCarga) {
-                    fachada.salvarCaminhonetaDeCarga((CaminhonetaDeCarga) categoria);
+                Categoria categoriaRetorno = controllerDialog.getCategoria();
+
+                if (categoriaRetorno instanceof Categoria) {
+                    fachada.salvarCategoria(categoriaRetorno);
+                } else if (categoriaRetorno instanceof CaminhonetaDePassageiros) {
+                    fachada.salvarCaminhonetaDePassageiros(((CaminhonetaDePassageiros) categoriaRetorno));
+                } else if (categoriaRetorno instanceof CaminhonetaDeCarga) {
+                    fachada.salvarCaminhonetaDeCarga((CaminhonetaDeCarga) categoriaRetorno);
                 }
-                carregarTabela();
-                
+
                 Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
                 alerta.alertar(Alert.AlertType.CONFIRMATION, "Cadastro de categoria",
                         "Sucesso!", "Categoria cadastrada com sucesso!");
-                
+
             }
         }
+
+        if (event.getSource() == btnExcluir) {
+            Categoria categoria = tableView.getSelectionModel().getSelectedItem();
+
+            if (categoria != null) {
+                categoria.setAtivo(false);
+
+                if (categoria instanceof Categoria) {
+                    fachada.salvarCategoria(categoria);
+                } else if (categoria instanceof CaminhonetaDePassageiros) {
+
+                    fachada.salvarCaminhonetaDePassageiros((CaminhonetaDePassageiros) categoria);
+
+                } else if (categoria instanceof CaminhonetaDeCarga) {
+                    fachada.salvarCaminhonetaDeCarga((CaminhonetaDeCarga) categoria);
+                }
+
+                Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
+                alerta.alertar(Alert.AlertType.INFORMATION, "Sucesso", "Exclusão de categoria", ""
+                        + "Exclusão realizada com sucesso!");
+
+            } else {
+                Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
+                alerta.alertar(Alert.AlertType.INFORMATION, "Atenção", "Eclusão de categoria", ""
+                        + "Selecione a categoria para exclusão");
+            }
+
+        }
+
+        if (event.getSource() == BtnEditar) {
+
+            Categoria categoria = tableView.getSelectionModel().getSelectedItem();
+
+            if (categoria != null) {
+
+                boolean sucesso = exibirTelaDeCadastroDeCategorias(categoria);
+
+                if (sucesso) {
+
+                    categoria = controllerDialog.getCategoria();
+
+                    if (categoria instanceof Categoria) {
+                        fachada.salvarCategoria(categoria);
+                    } else if (categoria instanceof CaminhonetaDePassageiros) {
+
+                        fachada.salvarCaminhonetaDePassageiros((CaminhonetaDePassageiros) categoria);
+
+                    } else if (categoria instanceof CaminhonetaDeCarga) {
+                        fachada.salvarCaminhonetaDeCarga((CaminhonetaDeCarga) categoria);
+                    }
+
+                    Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
+                    alerta.alertar(Alert.AlertType.INFORMATION, "Sucesso", "Edição de categoria", ""
+                            + "Edição realizada com sucesso!");
+
+                }
+
+            } else {
+                Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
+                alerta.alertar(Alert.AlertType.INFORMATION, "Atenção", "Edição de categoria", ""
+                        + "Selecione a categoria para edição");
+            }
+
+        }
+
+        if (event.getSource() == btnBusca) {
+
+            if (tfBusca.getText().length() == 0) {
+                carregarTabela(fachada.listarTodosCategoria());
+            } else {
+
+                carregarTabela(fachada.buscarPorBuscaCategoria(tfBusca.getText()));
+
+            }
+
+        }
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         fachada = Fachada.getInstance();
-        
-        try {
-            carregarTabela();
-        } catch (DAOException ex) {
-            
-        }
+
         tableView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> selecionouDaTabela(newValue));
     }
-    
+
     private void selecionouDaTabela(Categoria categoria) {
-        
+
         if (categoria != null) {
             lbArCondicionado.setText(String.valueOf(categoria.isArCondicionado()));
             lbCameraDeRe.setText(String.valueOf(categoria.isCameraDeRe()));
@@ -159,48 +232,46 @@ public class FXMLAnchorPaneCadastroCategoriaController implements Initializable 
             lbValor.setText(String.valueOf(categoria.getValor()));
             lbNumeroDePassageiros.setText(String.valueOf(categoria.getNumeroDePassageiros()));
             lbNumeroDePortas.setText(String.valueOf(categoria.getNumeroDePortas()));
-            
+
         }
     }
-    
-    private void carregarTabela() throws DAOException {
-        
-        categorias = fachada.listarTodosCategoria();
-        
+
+    private void carregarTabela(ArrayList<Categoria> categorias) throws DAOException {
+
         colunaDescricao.setCellValueFactory(new PropertyValueFactory<>("descricacao"));
         colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         colunaValor.setCellValueFactory(new PropertyValueFactory<>("valor"));
-        
+
         obsCategorias = FXCollections.observableArrayList(categorias);
-        
+
         tableView.setItems(obsCategorias);
     }
-    
-    public boolean exibirTelaDeCadastroDeCategorias() {
+
+    public boolean exibirTelaDeCadastroDeCategorias(Categoria categoria) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(FXMLAnchorPaneCadastroCategoriaDialogController.class.
                     getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAnchorPaneCadastroCategoriaDialog.fxml"));
             Pane pane = loader.load();
-            
+
             controllerDialog = loader.getController();
-            Categoria categoria = null;
+
             Stage stage = new Stage();
             Scene scene = new Scene(pane);
             stage.setScene(scene);
-            
+
             controllerDialog.setStage(stage);
             controllerDialog.setCategoria(categoria);
-            
+
             stage.showAndWait();
-            
+
             return controllerDialog.isConfirmar();
-            
+
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        
+
         return false;
-        
+
     }
 }

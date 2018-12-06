@@ -115,6 +115,11 @@ public class Fachada implements IFachada {
     }
 
     @Override
+    public ArrayList<Categoria> buscarPorBuscaCategoria(String busca) throws DAOException {
+        return businessCategoria.buscarPorBusca(busca);
+    }
+
+    @Override
     public void salvarCaminhonetaDeCarga(CaminhonetaDeCarga caminhonetaDeCarga) throws DAOException, BusinessExpection {
         businessCategoriaCaminhonetaDeCarga.salvar(caminhonetaDeCarga);
     }
@@ -200,7 +205,7 @@ public class Fachada implements IFachada {
     }
 
     @Override
-    public ArrayList<Filial> buscarPorBuscaFilial(String busca)throws DAOException{
+    public ArrayList<Filial> buscarPorBuscaFilial(String busca) throws DAOException {
         return businessFilial.buscarPorBusca(busca);
     }
 
@@ -284,9 +289,10 @@ public class Fachada implements IFachada {
     public ArrayList<Pessoa> listarTodosPessoa() throws DAOException {
         return businessPessoa.listarTodos();
     }
-        @Override
+
+    @Override
     public Pessoa buscarLoginPessoa(Pessoa pessoa) throws DAOException {
-       return businessPessoa.buscarLogin(pessoa);
+        return businessPessoa.buscarLogin(pessoa);
     }
 
     @Override
@@ -411,11 +417,10 @@ public class Fachada implements IFachada {
     public ArrayList<Veiculo> buscarPorVeiculosIndisponiveisPorCategoria(Categoria categoria) throws DAOException {
         return businessVeiculo.buscarPorCategoriaVeiculosIndisponiveis(categoria);
     }
-    
+
     @Override
-    public ArrayList<Veiculo> buscarPorBuscaVeiculo(String busca)throws DAOException{
+    public ArrayList<Veiculo> buscarPorBuscaVeiculo(String busca) throws DAOException {
         return businessVeiculo.buscarPorBusca(busca);
     }
-
 
 }

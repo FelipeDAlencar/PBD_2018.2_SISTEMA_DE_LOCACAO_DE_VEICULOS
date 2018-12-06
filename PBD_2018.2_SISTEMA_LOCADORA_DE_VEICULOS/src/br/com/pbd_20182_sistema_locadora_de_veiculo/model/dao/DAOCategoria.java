@@ -20,12 +20,12 @@ import javax.persistence.TypedQuery;
 public class DAOCategoria extends DAOGenerico<Categoria> implements IDAOCategoria {
 
     @Override
-    public ArrayList<Categoria> findAll()throws DAOException{
+    public ArrayList<Categoria> findAll() throws DAOException {
         EntityManager em = ConnectionFactory.getInstance().getConnection();
         ArrayList<Categoria> categorias = null;
 
         try {
-            categorias = (ArrayList) em.createQuery("from Categoria c").getResultList();
+            categorias = (ArrayList) em.createQuery("from Categoria c where ativo = true").getResultList();
         } catch (Exception e) {
             e.printStackTrace();
             throw new DAOException("ERRO AO TENTAR BUSCAR NO BANCO DE DADOS");
@@ -45,32 +45,50 @@ public class DAOCategoria extends DAOGenerico<Categoria> implements IDAOCategori
             return nome;
         } catch (Exception e) {
             e.printStackTrace();
-            throw  new DAOException("ERRO AO TENTAR BUSCAR NO BANCO DE DADOS");
+            throw new DAOException("ERRO AO TENTAR BUSCAR NO BANCO DE DADOS");
         } finally {
             em.close();
         }
 
-        
     }
-    
+
     @Override
-    public Categoria buscarPorNomeDisponivel(String nome)throws DAOException{
-        
+    public Categoria buscarPorNomeDisponivel(String nome) throws DAOException {
+
         EntityManager em = ConnectionFactory.getInstance().getConnection();
-        try{
-            TypedQuery<Categoria> query =  em.createQuery(SQLUtil.Categoria.SQL_BUSCAR_CATEGORIA_POR_NOME_DISPONIVEL, Categoria.class);
+        try {
+            TypedQuery<Categoria> query = em.createQuery(SQLUtil.Categoria.SQL_BUSCAR_CATEGORIA_POR_NOME_DISPONIVEL, Categoria.class);
             query.setParameter("nome", nome);
             Categoria categoria = query.getSingleResult();
-            
-            
+
             return categoria;
-        
-        }catch(Exception e){
+
+        } catch (Exception e) {
             throw new DAOException("ERRO AO TENTAR BUSCAR NO BANCO DE DADOS.\nNÃO HÁ CATEGORIA.");
         }
-       
+
     }
-    
-    
+
+    @Override
+    public ArrayList<Categoria> buscarPorBusca(String busca) throws DAOException {
+        EntityManager em = ConnectionFactory.getInstance().getConnection();
+        try {
+            TypedQuery<Categoria> query = em.createQuery(SQLUtil.Categoria.BUSCAR_POR_BUSCA, Categoria.class);
+            query.setParameter("nome", "%" + busca.toLowerCase() + "%");
+            query.setParameter("descricao", "%" + busca.toLowerCase() + "%");
+            query.setParameter("valor", "%" + busca.toLowerCase() + "%");
+
+            
+            
+            
+            ArrayList<Categoria> categorias = (ArrayList<Categoria>) query.getResultList();
+
+            return categorias;
+
+        } catch (Exception e) {
+            throw new DAOException("ERRO AO TENTAR BUSCAR NO BANCO DE DADOS.\nNÃO HÁ CATEGORIA.");
+        }
+
+    }
 
 }
