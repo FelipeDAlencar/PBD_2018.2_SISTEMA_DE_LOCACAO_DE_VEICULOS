@@ -71,7 +71,7 @@ public class DAOPessoa extends DAOGenerico<Pessoa> implements IDAOPessoa {
         EntityManager em = ConnectionFactory.getInstance().getConnection();
         ArrayList<Pessoa> pessoas = null;
         try {
-            pessoas = (ArrayList<Pessoa>) em.createQuery("from Pessoa p").getResultList();
+            pessoas = (ArrayList<Pessoa>) em.createQuery("from Pessoa p where ativo = true").getResultList();
             return pessoas;
         } catch (Exception e) {
             e.printStackTrace();
@@ -105,9 +105,9 @@ public class DAOPessoa extends DAOGenerico<Pessoa> implements IDAOPessoa {
         ArrayList<Pessoa> pessoas = null;
         try {
             TypedQuery<Pessoa> query = em.createQuery(SQLUtil.Pessoa.SQL_BUSCA_POR_BUSCA, Pessoa.class);
-            query.setParameter("nome", "%" + texto + "%");
-            query.setParameter("login", "%" + texto + "%");
-            query.setParameter("codigo", "%" + texto + "%");
+            query.setParameter("nome", "%" + texto.toLowerCase() + "%");
+            query.setParameter("login", "%" + texto.toLowerCase() + "%");
+            query.setParameter("codigo", "%" + texto.toLowerCase() + "%");
 
             return pessoas = (ArrayList<Pessoa>) query.getResultList();
 

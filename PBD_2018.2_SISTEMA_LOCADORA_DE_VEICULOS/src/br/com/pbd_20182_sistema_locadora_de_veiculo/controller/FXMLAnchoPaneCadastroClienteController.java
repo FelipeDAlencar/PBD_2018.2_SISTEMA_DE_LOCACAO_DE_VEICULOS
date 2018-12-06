@@ -116,8 +116,6 @@ public class FXMLAnchoPaneCadastroClienteController implements Initializable {
 
     private ArrayList<Pessoa> pessoas;
     private ObservableList<Pessoa> obsPessoas;
-    private DAOPessoaFisica dAOPessoaFisica = new DAOPessoaFisica();
-    private DAOPessoaJuridica dAOPessoaJuridica = new DAOPessoaJuridica();
     private Fachada fachada = Fachada.getInstance();
     private FXMLAchorPaneCadastroClienteDialogController controller;
 
@@ -130,11 +128,8 @@ public class FXMLAnchoPaneCadastroClienteController implements Initializable {
 
             if (confirmacao) {
                 Pessoa pessoaRetorno = controller.getPessoa();
-                Endereco endereco = controller.getEndereco();
 
-                pessoaRetorno.setEndereco(endereco);
-
-                if (pessoa instanceof PessoaFisica) {
+                if (pessoaRetorno instanceof PessoaFisica) {
                     fachada.salvarPessoaFisica((PessoaFisica) pessoaRetorno);
                 } else {
 
@@ -151,7 +146,8 @@ public class FXMLAnchoPaneCadastroClienteController implements Initializable {
                 Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
                 alerta.alertar(Alert.AlertType.INFORMATION, "Sucesso", "Inserção de Clientes", ""
                         + "Inserção realizada com sucesso");
-                carregarClientes();
+
+                carregarClientes(fachada.listarTodosPessoa());
 
             }
 
@@ -167,22 +163,19 @@ public class FXMLAnchoPaneCadastroClienteController implements Initializable {
 
                 if (sucesso) {
                     pessoa = controller.getPessoa();
-                    
-                    
 
                     if (pessoa instanceof PessoaFisica) {
                         fachada.salvarPessoaFisica((PessoaFisica) pessoa);
                     } else {
 
                         fachada.salvarPessoaJuridica((PessoaJuridica) pessoa);
-                        
+
                     }
 
                     Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
                     alerta.alertar(Alert.AlertType.INFORMATION, "Sucesso", "Edição de clientes", ""
                             + "Edição realizada com sucesso!");
 
-                    carregarClientes();
                 }
 
             } else {
@@ -193,12 +186,66 @@ public class FXMLAnchoPaneCadastroClienteController implements Initializable {
 
         }
 
+        if (event.getSource() == BtnExcluir) {
+
+            Pessoa pessoa = tableViewClientes.getSelectionModel().getSelectedItem();
+
+            if (pessoa != null) {
+
+                pessoa.setAtivo(false);
+
+                if (pessoa instanceof PessoaFisica) {
+                    fachada.salvarPessoaFisica((PessoaFisica) pessoa);
+                } else {
+
+                    fachada.salvarPessoaJuridica((PessoaJuridica) pessoa);
+                }
+
+                Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
+                alerta.alertar(Alert.AlertType.INFORMATION, "Sucesso", "Exclusão de clientes", ""
+                        + "Exclusão realizada com sucesso!");
+
+            } else {
+                Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
+                alerta.alertar(Alert.AlertType.INFORMATION, "Atenção", "Exlusão de clientes", ""
+                        + "Selecione o cliente para excluir");
+            }
+
+        }
+
+        if (event.getSource() == btnPesquisar) {
+
+            if (tfPesquisa.getText().length() == 0) {
+                carregarClientes(fachada.listarTodosPessoa());
+            } else {
+//                ArrayList<Pessoa> clientes = new ArrayList<>();
+//
+//                System.err.println(tfPesquisa.getText());
+//                System.err.println(fachada.buscarPorBuscaPessoa(tfPesquisa
+//                        .getText()));
+//                
+//
+//                for (Pessoa pessoa : fachada.buscarPorBuscaPessoa(tfPesquisa.getText())) {
+//                    if (pessoa instanceof PessoaFisica) {
+//                        clientes.add(pessoa);
+//                    }
+//
+//                    if (pessoa instanceof PessoaJuridica) {
+//                        clientes.add(pessoa);
+//                    }
+//                }
+
+                System.err.println(fachada.buscarPorBuscaPessoa(tfPesquisa.getText()));
+                carregarClientes(fachada.buscarPorBuscaPessoa(tfPesquisa.getText()));
+
+            }
+
+        }
+
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        carregarClientes();
-
         tableViewClientes.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> selecionouDaTabela(newValue));
     }
@@ -246,27 +293,27 @@ public class FXMLAnchoPaneCadastroClienteController implements Initializable {
 
     }
 
-    public void carregarClientes() {
-        pessoas = new ArrayList<>();
-        try {
-            for (PessoaFisica pessoaFisica : dAOPessoaFisica.findAll()) {
-                pessoas.add(pessoaFisica);
-            }
-            for (PessoaJuridica pessoaJ : dAOPessoaJuridica.findAll()) {
-                pessoas.add(pessoaJ);
+    public void carregarClientes(ArrayList<Pessoa> pessoas) {
+        ArrayList<Pessoa> clientes = new ArrayList<>();
+
+        for (Pessoa pessoa : pessoas) {
+            if (pessoa instanceof PessoaFisica) {
+                clientes.add(pessoa);
             }
 
-            colunaLoginCliente.setCellValueFactory(new PropertyValueFactory<>("login"));
-            colunaCodigoCliente.setCellValueFactory(new PropertyValueFactory<>("codigo"));
-            colunaNomeCliente.setCellValueFactory(new PropertyValueFactory<>("nome"));
+            if (pessoa instanceof PessoaJuridica) {
+                clientes.add(pessoa);
+            }
 
-            obsPessoas = FXCollections.observableArrayList(pessoas);
-
-            tableViewClientes.setItems(obsPessoas);
-
-        } catch (DAOException ex) {
-            Logger.getLogger(FXMLAnchoPaneCadastroClienteController.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        colunaLoginCliente.setCellValueFactory(new PropertyValueFactory<>("login"));
+        colunaCodigoCliente.setCellValueFactory(new PropertyValueFactory<>("codigo"));
+        colunaNomeCliente.setCellValueFactory(new PropertyValueFactory<>("nome"));
+
+        obsPessoas = FXCollections.observableArrayList(clientes);
+
+        tableViewClientes.setItems(obsPessoas);
 
     }
 

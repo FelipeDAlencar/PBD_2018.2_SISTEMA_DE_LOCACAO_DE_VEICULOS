@@ -23,4 +23,14 @@ public interface IBusinessPessoa {
 
     public Pessoa buscarPorId(int id) throws DAOException;
 
+    public Pessoa buscarLogin(Pessoa pessoa) throws DAOException;
+
+    public String buscarUltimoCodigo() throws DAOException;
+
+    public ArrayList<Pessoa> buscarPorBusca(String texto) throws DAOException;
+
+    public String criptografarSenha(String senha) throws DAOException;
+
+    public int buscarUltimoID() throws DAOException;
+
 }

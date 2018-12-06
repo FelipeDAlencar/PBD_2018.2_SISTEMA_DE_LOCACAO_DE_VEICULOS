@@ -32,6 +32,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -93,6 +94,10 @@ public class FXMLAchorPaneCadastroClienteDialogController implements Initializab
     @FXML
     private RadioButton rbPessoaJuridica;
 
+    @FXML
+    private RadioButton rbPessoaFisica;
+
+    @FXML
     private Label lbInscricaoEstadual;
 
     private TextField tfInscricaoEstadual;
@@ -127,8 +132,13 @@ public class FXMLAchorPaneCadastroClienteDialogController implements Initializab
                     pegarValoresPessoaJuridica();
                     pegarValoresEndereco();
                 } else {
+                    System.err.println("Entrou Aqui");
                     pegarValoresPessoaFisica();
                     pegarValoresEndereco();
+
+                    if (pessoa instanceof PessoaFisica) {
+                        System.err.println("É física mesmo fdp");
+                    }
                 }
 
                 confirmou = true;
@@ -143,7 +153,7 @@ public class FXMLAchorPaneCadastroClienteDialogController implements Initializab
     }
 
     @FXML
-    void acaoRbPessoaJuridica(ActionEvent event) {
+    void acaoRbs(ActionEvent event) {
         if (rbPessoaJuridica.isSelected()) {
 
             lbDataDeVencimentoCNH.setVisible(false);
@@ -161,7 +171,7 @@ public class FXMLAchorPaneCadastroClienteDialogController implements Initializab
 
             lbCPFCNPJ.setText("CNPJ");
 
-        } else {
+        } else if (rbPessoaFisica.isSelected()) {
             lbDataDeVencimentoCNH.setVisible(true);
             lbDataNascimento.setVisible(true);
             lbIndentificacao.setVisible(true);
@@ -201,6 +211,10 @@ public class FXMLAchorPaneCadastroClienteDialogController implements Initializab
 
         comboUF.setItems(obsUfs);
 
+        ToggleGroup tg = new ToggleGroup();
+        rbPessoaFisica.setToggleGroup(tg);
+        rbPessoaJuridica.setToggleGroup(tg);
+
     }
 
     public void pegarValoresEndereco() {
@@ -214,11 +228,18 @@ public class FXMLAchorPaneCadastroClienteDialogController implements Initializab
     }
 
     public void pegarValoresPessoaFisica() throws DAOException {
+        System.err.println("pegarValoresPessoaFisica");
         if (!(pessoa != null)) {
+            System.err.println("Entrou if");
             pessoa = new PessoaFisica();
             endereco = new Endereco();
             pessoa.setEndereco(endereco);
         }
+
+        if (pessoa instanceof PessoaFisica) {
+            System.err.println("É física");
+        }
+
         pessoa.setNome(tfNome.getText());
         ((PessoaFisica) pessoa).setCPF(tfCPFCNPJ.getText());
         pessoa.setLogin(tfLogin.getText());

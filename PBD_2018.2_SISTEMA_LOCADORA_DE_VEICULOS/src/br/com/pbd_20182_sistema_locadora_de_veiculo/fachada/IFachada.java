@@ -82,9 +82,14 @@ public interface IFachada {
     
     
     public void salvarPessoa(Pessoa pessoa)throws BusinessExpection,DAOException;
-    public ArrayList<Pessoa> listarTodosPessoa()throws DAOException;
     public Pessoa buscarPorIdPessoa(int id)throws DAOException;
     public void alterarPessoa(PessoaFisica pessoaFisica)throws DAOException;
+    public Pessoa buscarLoginPessoa(Pessoa pessoa) throws DAOException;
+    public ArrayList<Pessoa> listarTodosPessoa() throws DAOException;
+    public String buscarUltimoCodigoPessoa() throws DAOException;
+    public ArrayList<Pessoa> buscarPorBuscaPessoa(String texto) throws DAOException;
+    public String criptografarSenhaPessoa(String senha) throws DAOException;
+    public int buscarUltimoIDPessoa() throws DAOException;
     
     public void salvarPessoaFisica(PessoaFisica pessoaFisica)throws BusinessExpection,DAOException;
     public ArrayList<PessoaFisica> listarTodosPessoaFisica()throws DAOException;

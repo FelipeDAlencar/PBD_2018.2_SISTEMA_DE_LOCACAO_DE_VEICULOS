@@ -52,7 +52,7 @@
                   </GridPane>
                   <Button fx:id="btnCadastrar" layoutX="153.0" layoutY="510.0" mnemonicParsing="false" onAction="#acoesBtns" prefHeight="31.0" prefWidth="99.0" text="Cadastrar" />
                   <Button fx:id="BtnCancelar" layoutX="316.0" layoutY="510.0" mnemonicParsing="false" onAction="#acoesBtns" prefHeight="31.0" prefWidth="99.0" text="Cancelar" />
-                  <RadioButton fx:id="rbPessoaJuridica" layoutX="62.0" layoutY="25.0" mnemonicParsing="false" onAction="#acaoRbPessoaJuridica" text="Pessoa Juridica" />
+                  <RadioButton fx:id="rbPessoaJuridica" layoutX="208.0" layoutY="25.0" mnemonicParsing="false" onAction="#acaoRbs" text="Pessoa Juridica" />
                   <Label layoutX="71.0" layoutY="302.0" text="INFORMAÇÕES SOBRE ENDEREÇO" />
                   <GridPane layoutX="71.0" layoutY="339.0">
                     <columnConstraints>
@@ -80,6 +80,7 @@
                      </children>
                   </GridPane>
                   <Separator layoutX="71.0" layoutY="333.0" prefHeight="0.0" prefWidth="361.0" />
+                  <RadioButton fx:id="rbPessoaFisica" layoutX="71.0" layoutY="25.0" mnemonicParsing="false" onAction="#acaoRbs" selected="true" text="Pessoa Física" />
                </children>
             </AnchorPane>
         </content>

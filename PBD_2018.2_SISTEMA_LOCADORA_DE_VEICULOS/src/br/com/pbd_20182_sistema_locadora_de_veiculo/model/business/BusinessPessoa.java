@@ -37,7 +37,32 @@ public class BusinessPessoa implements IBusinessPessoa{
 
     @Override
     public Pessoa buscarPorId(int id) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return dAOPessoa.findById(Pessoa.class, id);
+    }
+
+    @Override
+    public Pessoa buscarLogin(Pessoa pessoa) throws DAOException {
+        return dAOPessoa.buscarLogin(pessoa);
+    }
+
+    @Override
+    public String buscarUltimoCodigo() throws DAOException {
+        return dAOPessoa.buscarUltimoCodigo();
+    }
+
+    @Override
+    public ArrayList<Pessoa> buscarPorBusca(String texto) throws DAOException {
+        return dAOPessoa.buscarPorBusca(texto);
+    }
+
+    @Override
+    public String criptografarSenha(String senha) throws DAOException {
+        return dAOPessoa.criptografarSenha(senha);
+    }
+
+    @Override
+    public int buscarUltimoID() throws DAOException {
+        return dAOPessoa.buscarUltimoID();
     }
     
 }

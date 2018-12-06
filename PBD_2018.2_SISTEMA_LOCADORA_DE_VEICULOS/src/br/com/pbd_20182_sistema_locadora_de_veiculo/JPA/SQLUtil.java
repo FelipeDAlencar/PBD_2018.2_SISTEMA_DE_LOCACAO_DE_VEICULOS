@@ -20,7 +20,7 @@ public class SQLUtil {
         public static final String SQL_BUSCA_ULTIMO_ID_PESSOA = "select MAX(id) from Pessoa";
 
         public static final String SQL_BUSCA_POR_BUSCA = "SELECT p FROM Pessoa p WHERE LOWER(p.nome) LIKE :nome or "
-                + "                    LOWER(p.login) LIKE :login or LOWER(p.codigo) LIKE :codigo";
+                + "                    LOWER(p.login) LIKE :login or LOWER(p.codigo) LIKE :codigo ";
 
         public static final String SQL_PROCEDURE_CRIPTOGRAFAR_SENHA = "criptografar_senha";
 

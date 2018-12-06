@@ -17,7 +17,7 @@ import javax.persistence.EntityManager;
  */
 public class DAOPessoaFisica extends DAOGenerico<PessoaFisica> implements IDAOPessoaFisica {
 
-    private static DAOPessoaFisica dAOPessoaFisica;
+    
 
     @Override
     public ArrayList<PessoaFisica> findAll() throws DAOException {
@@ -25,7 +25,7 @@ public class DAOPessoaFisica extends DAOGenerico<PessoaFisica> implements IDAOPe
         ArrayList<PessoaFisica> pessoaFisicas = null;
 
         try {
-            pessoaFisicas = (ArrayList) em.createQuery("from PessoaFisica p").getResultList();
+            pessoaFisicas = (ArrayList) em.createQuery("from PessoaFisica p where ativo = true").getResultList();
             return pessoaFisicas;
         } catch (Exception e) {
             e.printStackTrace();

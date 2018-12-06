@@ -284,10 +284,34 @@ public class Fachada implements IFachada {
     public ArrayList<Pessoa> listarTodosPessoa() throws DAOException {
         return businessPessoa.listarTodos();
     }
+        @Override
+    public Pessoa buscarLoginPessoa(Pessoa pessoa) throws DAOException {
+       return businessPessoa.buscarLogin(pessoa);
+    }
+
+    @Override
+    public String buscarUltimoCodigoPessoa() throws DAOException {
+        return businessPessoa.buscarUltimoCodigo();
+    }
+
+    @Override
+    public ArrayList<Pessoa> buscarPorBuscaPessoa(String texto) throws DAOException {
+        return businessPessoa.buscarPorBusca(texto);
+    }
+
+    @Override
+    public String criptografarSenhaPessoa(String senha) throws DAOException {
+        return businessPessoa.criptografarSenha(senha);
+    }
+
+    @Override
+    public int buscarUltimoIDPessoa() throws DAOException {
+        return businessPessoa.buscarUltimoID();
+    }
 
     @Override
     public Pessoa buscarPorIdPessoa(int id) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return businessPessoa.buscarPorId(id);
     }
 
     @Override
@@ -321,8 +345,8 @@ public class Fachada implements IFachada {
     }
 
     @Override
-    public ArrayList<PessoaJuridica> listarTodosPessoaJuridica() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<PessoaJuridica> listarTodosPessoaJuridica() throws DAOException {
+        return businessPessoaJuridica.listarTodos();
     }
 
     @Override
@@ -392,5 +416,6 @@ public class Fachada implements IFachada {
     public ArrayList<Veiculo> buscarPorBuscaVeiculo(String busca)throws DAOException{
         return businessVeiculo.buscarPorBusca(busca);
     }
+
 
 }

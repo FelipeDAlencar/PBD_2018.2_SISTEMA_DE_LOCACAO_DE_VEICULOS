@@ -33,7 +33,7 @@ public class DAOPessoaJuridica extends DAOGenerico<PessoaJuridica> implements ID
         ArrayList<PessoaJuridica> pessoaJuridicas = null;
 
         try {
-            pessoaJuridicas = (ArrayList) em.createQuery("from PessoaJuridica c").getResultList();
+            pessoaJuridicas = (ArrayList) em.createQuery("from PessoaJuridica c where ativo = true").getResultList();
         } catch (Exception e) {
             e.printStackTrace();
             throw new DAOException("ERRO AO TENTAR BUSCAR NO BANCO");

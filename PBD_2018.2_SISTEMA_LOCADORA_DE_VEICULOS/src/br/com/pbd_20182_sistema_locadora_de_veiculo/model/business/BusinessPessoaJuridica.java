@@ -37,7 +37,7 @@ public class BusinessPessoaJuridica implements IBusinessPessoaJuridica {
 
     @Override
     public ArrayList<PessoaJuridica> listarTodos() throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return dAOPessoaJuridica.findAll();
     }
 
     @Override
