@@ -254,5 +254,107 @@ public class FXMLAnchorPaneCadastroLocacaoController implements Initializable {
         
         return false;
     }
+
+    public TableView<Locacao> getTableView() {
+        return tableView;
+    }
+
+    public TableColumn<Locacao, PessoaFisica> getColunaMotorista() {
+        return colunaMotorista;
+    }
+
+    public TableColumn<Locacao, Veiculo> getColunaVeiculo() {
+        return colunaVeiculo;
+    }
+
+    public TableColumn<Locacao, Double> getColunaValor() {
+        return colunaValor;
+    }
+
+    public Label getLbCliente() {
+        return lbCliente;
+    }
+
+    public Label getLbMotorista() {
+        return lbMotorista;
+    }
+
+    public Label getLbVeiculo() {
+        return lbVeiculo;
+    }
+
+    public Label getLbKmInicial() {
+        return lbKmInicial;
+    }
+
+    public Label getLbKmFinal() {
+        return lbKmFinal;
+    }
+
+    public Label getLbMetadePrimeiraDiaria() {
+        return lbMetadePrimeiraDiaria;
+    }
+
+    public Label getLbTaxaCombustivel() {
+        return lbTaxaCombustivel;
+    }
+
+    public Label getLbTaxaIgienizacao() {
+        return lbTaxaIgienizacao;
+    }
+
+    public Label getLbDataIda() {
+        return lbDataIda;
+    }
+
+    public Label getLbDataVolta() {
+        return lbDataVolta;
+    }
+
+    public Label getLbValor() {
+        return lbValor;
+    }
+
+    public CheckBox getCbKmLivre() {
+        return cbKmLivre;
+    }
+
+    public CheckBox getCbFinalizada() {
+        return cbFinalizada;
+    }
+
+    public TextField getTfPesquisar() {
+        return tfPesquisar;
+    }
+
+    public Button getBtnPesquisar() {
+        return btnPesquisar;
+    }
+
+    public Button getBtnInserir() {
+        return btnInserir;
+    }
+
+    public Button getBtnEditar() {
+        return btnEditar;
+    }
+
+    public Button getBtnExcluir() {
+        return btnExcluir;
+    }
+
+    public Fachada getFachada() {
+        return fachada;
+    }
+
+    public ArrayList<Locacao> getLocacaos() {
+        return locacaos;
+    }
+
+    public ObservableList<Locacao> getObsLocacoes() {
+        return obsLocacoes;
+    }
+    
+    
     
 }

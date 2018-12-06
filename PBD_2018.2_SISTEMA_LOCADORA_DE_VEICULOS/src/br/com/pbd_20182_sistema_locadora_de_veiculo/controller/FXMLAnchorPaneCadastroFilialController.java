@@ -226,5 +226,80 @@ public class FXMLAnchorPaneCadastroFilialController implements Initializable {
         return false;
         
     }
+
+    public TableView<Filial> getTableView() {
+        return tableView;
+    }
+
+    public TableColumn<Filial, String> getColunaNomeFilial() {
+        return colunaNomeFilial;
+    }
+
+    public TableColumn<Filial, String> getColunaRua() {
+        return colunaRua;
+    }
+
+    public TableColumn<Filial, String> getColunaUF() {
+        return colunaUF;
+    }
+
+    public Label getLbNomeFilial() {
+        return lbNomeFilial;
+    }
+
+    public Label getLbCidade() {
+        return lbCidade;
+    }
+
+    public Label getLbRua() {
+        return lbRua;
+    }
+
+    public Label getLbBairro() {
+        return lbBairro;
+    }
+
+    public Label getLbNumero() {
+        return lbNumero;
+    }
+
+    public Label getLbUF() {
+        return lbUF;
+    }
+
+    public Button getBtnInserir() {
+        return btnInserir;
+    }
+
+    public Button getBtnEditar() {
+        return btnEditar;
+    }
+
+    public Button getBtnExcluir() {
+        return btnExcluir;
+    }
+
+    public TextField getTfPesquisa() {
+        return tfPesquisa;
+    }
+
+    public Button getBtnPesquisar() {
+        return btnPesquisar;
+    }
+
+    public Fachada getFachada() {
+        return fachada;
+    }
+
+    public ArrayList<Filial> getFiliais() {
+        return filiais;
+    }
+
+    public ObservableList<Filial> getObsFiliais() {
+        return obsFiliais;
+    }
+    
+    
+    
     
 }

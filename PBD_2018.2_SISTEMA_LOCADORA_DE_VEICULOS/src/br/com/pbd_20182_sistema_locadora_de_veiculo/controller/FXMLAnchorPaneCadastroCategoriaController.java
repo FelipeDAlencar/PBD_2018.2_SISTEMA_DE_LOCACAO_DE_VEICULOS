@@ -274,4 +274,106 @@ public class FXMLAnchorPaneCadastroCategoriaController implements Initializable 
         return false;
 
     }
+
+    public TableView<Categoria> getTableView() {
+        return tableView;
+    }
+
+    public TableColumn<Categoria, String> getColunaNome() {
+        return colunaNome;
+    }
+
+    public TableColumn<Categoria, String> getColunaDescricao() {
+        return colunaDescricao;
+    }
+
+    public TableColumn<Categoria, Double> getColunaValor() {
+        return colunaValor;
+    }
+
+    public TextField getTfBusca() {
+        return tfBusca;
+    }
+
+    public Button getBtnBusca() {
+        return btnBusca;
+    }
+
+    public Button getBtInserir() {
+        return btInserir;
+    }
+
+    public Button getBtnEditar() {
+        return BtnEditar;
+    }
+
+    public Button getBtnExcluir() {
+        return btnExcluir;
+    }
+
+    public Label getLbNome() {
+        return lbNome;
+    }
+
+    public Label getLbDescricao() {
+        return lbDescricao;
+    }
+
+    public Label getLbValor() {
+        return lbValor;
+    }
+
+    public Label getLbNumeroDePortas() {
+        return lbNumeroDePortas;
+    }
+
+    public Label getLbArCondicionado() {
+        return lbArCondicionado;
+    }
+
+    public Label getLbMP3() {
+        return lbMP3;
+    }
+
+    public Label getLbNumeroDePassageiros() {
+        return lbNumeroDePassageiros;
+    }
+
+    public Label getLbDVD() {
+        return lbDVD;
+    }
+
+    public Label getLbDirecaoHidraulica() {
+        return lbDirecaoHidraulica;
+    }
+
+    public Label getLbRadio() {
+        return lbRadio;
+    }
+
+    public Label getLbTipoCambio() {
+        return lbTipoCambio;
+    }
+
+    public Label getLbCameraDeRe() {
+        return lbCameraDeRe;
+    }
+
+    public Fachada getFachada() {
+        return fachada;
+    }
+
+    public ArrayList<Categoria> getCategorias() {
+        return categorias;
+    }
+
+    public ObservableList<Categoria> getObsCategorias() {
+        return obsCategorias;
+    }
+
+    public FXMLAnchorPaneCadastroCategoriaDialogController getControllerDialog() {
+        return controllerDialog;
+    }
+    
+    
 }

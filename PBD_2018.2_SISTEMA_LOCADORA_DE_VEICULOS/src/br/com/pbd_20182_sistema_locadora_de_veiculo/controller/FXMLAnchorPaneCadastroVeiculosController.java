@@ -8,6 +8,8 @@ package br.com.pbd_20182_sistema_locadora_de_veiculo.controller;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.BusinessExpection;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaJuridica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Veiculo;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.view.Alerta;
 import com.sun.deploy.util.FXLoader;
@@ -121,6 +123,13 @@ public class FXMLAnchorPaneCadastroVeiculosController implements Initializable {
                 (observable, oldValue, newValue) -> selecionouDaTabela(newValue));
         
         cbDisponível.setDisable(true);
+        
+        
+        if(FXMLLoginController.pessoa instanceof PessoaFisica || FXMLLoginController.pessoa instanceof PessoaJuridica){
+            btnEditar.setDisable(true);
+            btnExcluir.setDisable(true);
+            btnInserir.setDisable(true);
+        }
     }
     
     @FXML
@@ -261,5 +270,103 @@ public class FXMLAnchorPaneCadastroVeiculosController implements Initializable {
         return false;
         
     }
+
+    public TableView<Veiculo> getTableView() {
+        return tableView;
+    }
+
+    public TableColumn<Veiculo, String> getColunaModelo() {
+        return colunaModelo;
+    }
+
+    public TableColumn<Veiculo, String> getColunaCor() {
+        return colunaCor;
+    }
+
+    public TableColumn<Veiculo, Integer> getColunaAnoModelo() {
+        return colunaAnoModelo;
+    }
+
+    public Button getBtnPesquisar() {
+        return btnPesquisar;
+    }
+
+    public Label getLbModelo() {
+        return lbModelo;
+    }
+
+    public Label getLbFabricante() {
+        return lbFabricante;
+    }
+
+    public Label getLbAnoModelo() {
+        return lbAnoModelo;
+    }
+
+    public Label getLbAnoDeFabricacao() {
+        return lbAnoDeFabricacao;
+    }
+
+    public Label getLbCor() {
+        return lbCor;
+    }
+
+    public Label getLbPlaca() {
+        return lbPlaca;
+    }
+
+    public Label getLbNChassi() {
+        return lbNChassi;
+    }
+
+    public Label getLbKmAtual() {
+        return lbKmAtual;
+    }
+
+    public Label getLbTipoCombustivel() {
+        return lbTipoCombustivel;
+    }
+
+    public Label getLbTorqueDoMotor() {
+        return lbTorqueDoMotor;
+    }
+
+    public Label getLbCategoria() {
+        return lbCategoria;
+    }
+
+    public TextField getTfPesquisa() {
+        return tfPesquisa;
+    }
+
+    public CheckBox getCbDisponível() {
+        return cbDisponível;
+    }
+
+    public Button getBtnInserir() {
+        return btnInserir;
+    }
+
+    public Button getBtnEditar() {
+        return btnEditar;
+    }
+
+    public Button getBtnExcluir() {
+        return btnExcluir;
+    }
+
+    public Fachada getFachada() {
+        return fachada;
+    }
+
+    public ArrayList<Veiculo> getVeiculos() {
+        return veiculos;
+    }
+
+    public ObservableList<Veiculo> getObsVeiculos() {
+        return obsVeiculos;
+    }
+    
+    
     
 }

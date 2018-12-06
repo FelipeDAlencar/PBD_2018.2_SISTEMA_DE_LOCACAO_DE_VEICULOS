@@ -262,4 +262,10 @@ public class FXMLVBoxTelaPrincipalController implements Initializable {
         this.stage = stage;
     }
 
+    public MenuItem getMenuiItemFilial() {
+        return menuiItemFilial;
+    }
+    
+    
+
 }

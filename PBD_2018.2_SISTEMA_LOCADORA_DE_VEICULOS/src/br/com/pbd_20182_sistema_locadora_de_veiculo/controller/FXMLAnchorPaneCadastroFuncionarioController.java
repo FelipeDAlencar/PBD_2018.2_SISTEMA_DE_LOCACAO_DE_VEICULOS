@@ -259,5 +259,103 @@ public class FXMLAnchorPaneCadastroFuncionarioController implements Initializabl
         
         return false;
     }
+
+    public TableView<Funcionario> getTableView() {
+        return tableView;
+    }
+
+    public TableColumn<Funcionario, String> getColunaNome() {
+        return colunaNome;
+    }
+
+    public TableColumn<Funcionario, String> getColunaLogin() {
+        return colunaLogin;
+    }
+
+    public TableColumn<Funcionario, String> getColunaMatricula() {
+        return colunaMatricula;
+    }
+
+    public Label getLbNome() {
+        return lbNome;
+    }
+
+    public Label getLbCodigo() {
+        return lbCodigo;
+    }
+
+    public Label getLbMatricula() {
+        return lbMatricula;
+    }
+
+    public Label getLbCargo() {
+        return lbCargo;
+    }
+
+    public CheckBox getCbSuperUsuario() {
+        return cbSuperUsuario;
+    }
+
+    public Label getLbCidade() {
+        return lbCidade;
+    }
+
+    public Label getLbRua() {
+        return lbRua;
+    }
+
+    public Label getLbBairro() {
+        return lbBairro;
+    }
+
+    public Label getLbUF() {
+        return lbUF;
+    }
+
+    public Label getLBNumero() {
+        return LBNumero;
+    }
+
+    public TextField getTfBuscar() {
+        return tfBuscar;
+    }
+
+    public Button getBtnPesquisar() {
+        return btnPesquisar;
+    }
+
+    public Button getBtnInserir() {
+        return btnInserir;
+    }
+
+    public Button getBtnExcluir() {
+        return btnExcluir;
+    }
+
+    public Button getBtnEditar() {
+        return btnEditar;
+    }
+
+    public ArrayList<Funcionario> getFuncionarios() {
+        return funcionarios;
+    }
+
+    public ObservableList<Funcionario> getObsFuncionarios() {
+        return obsFuncionarios;
+    }
+
+    public DAOPessoa getdAOPessoa() {
+        return dAOPessoa;
+    }
+
+    public Fachada getFachada() {
+        return fachada;
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
+    
+    
     
 }

@@ -192,4 +192,54 @@ public class FXMLAnchorPaneCadastroReservaController implements Initializable {
         return btnExcluir;
     }
 
+    public TableView<ReservaPessoasCategorias> getTableView() {
+        return tableView;
+    }
+
+    public TableColumn<ReservaPessoasCategorias, Pessoa> getColunaCliente() {
+        return colunaCliente;
+    }
+
+    public TableColumn<ReservaPessoasCategorias, Categoria> getColunaCategoria() {
+        return colunaCategoria;
+    }
+
+    public TableColumn<ReservaPessoasCategorias, Date> getColunaData() {
+        return colunaData;
+    }
+
+    public TextField getTfBusca() {
+        return tfBusca;
+    }
+
+    public Label getLbCliente() {
+        return lbCliente;
+    }
+
+    public Label getLbCategoria() {
+        return lbCategoria;
+    }
+
+    public Label getLbData() {
+        return lbData;
+    }
+
+    public Label getLbValorPrevisto() {
+        return lbValorPrevisto;
+    }
+
+    public ArrayList<ReservaPessoasCategorias> getReservaPessoasCategoriases() {
+        return reservaPessoasCategoriases;
+    }
+
+    public ObservableList<ReservaPessoasCategorias> getObsReservaPessoasCategoriases() {
+        return obsReservaPessoasCategoriases;
+    }
+
+    public Fachada getFachada() {
+        return fachada;
+    }
+
+    
+    
 }

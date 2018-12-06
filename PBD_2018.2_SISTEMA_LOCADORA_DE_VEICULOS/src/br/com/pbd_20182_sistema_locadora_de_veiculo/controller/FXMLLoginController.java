@@ -56,6 +56,7 @@ public class FXMLLoginController implements Initializable {
     private DAOPessoa dAOPessoa = new DAOPessoa();
     private FXMLVBoxTelaPrincipalController controllerPrincipal;
     private FXMLAnchorPaneTelaDeMudancaDeSenhaController controllerMudancaSenha;
+    public static Pessoa pessoa;
 
     public FXMLLoginController(Stage stage) {
         this.stage = stage;
@@ -69,6 +70,8 @@ public class FXMLLoginController implements Initializable {
         System.err.println(dAOPessoa.criptografarSenha("55"));
 
         pessoa = dAOPessoa.buscarLogin(pessoa);
+
+        this.pessoa = pessoa;
         if (pessoa != null) {
             if (!verificarPrimeiroAcesso(pessoa)) {
                 exibirTelaPrincipal(pessoa);
@@ -98,13 +101,18 @@ public class FXMLLoginController implements Initializable {
             controllerPrincipal.getMenuItemLocacoes().setDisable(true);
             controllerPrincipal.getMenuItemConfiguracoes().setDisable(true);
             controllerPrincipal.getMenuRelatorios().setDisable(true);
+            controllerPrincipal.getMenuiItemFilial().setDisable(true);
+            controllerPrincipal.getMenuItemCategoria().setDisable(true);
+            controllerPrincipal.getMenuItemReservas().setDisable(true);
 
         } else if (pessoa instanceof Funcionario) {
+
             Funcionario funcionario = (Funcionario) pessoa;
-            if (funcionario.isSuperUsuario()) {
-                System.out.println("Tem privilegios");
-            } else {
+            if (!(funcionario.isSuperUsuario())) {
+                
                 controllerPrincipal.getMenuItemConfiguracoes().setDisable(true);
+                controllerPrincipal.getMenuRelatorios().setDisable(true);
+
             }
 
         }
@@ -132,9 +140,9 @@ public class FXMLLoginController implements Initializable {
         } else if (pessoa instanceof Funcionario) {
             if (dAOPessoa.criptografarSenha(((Funcionario) pessoa).getMatricula()).equals(((Funcionario) pessoa).getSenha())) {
                 pessoa = ((Funcionario) pessoa);
-                
+
                 PrimeiroAcesso = true;
-               
+
             }
         }
 
