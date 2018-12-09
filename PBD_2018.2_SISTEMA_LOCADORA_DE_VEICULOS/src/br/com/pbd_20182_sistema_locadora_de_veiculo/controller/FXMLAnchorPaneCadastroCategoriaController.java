@@ -22,9 +22,11 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -34,6 +36,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class FXMLAnchorPaneCadastroCategoriaController implements Initializable {
@@ -106,13 +109,21 @@ public class FXMLAnchorPaneCadastroCategoriaController implements Initializable 
     private ObservableList<Categoria> obsCategorias;
     private FXMLAnchorPaneCadastroCategoriaDialogController controllerDialog;
 
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        fachada = Fachada.getInstance();
+
+        tableView.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> selecionouDaTabela(newValue));
+    }
+
     @FXML
     void acaoDeBtns(ActionEvent event) throws BusinessExpection, DAOException {
         if (event.getSource() == btInserir) {
 
             Categoria categoria = null;
 
-            boolean confirmar = exibirTelaDeCadastroDeCategorias(categoria);
+            boolean confirmar = exibirTelaDeCadastroDeCategorias(categoria, event);
 
             if (confirmar) {
                 Categoria categoriaRetorno = controllerDialog.getCategoria();
@@ -166,7 +177,7 @@ public class FXMLAnchorPaneCadastroCategoriaController implements Initializable 
 
             if (categoria != null) {
 
-                boolean sucesso = exibirTelaDeCadastroDeCategorias(categoria);
+                boolean sucesso = exibirTelaDeCadastroDeCategorias(categoria, event);
 
                 if (sucesso) {
 
@@ -209,14 +220,6 @@ public class FXMLAnchorPaneCadastroCategoriaController implements Initializable 
         }
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        fachada = Fachada.getInstance();
-
-        tableView.getSelectionModel().selectedItemProperty().addListener(
-                (observable, oldValue, newValue) -> selecionouDaTabela(newValue));
-    }
-
     private void selecionouDaTabela(Categoria categoria) {
 
         if (categoria != null) {
@@ -247,7 +250,7 @@ public class FXMLAnchorPaneCadastroCategoriaController implements Initializable 
         tableView.setItems(obsCategorias);
     }
 
-    public boolean exibirTelaDeCadastroDeCategorias(Categoria categoria) {
+    public boolean exibirTelaDeCadastroDeCategorias(Categoria categoria, Event event) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(FXMLAnchorPaneCadastroCategoriaDialogController.class.
@@ -259,6 +262,9 @@ public class FXMLAnchorPaneCadastroCategoriaController implements Initializable 
             Stage stage = new Stage();
             Scene scene = new Scene(pane);
             stage.setScene(scene);
+
+            stage.initOwner(((Node) event.getSource()).getScene().getWindow());
+            stage.initModality(Modality.WINDOW_MODAL);
 
             controllerDialog.setStage(stage);
             controllerDialog.setCategoria(categoria);
@@ -374,6 +380,5 @@ public class FXMLAnchorPaneCadastroCategoriaController implements Initializable 
     public FXMLAnchorPaneCadastroCategoriaDialogController getControllerDialog() {
         return controllerDialog;
     }
-    
-    
+
 }

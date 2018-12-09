@@ -37,11 +37,13 @@ import java.util.logging.Logger;
 import javafx.application.Application;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 import javafx.scene.layout.Pane;
 
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import javax.persistence.EntityManager;
 
@@ -54,24 +56,32 @@ public class App extends Application {
 //    private Thread thread;
 //    private Fachada fachada;
 //    private int hora;
+    public static Stage stage = null;
 
     @Override
     public void start(Stage primaryStage) throws IOException, DAOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLLogin.fxml"));
-        loader.setControllerFactory(new Callback<Class<?>, Object>() {
-            @Override
-            public Object call(Class<?> param) {
-                return new FXMLLoginController(primaryStage);
-            }
-        });
-        Pane root = loader.load();
+//        FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLLogin.fxml"));
+//        loader.setControllerFactory(new Callback<Class<?>, Object>() {
+//            @Override
+//            public Object call(Class<?> param) {
+//                return new FXMLLoginController(primaryStage);
+//            }
+//        });
+//        Pane root = loader.load();
+//
+//        //Pane root = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLVboxTelaPrincipal.fxml"));
+//        Scene scene = new Scene(root);
+//
+//        primaryStage.setScene(scene);
+//        primaryStage.show();
+//        primaryStage.setTitle("LOCADORA DE VEÍCULOS PAJEÚ");
 
-        //Pane root = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLVboxTelaPrincipal.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLSplash.fxml"));
         Scene scene = new Scene(root);
-
         primaryStage.setScene(scene);
+        primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.show();
-        primaryStage.setTitle("LOCADORA DE VEÍCULOS PAJEÚ");
+        this.stage = primaryStage;
 
         EntityManager em = ConnectionFactory.getInstance().getConnection();
         //new FXMLLoginController(primaryStage);

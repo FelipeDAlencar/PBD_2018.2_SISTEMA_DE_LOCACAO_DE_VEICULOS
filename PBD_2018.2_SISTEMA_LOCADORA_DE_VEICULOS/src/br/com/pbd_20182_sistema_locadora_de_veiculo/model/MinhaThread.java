@@ -50,7 +50,7 @@ public class MinhaThread extends Task<Integer> {
             while (true) {
 
                 ArrayList<ReservaPessoasCategorias> reservas = fachada.listarTodosReservaPessoasCategorias();
-
+                System.err.println(reservas);
                 for (ReservaPessoasCategorias reserva : reservas) {
                     Calendar dataHoraDaReserva = Calendar.getInstance();
                     dataHoraDaReserva.setTime(reserva.getDataHora());
@@ -62,13 +62,14 @@ public class MinhaThread extends Task<Integer> {
                     }
 
                     dataHoraDaReserva.add(Calendar.MINUTE, 60);
-
+                    
                     if (dataHoraDaReserva.compareTo(dataHoraAtual) < 0) {
                         ArrayList<Veiculo> veiculos = fachada.buscarPorVeiculosIndisponiveisPorCategoria(reserva.getCategoria());
                         reserva.setStatus(false);
-
+                        
+                        
                         fachada.salvarReservaPessoasCategorias(reserva);
-
+                        
                     }
 
                 }

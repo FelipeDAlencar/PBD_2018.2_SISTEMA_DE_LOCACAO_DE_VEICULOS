@@ -26,7 +26,7 @@ import org.hibernate.type.descriptor.java.LocalDateJavaDescriptor;
  *
  * @author Felipe
  */
-public class teste  {
+public class teste {
 
     public static void main(String[] args) throws DAOException {
 //        String nome = "CN1";

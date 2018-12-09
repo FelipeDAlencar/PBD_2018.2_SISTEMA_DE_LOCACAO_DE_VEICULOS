@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -11,7 +12,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.pbd_20182_sistema_locadora_de_veiculo.controller.FXMLAnchorPaneCadastroFilialDialogController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: #3b5998;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.pbd_20182_sistema_locadora_de_veiculo.controller.FXMLAnchorPaneCadastroFilialDialogController">
    <children>
       <GridPane layoutX="128.0" layoutY="29.0" prefHeight="30.0" prefWidth="244.0">
         <columnConstraints>
@@ -22,8 +23,8 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Nome" />
-            <TextField fx:id="tfNomeFilial" prefHeight="25.0" prefWidth="147.0" GridPane.columnIndex="1" />
+            <Label text="Nome" textFill="GAINSBORO" />
+            <TextField fx:id="tfNomeFilial" prefHeight="25.0" prefWidth="147.0" promptText="Nome" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" />
          </children>
       </GridPane>
       <Label layoutX="128.0" layoutY="67.0" text="Informações referentes ao endereço" />
@@ -41,22 +42,28 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Cidade" />
-            <Label text="Rua" GridPane.rowIndex="1" />
-            <Label text="Bairro" GridPane.rowIndex="2" />
-            <Label text="UF" GridPane.rowIndex="3" />
-            <Label text="Número" GridPane.rowIndex="4" />
-            <TextField fx:id="tfCidade" GridPane.columnIndex="1" />
-            <TextField fx:id="tfRua" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="tfBairro" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="tfNumero" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label text="Cidade" textFill="GAINSBORO" />
+            <Label text="Rua" textFill="GAINSBORO" GridPane.rowIndex="1" />
+            <Label text="Bairro" textFill="GAINSBORO" GridPane.rowIndex="2" />
+            <Label text="UF" textFill="GAINSBORO" GridPane.rowIndex="3" />
+            <Label text="Número" textFill="GAINSBORO" GridPane.rowIndex="4" />
+            <TextField fx:id="tfCidade" promptText="Cidade" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" />
+            <TextField fx:id="tfRua" promptText="Rua" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="tfBairro" promptText="Bairro" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="tfNumero" promptText="Número" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <ComboBox fx:id="comboUF" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
       <Group layoutX="150.0" layoutY="329.0">
          <children>
-            <Button fx:id="btnConfirmar" mnemonicParsing="false" onAction="#acaoBtns" prefHeight="25.0" prefWidth="80.0" text="Confirmar" />
-            <Button fx:id="btnCancelar" layoutX="121.0" mnemonicParsing="false" onAction="#acaoBtns" prefHeight="25.0" prefWidth="80.0" text="Cancelar" />
+            <Button fx:id="btnConfirmar" mnemonicParsing="false" onAction="#acaoBtns" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #006400;" text="Confirmar" textFill="GAINSBORO">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button fx:id="btnCancelar" layoutX="121.0" mnemonicParsing="false" onAction="#acaoBtns" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #8B0000;" text="Cancelar" textFill="GAINSBORO">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
          </children>
       </Group>
    </children>

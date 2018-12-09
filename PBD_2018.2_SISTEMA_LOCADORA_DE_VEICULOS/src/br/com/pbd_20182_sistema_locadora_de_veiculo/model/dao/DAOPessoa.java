@@ -20,7 +20,6 @@ import javax.persistence.Query;
 import javax.persistence.StoredProcedureQuery;
 import javax.persistence.TypedQuery;
 
-
 /**
  *
  * @author Felipe
@@ -31,9 +30,6 @@ public class DAOPessoa extends DAOGenerico<Pessoa> implements IDAOPessoa {
 
 //    public DAOPessoa(int a) {
 //    }
-    
-    
-
     public static DAOPessoa getInstace() {
         if (dAOPessoa != null) {
             return dAOPessoa;
@@ -113,11 +109,11 @@ public class DAOPessoa extends DAOGenerico<Pessoa> implements IDAOPessoa {
 
         } catch (Exception e) {
             e.printStackTrace();
+            throw new DAOException("ERRO AO BUSCAR NO BANCO DE DADOS");
         } finally {
             em.close();
         }
 
-        return null;
     }
 
     @Override
@@ -134,8 +130,7 @@ public class DAOPessoa extends DAOGenerico<Pessoa> implements IDAOPessoa {
 
         String cripttografia = (String) query
                 .getOutputParameterValue("cript");
-        
-        
+
         em.close();
         return cripttografia;
 

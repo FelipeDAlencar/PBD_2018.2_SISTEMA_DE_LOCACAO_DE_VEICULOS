@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -13,13 +14,13 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane id="AnchorPane" prefHeight="412.0" prefWidth="588.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.pbd_20182_sistema_locadora_de_veiculo.controller.FXMLAchorPaneCadastroClienteDialogController">
+<AnchorPane id="AnchorPane" prefHeight="352.0" prefWidth="606.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.pbd_20182_sistema_locadora_de_veiculo.controller.FXMLAchorPaneCadastroClienteDialogController">
    <children>
-      <ScrollPane prefHeight="560.0" prefWidth="610.0">
+      <ScrollPane prefHeight="352.0" prefWidth="610.0">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="572.0" prefWidth="593.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="572.0" prefWidth="593.0" style="-fx-background-color: #3b5998;">
                <children>
-                  <GridPane fx:id="gridPane2" hgap="2.0" layoutX="71.0" layoutY="55.0" prefHeight="222.0" prefWidth="375.0">
+                  <GridPane fx:id="gridPane2" hgap="2.0" layoutX="129.0" layoutY="64.0" prefHeight="222.0" prefWidth="375.0">
                     <columnConstraints>
                       <ColumnConstraints fx:id="gridPane" hgrow="SOMETIMES" maxWidth="177.0" minWidth="10.0" prefWidth="137.0" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.0" minWidth="10.0" prefWidth="229.0" />
@@ -34,27 +35,34 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label fx:id="lbDataNascimento" text="Data de nascimento" GridPane.rowIndex="3" />
-                        <Label fx:id="lbCPFCNPJ" text="CPF" GridPane.rowIndex="1" />
-                        <Label fx:id="lbDataDeVencimentoCNH" text="Data de vencimento CNH" GridPane.rowIndex="4" />
-                        <Label fx:id="lbIndentificacao" text="Identificação" GridPane.rowIndex="5" />
-                        <Label fx:id="lbNCNH" text="Nº da CNH" GridPane.rowIndex="6" />
-                        <Label text="Nome" />
-                        <TextField fx:id="tfNome" GridPane.columnIndex="1" />
-                        <TextField fx:id="tfCPFCNPJ" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <DatePicker fx:id="cpDataNascimento" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <DatePicker fx:id="cpVencimentoCNH" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <TextField fx:id="tfIdentificacao" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <TextField fx:id="tfNCNH" prefHeight="48.0" prefWidth="235.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                        <Label text="Login" GridPane.rowIndex="2" />
-                        <TextField fx:id="tfLogin" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="lbDataNascimento" text="Data de nascimento" textFill="GAINSBORO" GridPane.rowIndex="3" />
+                        <Label fx:id="lbCPFCNPJ" text="CPF" textFill="GAINSBORO" GridPane.rowIndex="1" />
+                        <Label fx:id="lbDataDeVencimentoCNH" text="Data de vencimento CNH" textFill="GAINSBORO" GridPane.rowIndex="4" />
+                        <Label fx:id="lbIndentificacao" text="Identificação" textFill="GAINSBORO" GridPane.rowIndex="5" />
+                        <Label fx:id="lbNCNH" text="Nº da CNH" textFill="GAINSBORO" GridPane.rowIndex="6" />
+                        <Label text="Nome" textFill="GAINSBORO" />
+                        <TextField fx:id="tfNome" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" />
+                        <TextField fx:id="tfCPFCNPJ" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <DatePicker fx:id="cpDataNascimento" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <DatePicker fx:id="cpVencimentoCNH" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextField fx:id="tfIdentificacao" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <TextField fx:id="tfNCNH" prefHeight="19.0" prefWidth="232.0" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label text="Login" textFill="GAINSBORO" GridPane.rowIndex="2" />
+                        <TextField fx:id="tfLogin" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
-                  <Button fx:id="btnCadastrar" layoutX="153.0" layoutY="510.0" mnemonicParsing="false" onAction="#acoesBtns" prefHeight="31.0" prefWidth="99.0" text="Cadastrar" />
-                  <Button fx:id="BtnCancelar" layoutX="316.0" layoutY="510.0" mnemonicParsing="false" onAction="#acoesBtns" prefHeight="31.0" prefWidth="99.0" text="Cancelar" />
-                  <RadioButton fx:id="rbPessoaJuridica" layoutX="208.0" layoutY="25.0" mnemonicParsing="false" onAction="#acaoRbs" text="Pessoa Juridica" />
-                  <Label layoutX="71.0" layoutY="302.0" text="INFORMAÇÕES SOBRE ENDEREÇO" />
-                  <GridPane layoutX="71.0" layoutY="339.0">
+                  <Button fx:id="btnCadastrar" layoutX="153.0" layoutY="510.0" mnemonicParsing="false" onAction="#acoesBtns" prefHeight="23.0" prefWidth="99.0" style="-fx-background-color: #006400;" text="Cadastrar" textFill="GAINSBORO">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                  <Button fx:id="BtnCancelar" layoutX="316.0" layoutY="510.0" mnemonicParsing="false" onAction="#acoesBtns" prefHeight="23.0" prefWidth="99.0" style="-fx-background-color: #8B0000;" text="Cancelar" textFill="GAINSBORO">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <RadioButton fx:id="rbPessoaJuridica" layoutX="331.0" layoutY="25.0" mnemonicParsing="false" onAction="#acaoRbs" text="Pessoa Juridica" />
+                  <Label layoutX="129.0" layoutY="304.0" text="INFORMAÇÕES SOBRE ENDEREÇO" />
+                  <GridPane layoutX="126.0" layoutY="352.0" prefHeight="145.0" prefWidth="376.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -67,20 +75,20 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label text="Bairro" GridPane.rowIndex="2" />
-                        <Label text="UF" GridPane.rowIndex="3" />
-                        <Label text="Número" GridPane.rowIndex="4" />
-                        <Label text="Rua" GridPane.rowIndex="1" />
-                        <TextField fx:id="tfRua" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField fx:id="tfBairro" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <TextField fx:id="tfNumero" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <ComboBox fx:id="comboUF" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Label text="Cidade" />
-                        <TextField fx:id="tfCidade" GridPane.columnIndex="1" />
+                        <Label text="Bairro" textFill="GAINSBORO" GridPane.rowIndex="2" />
+                        <Label text="UF" textFill="GAINSBORO" GridPane.rowIndex="3" />
+                        <Label text="Número" textFill="GAINSBORO" GridPane.rowIndex="4" />
+                        <Label text="Rua" textFill="GAINSBORO" GridPane.rowIndex="1" />
+                        <TextField fx:id="tfRua" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="tfBairro" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="tfNumero" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <ComboBox fx:id="comboUF" prefWidth="150.0" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label text="Cidade" textFill="GAINSBORO" />
+                        <TextField fx:id="tfCidade" prefHeight="17.0" prefWidth="193.0" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" />
                      </children>
                   </GridPane>
-                  <Separator layoutX="71.0" layoutY="333.0" prefHeight="0.0" prefWidth="361.0" />
-                  <RadioButton fx:id="rbPessoaFisica" layoutX="71.0" layoutY="25.0" mnemonicParsing="false" onAction="#acaoRbs" selected="true" text="Pessoa Física" />
+                  <Separator layoutX="129.0" layoutY="338.0" prefHeight="0.0" prefWidth="361.0" />
+                  <RadioButton fx:id="rbPessoaFisica" layoutX="181.0" layoutY="25.0" mnemonicParsing="false" onAction="#acaoRbs" selected="true" text="Pessoa Física" />
                </children>
             </AnchorPane>
         </content>

@@ -32,7 +32,6 @@ public interface IFachada {
     public void salvarCategoria(Categoria categoria)throws BusinessExpection,DAOException;
     public ArrayList<Categoria> listarTodosCategoria()throws DAOException;
     public Categoria buscarCategoriaPorId(int id)throws DAOException;
-    public void alterarCategoria(Categoria categoria)throws DAOException;
     public String buscarUltimoNomeCategoria()throws DAOException;
     public Categoria buscarCategoriaPorNome(String nome)throws DAOException;
     public ArrayList<Categoria> buscarPorBuscaCategoria(String busca)throws DAOException;
@@ -41,7 +40,6 @@ public interface IFachada {
     public void salvarCaminhonetaDeCarga(CaminhonetaDeCarga caminhonetaDeCarga)throws BusinessExpection,DAOException;
     public ArrayList<CaminhonetaDeCarga> listarTodosCaminhonetaDeCarga()throws DAOException;
     public CaminhonetaDeCarga buscarPorIdCaminhonetaDeCarga(int id)throws DAOException;
-    public void alterarCaminhonetaDeCarga(CaminhonetaDeCarga caminhonetaDeCarga)throws DAOException;
     public String buscarUltimoNomeCaminhonetaDeCarga()throws DAOException;
 
     
@@ -54,7 +52,7 @@ public interface IFachada {
     public void salvarEndereco(Endereco endereco)throws DAOException, BusinessExpection;
     public ArrayList<Endereco> listarTodosEndereco()throws DAOException;
     public Endereco buscarPorIdEndereco(int id)throws DAOException;
-    public void alterarEndereco(Endereco endereco)throws DAOException;
+    
     
     public void salvarFilial(Filial filial)throws DAOException, BusinessExpection;
     public ArrayList<Filial> listarTodosFilial()throws DAOException;
@@ -73,18 +71,18 @@ public interface IFachada {
     public void salvarLocacao(Locacao locacao)throws DAOException,BusinessExpection;
     public ArrayList<Locacao> listarTodosLocacao()throws DAOException;
     public Locacao buscarPorIdLocacao(int id)throws DAOException;
-    public void alterarLocacao(Locacao locacao)throws DAOException;
+    
     
     
     public void salvarLog(Log log)throws BusinessExpection,DAOException;
     public ArrayList<Log> listarTodosLog()throws DAOException;
     public Log buscarPorIdLog(int id)throws DAOException;
-    public void alterarLog(Log log)throws DAOException;
+    
     
     
     public void salvarPessoa(Pessoa pessoa)throws BusinessExpection,DAOException;
     public Pessoa buscarPorIdPessoa(int id)throws DAOException;
-    public void alterarPessoa(PessoaFisica pessoaFisica)throws DAOException;
+   
     public Pessoa buscarLoginPessoa(Pessoa pessoa) throws DAOException;
     public ArrayList<Pessoa> listarTodosPessoa() throws DAOException;
     public String buscarUltimoCodigoPessoa() throws DAOException;
@@ -95,24 +93,24 @@ public interface IFachada {
     public void salvarPessoaFisica(PessoaFisica pessoaFisica)throws BusinessExpection,DAOException;
     public ArrayList<PessoaFisica> listarTodosPessoaFisica()throws DAOException;
     public PessoaFisica buscarPorIdPessoaFisica(int id)throws DAOException;
-    public void alterarPessoaFisica(PessoaFisica pessoaFisica)throws DAOException;
+   
     
     
     public void salvarPessoaJuridica(PessoaJuridica pessoaJuridica)throws BusinessExpection,DAOException;
     public ArrayList<PessoaJuridica> listarTodosPessoaJuridica()throws DAOException;
     public PessoaJuridica buscarPorIdPessoaJuridica(int id)throws DAOException;
-    public void alterarPessoaJuridica(PessoaJuridica pessoaJuridica)throws DAOException;
+    
     
     
     public void salvarReservaPessoasCategorias(ReservaPessoasCategorias reservaPessoasCategorias)throws BusinessExpection,DAOException;
     public ArrayList<ReservaPessoasCategorias> listarTodosReservaPessoasCategorias()throws DAOException;
     public ReservaPessoasCategorias buscarPorIdReservaPessoasCategorias(int id)throws DAOException;
-    public void alterarReservaPessoasCategorias(ReservaPessoasCategorias reservaPessoasCategorias)throws DAOException;
+    public ArrayList<ReservaPessoasCategorias> buscarPorBuscaReservasPessoaCategoria(String busca) throws DAOException;
     
     public void salvarVeiculo(Veiculo veiculo)throws BusinessExpection,DAOException;
     public ArrayList<Veiculo> listarTodosVeiculo()throws DAOException;
     public Veiculo buscarPorIdVeiculo(int id)throws DAOException;
-    public void alterarVeiculo(Veiculo veiculo)throws DAOException;
+    
     public ArrayList<Veiculo> buscarVeiculoPorCategoria(Categoria categoria) throws DAOException;
     public ArrayList<Veiculo> buscarPorVeiculosIndisponiveisPorCategoria(Categoria categoria)throws DAOException;
     public ArrayList<Veiculo> buscarPorBuscaVeiculo(String busca)throws DAOException;

@@ -33,7 +33,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 /**
@@ -189,7 +191,10 @@ public class FXMLAchorPaneCadastroClienteDialogController implements Initializab
 
     public void initialize(URL url, ResourceBundle rb) {
         lbInscricaoEstadual = new Label("Inscrição Estadual");
+        lbInscricaoEstadual.setTextFill(Paint.valueOf("#dcdcdc"));
+        
         tfInscricaoEstadual = new TextField();
+        tfInscricaoEstadual.setStyle("-fx-background-color: #D3D3D3;");
 
         lbInscricaoEstadual.setVisible(false);
         tfInscricaoEstadual.setVisible(false);
@@ -383,5 +388,15 @@ public class FXMLAchorPaneCadastroClienteDialogController implements Initializab
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
+
+    public RadioButton getRbPessoaJuridica() {
+        return rbPessoaJuridica;
+    }
+
+    public RadioButton getRbPessoaFisica() {
+        return rbPessoaFisica;
+    }
+    
+    
 
 }

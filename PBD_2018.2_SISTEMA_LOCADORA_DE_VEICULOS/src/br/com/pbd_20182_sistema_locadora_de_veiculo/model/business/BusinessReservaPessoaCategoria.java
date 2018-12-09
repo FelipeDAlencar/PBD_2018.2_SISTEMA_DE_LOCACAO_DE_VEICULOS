@@ -44,7 +44,7 @@ public class BusinessReservaPessoaCategoria implements IBusinessRerservaPessoaCa
     }
 
     @Override
-    public ArrayList<ReservaPessoasCategorias> listarTodos() {
+    public ArrayList<ReservaPessoasCategorias> listarTodos() throws DAOException {
         return dAOReservaPessoaCategoria.findAll();
     }
 
@@ -54,15 +54,15 @@ public class BusinessReservaPessoaCategoria implements IBusinessRerservaPessoaCa
     }
 
     @Override
-    public void alterar(ReservaPessoasCategorias reservaPessoasCategorias) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<ReservaPessoasCategorias> buscarPorBusca(String busca) throws DAOException {
+        return dAOReservaPessoaCategoria.buscarPorBusca(busca);
     }
 
     private void validar(ReservaPessoasCategorias reservaPessoasCategorias) throws BusinessExpection, DAOException {
         fachada = Fachada.getInstance();
-        System.err.println("Aqui");
         Calendar dataHoraPrevista = Calendar.getInstance();
         dataHoraPrevista.setTime(new Date());
+        System.err.println(dataHoraPrevista.getTime());
         double hora = Double.parseDouble(String.valueOf(dataHoraPrevista.get(Calendar.HOUR_OF_DAY)) + "."
                 + String.valueOf(dataHoraPrevista.get(Calendar.MINUTE)));
 
@@ -73,24 +73,30 @@ public class BusinessReservaPessoaCategoria implements IBusinessRerservaPessoaCa
 
             errorMessage += "Horário não permitido \n";
         }
-        if(reservaPessoasCategorias.getDataHora() != null){
-            if(reservaPessoasCategorias.getDataHora().before(dataHoraPrevista.getTime())){
+        if (reservaPessoasCategorias.getDataHora() != null) {
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(reservaPessoasCategorias.getDataHora());
+            
+            if (calendar.compareTo(dataHoraPrevista) > 0) {
                 errorMessage += "Data não pode ser anterior do que a atual.\n";
             }
-        }else{
+        } else {
             errorMessage += "Por favor, informe a data da reserva.\n";
         }
-        
-        
-        if(!(reservaPessoasCategorias.getCategoria() != null)){
+
+        if (!(reservaPessoasCategorias.getCategoria() != null)) {
             errorMessage += "Por favor, selecione a categoria.\n";
         }
-        if(!(reservaPessoasCategorias.getPessoa() != null)){
+        if (!(reservaPessoasCategorias.getPessoa() != null)) {
             errorMessage += "Por favor, selecione o cliente.\n";
         }
-        if(reservaPessoasCategorias.getValorPrevisto() <= 0){
+        if (reservaPessoasCategorias.getValorPrevisto() <= 0) {
             errorMessage += "Valor informado inválido,\ninforme um valor válido.";
         }
+        System.err.println("Entrou no Bus");
+
+        System.err.println(errorMessage);
+
         if (errorMessage.length() != 0) {
             throw new BusinessExpection("Atenção\n\n" + errorMessage);
         }

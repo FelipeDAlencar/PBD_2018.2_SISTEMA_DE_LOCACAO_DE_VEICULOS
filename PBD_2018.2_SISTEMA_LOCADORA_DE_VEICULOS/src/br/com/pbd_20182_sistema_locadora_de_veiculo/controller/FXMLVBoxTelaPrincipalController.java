@@ -36,7 +36,7 @@ public class FXMLVBoxTelaPrincipalController implements Initializable {
     private MenuItem menuItemReservas;
     @FXML
     private MenuItem menuiItemFilial;
-    
+
     @FXML
     private MenuItem menuItemLocacoes;
 
@@ -81,6 +81,11 @@ public class FXMLVBoxTelaPrincipalController implements Initializable {
 
     Stage stage;
 
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+
+    }
+
     @FXML
     void acaosMenuItensCadastros(ActionEvent event) throws IOException {
         Pane pane;
@@ -108,18 +113,18 @@ public class FXMLVBoxTelaPrincipalController implements Initializable {
             pane = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAnchorPaneCadastroVeiculos.fxml"));
             AnchorPaneContent.getChildren().setAll(pane);
         }
-        
-        if(event.getSource() == menuiItemFilial){
+
+        if (event.getSource() == menuiItemFilial) {
             pane = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAnchorPaneCadastroFilial.fxml"));
             AnchorPaneContent.getChildren().setAll(pane);
         }
-        
-        if(event.getSource() == menuItemFuncionarios){
+
+        if (event.getSource() == menuItemFuncionarios) {
             pane = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAnchorPaneCadastroFuncionario.fxml"));
             AnchorPaneContent.getChildren().setAll(pane);
         }
-        
-        if(event.getSource() == menuItemLocacoes){
+
+        if (event.getSource() == menuItemLocacoes) {
             pane = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAnchorPaneCadastroLocacao.fxml"));
             AnchorPaneContent.getChildren().setAll(pane);
         }
@@ -163,11 +168,6 @@ public class FXMLVBoxTelaPrincipalController implements Initializable {
     @FXML
     void acoesMenuItensRelatorios(ActionEvent event) {
 
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }
 
     public MenuItem getMenuItemClientes() {
@@ -260,12 +260,17 @@ public class FXMLVBoxTelaPrincipalController implements Initializable {
 
     public void setStage(Stage stage) {
         this.stage = stage;
+
+        if (stage != null) {
+            stage.setOnCloseRequest((event) -> {
+                System.exit(0);
+            });
+
+        }
     }
 
     public MenuItem getMenuiItemFilial() {
         return menuiItemFilial;
     }
-    
-    
 
 }

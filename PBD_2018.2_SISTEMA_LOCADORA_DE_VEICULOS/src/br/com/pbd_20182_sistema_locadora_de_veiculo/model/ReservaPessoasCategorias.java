@@ -45,10 +45,9 @@ public class ReservaPessoasCategorias implements Serializable, EntidadeBase {
     private Date dataHora;
     @Column(name = "valor_previsto")
     private double valorPrevisto;
+   
+    private boolean status;
 
-    private boolean status; 
-    
-    
     @Override
 
     public Integer getId() {
@@ -143,7 +142,5 @@ public class ReservaPessoasCategorias implements Serializable, EntidadeBase {
         }
         return true;
     }
-    
 
-    
 }

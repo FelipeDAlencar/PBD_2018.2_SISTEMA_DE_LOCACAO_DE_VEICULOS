@@ -60,6 +60,8 @@ public class FXMLLoginController implements Initializable {
 
     public FXMLLoginController(Stage stage) {
         this.stage = stage;
+        
+        
     }
 
     @FXML
@@ -90,6 +92,10 @@ public class FXMLLoginController implements Initializable {
         Thread thread = new Thread(task);
         thread.setDaemon(true);
         thread.start();
+        
+        stage.setOnCloseRequest((event) -> {
+            System.exit(0);
+        });
 
     }
 

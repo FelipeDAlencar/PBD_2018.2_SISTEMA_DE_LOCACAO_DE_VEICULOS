@@ -5,6 +5,7 @@
  */
 package br.com.pbd_20182_sistema_locadora_de_veiculo.controller;
 
+import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.BusinessExpection;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Geral;
@@ -14,6 +15,7 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Util;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Veiculo;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.view.Alerta;
+import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.ZoneId;
@@ -25,14 +27,20 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -90,25 +98,29 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
     @FXML
     private Button btnCancelar;
 
+    @FXML
+    private Button btnAddMortorista;
+
     private Fachada fachada;
     private Stage stage;
     private boolean sucesso;
     private Locacao locacao;
     private Alerta alerta;
     private Thread thread;
-
+    private FXMLAchorPaneCadastroClienteDialogController controller;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         fachada = Fachada.getInstance();
         alerta = Alerta.getInstace(Alert.AlertType.NONE);
+       
+        tfValor.setDisable(true);
+        tfMetadeprimeiraDiaria.setDisable(true);
+        
         try {
             carregarCombos();
         } catch (DAOException ex) {
-            ex.getMessage();
+            ex.printStackTrace();
         }
-
-        tfValor.setDisable(true);
-        tfMetadeprimeiraDiaria.setDisable(true);
 
         try {
             Geral geral = fachada.buscarGeral();
@@ -124,7 +136,7 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
     }
 
     @FXML
-    void acaoBtns(ActionEvent event) {
+    void acaoBtns(ActionEvent event) throws BusinessExpection, DAOException {
         if (event.getSource() == btnConfirmar) {
 
             Date LocalDate = Date.from(dpDataIda.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
@@ -164,7 +176,7 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
             locacao.setMotorista(comboMotorista.getValue());
             locacao.setVeiculo(comboVeiculo.getValue());
             locacao.setCliente(comboCliente.getValue());
-            
+
             locacao.setAtivo(true);
             if (cbTaxaCombustivel.isSelected()) {
                 locacao.setTaxaCombustivel(TAXA_COM);
@@ -177,7 +189,26 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
             sucesso = true;
             stage.close();
 
-        } else {
+        } else if (event.getSource() == btnAddMortorista) {
+
+            PessoaFisica pessoaFisica = null;
+
+            boolean sucesso = exibirTelaDecadastro(pessoaFisica, event);
+
+            if (sucesso) {
+                
+                pessoaFisica = (PessoaFisica) controller.getPessoa();
+                
+                
+                fachada.salvarPessoaFisica(pessoaFisica);
+
+                Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
+                alerta.alertar(Alert.AlertType.INFORMATION, "Sucesso", "Inserção de motorista",
+                        "Inserção realizada com sucesso. ");
+
+            }
+
+        } else if (event.getSource() == btnCancelar) {
             stage.close();
         }
     }
@@ -185,7 +216,7 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
     @FXML
     void acaoCBs(ActionEvent event) {
         double soma = 0;
-        
+
         if (cbTaxaCombustivel.isSelected()) {
             soma += TAXA_COM;
         }
@@ -193,7 +224,7 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
         if (cbTaxaHigienizacao.isSelected()) {
             soma += TAXA_HI;
         }
-        
+
         calcularValor(soma);
 
     }
@@ -205,7 +236,8 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
         ObservableList<Pessoa> obsCliente = FXCollections.observableArrayList(fachada.listarTodosPessoa());
         comboMotorista.setItems(obsMotorista);
         comboCliente.setItems(obsCliente);
-        comboVeiculo.setItems(obsVeiculos);
+        
+                
     }
 
     public Stage getStage() {
@@ -222,36 +254,66 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
 
     public void setLocacao(Locacao locacao) {
         this.locacao = locacao;
-        
-        if(locacao.getId() != null){
+
+        if (locacao.getId() != null) {
             comboCliente.setValue(locacao.getCliente());
             comboMotorista.setValue(locacao.getMotorista());
             comboVeiculo.setValue(locacao.getVeiculo());
-            
+
             tfKmFinal.setText(String.valueOf(locacao.getKmFinalVeiculo()));
             tfKmInicial.setText(String.valueOf(locacao.getKmInicialDoVeiculo()));
             tfMetadeprimeiraDiaria.setText(String.valueOf(locacao.getMetadeDaPrimeiraDiaria()));
             tfValor.setText(String.valueOf(locacao.getValor()));
-            
+
             dpDataIda.setValue((Util.converterDateEmLocalDate(locacao.getDataIda().getTime())));
             dpDataVolta.setValue((Util.converterDateEmLocalDate(locacao.getDataVolta().getTime())));
-            
+
             cbFinalizada.setSelected(locacao.isFinalizada());
             cbKmLivre.setSelected(locacao.isKmLivre());
-            
-            if(locacao.getTaxaCombustivel() != 0){
+
+            if (locacao.getTaxaCombustivel() != 0) {
                 cbTaxaCombustivel.setSelected(true);
             }
-            
-            if(locacao.getTaxaHigienizacao() != 0){
+
+            if (locacao.getTaxaHigienizacao() != 0) {
                 cbTaxaHigienizacao.setSelected(true);
             }
-            
-            
-            
-            
+
         }
-        
+
+    }
+
+    private boolean exibirTelaDecadastro(Pessoa pessoa, Event event) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAchorPaneCadastroClienteDialog.fxml"));
+            Pane pane = loader.load();
+
+            Stage stage = new Stage();
+
+            stage.setTitle("Cadastro de Clientes");
+            Scene scene = new Scene(pane);
+            stage.setScene(scene);
+
+            stage.initOwner(((Node) event.getSource()).getScene().getWindow());
+            stage.initModality(Modality.WINDOW_MODAL);
+
+            controller = loader.getController();
+            controller.setStage(stage);
+
+            controller.getRbPessoaFisica().setSelected(true);
+            controller.getRbPessoaJuridica().setDisable(true);
+
+            controller.setPessoa(pessoa);
+
+            stage.showAndWait();
+
+            return controller.isConfirmou();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     public boolean isSucesso() {

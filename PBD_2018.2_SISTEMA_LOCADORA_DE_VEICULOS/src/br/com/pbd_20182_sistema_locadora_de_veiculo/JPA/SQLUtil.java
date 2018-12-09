@@ -76,4 +76,10 @@ public class SQLUtil {
 
     }
 
+    public static class Reservas {
+
+        public static String SQL_BUSCAR_POR_BUSCA  = "select r from ReservaPessoasCategorias r INNER JOIN Pessoa p ON r.pessoa = p.id\n" +
+                                                        "INNER JOIN Categoria c ON r.categoria = c.id WHERE r.status = true and LOWER(p.nome) like :NomeCliente or LOWER(c.nome) like :nomeCategoria  or to_char(r.dataHora, 'dd/MM/yyyy') like :dataHora ";
+    }
+
 }

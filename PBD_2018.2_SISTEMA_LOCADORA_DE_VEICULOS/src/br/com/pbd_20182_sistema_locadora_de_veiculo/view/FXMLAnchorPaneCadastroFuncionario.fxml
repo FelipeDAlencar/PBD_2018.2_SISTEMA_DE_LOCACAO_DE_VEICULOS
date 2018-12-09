@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
@@ -17,16 +18,19 @@
 
 <AnchorPane id="AnchorPane" prefHeight="479.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.pbd_20182_sistema_locadora_de_veiculo.controller.FXMLAnchorPaneCadastroFuncionarioController">
    <children>
-      <SplitPane dividerPositions="0.3508771929824561" layoutX="276.0" layoutY="101.0" prefHeight="479.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane dividerPositions="0.3508771929824561" layoutX="276.0" layoutY="101.0" prefHeight="479.0" prefWidth="800.0" style="-fx-background-color: #3b5998;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="477.0" prefWidth="319.0">
                <children>
-                  <TableView fx:id="tableView" layoutX="-41.0" layoutY="14.0" prefHeight="477.0" prefWidth="235.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="tableView" layoutX="-41.0" layoutY="14.0" prefHeight="477.0" prefWidth="235.0" style="-fx-background-color: #D3D3D3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
                       <TableColumn fx:id="colunaNome" prefWidth="138.0" text="Nome" />
                       <TableColumn fx:id="colunaLogin" prefWidth="59.0" text="Login" />
                         <TableColumn fx:id="colunaMatricula" prefWidth="79.0" text="Matricula" />
                     </columns>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </TableView>
                </children>
             </AnchorPane>
@@ -55,21 +59,21 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label text="Nome" />
-                        <Label text="Código" GridPane.rowIndex="1" />
-                        <Label text="Matricula" GridPane.rowIndex="2" />
-                        <Label text="Cargo" GridPane.rowIndex="3" />
+                        <Label text="Nome" textFill="GAINSBORO" />
+                        <Label text="Código" textFill="GAINSBORO" GridPane.rowIndex="1" />
+                        <Label text="Matricula" textFill="GAINSBORO" GridPane.rowIndex="2" />
+                        <Label text="Cargo" textFill="GAINSBORO" GridPane.rowIndex="3" />
                         <Label GridPane.rowIndex="5" />
-                        <Label text="Rua" GridPane.rowIndex="6" />
-                        <Label text="Bairro" GridPane.rowIndex="7" />
-                        <Label text="UF" GridPane.rowIndex="8" />
-                        <Label text="Cidade" GridPane.rowIndex="5" />
-                        <Label text="Número" GridPane.rowIndex="9" />
+                        <Label text="Rua" textFill="GAINSBORO" GridPane.rowIndex="6" />
+                        <Label text="Bairro" textFill="GAINSBORO" GridPane.rowIndex="7" />
+                        <Label text="UF" textFill="GAINSBORO" GridPane.rowIndex="8" />
+                        <Label text="Cidade" textFill="GAINSBORO" GridPane.rowIndex="5" />
+                        <Label text="Número" textFill="GAINSBORO" GridPane.rowIndex="9" />
                         <Label fx:id="lbNome" GridPane.columnIndex="1" />
                         <Label fx:id="lbCodigo" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label fx:id="lbMatricula" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <Label fx:id="lbCargo" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Label text="Super Usuário" GridPane.rowIndex="4" />
+                        <Label text="Super Usuário" textFill="GAINSBORO" GridPane.rowIndex="4" />
                         <CheckBox fx:id="cbSuperUsuario" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <Label fx:id="lbCidade" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                         <Label fx:id="lbRua" GridPane.columnIndex="1" GridPane.rowIndex="6" />
@@ -78,17 +82,29 @@
                         <Label fx:id="LBNumero" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                      </children>
                   </GridPane>
-                  <HBox layoutX="32.0" layoutY="438.0" prefHeight="17.0" prefWidth="200.0">
+                  <HBox layoutX="32.0" layoutY="438.0" prefHeight="17.0" prefWidth="200.0" spacing="5.0">
                      <children>
-                        <TextField fx:id="tfBuscar" />
-                        <Button fx:id="btnPesquisar" mnemonicParsing="false" onAction="#acaoBtns" prefHeight="25.0" prefWidth="97.0" text="Pesquisar" />
+                        <TextField fx:id="tfBuscar" style="-fx-background-color: #D3D3D3;" />
+                        <Button fx:id="btnPesquisar" mnemonicParsing="false" onAction="#acaoBtns" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: #D3D3D3;" text="Pesquisar">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Button>
                      </children>
                   </HBox>
                   <Group layoutX="286.0" layoutY="438.0">
                      <children>
-                        <Button fx:id="btnInserir" mnemonicParsing="false" onAction="#acaoBtns" prefHeight="25.0" prefWidth="60.0" text="Inserir" />
-                        <Button fx:id="btnEditar" layoutX="72.0" mnemonicParsing="false" onAction="#acaoBtns" prefHeight="25.0" prefWidth="60.0" text="Editar" />
-                        <Button fx:id="btnExcluir" layoutX="145.0" mnemonicParsing="false" onAction = "#acaoBtns" prefHeight="25.0" prefWidth="60.0" text="Excluir" />
+                        <Button fx:id="btnInserir" mnemonicParsing="false" onAction="#acaoBtns" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: #D3D3D3;" text="Inserir">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Button>
+                        <Button fx:id="btnEditar" layoutX="72.0" mnemonicParsing="false" onAction="#acaoBtns" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: #D3D3D3;" text="Editar">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Button>
+                        <Button fx:id="btnExcluir" layoutX="145.0" mnemonicParsing="false" onAction="#acaoBtns" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: #D3D3D3;" text="Excluir">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Button>
                      </children>
                   </Group>
                </children>

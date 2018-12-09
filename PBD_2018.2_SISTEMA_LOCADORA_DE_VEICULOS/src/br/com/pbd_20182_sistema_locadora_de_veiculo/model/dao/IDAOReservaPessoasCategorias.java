@@ -5,6 +5,7 @@
  */
 package br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao;
 
+import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ReservaPessoasCategorias;
 import java.util.ArrayList;
 
@@ -14,5 +15,8 @@ import java.util.ArrayList;
  */
 public interface IDAOReservaPessoasCategorias {
     
-    public ArrayList<ReservaPessoasCategorias> findAll();
+    
+    public ArrayList<ReservaPessoasCategorias> findAll()throws DAOException;
+    public ArrayList<ReservaPessoasCategorias> buscarPorBusca(String busca)throws DAOException;
+    
 }

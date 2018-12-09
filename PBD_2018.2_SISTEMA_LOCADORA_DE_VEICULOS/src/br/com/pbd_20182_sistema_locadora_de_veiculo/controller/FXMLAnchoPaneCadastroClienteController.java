@@ -27,9 +27,11 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -39,6 +41,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -119,12 +122,19 @@ public class FXMLAnchoPaneCadastroClienteController implements Initializable {
     private Fachada fachada = Fachada.getInstance();
     private FXMLAchorPaneCadastroClienteDialogController controller;
 
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        tableViewClientes.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> selecionouDaTabela(newValue));
+    }
+
     @FXML
     void acoesDeBotao(ActionEvent event) throws BusinessExpection, DAOException {
 
         if (event.getSource() == BtnInserirCliente) {
             Pessoa pessoa = null;
-            boolean confirmacao = exibirTelaDecadastro(pessoa);
+            boolean confirmacao = exibirTelaDecadastro(pessoa, event
+            );
 
             if (confirmacao) {
                 Pessoa pessoaRetorno = controller.getPessoa();
@@ -159,7 +169,7 @@ public class FXMLAnchoPaneCadastroClienteController implements Initializable {
 
             if (pessoa != null) {
 
-                boolean sucesso = exibirTelaDecadastro(pessoa);
+                boolean sucesso = exibirTelaDecadastro(pessoa, event);
 
                 if (sucesso) {
                     pessoa = controller.getPessoa();
@@ -225,12 +235,6 @@ public class FXMLAnchoPaneCadastroClienteController implements Initializable {
 
         }
 
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        tableViewClientes.getSelectionModel().selectedItemProperty().addListener(
-                (observable, oldValue, newValue) -> selecionouDaTabela(newValue));
     }
 
     public void selecionouDaTabela(Pessoa pessoa) {
@@ -300,16 +304,20 @@ public class FXMLAnchoPaneCadastroClienteController implements Initializable {
 
     }
 
-    private boolean exibirTelaDecadastro(Pessoa pessoa) {
+    private boolean exibirTelaDecadastro(Pessoa pessoa, Event event) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAchorPaneCadastroClienteDialog.fxml"));
             Pane pane = loader.load();
 
             Stage stage = new Stage();
+
             stage.setTitle("Cadastro de Clientes");
             Scene scene = new Scene(pane);
             stage.setScene(scene);
+
+            stage.initOwner(((Node) event.getSource()).getScene().getWindow());
+            stage.initModality(Modality.WINDOW_MODAL);
 
             controller = loader.getController();
             controller.setStage(stage);
