@@ -62,14 +62,13 @@ public class MinhaThread extends Task<Integer> {
                     }
 
                     dataHoraDaReserva.add(Calendar.MINUTE, 60);
-                    
+
+                    System.err.println(dataHoraDaReserva.getTime());
                     if (dataHoraDaReserva.compareTo(dataHoraAtual) < 0) {
-                        ArrayList<Veiculo> veiculos = fachada.buscarPorVeiculosIndisponiveisPorCategoria(reserva.getCategoria());
-                        reserva.setStatus(false);
-                        
-                        
+
+                        // reserva.setAtivo(false);
                         fachada.salvarReservaPessoasCategorias(reserva);
-                        
+
                     }
 
                 }

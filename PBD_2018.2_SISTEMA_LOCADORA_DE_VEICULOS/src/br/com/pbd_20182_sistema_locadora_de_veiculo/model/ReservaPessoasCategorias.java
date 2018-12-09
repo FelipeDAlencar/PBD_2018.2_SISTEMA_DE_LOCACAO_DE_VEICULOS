@@ -46,7 +46,9 @@ public class ReservaPessoasCategorias implements Serializable, EntidadeBase {
     @Column(name = "valor_previsto")
     private double valorPrevisto;
    
-    private boolean status;
+    private boolean efetivada;
+    
+    private boolean ativo;
 
     @Override
 
@@ -90,23 +92,32 @@ public class ReservaPessoasCategorias implements Serializable, EntidadeBase {
         this.valorPrevisto = valorPrevisto;
     }
 
-    public boolean isStatus() {
-        return status;
+    public boolean isEfetivada() {
+        return efetivada;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setEfetivada(boolean status) {
+        this.efetivada = status;
+    }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
+        int hash = 3;
         hash = 97 * hash + Objects.hashCode(this.id);
         hash = 97 * hash + Objects.hashCode(this.categoria);
         hash = 97 * hash + Objects.hashCode(this.pessoa);
         hash = 97 * hash + Objects.hashCode(this.dataHora);
         hash = 97 * hash + (int) (Double.doubleToLongBits(this.valorPrevisto) ^ (Double.doubleToLongBits(this.valorPrevisto) >>> 32));
-        hash = 97 * hash + (this.status ? 1 : 0);
+        hash = 97 * hash + (this.efetivada ? 1 : 0);
+        hash = 97 * hash + (this.ativo ? 1 : 0);
         return hash;
     }
 
@@ -125,7 +136,10 @@ public class ReservaPessoasCategorias implements Serializable, EntidadeBase {
         if (Double.doubleToLongBits(this.valorPrevisto) != Double.doubleToLongBits(other.valorPrevisto)) {
             return false;
         }
-        if (this.status != other.status) {
+        if (this.efetivada != other.efetivada) {
+            return false;
+        }
+        if (this.ativo != other.ativo) {
             return false;
         }
         if (!Objects.equals(this.id, other.id)) {
@@ -142,5 +156,7 @@ public class ReservaPessoasCategorias implements Serializable, EntidadeBase {
         }
         return true;
     }
+    
+    
 
 }

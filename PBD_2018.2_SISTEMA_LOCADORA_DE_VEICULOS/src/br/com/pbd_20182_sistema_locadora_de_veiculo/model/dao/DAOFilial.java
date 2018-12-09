@@ -41,7 +41,7 @@ public class DAOFilial extends DAOGenerico<Filial> implements IDAOFilial{
     }
 
     @Override
-    public ArrayList<Filial> buscarPorBusca(String busca) throws DAOException {
+    public ArrayList<Filial> buscarPorBuscaFilial(String busca) throws DAOException {
         
        
         EntityManager em = ConnectionFactory.getInstance().getConnection();

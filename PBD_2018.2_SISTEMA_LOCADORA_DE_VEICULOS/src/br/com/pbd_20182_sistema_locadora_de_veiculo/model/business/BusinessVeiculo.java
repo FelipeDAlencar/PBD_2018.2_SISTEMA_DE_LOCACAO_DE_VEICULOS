@@ -44,7 +44,7 @@ public class BusinessVeiculo implements IBusinessVeiculos {
 
     @Override
     public ArrayList<Veiculo> buscarPorBusca(String busca) throws DAOException {
-        return dAOVeiculos.buscarPorBusca(busca);
+        return dAOVeiculos.buscarPorBuscaVeiculos(busca);
     }
 
     private void validar(Veiculo veiculo) throws BusinessExpection {

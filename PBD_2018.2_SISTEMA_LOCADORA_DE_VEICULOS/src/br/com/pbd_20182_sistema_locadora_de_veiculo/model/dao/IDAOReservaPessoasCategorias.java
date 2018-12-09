@@ -17,6 +17,6 @@ public interface IDAOReservaPessoasCategorias {
     
     
     public ArrayList<ReservaPessoasCategorias> findAll()throws DAOException;
-    public ArrayList<ReservaPessoasCategorias> buscarPorBusca(String busca)throws DAOException;
+    public ArrayList<ReservaPessoasCategorias> buscarPorBuscaReserva(String busca)throws DAOException;
     
 }

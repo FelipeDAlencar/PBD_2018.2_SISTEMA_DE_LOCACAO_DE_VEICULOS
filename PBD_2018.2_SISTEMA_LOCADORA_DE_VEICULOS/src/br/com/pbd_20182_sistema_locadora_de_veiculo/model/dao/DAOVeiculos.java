@@ -80,7 +80,7 @@ public class DAOVeiculos extends DAOGenerico<Veiculo> implements IDAOVeiculos {
     }
 
     @Override
-    public ArrayList<Veiculo> buscarPorBusca(String busca) throws DAOException {
+    public ArrayList<Veiculo> buscarPorBuscaVeiculos(String busca) throws DAOException {
         EntityManager em = ConnectionFactory.getInstance().getConnection();
 
         try {

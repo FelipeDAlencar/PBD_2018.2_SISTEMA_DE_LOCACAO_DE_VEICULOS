@@ -9,6 +9,7 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.BusinessExpection;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.MinhaThread;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ReservaPessoasCategorias;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Veiculo;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOReservaPessoaCategoria;
@@ -55,16 +56,15 @@ public class BusinessReservaPessoaCategoria implements IBusinessRerservaPessoaCa
 
     @Override
     public ArrayList<ReservaPessoasCategorias> buscarPorBusca(String busca) throws DAOException {
-        return dAOReservaPessoaCategoria.buscarPorBusca(busca);
+        return dAOReservaPessoaCategoria.buscarPorBuscaReserva(busca);
     }
 
     private void validar(ReservaPessoasCategorias reservaPessoasCategorias) throws BusinessExpection, DAOException {
         fachada = Fachada.getInstance();
-        Calendar dataHoraPrevista = Calendar.getInstance();
-        dataHoraPrevista.setTime(new Date());
-        System.err.println(dataHoraPrevista.getTime());
-        double hora = Double.parseDouble(String.valueOf(dataHoraPrevista.get(Calendar.HOUR_OF_DAY)) + "."
-                + String.valueOf(dataHoraPrevista.get(Calendar.MINUTE)));
+        Calendar dataAtual = Calendar.getInstance();
+        dataAtual.setTime(new Date());
+        double hora = Double.parseDouble(String.valueOf(dataAtual.get(Calendar.HOUR_OF_DAY)) + "."
+                + String.valueOf(dataAtual.get(Calendar.MINUTE)));
 
         String errorMessage = "";
 
@@ -74,10 +74,25 @@ public class BusinessReservaPessoaCategoria implements IBusinessRerservaPessoaCa
             errorMessage += "Horário não permitido \n";
         }
         if (reservaPessoasCategorias.getDataHora() != null) {
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(reservaPessoasCategorias.getDataHora());
+            Calendar dataHoraDaReserva = Calendar.getInstance();
+            dataHoraDaReserva.setTime(reservaPessoasCategorias.getDataHora());
+
+            dataHoraDaReserva.set(Calendar.HOUR_OF_DAY, 0);
+            dataHoraDaReserva.set(Calendar.MINUTE, 0);
+            dataHoraDaReserva.set(Calendar.SECOND, 0);
+            dataHoraDaReserva.set(Calendar.MILLISECOND, 0);
+
+            dataAtual.set(Calendar.HOUR_OF_DAY, 0);
+            dataAtual.set(Calendar.MINUTE, 0);
+            dataAtual.set(Calendar.SECOND, 0);
+            dataAtual.set(Calendar.MILLISECOND, 0);
             
-            if (calendar.compareTo(dataHoraPrevista) > 0) {
+            
+            System.err.println(dataAtual.getTime());
+            System.err.println(dataHoraDaReserva.getTime());
+            
+            
+            if (dataHoraDaReserva.compareTo(dataAtual) < 0) {
                 errorMessage += "Data não pode ser anterior do que a atual.\n";
             }
         } else {
@@ -93,12 +108,18 @@ public class BusinessReservaPessoaCategoria implements IBusinessRerservaPessoaCa
         if (reservaPessoasCategorias.getValorPrevisto() <= 0) {
             errorMessage += "Valor informado inválido,\ninforme um valor válido.";
         }
-        System.err.println("Entrou no Bus");
 
         System.err.println(errorMessage);
 
         if (errorMessage.length() != 0) {
+
+            MinhaThread task = new MinhaThread();
+            Thread thread = new Thread(task);
+            thread.setDaemon(true);
+            thread.start();
+
             throw new BusinessExpection("Atenção\n\n" + errorMessage);
+
         }
 
     }

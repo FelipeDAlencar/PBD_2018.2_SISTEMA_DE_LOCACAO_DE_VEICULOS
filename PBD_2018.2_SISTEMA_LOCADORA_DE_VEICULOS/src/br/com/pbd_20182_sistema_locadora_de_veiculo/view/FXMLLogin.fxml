@@ -12,13 +12,15 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+
 <AnchorPane id="AnchorPane" fx:id="" prefHeight="461.0" prefWidth="400.0" style="-fx-background-color: #3b5998;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.pbd_20182_sistema_locadora_de_veiculo.controller.FXMLLoginController">
    <children>
       <TextField fx:id="tfLogin" layoutX="84.0" layoutY="273.0" prefHeight="26.0" prefWidth="245.0" promptText="Login" />
       <Button fx:id="btnEntrar" layoutX="180.0" layoutY="387.0" mnemonicParsing="false" onAction="#acaoBtnEntrar" prefHeight="33.0" prefWidth="52.0" style="-fx-background-color: #006400;" text="Entrar" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
-         </cursor></Button>
+         </cursor>
+      </Button>
       <Separator layoutX="84.0" layoutY="254.0" prefHeight="3.0" prefWidth="245.0" />
       <Label layoutX="84.0" layoutY="220.0" text="Login">
          <font>

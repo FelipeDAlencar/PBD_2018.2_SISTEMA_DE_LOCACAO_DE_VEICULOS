@@ -40,7 +40,7 @@ public class DAOFuncionario extends DAOGenerico<Funcionario> implements IDAOFunc
     }
 
     @Override
-    public ArrayList<Funcionario> buscarPorBusca(String busca) throws DAOException {
+    public ArrayList<Funcionario> buscarPorBuscaFuncionario(String busca) throws DAOException {
 
         EntityManager em = ConnectionFactory.getInstance().getConnection();
         ArrayList<Funcionario> funcionarios = null;

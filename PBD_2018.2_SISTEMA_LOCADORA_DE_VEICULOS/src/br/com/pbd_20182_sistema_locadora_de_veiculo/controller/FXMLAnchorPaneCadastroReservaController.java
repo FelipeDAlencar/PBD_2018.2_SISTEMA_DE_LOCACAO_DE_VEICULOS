@@ -142,7 +142,7 @@ public class FXMLAnchorPaneCadastroReservaController implements Initializable {
             if (reservaPessoasCategorias != null) {
                 
                 
-                reservaPessoasCategorias.setStatus(false);
+                reservaPessoasCategorias.setAtivo(false);
                 fachada.salvarReservaPessoasCategorias(reservaPessoasCategorias);
                 Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
                 alerta.alertar(Alert.AlertType.INFORMATION, "Edição de Reserva", "Sucesso",

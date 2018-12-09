@@ -39,20 +39,17 @@ public class teste {
 //        System.err.println("parte texto" + parteTexto);
 //        
 //        System.err.println("Nome"  + nomeCategoria);
-        
-        Fachada fachada = Fachada.getInstance();
-        
-        PessoaFisica pessoaFisica = fachada.buscarPorIdPessoaFisica(6);
-        
-        
-        System.err.println(pessoaFisica);
-        
-        System.err.println(Util.formatarData(pessoaFisica.getData_nascimento()));
-        
 
-        
+//        Fachada fachada = Fachada.getInstance();
+//        
+//        PessoaFisica pessoaFisica = fachada.buscarPorIdPessoaFisica(6);
+//        
+//        
+//        System.err.println(pessoaFisica);
+//        
+//        System.err.println(Util.formatarData(pessoaFisica.getData_nascimento()));
+
+        System.err.println(new Date());
     }
-
-    
 
 }

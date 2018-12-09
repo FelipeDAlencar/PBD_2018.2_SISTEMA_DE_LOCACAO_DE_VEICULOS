@@ -41,7 +41,7 @@ public class BusinessFilial implements IBusinessFilial {
     }
      @Override
     public ArrayList<Filial> buscarPorBusca(String busca) throws DAOException {
-        return dAOFilial.buscarPorBusca(busca);
+        return dAOFilial.buscarPorBuscaFilial(busca);
     }
 
    

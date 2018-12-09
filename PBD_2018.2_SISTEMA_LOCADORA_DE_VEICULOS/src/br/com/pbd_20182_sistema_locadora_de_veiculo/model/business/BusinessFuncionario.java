@@ -47,7 +47,7 @@ public class BusinessFuncionario implements IBusinessFuncionario {
     
     @Override
     public ArrayList<Funcionario> buscarPorBusca(String busca) throws DAOException {
-        return dAOFuncionario.buscarPorBusca(busca);
+        return dAOFuncionario.buscarPorBuscaFuncionario(busca);
     }
     
     private void validar(Funcionario funcionario)throws BusinessExpection{

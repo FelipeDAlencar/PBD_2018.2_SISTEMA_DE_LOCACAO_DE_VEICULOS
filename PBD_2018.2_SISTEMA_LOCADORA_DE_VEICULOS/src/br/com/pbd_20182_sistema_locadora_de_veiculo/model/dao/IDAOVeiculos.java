@@ -22,7 +22,7 @@ public interface IDAOVeiculos {
 
     public ArrayList<Veiculo> buscarPorCategoriaVeiculosIndisponiveis(Categoria categoria) throws DAOException;
 
-    public ArrayList<Veiculo> buscarPorBusca(String busca)throws DAOException;
+    public ArrayList<Veiculo> buscarPorBuscaVeiculos(String busca)throws DAOException;
         
     
 }

@@ -25,7 +25,7 @@ public class DAOReservaPessoaCategoria extends DAOGenerico<ReservaPessoasCategor
         ArrayList<ReservaPessoasCategorias> reservaPessoasCategoriases = null;
 
         try {
-            reservaPessoasCategoriases = (ArrayList) em.createQuery("from ReservaPessoasCategorias c where status = true").getResultList();
+            reservaPessoasCategoriases = (ArrayList) em.createQuery("from ReservaPessoasCategorias c where ativo = true").getResultList();
         } catch (Exception e) {
             e.printStackTrace();
 
@@ -37,7 +37,7 @@ public class DAOReservaPessoaCategoria extends DAOGenerico<ReservaPessoasCategor
     }
 
     @Override
-    public ArrayList<ReservaPessoasCategorias> buscarPorBusca(String busca) throws DAOException {
+    public ArrayList<ReservaPessoasCategorias> buscarPorBuscaReserva(String busca) throws DAOException {
         EntityManager em = ConnectionFactory.getInstance().getConnection();
         ArrayList<ReservaPessoasCategorias> reservas = null;
 

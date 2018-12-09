@@ -30,6 +30,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
@@ -42,72 +43,76 @@ import javafx.stage.Stage;
  * @author Felipe
  */
 public class FXMLAnchorPaneCadastroReservaDialogController implements Initializable {
-    
+
     private Stage stage;
     private boolean confirmado;
     private ReservaPessoasCategorias reservaPessoasCategorias;
     private DAOPessoa dAOPessoa;
     private DAOCategoria dAOCategoria;
-    
+
     @FXML
     private ComboBox<Pessoa> comboClientes;
-    
+
     @FXML
     private ComboBox<Categoria> comboCategorias;
-    
+
     @FXML
     private TextField tfValor;
-    
+
     @FXML
     private DatePicker dpData;
-    
+
     @FXML
-    private RadioButton rbEfetivada;
-    
+    private CheckBox cbEfetivada;
+
     @FXML
     private Button btnSalvar;
-    
+
     @FXML
     private Button btnCancelar;
-    
+
     @FXML
     void acaoBtns(ActionEvent event) throws BusinessExpection {
         if (event.getSource() == btnCancelar) {
             stage.close();
         } else {
             try {
+
                 reservaPessoasCategorias.setCategoria(comboCategorias.getValue());
                 reservaPessoasCategorias.setPessoa(comboClientes.getValue());
-                
+
                 Date s = Date.from(dpData.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
-                SimpleDateFormat spdf = new SimpleDateFormat("dd/yy/dddd HH:mm:ss");
+
                 Calendar dataHora = Calendar.getInstance();
-                
+
                 Calendar c1 = Calendar.getInstance();
                 c1.setTime(new Date());
                 dataHora.setTime(s);
-                
+
                 dataHora.set(Calendar.HOUR_OF_DAY, c1.get(Calendar.HOUR_OF_DAY));
                 dataHora.set(Calendar.MINUTE, c1.get(Calendar.MINUTE));
                 dataHora.set(Calendar.SECOND, c1.get(Calendar.SECOND));
+
                 
+
                 reservaPessoasCategorias.setDataHora(dataHora.getTime());
                 reservaPessoasCategorias.setValorPrevisto(Double.parseDouble(tfValor.getText()));
-                reservaPessoasCategorias.setStatus(true);
-                reservaPessoasCategorias.setStatus(rbEfetivada.isSelected());
-                
+                reservaPessoasCategorias.setEfetivada(cbEfetivada.isSelected());
+
+                reservaPessoasCategorias.setAtivo(true);
+
                 confirmado = true;
-                
+
                 stage.close();
             } catch (NullPointerException e) {
                 //throw new BusinessExpection("Informe o campos corretamente.");
                 confirmado = true;
                 stage.close();
             }
-            
+
         }
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         dAOCategoria = new DAOCategoria();
@@ -117,55 +122,55 @@ public class FXMLAnchorPaneCadastroReservaDialogController implements Initializa
         } catch (DAOException ex) {
             ex.getMessage();
         }
-        
+
     }
-    
+
     public void carregarCombos() throws DAOException {
-        
+
         ArrayList<Pessoa> pessoas = dAOPessoa.listarTodos();
         ArrayList<Categoria> categorias = dAOCategoria.findAll();
-        
+
         ObservableList<Categoria> obsCategorias;
         ObservableList<Pessoa> obsPessoas;
-        
+
         obsCategorias = FXCollections.observableArrayList(categorias);
         obsPessoas = FXCollections.observableArrayList(pessoas);
-        
+
         comboCategorias.setItems(obsCategorias);
         comboClientes.setItems(obsPessoas);
-        
+
     }
-    
+
     public Stage getStage() {
         return stage;
     }
-    
+
     public void setStage(Stage stage) {
         this.stage = stage;
     }
-    
+
     public boolean isConfirmado() {
         return confirmado;
     }
-    
+
     public void setConfirmado(boolean confirmado) {
         this.confirmado = confirmado;
     }
-    
+
     public ReservaPessoasCategorias getReservaPessoasCategorias() {
         return reservaPessoasCategorias;
     }
-    
+
     public void setReservaPessoasCategorias(ReservaPessoasCategorias reservaPessoasCategorias) {
         this.reservaPessoasCategorias = reservaPessoasCategorias;
-        
+
         if (reservaPessoasCategorias.getId() != null) {
             tfValor.setText(String.valueOf(reservaPessoasCategorias.getValorPrevisto()));
             comboCategorias.setValue(reservaPessoasCategorias.getCategoria());
             comboClientes.setValue(reservaPessoasCategorias.getPessoa());
             dpData.setValue(Util.converterDateEmLocalDate(reservaPessoasCategorias.getDataHora()));
-            
+
         }
     }
-    
+
 }

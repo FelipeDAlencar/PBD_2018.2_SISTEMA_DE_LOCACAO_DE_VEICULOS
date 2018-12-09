@@ -16,6 +16,6 @@ import java.util.ArrayList;
 public interface IDAOFilial {
     
      public ArrayList<Filial> findAll()throws DAOException;
-     public ArrayList<Filial> buscarPorBusca(String busca)throws DAOException;
+     public ArrayList<Filial> buscarPorBuscaFilial(String busca)throws DAOException;
     
 }
