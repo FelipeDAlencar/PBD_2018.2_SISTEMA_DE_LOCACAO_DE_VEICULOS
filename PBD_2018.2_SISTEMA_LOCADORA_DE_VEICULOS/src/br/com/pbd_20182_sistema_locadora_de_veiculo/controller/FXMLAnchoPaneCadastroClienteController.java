@@ -58,9 +58,6 @@ public class FXMLAnchoPaneCadastroClienteController implements Initializable {
     private TableColumn<Pessoa, String> colunaNomeCliente;
 
     @FXML
-    private TableColumn<Pessoa, String> colunaLoginCliente;
-
-    @FXML
     private TableColumn<Pessoa, String> colunaCodigoCliente;
 
     @FXML
@@ -294,7 +291,6 @@ public class FXMLAnchoPaneCadastroClienteController implements Initializable {
 
         }
 
-        colunaLoginCliente.setCellValueFactory(new PropertyValueFactory<>("login"));
         colunaCodigoCliente.setCellValueFactory(new PropertyValueFactory<>("codigo"));
         colunaNomeCliente.setCellValueFactory(new PropertyValueFactory<>("nome"));
 

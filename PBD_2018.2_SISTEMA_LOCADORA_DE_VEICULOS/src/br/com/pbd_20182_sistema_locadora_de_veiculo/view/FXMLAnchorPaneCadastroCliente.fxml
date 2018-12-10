@@ -23,9 +23,8 @@
                <children>
                   <TableView fx:id="tableViewClientes" layoutX="35.0" layoutY="56.0" prefHeight="477.0" prefWidth="235.0" style="-fx-background-color: #D3D3D3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                      <TableColumn fx:id="colunaNomeCliente" prefWidth="75.0" text="Nome" />
-                      <TableColumn fx:id="colunaLoginCliente" prefWidth="75.0" text="Login" />
-                        <TableColumn fx:id="colunaCodigoCliente" prefWidth="84.0" text="Codigo" />
+                      <TableColumn fx:id="colunaNomeCliente" prefWidth="126.0" text="Nome" />
+                        <TableColumn fx:id="colunaCodigoCliente" prefWidth="108.0" text="Codigo" />
                     </columns>
                      <cursor>
                         <Cursor fx:constant="HAND" />

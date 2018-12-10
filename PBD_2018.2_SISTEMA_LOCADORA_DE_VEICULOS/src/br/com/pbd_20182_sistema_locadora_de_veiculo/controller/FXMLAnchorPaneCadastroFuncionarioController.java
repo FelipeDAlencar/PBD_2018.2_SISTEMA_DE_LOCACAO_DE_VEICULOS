@@ -53,9 +53,6 @@ public class FXMLAnchorPaneCadastroFuncionarioController implements Initializabl
     private TableColumn<Funcionario, String> colunaNome;
 
     @FXML
-    private TableColumn<Funcionario, String> colunaLogin;
-
-    @FXML
     private TableColumn<Funcionario, String> colunaMatricula;
 
     @FXML
@@ -199,7 +196,6 @@ public class FXMLAnchorPaneCadastroFuncionarioController implements Initializabl
 
     private void carregarFuncionarios(ArrayList<Funcionario> funcionarios) throws DAOException {
 
-        colunaLogin.setCellValueFactory(new PropertyValueFactory<>("login"));
         colunaMatricula.setCellValueFactory(new PropertyValueFactory<>("matricula"));
         colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         //funcionarios = fachada.listarTodosFuncionario();
@@ -264,10 +260,6 @@ public class FXMLAnchorPaneCadastroFuncionarioController implements Initializabl
 
     public TableColumn<Funcionario, String> getColunaNome() {
         return colunaNome;
-    }
-
-    public TableColumn<Funcionario, String> getColunaLogin() {
-        return colunaLogin;
     }
 
     public TableColumn<Funcionario, String> getColunaMatricula() {
