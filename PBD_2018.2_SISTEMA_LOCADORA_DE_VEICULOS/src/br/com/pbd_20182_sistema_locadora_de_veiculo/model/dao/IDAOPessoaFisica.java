@@ -17,5 +17,6 @@ public interface IDAOPessoaFisica {
      public ArrayList<PessoaFisica> findAll()throws DAOException;
      
      public ArrayList<PessoaFisica> buscarPorNomeLike(String busca)throws DAOException;
+     public PessoaFisica buscarPorCPF(String cpf) throws DAOException;
     
 }

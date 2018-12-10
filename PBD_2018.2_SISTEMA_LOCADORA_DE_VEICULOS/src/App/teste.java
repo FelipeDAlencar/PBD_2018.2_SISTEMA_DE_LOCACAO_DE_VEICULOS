@@ -11,6 +11,8 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Util;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Veiculo;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOPessoaFisica;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOPessoaJuridica;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -49,9 +51,11 @@ public class teste {
 //        
 //        System.err.println(Util.formatarData(pessoaFisica.getData_nascimento()));
 
-       String cpf = "108.590.464-43";
-       
-        System.err.println(Util.removerCaracteres(cpf));
+        DAOPessoaJuridica daopf = new DAOPessoaJuridica();
+        
+        
+        
+        System.err.println(daopf.buscarPorCNPJ("123"));
         
         
     }

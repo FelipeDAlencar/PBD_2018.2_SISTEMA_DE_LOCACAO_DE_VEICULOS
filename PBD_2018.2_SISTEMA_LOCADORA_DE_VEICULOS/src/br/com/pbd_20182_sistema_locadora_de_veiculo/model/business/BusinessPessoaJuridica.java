@@ -50,7 +50,7 @@ public class BusinessPessoaJuridica implements IBusinessPessoaJuridica {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void validar(PessoaJuridica pessoaJuridica) throws BusinessExpection {
+    public void validar(PessoaJuridica pessoaJuridica) throws BusinessExpection, DAOException {
         String errorMessage = "";
 
         if (pessoaJuridica.getNome() == null || pessoaJuridica.getNome().length() == 0) {
@@ -68,10 +68,26 @@ public class BusinessPessoaJuridica implements IBusinessPessoaJuridica {
         if (pessoaJuridica.getInscriçãoEstadual() == null || pessoaJuridica.getInscriçãoEstadual().length() == 0) {
             errorMessage += "Numero de incrição estadual inválido\n";
         }
-
+        
+        
+        if(verificarCNPJ(pessoaJuridica)){
+            errorMessage = "CNPJ já consta no sistema, por favor informe um válido.";
+        }
         if (errorMessage.length() != 0) {
             throw new BusinessExpection(errorMessage);
         }
+    }
+    
+    public boolean verificarCNPJ(PessoaJuridica pessoaJuridica) throws DAOException {
+
+        PessoaJuridica pessoa = dAOPessoaJuridica.buscarPorCNPJ(pessoaJuridica.getCNPJ());
+
+        if (!(pessoa != null)) {
+
+            return false;
+        }
+
+        return true;
     }
 
 }

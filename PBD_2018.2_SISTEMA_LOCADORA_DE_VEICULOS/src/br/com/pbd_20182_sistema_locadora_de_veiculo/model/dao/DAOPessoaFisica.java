@@ -55,6 +55,27 @@ public class DAOPessoaFisica extends DAOGenerico<PessoaFisica> implements IDAOPe
         } finally {
             em.close();
         }
+        
+    }
+    
+    @Override
+    public PessoaFisica buscarPorCPF(String cpf) throws DAOException {
+        EntityManager em = ConnectionFactory.getInstance().getConnection();
+        PessoaFisica pessoaFisicas = null;
 
+        try {
+            TypedQuery<PessoaFisica> query = em.createQuery(SQLUtil.PessoaFisica.SQL_BUSCAR_POR_CPF, PessoaFisica.class);
+            query.setParameter("cpf", cpf.toLowerCase());
+
+            pessoaFisicas =  query.getSingleResult();
+            return pessoaFisicas;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new DAOException("ERRO AO TENTAR BUSCAR NO BANCO DE DADOS");
+
+        } finally {
+            em.close();
+        }
+        
     }
 }

@@ -28,6 +28,20 @@ public class SQLUtil {
     public static class PessoaFisica{
             public static final String SQL_BUSCAR_NOME_LIKE = ""
                     + "select p from PessoaFisica p where lower(p.nome) like :busca";
+            
+             public static final String SQL_BUSCAR_POR_CPF = ""
+                    + "select p from PessoaFisica p where lower(p.CPF) = :cpf";
+            
+            
+        
+    }
+     public static class PessoaJuridica{
+            
+            
+             public static final String SQL_BUSCAR_POR_CNPJ = ""
+                    + "select p from PessoaJuridica p where lower(p.CNPJ) = :cnpj";
+            
+            
         
     }
     public static class Categoria {

@@ -16,4 +16,6 @@ import java.util.ArrayList;
 public interface IDAOPessoaJuridica {
 
     public ArrayList<PessoaJuridica> findAll() throws DAOException;
+
+    public PessoaJuridica buscarPorCNPJ(String cnpj) throws DAOException;
 }

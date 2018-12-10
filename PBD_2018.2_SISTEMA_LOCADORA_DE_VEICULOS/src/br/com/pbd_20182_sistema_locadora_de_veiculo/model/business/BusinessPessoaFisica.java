@@ -52,7 +52,7 @@ public class BusinessPessoaFisica implements IBusinessPessoaFisica {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public boolean validar(PessoaFisica pessoaFisica) throws BusinessExpection {
+    public boolean validar(PessoaFisica pessoaFisica) throws BusinessExpection, DAOException {
         String errorMessage = "";
 
         if (pessoaFisica.getNome() == null || pessoaFisica.getNome().length() == 0) {
@@ -77,6 +77,9 @@ public class BusinessPessoaFisica implements IBusinessPessoaFisica {
             errorMessage += "Data de vencimento inválido\n";
         }
 
+        if (verificarCPF(pessoaFisica)) {
+            errorMessage = "CPF já consta no sistema. Por favor, informe um válido";
+        }
         if (errorMessage.length() == 0) {
             return true;
         } else {
@@ -84,8 +87,20 @@ public class BusinessPessoaFisica implements IBusinessPessoaFisica {
         }
     }
 
+    public boolean verificarCPF(PessoaFisica pessoaFisica) throws DAOException {
+
+        PessoaFisica pessoa = dAOPessoaFisica.buscarPorCPF(pessoaFisica.getCPF());
+
+        if (!(pessoa != null)) {
+
+            return false;
+        }
+
+        return true;
+    }
+
     @Override
     public ArrayList<PessoaFisica> buscarPorNomeLike(String busca) throws DAOException {
-       return dAOPessoaFisica.buscarPorNomeLike(busca);
+        return dAOPessoaFisica.buscarPorNomeLike(busca);
     }
 }
