@@ -49,7 +49,13 @@ public class teste {
 //        
 //        System.err.println(Util.formatarData(pessoaFisica.getData_nascimento()));
 
-        System.err.println(new Date());
+        Fachada fachada = Fachada.getInstance();
+        
+        ArrayList<Veiculo> motorista = fachada.buscarPorBuscaVeiculo("Pál");
+        
+        System.err.println(motorista);
+        
+        
     }
 
 }

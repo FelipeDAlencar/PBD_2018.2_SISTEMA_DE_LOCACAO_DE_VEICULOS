@@ -93,6 +93,7 @@ public interface IFachada {
     public void salvarPessoaFisica(PessoaFisica pessoaFisica)throws BusinessExpection,DAOException;
     public ArrayList<PessoaFisica> listarTodosPessoaFisica()throws DAOException;
     public PessoaFisica buscarPorIdPessoaFisica(int id)throws DAOException;
+    public ArrayList<PessoaFisica> buscarPorNomeLikePessoaFisica(String busca)throws DAOException;
    
     
     

@@ -25,7 +25,11 @@ public class SQLUtil {
         public static final String SQL_PROCEDURE_CRIPTOGRAFAR_SENHA = "criptografar_senha";
 
     }
-
+    public static class PessoaFisica{
+            public static final String SQL_BUSCAR_NOME_LIKE = ""
+                    + "select p from PessoaFisica p where lower(p.nome) like :busca";
+        
+    }
     public static class Categoria {
 
         public static final String SQL_BUSCAR_CATEGORIA_POR_ULTIMO_NOME = "select max(nome) from Categoria where  nome like 'CN%'";

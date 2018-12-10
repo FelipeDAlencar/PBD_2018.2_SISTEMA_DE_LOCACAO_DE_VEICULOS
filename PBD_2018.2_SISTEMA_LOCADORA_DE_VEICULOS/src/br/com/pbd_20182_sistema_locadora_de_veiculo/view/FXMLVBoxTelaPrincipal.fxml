@@ -51,9 +51,9 @@
             </MenuBar>
             <AnchorPane fx:id="AnchorPaneContent" prefHeight="486.0" prefWidth="800.0" style="-fx-background-color: #3b5998;">
                <children>
-                  <ImageView fitHeight="475.0" fitWidth="897.0" layoutX="1.0" layoutY="1.0">
+                  <ImageView fitHeight="475.0" fitWidth="800.0" layoutX="1.0" layoutY="1.0">
                      <image>
-                        <Image url="@../../../../res/cb0eb037f2b3b357aa9750a463615644.jpg" />
+                        <Image url="@../../../../res/WhatsApp%20Image%202018-12-09%20at%2019.20.41.jpeg" />
                      </image>
                   </ImageView>
                </children></AnchorPane>

@@ -7,10 +7,13 @@ package br.com.pbd_20182_sistema_locadora_de_veiculo.controller;
 
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.BusinessExpection;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Pessoa;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ReservaPessoasCategorias;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Util;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Veiculo;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOCategoria;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOPessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.view.Alerta;
@@ -26,6 +29,7 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -35,6 +39,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 /**
@@ -47,8 +53,8 @@ public class FXMLAnchorPaneCadastroReservaDialogController implements Initializa
     private Stage stage;
     private boolean confirmado;
     private ReservaPessoasCategorias reservaPessoasCategorias;
-    private DAOPessoa dAOPessoa;
-    private DAOCategoria dAOCategoria;
+    private String buscaCliente = "";
+    private String buscaCategoria = "";
 
     @FXML
     private ComboBox<Pessoa> comboClientes;
@@ -70,6 +76,22 @@ public class FXMLAnchorPaneCadastroReservaDialogController implements Initializa
 
     @FXML
     private Button btnCancelar;
+
+    private Fachada fachada;
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+
+        fachada = Fachada.getInstance();
+        try {
+            carregarCombos();
+        } catch (DAOException ex) {
+            ex.getMessage();
+        }
+        
+        adicionarOuvinte();
+
+    }
 
     @FXML
     void acaoBtns(ActionEvent event) throws BusinessExpection {
@@ -93,8 +115,6 @@ public class FXMLAnchorPaneCadastroReservaDialogController implements Initializa
                 dataHora.set(Calendar.MINUTE, c1.get(Calendar.MINUTE));
                 dataHora.set(Calendar.SECOND, c1.get(Calendar.SECOND));
 
-                
-
                 reservaPessoasCategorias.setDataHora(dataHora.getTime());
                 reservaPessoasCategorias.setValorPrevisto(Double.parseDouble(tfValor.getText()));
                 reservaPessoasCategorias.setEfetivada(cbEfetivada.isSelected());
@@ -113,22 +133,19 @@ public class FXMLAnchorPaneCadastroReservaDialogController implements Initializa
         }
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        dAOCategoria = new DAOCategoria();
-        dAOPessoa = new DAOPessoa();
-        try {
-            carregarCombos();
-        } catch (DAOException ex) {
-            ex.getMessage();
+    @FXML
+    void AcaoCombos(ActionEvent event) {
+
+        if (event.getSource() == comboCategorias) {
+
         }
 
     }
 
     public void carregarCombos() throws DAOException {
 
-        ArrayList<Pessoa> pessoas = dAOPessoa.listarTodos();
-        ArrayList<Categoria> categorias = dAOCategoria.findAll();
+        ArrayList<Pessoa> pessoas = fachada.listarTodosPessoa();
+        ArrayList<Categoria> categorias = fachada.listarTodosCategoria();
 
         ObservableList<Categoria> obsCategorias;
         ObservableList<Pessoa> obsPessoas;
@@ -138,6 +155,119 @@ public class FXMLAnchorPaneCadastroReservaDialogController implements Initializa
 
         comboCategorias.setItems(obsCategorias);
         comboClientes.setItems(obsPessoas);
+
+    }
+
+    private void adicionarOuvinte() {
+        comboClientes.setOnKeyReleased(new EventHandler<KeyEvent>() {
+
+            @Override
+            public void handle(KeyEvent evt) {
+
+                System.err.println(buscaCliente);
+               
+
+                KeyCode code = evt.getCode();
+                ObservableList<Pessoa> obsPessoa;
+
+                try {
+
+                    if (code.isLetterKey()) {
+                        buscaCliente += evt.getText();
+                        obsPessoa = FXCollections.
+                                observableArrayList(fachada.buscarPorBuscaPessoa(buscaCliente));
+                        comboClientes.setItems(obsPessoa);
+                    }
+
+                    if (code == KeyCode.BACK_SPACE && buscaCliente.length() > 0) {
+                        buscaCliente = buscaCliente.substring(0, buscaCliente.length() - 1);
+                        obsPessoa = FXCollections.
+                                observableArrayList(fachada.buscarPorBuscaPessoa(buscaCliente));
+
+                        comboClientes.setItems(obsPessoa);
+
+                    }
+                    if (code == KeyCode.ESCAPE) {
+                        buscaCliente = "";
+                    }
+
+                } catch (DAOException ex) {
+                    Logger.getLogger(FXMLAnchorPaneCadastroLocacaoDialogController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+
+        });
+        comboCategorias.setOnKeyReleased(new EventHandler<KeyEvent>() {
+
+            @Override
+            public void handle(KeyEvent evt) {
+
+                KeyCode code = evt.getCode();
+                ObservableList<Categoria> obsCategoria;
+
+                try {
+
+                    if (code.isLetterKey()) {
+                        buscaCategoria += evt.getText();
+                        obsCategoria = FXCollections.
+                                observableArrayList(fachada.buscarPorBuscaCategoria(buscaCategoria));
+                        comboCategorias.setItems(obsCategoria);
+                    }
+
+                    if (code == KeyCode.BACK_SPACE && buscaCategoria.length() > 0) {
+                        buscaCategoria = buscaCategoria.substring(0, buscaCategoria.length() - 1);
+                        obsCategoria = FXCollections.
+                                observableArrayList(fachada.buscarCategoriaPorNome(buscaCategoria));
+
+                        comboCategorias.setItems(obsCategoria);
+                    }
+                    if (code == KeyCode.ESCAPE) {
+                        buscaCategoria = "";
+                    }
+
+                } catch (DAOException ex) {
+                    Logger.getLogger(FXMLAnchorPaneCadastroLocacaoDialogController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+
+        });
+//        comboVeiculo.setOnKeyReleased(new EventHandler<KeyEvent>() {
+//
+//            @Override
+//            public void handle(KeyEvent evt) {
+//                System.err.println(buscaCliente);
+//                System.err.println(buscaMotorista);
+//                System.err.println(buscaVeiculo);
+//
+//                KeyCode code = evt.getCode();
+//                ObservableList<Veiculo> obsveiculos;
+//
+//                try {
+//
+//                    if (code.isLetterKey()) {
+//                        buscaVeiculo += evt.getText();
+//                    }
+//                    obsveiculos = FXCollections.
+//                            observableArrayList(fachada.buscarPorBuscaVeiculo(buscaVeiculo));
+//                    comboVeiculo.setItems(obsveiculos);
+//
+//                    if (code == KeyCode.BACK_SPACE && buscaVeiculo.length() > 0) {
+//                        buscaVeiculo = buscaVeiculo.substring(0, buscaVeiculo.length() - 1);
+//                        comboVeiculo.setItems(obsveiculos);
+//                    }
+//                    if (code == KeyCode.ESCAPE) {
+//                        buscaVeiculo = "";
+//                    }
+//
+//                } catch (DAOException ex) {
+//                    Logger.getLogger(FXMLAnchorPaneCadastroLocacaoDialogController.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//
+//            }
+//
+//        });
 
     }
 

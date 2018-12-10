@@ -19,4 +19,5 @@ public interface IBusinessPessoaFisica {
     public ArrayList<PessoaFisica> listarTodos()throws DAOException;
     public PessoaFisica buscarPorId(int id)throws DAOException;
     public void alterar(PessoaFisica pessoaFisica)throws DAOException;
+    public ArrayList<PessoaFisica> buscarPorNomeLike(String busca)throws DAOException;
 }

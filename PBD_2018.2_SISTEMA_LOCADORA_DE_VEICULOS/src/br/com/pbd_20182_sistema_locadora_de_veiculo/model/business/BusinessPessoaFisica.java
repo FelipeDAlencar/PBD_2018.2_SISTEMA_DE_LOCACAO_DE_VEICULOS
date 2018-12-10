@@ -83,4 +83,9 @@ public class BusinessPessoaFisica implements IBusinessPessoaFisica {
             throw new BusinessExpection("ERRO AO TENTAR INSERIR" + errorMessage);
         }
     }
+
+    @Override
+    public ArrayList<PessoaFisica> buscarPorNomeLike(String busca) throws DAOException {
+       return dAOPessoaFisica.buscarPorNomeLike(busca);
+    }
 }

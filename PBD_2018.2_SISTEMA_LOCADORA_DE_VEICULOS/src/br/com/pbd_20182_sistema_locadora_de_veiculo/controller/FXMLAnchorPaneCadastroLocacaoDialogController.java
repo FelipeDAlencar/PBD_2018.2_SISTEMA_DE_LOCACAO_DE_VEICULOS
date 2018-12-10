@@ -21,6 +21,7 @@ import java.text.SimpleDateFormat;
 import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
+import static java.util.Locale.filter;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,6 +29,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -39,6 +41,8 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -108,14 +112,18 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
     private Alerta alerta;
     private Thread thread;
     private FXMLAchorPaneCadastroClienteDialogController controller;
+    private String buscaCliente = "";
+    private String buscaMotorista = "";
+    private String buscaVeiculo = "";
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         fachada = Fachada.getInstance();
         alerta = Alerta.getInstace(Alert.AlertType.NONE);
-       
+
         tfValor.setDisable(true);
         tfMetadeprimeiraDiaria.setDisable(true);
-        
+
         try {
             carregarCombos();
         } catch (DAOException ex) {
@@ -132,6 +140,8 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
             ex.getMessage();
         }
         tfValor.setText(tfMetadeprimeiraDiaria.getText());
+
+        adicionarOuvinte();
 
     }
 
@@ -196,10 +206,9 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
             boolean sucesso = exibirTelaDecadastro(pessoaFisica, event);
 
             if (sucesso) {
-                
+
                 pessoaFisica = (PessoaFisica) controller.getPessoa();
-                
-                
+
                 fachada.salvarPessoaFisica(pessoaFisica);
 
                 Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
@@ -229,6 +238,11 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
 
     }
 
+    @FXML
+    void AcaoCombos(ActionEvent event) {
+
+    }
+
     private void carregarCombos() throws DAOException {
 
         ObservableList<PessoaFisica> obsMotorista = FXCollections.observableArrayList(fachada.listarTodosPessoaFisica());
@@ -236,8 +250,7 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
         ObservableList<Pessoa> obsCliente = FXCollections.observableArrayList(fachada.listarTodosPessoa());
         comboMotorista.setItems(obsMotorista);
         comboCliente.setItems(obsCliente);
-        
-                
+        comboVeiculo.setItems(obsVeiculos);
     }
 
     public Stage getStage() {
@@ -328,6 +341,124 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
 
         double soma = Double.parseDouble(tfMetadeprimeiraDiaria.getText()) + valor;
         tfValor.setText(String.valueOf(soma));
+    }
+
+    private void adicionarOuvinte() {
+        comboCliente.setOnKeyReleased(new EventHandler<KeyEvent>() {
+
+            @Override
+            public void handle(KeyEvent evt) {
+
+                System.err.println(buscaCliente);
+                System.err.println(buscaMotorista);
+                System.err.println(buscaVeiculo);
+
+                KeyCode code = evt.getCode();
+                ObservableList<Pessoa> obsPessoa;
+
+                try {
+
+                    if (code.isLetterKey()) {
+                        buscaCliente += evt.getText();
+                        obsPessoa = FXCollections.
+                                observableArrayList(fachada.buscarPorBuscaPessoa(buscaCliente));
+                        comboCliente.setItems(obsPessoa);
+                    }
+
+                    if (code == KeyCode.BACK_SPACE && buscaCliente.length() > 0) {
+                        buscaCliente = buscaCliente.substring(0, buscaCliente.length() - 1);
+                        obsPessoa = FXCollections.
+                                observableArrayList(fachada.buscarPorBuscaPessoa(buscaCliente));
+
+                        comboCliente.setItems(obsPessoa);
+
+                    }
+                    if (code == KeyCode.ESCAPE) {
+                        buscaCliente = "";
+                    }
+
+                } catch (DAOException ex) {
+                    Logger.getLogger(FXMLAnchorPaneCadastroLocacaoDialogController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+
+        });
+        comboMotorista.setOnKeyReleased(new EventHandler<KeyEvent>() {
+
+            @Override
+            public void handle(KeyEvent evt) {
+
+                System.err.println(buscaCliente);
+                System.err.println(buscaMotorista);
+                System.err.println(buscaVeiculo);
+
+                KeyCode code = evt.getCode();
+                ObservableList<PessoaFisica> obsMotorista;
+
+                try {
+
+                    if (code.isLetterKey()) {
+                        buscaMotorista += evt.getText();
+                        obsMotorista = FXCollections.
+                                observableArrayList(fachada.buscarPorNomeLikePessoaFisica(buscaMotorista));
+                        comboMotorista.setItems(obsMotorista);
+                    }
+
+                    if (code == KeyCode.BACK_SPACE && buscaMotorista.length() > 0) {
+                        buscaMotorista = buscaMotorista.substring(0, buscaMotorista.length() - 1);
+                        obsMotorista = FXCollections.
+                                observableArrayList(fachada.buscarPorNomeLikePessoaFisica(buscaMotorista));
+
+                        comboMotorista.setItems(obsMotorista);
+                    }
+                    if (code == KeyCode.ESCAPE) {
+                        buscaMotorista = "";
+                    }
+
+                } catch (DAOException ex) {
+                    Logger.getLogger(FXMLAnchorPaneCadastroLocacaoDialogController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+
+        });
+        comboVeiculo.setOnKeyReleased(new EventHandler<KeyEvent>() {
+
+            @Override
+            public void handle(KeyEvent evt) {
+                System.err.println(buscaCliente);
+                System.err.println(buscaMotorista);
+                System.err.println(buscaVeiculo);
+
+                KeyCode code = evt.getCode();
+                ObservableList<Veiculo> obsveiculos;
+
+                try {
+
+                    if (code.isLetterKey()) {
+                        buscaVeiculo += evt.getText();
+                    }
+                    obsveiculos = FXCollections.
+                            observableArrayList(fachada.buscarPorBuscaVeiculo(buscaVeiculo));
+                    comboVeiculo.setItems(obsveiculos);
+
+                    if (code == KeyCode.BACK_SPACE && buscaVeiculo.length() > 0) {
+                        buscaVeiculo = buscaVeiculo.substring(0, buscaVeiculo.length() - 1);
+                        comboVeiculo.setItems(obsveiculos);
+                    }
+                    if (code == KeyCode.ESCAPE) {
+                        buscaVeiculo = "";
+                    }
+
+                } catch (DAOException ex) {
+                    Logger.getLogger(FXMLAnchorPaneCadastroLocacaoDialogController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+
+        });
+
     }
 
 }

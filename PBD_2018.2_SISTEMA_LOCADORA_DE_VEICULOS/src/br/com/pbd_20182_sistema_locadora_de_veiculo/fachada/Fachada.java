@@ -311,6 +311,11 @@ public class Fachada implements IFachada {
     }
 
     @Override
+    public ArrayList<PessoaFisica> buscarPorNomeLikePessoaFisica(String busca) throws DAOException {
+        return businessPessoaFisica.buscarPorNomeLike(busca);
+    }
+
+    @Override
     public void salvarPessoaJuridica(PessoaJuridica pessoaJuridica) throws BusinessExpection, DAOException {
         businessPessoaJuridica.salvar(pessoaJuridica);
     }

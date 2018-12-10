@@ -239,6 +239,14 @@ public class Veiculo implements Serializable, EntidadeBase {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return getModelo();
+    }
+    
+    
+    
     
     
     

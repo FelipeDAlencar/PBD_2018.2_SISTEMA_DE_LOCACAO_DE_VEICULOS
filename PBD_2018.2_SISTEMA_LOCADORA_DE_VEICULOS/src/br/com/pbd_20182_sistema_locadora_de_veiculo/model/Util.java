@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
 
 /**
  *
@@ -88,7 +89,7 @@ public abstract class Util {
         return sdf.format(data);
 
     }
-    
+
     public static Date converterStringEmDate(String dataTexto) {
         DateFormat f = DateFormat.getDateInstance();
         java.util.Date d;
@@ -105,10 +106,17 @@ public abstract class Util {
     }
 
     public static LocalDate converterDateEmLocalDate(Date d) {
-        
+
         Instant instant = Instant.ofEpochMilli(d.getTime());
         LocalDate localDate = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate();
         return localDate;
+    }
+
+    public static void tirarCaracteres(TextField textField) {
+        if (!textField.getText().matches("\\d.-*")) {
+            textField.setText(textField.getText().replaceAll("[^\\d.-]", ""));
+            textField.positionCaret(textField.getText().length());
+        }
     }
 
 //    ArrayList<Veiculo> veiculos = fachada.buscarVeiculoPorCategoria(reservaPessoasCategorias.getCategoria());
