@@ -9,6 +9,8 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -83,11 +85,18 @@
                   </GridPane>
                   <HBox layoutX="32.0" layoutY="438.0" prefHeight="17.0" prefWidth="200.0" spacing="5.0">
                      <children>
-                        <TextField fx:id="tfBuscar" style="-fx-background-color: #D3D3D3;" />
-                        <Button fx:id="btnPesquisar" mnemonicParsing="false" onAction="#acaoBtns" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: #D3D3D3;" text="Pesquisar">
+                        <TextField fx:id="tfBuscar" prefHeight="25.0" prefWidth="155.0" style="-fx-background-color: #D3D3D3;" />
+                        <Button fx:id="btnPesquisar" mnemonicParsing="false" onAction="#acaoBtns" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: #D3D3D3;">
                            <cursor>
                               <Cursor fx:constant="HAND" />
-                           </cursor></Button>
+                           </cursor>
+                           <graphic>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../../../res/baseline_search_black_18dp.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
                      </children>
                   </HBox>
                   <Group layoutX="286.0" layoutY="438.0">

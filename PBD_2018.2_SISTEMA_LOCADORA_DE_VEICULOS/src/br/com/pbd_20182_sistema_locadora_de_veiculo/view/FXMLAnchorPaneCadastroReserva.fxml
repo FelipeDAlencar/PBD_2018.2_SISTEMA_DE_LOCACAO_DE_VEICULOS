@@ -8,6 +8,8 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -42,11 +44,18 @@
                   </Label>
                   <HBox layoutX="14.0" layoutY="414.0" prefHeight="25.0" prefWidth="226.0" spacing="5.0">
                      <children>
-                        <TextField fx:id="tfBusca" promptText="Pesquisar" style="-fx-background-color: #D3D3D3;" />
-                        <Button fx:id="btnBuscar" mnemonicParsing="false" onAction="#acaoBtns" prefHeight="25.0" prefWidth="112.0" style="-fx-background-color: #D3D3D3;" text="Pesquisar">
+                        <TextField fx:id="tfBusca" prefHeight="25.0" prefWidth="162.0" promptText="Pesquisar" style="-fx-background-color: #D3D3D3;" />
+                        <Button fx:id="btnBuscar" mnemonicParsing="false" onAction="#acaoBtns" prefHeight="25.0" prefWidth="45.0" style="-fx-background-color: #D3D3D3;">
                            <cursor>
                               <Cursor fx:constant="HAND" />
-                           </cursor></Button>
+                           </cursor>
+                           <graphic>
+                              <ImageView>
+                                 <image>
+                                    <Image url="@../../../../res/baseline_search_black_18dp.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
                      </children>
                   </HBox>
                   <Group layoutX="292.0" layoutY="414.0">
