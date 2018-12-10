@@ -77,14 +77,6 @@ public class MascarasTF {
             }
         });
 
-        textField.setOnKeyReleased((KeyEvent evt) -> {
-
-            if (!textField.getText().matches("\\d-*")) {
-                textField.setText(textField.getText().replaceAll("[^\\d-]", ""));
-                textField.positionCaret(textField.getText().length());
-            }
-        });
-
     }
 
     public static void mascaraData(TextField textField) {
@@ -421,8 +413,6 @@ public class MascarasTF {
             }
 
         });
-
-       
 
     }
 

@@ -53,6 +53,9 @@ public class FXMLAnchorPaneCadastroFilialDialogController implements Initializab
     @FXML
     private Button btnCancelar;
     
+    @FXML
+    private TextField tfCep;
+    
     private Stage stage;
     private boolean sucesso;
     private Filial filial;
@@ -72,6 +75,7 @@ public class FXMLAnchorPaneCadastroFilialDialogController implements Initializab
         comboUF.setItems(obsUfs);
         
         MascarasTF.mascaraNumero(tfNumero);
+        MascarasTF.mascaraCEP(tfCep);
     }
     
     @FXML
@@ -85,6 +89,7 @@ public class FXMLAnchorPaneCadastroFilialDialogController implements Initializab
             endereco.setRua(tfRua.getText());
             endereco.setUf(comboUF.getValue());
             endereco.setNumero(Integer.parseInt(tfNumero.getText()));
+            endereco.setCep(Util.removerCaracteres(tfCep.getText()));
             
             filial.setEndereco(endereco);
             filial.setAtivo(true);

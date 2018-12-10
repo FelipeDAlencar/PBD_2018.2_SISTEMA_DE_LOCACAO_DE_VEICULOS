@@ -47,8 +47,8 @@ public class DAOPessoaJuridica extends DAOGenerico<PessoaJuridica> implements ID
 
         return pessoaJuridicas;
     }
-    
-     @Override
+
+    @Override
     public PessoaJuridica buscarPorCNPJ(String cnpj) throws DAOException {
         EntityManager em = ConnectionFactory.getInstance().getConnection();
         PessoaJuridica pessoaJuridica = null;
@@ -57,18 +57,18 @@ public class DAOPessoaJuridica extends DAOGenerico<PessoaJuridica> implements ID
             TypedQuery<PessoaJuridica> query = em.createQuery(SQLUtil.PessoaJuridica.SQL_BUSCAR_POR_CNPJ, PessoaJuridica.class);
             query.setParameter("cnpj", cnpj.toLowerCase());
 
-            pessoaJuridica =  query.getSingleResult();
-            
-            
+            pessoaJuridica = query.getSingleResult();
+
             return pessoaJuridica;
         } catch (Exception e) {
             e.printStackTrace();
-            throw new DAOException("ERRO AO TENTAR BUSCAR NO BANCO DE DADOS");
 
         } finally {
             em.close();
         }
-        
+
+        return null;
+
     }
 
 }

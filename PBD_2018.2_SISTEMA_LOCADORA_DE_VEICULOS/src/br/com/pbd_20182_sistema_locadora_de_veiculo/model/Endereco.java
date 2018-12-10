@@ -26,8 +26,11 @@ public class Endereco implements Serializable, EntidadeBase{
     private int numero;
     @Column(name = "cidade", length = 200)
     private String cidade;
+    @Column(name = "cep", length = 8)
+    private String cep;
     
 
+    @Override
     public Integer getId() {
         return id;
     }
@@ -76,15 +79,24 @@ public class Endereco implements Serializable, EntidadeBase{
         this.cidade = cidade;
     }
 
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 17 * hash + Objects.hashCode(this.id);
-        hash = 17 * hash + Objects.hashCode(this.uf);
-        hash = 17 * hash + Objects.hashCode(this.rua);
-        hash = 17 * hash + Objects.hashCode(this.bairro);
-        hash = 17 * hash + this.numero;
-        hash = 17 * hash + Objects.hashCode(this.cidade);
+        int hash = 5;
+        hash = 59 * hash + Objects.hashCode(this.id);
+        hash = 59 * hash + Objects.hashCode(this.uf);
+        hash = 59 * hash + Objects.hashCode(this.rua);
+        hash = 59 * hash + Objects.hashCode(this.bairro);
+        hash = 59 * hash + this.numero;
+        hash = 59 * hash + Objects.hashCode(this.cidade);
+        hash = 59 * hash + Objects.hashCode(this.cep);
         return hash;
     }
 
@@ -115,11 +127,15 @@ public class Endereco implements Serializable, EntidadeBase{
         if (!Objects.equals(this.cidade, other.cidade)) {
             return false;
         }
+        if (!Objects.equals(this.cep, other.cep)) {
+            return false;
+        }
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
     }
+
     
    
     

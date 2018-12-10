@@ -121,6 +121,9 @@ public class FXMLAchorPaneCadastroClienteDialogController implements Initializab
 
     @FXML
     private TextField tfNumero;
+    
+    @FXML
+    private TextField tfCep;
 
     private DAOPessoa dAOPessoa = new DAOPessoa();
 
@@ -156,6 +159,7 @@ public class FXMLAchorPaneCadastroClienteDialogController implements Initializab
         MascarasTF.mascaraInscriçãoEstadual(tfInscricaoEstadual);
         MascarasTF.mascaraCNH(tfNCNH);
         MascarasTF.mascaraCPF(tfCPFCNPJ);
+        MascarasTF.mascaraCEP(tfCep);
 
     }
 
@@ -223,6 +227,7 @@ public class FXMLAchorPaneCadastroClienteDialogController implements Initializab
 
             lbCPFCNPJ.setText("CPF");
             MascarasTF.mascaraCPF(tfCPFCNPJ);
+           
 
         }
     }
@@ -234,6 +239,7 @@ public class FXMLAchorPaneCadastroClienteDialogController implements Initializab
         pessoa.getEndereco().setNumero(Integer.parseInt(tfNumero.getText()));
         pessoa.getEndereco().setUf(comboUF.getValue().toUpperCase());
         pessoa.getEndereco().setCidade(tfCidade.getText());
+        pessoa.getEndereco().setCep(Util.removerCaracteres(tfCep.getText()));
 
     }
 
