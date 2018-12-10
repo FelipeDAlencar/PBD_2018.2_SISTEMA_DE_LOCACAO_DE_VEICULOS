@@ -49,11 +49,9 @@ public class teste {
 //        
 //        System.err.println(Util.formatarData(pessoaFisica.getData_nascimento()));
 
-        Fachada fachada = Fachada.getInstance();
-        
-        ArrayList<Veiculo> motorista = fachada.buscarPorBuscaVeiculo("Pál");
-        
-        System.err.println(motorista);
+       String cpf = "108.590.464-43";
+       
+        System.err.println(Util.removerCaracteres(cpf));
         
         
     }

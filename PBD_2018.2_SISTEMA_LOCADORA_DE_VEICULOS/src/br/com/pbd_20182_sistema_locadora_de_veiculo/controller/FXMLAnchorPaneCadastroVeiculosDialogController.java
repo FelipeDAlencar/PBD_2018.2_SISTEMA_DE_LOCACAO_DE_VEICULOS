@@ -8,6 +8,7 @@ package br.com.pbd_20182_sistema_locadora_de_veiculo.controller;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.MascarasTF;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Veiculo;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -87,6 +88,12 @@ public class FXMLAnchorPaneCadastroVeiculosDialogController implements Initializ
             ex.printStackTrace();
         }
 
+        MascarasTF.mascaraNumeroInteiro(tfAnoDeFabricacao);
+        MascarasTF.mascaraNumeroInteiro(tfAnoDoModelo);
+        MascarasTF.mascaraNumeroInteiro(tfKmAtual);
+        MascarasTF.mascaraNumeroInteiro(tfNChassi);
+        MascarasTF.mascaraNumeroInteiro(tfTorqueDoMotor);
+
     }
 
     @FXML
@@ -106,7 +113,7 @@ public class FXMLAnchorPaneCadastroVeiculosDialogController implements Initializ
             veiculo.setQuilometragemAtual(Double.parseDouble(tfKmAtual.getText()));
             veiculo.setTipoDeCombustivel(tfTipoCombustivel.getText());
             veiculo.setTorqueDoMotor(Double.parseDouble(tfTorqueDoMotor.getText()));
-            
+
             veiculo.setAtivo(true);
 
             sucesso = true;
@@ -147,8 +154,8 @@ public class FXMLAnchorPaneCadastroVeiculosDialogController implements Initializ
 
     public void setVeiculo(Veiculo veiculo) {
         this.veiculo = veiculo;
-        
-        if(veiculo.getId() != null){
+
+        if (veiculo.getId() != null) {
             tfAnoDeFabricacao.setText(String.valueOf(veiculo.getAnoDeFabricacao()));
             tfAnoDoModelo.setText(String.valueOf(veiculo.getAnoDoModelo()));
             tfCor.setText(veiculo.getCor());
@@ -159,15 +166,12 @@ public class FXMLAnchorPaneCadastroVeiculosDialogController implements Initializ
             tfPlaca.setText(veiculo.getPlaca());
             tfTipoCombustivel.setText(veiculo.getTipoDeCombustivel());
             tfTorqueDoMotor.setText(String.valueOf(veiculo.getTorqueDoMotor()));
-            
+
             comboCategoria.setValue(veiculo.getCategoria());
-            
+
             cbDisponivel.setSelected(veiculo.isDisponivel());
-            
+
         }
     }
-    
-    
-    
 
 }

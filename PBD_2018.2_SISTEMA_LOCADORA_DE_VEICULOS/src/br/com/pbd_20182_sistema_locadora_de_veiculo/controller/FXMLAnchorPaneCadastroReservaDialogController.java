@@ -9,6 +9,7 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.BusinessExpection;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.MascarasTF;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Pessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ReservaPessoasCategorias;
@@ -90,7 +91,9 @@ public class FXMLAnchorPaneCadastroReservaDialogController implements Initializa
         }
         
         adicionarOuvinte();
-
+        
+        
+        MascarasTF.mascaraNumero(tfValor);
     }
 
     @FXML

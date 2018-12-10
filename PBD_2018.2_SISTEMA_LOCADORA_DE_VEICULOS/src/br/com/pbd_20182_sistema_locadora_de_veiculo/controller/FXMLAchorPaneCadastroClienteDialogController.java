@@ -7,6 +7,7 @@ package br.com.pbd_20182_sistema_locadora_de_veiculo.controller;
 
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Endereco;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.MascarasTF;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Pessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaJuridica;
@@ -123,6 +124,41 @@ public class FXMLAchorPaneCadastroClienteDialogController implements Initializab
 
     private DAOPessoa dAOPessoa = new DAOPessoa();
 
+    public void initialize(URL url, ResourceBundle rb) {
+        lbInscricaoEstadual = new Label("Inscrição Estadual");
+        lbInscricaoEstadual.setTextFill(Paint.valueOf("#dcdcdc"));
+
+        tfInscricaoEstadual = new TextField();
+        tfInscricaoEstadual.setStyle("-fx-background-color: #D3D3D3;");
+
+        lbInscricaoEstadual.setVisible(false);
+        tfInscricaoEstadual.setVisible(false);
+
+        gridPane2.add(lbInscricaoEstadual, 0, 3);
+        gridPane2.add(tfInscricaoEstadual, 1, 3);
+
+        ArrayList<String> ufs = new ArrayList<>();
+        ObservableList<String> obsUfs;
+
+        for (int i = 0; i < Util.ufs.length; i++) {
+            ufs.add(Util.ufs[i]);
+        }
+
+        obsUfs = FXCollections.observableArrayList(ufs);
+
+        comboUF.setItems(obsUfs);
+
+        ToggleGroup tg = new ToggleGroup();
+        rbPessoaFisica.setToggleGroup(tg);
+        rbPessoaJuridica.setToggleGroup(tg);
+
+        MascarasTF.mascaraNumeroInteiro(tfNumero);
+        MascarasTF.mascaraInscriçãoEstadual(tfInscricaoEstadual);
+        MascarasTF.mascaraCNH(tfNCNH);
+        MascarasTF.mascaraCPF(tfCPFCNPJ);
+
+    }
+
     @FXML
     void acoesBtns(ActionEvent event) throws DAOException {
         try {
@@ -169,6 +205,7 @@ public class FXMLAchorPaneCadastroClienteDialogController implements Initializab
             tfInscricaoEstadual.setVisible(true);
 
             lbCPFCNPJ.setText("CNPJ");
+            MascarasTF.mascaraCNPJ(tfCPFCNPJ);
 
         } else if (rbPessoaFisica.isSelected()) {
             lbDataDeVencimentoCNH.setVisible(true);
@@ -185,38 +222,9 @@ public class FXMLAchorPaneCadastroClienteDialogController implements Initializab
             tfInscricaoEstadual.setVisible(false);
 
             lbCPFCNPJ.setText("CPF");
+            MascarasTF.mascaraCPF(tfCPFCNPJ);
 
         }
-    }
-
-    public void initialize(URL url, ResourceBundle rb) {
-        lbInscricaoEstadual = new Label("Inscrição Estadual");
-        lbInscricaoEstadual.setTextFill(Paint.valueOf("#dcdcdc"));
-        
-        tfInscricaoEstadual = new TextField();
-        tfInscricaoEstadual.setStyle("-fx-background-color: #D3D3D3;");
-
-        lbInscricaoEstadual.setVisible(false);
-        tfInscricaoEstadual.setVisible(false);
-
-        gridPane2.add(lbInscricaoEstadual, 0, 3);
-        gridPane2.add(tfInscricaoEstadual, 1, 3);
-
-        ArrayList<String> ufs = new ArrayList<>();
-        ObservableList<String> obsUfs;
-
-        for (int i = 0; i < Util.ufs.length; i++) {
-            ufs.add(Util.ufs[i]);
-        }
-
-        obsUfs = FXCollections.observableArrayList(ufs);
-
-        comboUF.setItems(obsUfs);
-
-        ToggleGroup tg = new ToggleGroup();
-        rbPessoaFisica.setToggleGroup(tg);
-        rbPessoaJuridica.setToggleGroup(tg);
-
     }
 
     public void pegarValoresEndereco() {
@@ -230,20 +238,18 @@ public class FXMLAchorPaneCadastroClienteDialogController implements Initializab
     }
 
     public void pegarValoresPessoaFisica() throws DAOException {
-        System.err.println("pegarValoresPessoaFisica");
+
         if (!(pessoa != null)) {
-            System.err.println("Entrou if");
+
             pessoa = new PessoaFisica();
             endereco = new Endereco();
             pessoa.setEndereco(endereco);
         }
 
-        if (pessoa instanceof PessoaFisica) {
-            System.err.println("É física");
-        }
+       
 
         pessoa.setNome(tfNome.getText());
-        ((PessoaFisica) pessoa).setCPF(tfCPFCNPJ.getText());
+        ((PessoaFisica) pessoa).setCPF(Util.removerCaracteres(tfCPFCNPJ.getText()));
         pessoa.setLogin(tfLogin.getText());
         if (!isEdicao) {
             pessoa.setSenha(((PessoaFisica) pessoa).getCPF());
@@ -284,14 +290,17 @@ public class FXMLAchorPaneCadastroClienteDialogController implements Initializab
         }
 
         pessoa.setNome(tfNome.getText());
-        ((PessoaJuridica) pessoa).setCNPJ(tfCPFCNPJ.getText());
+
+        ((PessoaJuridica) pessoa).setCNPJ(Util.removerCaracteres(tfCPFCNPJ.getText()));
+
+        ((PessoaJuridica) pessoa).setInscriçãoEstadual(Util.removerCaracteres(tfInscricaoEstadual.getText()));
 
         pessoa.setLogin(tfLogin.getText());
 
         if (!isEdicao) {
 
             pessoa.setSenha(((PessoaJuridica) pessoa).getCNPJ());
-            ((PessoaJuridica) pessoa).setInscriçãoEstadual(tfInscricaoEstadual.getText());
+
             String UltimoCodigo;
             try {
                 UltimoCodigo = dAOPessoa.buscarUltimoCodigo();
@@ -396,7 +405,5 @@ public class FXMLAchorPaneCadastroClienteDialogController implements Initializab
     public RadioButton getRbPessoaFisica() {
         return rbPessoaFisica;
     }
-    
-    
 
 }

@@ -10,6 +10,7 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Geral;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Locacao;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.MascarasTF;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Pessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Util;
@@ -142,6 +143,11 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
         tfValor.setText(tfMetadeprimeiraDiaria.getText());
 
         adicionarOuvinte();
+
+        MascarasTF.mascaraNumero(tfKmFinal);
+        MascarasTF.mascaraNumero(tfKmInicial);
+        MascarasTF.mascaraNumero(tfMetadeprimeiraDiaria);
+        MascarasTF.mascaraNumero(tfValor);
 
     }
 

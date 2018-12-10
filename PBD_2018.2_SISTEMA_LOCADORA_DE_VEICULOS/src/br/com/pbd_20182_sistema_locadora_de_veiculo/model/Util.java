@@ -112,11 +112,12 @@ public abstract class Util {
         return localDate;
     }
 
-    public static void tirarCaracteres(TextField textField) {
-        if (!textField.getText().matches("\\d.-*")) {
-            textField.setText(textField.getText().replaceAll("[^\\d.-]", ""));
-            textField.positionCaret(textField.getText().length());
-        }
+    public static String removerCaracteres(String textField) {
+
+        textField = textField.replaceAll("\\.", "");
+        textField = textField.replaceAll("-", "");
+        textField = textField.replaceAll("/", "");
+        return textField;
     }
 
 //    ArrayList<Veiculo> veiculos = fachada.buscarVeiculoPorCategoria(reservaPessoasCategorias.getCategoria());

@@ -8,6 +8,7 @@ package br.com.pbd_20182_sistema_locadora_de_veiculo.controller;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.BusinessExpection;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Endereco;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Funcionario;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.MascarasTF;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Util;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOPessoa;
 import java.net.URL;
@@ -72,6 +73,18 @@ public class FXMLAnchorPaneCadastroFuncionarioDialogController implements Initia
     private Stage stage;
     private boolean sucesso;
 
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+
+        ObservableList<String> obsUFs = FXCollections.observableArrayList(Arrays.asList(Util.ufs));
+
+        ufCombo.setItems(obsUFs);
+
+        MascarasTF.mascaraNumero(tfMatricula);
+        MascarasTF.mascaraNumero(tfNumero);
+
+    }
+
     @FXML
     void acaoBtns(ActionEvent event) throws BusinessExpection {
         try {
@@ -109,23 +122,14 @@ public class FXMLAnchorPaneCadastroFuncionarioDialogController implements Initia
         }
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-
-        ObservableList<String> obsUFs = FXCollections.observableArrayList(Arrays.asList(Util.ufs));
-
-        ufCombo.setItems(obsUFs);
-
-    }
-
     public Funcionario getFuncionario() {
         return funcionario;
     }
 
     public void setFuncionario(Funcionario funcionario) {
         this.funcionario = funcionario;
-        
-        if(funcionario.getId() != null){
+
+        if (funcionario.getId() != null) {
             tfBairro.setText(funcionario.getEndereco().getBairro());
             tfCidade.setText(funcionario.getEndereco().getCidade());
             tfNumero.setText(String.valueOf(funcionario.getEndereco().getNumero()));
@@ -135,13 +139,9 @@ public class FXMLAnchorPaneCadastroFuncionarioDialogController implements Initia
             tfMatricula.setText(funcionario.getMatricula());
             tfLogin.setText(funcionario.getLogin());
             tfCargo.setText(funcionario.getCargo());
-            
-            
-            
+
         }
-        
-        
-        
+
     }
 
     public Stage getStage() {

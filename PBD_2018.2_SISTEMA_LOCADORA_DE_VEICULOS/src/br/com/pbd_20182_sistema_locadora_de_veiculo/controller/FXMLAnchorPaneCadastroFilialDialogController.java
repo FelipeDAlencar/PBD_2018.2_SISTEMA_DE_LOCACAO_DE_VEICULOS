@@ -7,6 +7,7 @@ package br.com.pbd_20182_sistema_locadora_de_veiculo.controller;
 
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Endereco;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Filial;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.MascarasTF;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Util;
 import java.net.URL;
 import java.util.ArrayList;
@@ -56,6 +57,23 @@ public class FXMLAnchorPaneCadastroFilialDialogController implements Initializab
     private boolean sucesso;
     private Filial filial;
     
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        
+        ArrayList<String> ufs = new ArrayList<>();
+        ObservableList<String> obsUfs;
+        
+        for (int i = 0; i < Util.ufs.length; i++) {
+            ufs.add(Util.ufs[i]);
+        }
+        
+        obsUfs = FXCollections.observableArrayList(ufs);
+        
+        comboUF.setItems(obsUfs);
+        
+        MascarasTF.mascaraNumero(tfNumero);
+    }
+    
     @FXML
     void acaoBtns(ActionEvent event) {
         if (event.getSource() == btnConfirmar) {
@@ -77,21 +95,6 @@ public class FXMLAnchorPaneCadastroFilialDialogController implements Initializab
         } else {
             stage.close();
         }
-    }
-    
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        
-        ArrayList<String> ufs = new ArrayList<>();
-        ObservableList<String> obsUfs;
-        
-        for (int i = 0; i < Util.ufs.length; i++) {
-            ufs.add(Util.ufs[i]);
-        }
-        
-        obsUfs = FXCollections.observableArrayList(ufs);
-        
-        comboUF.setItems(obsUfs);
     }
     
     public Stage getStage() {
