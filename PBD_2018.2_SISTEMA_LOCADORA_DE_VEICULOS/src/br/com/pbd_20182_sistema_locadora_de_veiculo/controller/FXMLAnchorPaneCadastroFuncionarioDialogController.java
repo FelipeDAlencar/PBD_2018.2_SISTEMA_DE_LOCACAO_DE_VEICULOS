@@ -97,11 +97,12 @@ public class FXMLAnchorPaneCadastroFuncionarioDialogController implements Initia
                 endereco.setNumero(Integer.parseInt(tfNumero.getText()));
                 endereco.setRua(tfRua.getText());
                 endereco.setUf(ufCombo.getValue());
-                tfCargo.setText(funcionario.getCargo());
+               
                 cbSuperUsuario.setSelected(funcionario.isSuperUsuario());
 
                 funcionario.setEndereco(endereco);
                 funcionario.setCargo(tfCargo.getText());
+               
                 funcionario.setLogin(tfLogin.getText());
                 funcionario.setSenha(tfMatricula.getText());
                 funcionario.setMatricula(tfMatricula.getText());

@@ -175,7 +175,7 @@ public class FXMLAnchorPaneCadastroLocacaoController implements Initializable {
                 locacao.setAtivo(false);
                 fachada.salvarLocacao(locacao);
                 Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
-                alerta.alertar(Alert.AlertType.CONFIRMATION, "Sucesso", "Excluir locaçao", "Exclusão "
+                alerta.alertar(Alert.AlertType.INFORMATION, "Sucesso", "Excluir locaçao", "Exclusão "
                         + "da categoria foi efetuada com sucesso!.");
                 carregarLocacoes(fachada.listarTodosLocacao());
 

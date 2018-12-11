@@ -239,7 +239,7 @@ public class FXMLAchorPaneCadastroClienteDialogController implements Initializab
         pessoa.getEndereco().setNumero(Integer.parseInt(tfNumero.getText()));
         pessoa.getEndereco().setUf(comboUF.getValue().toUpperCase());
         pessoa.getEndereco().setCidade(tfCidade.getText());
-        pessoa.getEndereco().setCep(Util.removerCaracteres(tfCep.getText()));
+        pessoa.getEndereco().setCep(tfCep.getText());
 
     }
 
@@ -297,9 +297,9 @@ public class FXMLAchorPaneCadastroClienteDialogController implements Initializab
 
         pessoa.setNome(tfNome.getText());
 
-        ((PessoaJuridica) pessoa).setCNPJ(Util.removerCaracteres(tfCPFCNPJ.getText()));
+        ((PessoaJuridica) pessoa).setCNPJ(Util.removerCaracteres(Util.removerCaracteres(tfCPFCNPJ.getText())));
 
-        ((PessoaJuridica) pessoa).setInscriçãoEstadual(Util.removerCaracteres(tfInscricaoEstadual.getText()));
+        ((PessoaJuridica) pessoa).setInscriçãoEstadual(tfInscricaoEstadual.getText());
 
         pessoa.setLogin(tfLogin.getText());
 
@@ -341,6 +341,7 @@ public class FXMLAchorPaneCadastroClienteDialogController implements Initializab
                 tfRua.setText(pessoa.getEndereco().getRua());
                 comboUF.setValue(pessoa.getEndereco().getUf());
                 tfNumero.setText(String.valueOf(pessoa.getEndereco().getNumero()));
+                tfCep.setText(pessoa.getEndereco().getCep());
 
                 tfNome.setText(pessoa.getNome());
                 tfLogin.setText(pessoa.getLogin());

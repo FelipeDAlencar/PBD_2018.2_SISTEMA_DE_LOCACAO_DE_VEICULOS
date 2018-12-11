@@ -69,7 +69,7 @@ public class FXMLLoginController implements Initializable {
         Pessoa pessoa = new Pessoa();
         pessoa.setLogin(tfLogin.getText());
         pessoa.setSenha(dAOPessoa.criptografarSenha(tfSenha.getText()));
-        System.err.println(dAOPessoa.criptografarSenha("55"));
+        System.out.println(dAOPessoa.criptografarSenha("10859046443"));
 
         pessoa = dAOPessoa.buscarLogin(pessoa);
 

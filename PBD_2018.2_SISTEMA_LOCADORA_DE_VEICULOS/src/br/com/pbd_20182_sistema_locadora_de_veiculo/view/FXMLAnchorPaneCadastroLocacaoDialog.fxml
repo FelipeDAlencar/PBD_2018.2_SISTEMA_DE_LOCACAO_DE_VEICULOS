@@ -54,7 +54,7 @@
                         <Label text="Km livre" textFill="GAINSBORO" GridPane.rowIndex="10" />
                         <Label text="Finalizada" textFill="GAINSBORO" GridPane.rowIndex="11" />
                         <Label text="Valor" textFill="GAINSBORO" GridPane.rowIndex="12" />
-                        <ComboBox fx:id="comboVeiculo" editable="true" onAction="#AcaoCombos" prefWidth="150.0" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <ComboBox fx:id="comboVeiculo" onAction="#AcaoCombos" prefWidth="150.0" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <TextField fx:id="tfKmInicial" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <TextField fx:id="tfKmFinal" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <TextField fx:id="tfMetadeprimeiraDiaria" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
@@ -64,14 +64,14 @@
                         <CheckBox fx:id="cbFinalizada" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="11" />
                         <TextField fx:id="tfValor" GridPane.columnIndex="1" GridPane.rowIndex="12" />
                         <Label text="Cliente" textFill="GAINSBORO" />
-                        <ComboBox fx:id="comboCliente" editable="true" onAction="#AcaoCombos" prefHeight="25.0" prefWidth="139.0" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" />
+                        <ComboBox fx:id="comboCliente" onAction="#AcaoCombos" prefHeight="25.0" prefWidth="139.0" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" />
                         <Label text="Taxa de higiênização" textFill="GAINSBORO" GridPane.rowIndex="8" />
                         <Label text="Taxa de Combustível" textFill="GAINSBORO" GridPane.rowIndex="9" />
                         <CheckBox fx:id="cbTaxaHigienizacao" mnemonicParsing="false" onAction="#acaoCBs" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                         <CheckBox fx:id="cbTaxaCombustivel" mnemonicParsing="false" onAction="#acaoCBs" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                         <HBox prefHeight="25.0" prefWidth="159.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <children>
-                              <ComboBox fx:id="comboMotorista" editable="true" onAction="#AcaoCombos" prefHeight="25.0" prefWidth="122.0" style="-fx-background-color: #D3D3D3;" />
+                              <ComboBox fx:id="comboMotorista" onAction="#AcaoCombos" prefHeight="25.0" prefWidth="122.0" style="-fx-background-color: #D3D3D3;" />
                               <Button fx:id="btnAddMortorista" mnemonicParsing="false" onAction="#acaoBtns">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />

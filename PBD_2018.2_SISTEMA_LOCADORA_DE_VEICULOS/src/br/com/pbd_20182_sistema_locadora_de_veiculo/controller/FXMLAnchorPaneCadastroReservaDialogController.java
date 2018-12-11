@@ -102,9 +102,9 @@ public class FXMLAnchorPaneCadastroReservaDialogController implements Initializa
             stage.close();
         } else {
             try {
-
-                reservaPessoasCategorias.setCategoria(comboCategorias.getValue());
                 reservaPessoasCategorias.setPessoa(comboClientes.getValue());
+                reservaPessoasCategorias.setCategoria(comboCategorias.getValue());
+                
 
                 Date s = Date.from(dpData.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
 

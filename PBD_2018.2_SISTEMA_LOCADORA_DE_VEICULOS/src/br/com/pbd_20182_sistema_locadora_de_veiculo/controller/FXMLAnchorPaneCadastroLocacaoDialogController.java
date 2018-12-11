@@ -355,9 +355,7 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
             @Override
             public void handle(KeyEvent evt) {
 
-                System.err.println(buscaCliente);
-                System.err.println(buscaMotorista);
-                System.err.println(buscaVeiculo);
+                
 
                 KeyCode code = evt.getCode();
                 ObservableList<Pessoa> obsPessoa;

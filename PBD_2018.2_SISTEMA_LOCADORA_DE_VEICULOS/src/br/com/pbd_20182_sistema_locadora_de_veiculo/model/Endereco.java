@@ -26,7 +26,7 @@ public class Endereco implements Serializable, EntidadeBase{
     private int numero;
     @Column(name = "cidade", length = 200)
     private String cidade;
-    @Column(name = "cep", length = 8)
+    @Column(name = "cep", length = 9)
     private String cep;
     
 

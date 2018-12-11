@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "pessoa_juridica")
 public class PessoaJuridica extends Pessoa{
-    @Column(name = "cnpj", nullable = false, length = 14)
+    @Column(name = "cnpj", nullable = false, length = 20)
     private String CNPJ;
     @Column(name = "inscricao_estadual", nullable = false, length = 9)
     private String inscriçãoEstadual;

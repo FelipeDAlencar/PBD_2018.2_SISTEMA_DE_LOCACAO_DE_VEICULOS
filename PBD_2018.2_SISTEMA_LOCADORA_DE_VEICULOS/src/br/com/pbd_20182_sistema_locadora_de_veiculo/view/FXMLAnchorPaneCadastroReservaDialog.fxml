@@ -32,8 +32,8 @@
             <Label text="Categoria" textFill="GAINSBORO" GridPane.rowIndex="1" />
             <Label text="Data" textFill="GAINSBORO" GridPane.rowIndex="3" />
             <Label text="Valor Previsto" textFill="GAINSBORO" GridPane.rowIndex="2" />
-            <ComboBox fx:id="comboClientes" editable="true" onAction="#AcaoCombos" prefWidth="150.0" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" />
-            <ComboBox fx:id="comboCategorias" editable="true" onAction="#AcaoCombos" prefHeight="6.0" prefWidth="144.0" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <ComboBox fx:id="comboClientes" onAction="#AcaoCombos" prefWidth="150.0" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" />
+            <ComboBox fx:id="comboCategorias" onAction="#AcaoCombos" prefHeight="6.0" prefWidth="144.0" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="tfValor" promptText="Valor previsto" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <DatePicker fx:id="dpData" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label text="Efetivada" textFill="GAINSBORO" GridPane.rowIndex="4" />

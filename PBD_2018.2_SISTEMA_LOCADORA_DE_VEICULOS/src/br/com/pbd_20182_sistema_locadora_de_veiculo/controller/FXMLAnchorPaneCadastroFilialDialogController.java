@@ -131,6 +131,7 @@ public class FXMLAnchorPaneCadastroFilialDialogController implements Initializab
             tfNumero.setText(String.valueOf(filial.getEndereco().getNumero()));
             tfRua.setText(filial.getEndereco().getRua());
             comboUF.setValue(filial.getEndereco().getUf());
+            tfCep.setText(filial.getEndereco().getCep());
             
             tfNomeFilial.setText(filial.getNome());
             

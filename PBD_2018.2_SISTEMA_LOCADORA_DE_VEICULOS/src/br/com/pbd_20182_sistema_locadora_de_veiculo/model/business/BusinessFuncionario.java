@@ -55,6 +55,8 @@ public class BusinessFuncionario implements IBusinessFuncionario {
         String erroMessage = "";
         
         
+        System.out.println("Aqui " + funcionario.getCargo());
+        
         if(funcionario.getCargo().length() == 0){
             erroMessage = "Por favor, informe o cargo.";
         }

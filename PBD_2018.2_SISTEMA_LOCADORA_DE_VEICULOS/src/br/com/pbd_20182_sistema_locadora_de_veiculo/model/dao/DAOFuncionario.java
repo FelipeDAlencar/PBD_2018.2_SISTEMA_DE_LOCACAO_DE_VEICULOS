@@ -66,4 +66,8 @@ public class DAOFuncionario extends DAOGenerico<Funcionario> implements IDAOFunc
 
     }
 
+    public String buscarUltimoCodigo() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

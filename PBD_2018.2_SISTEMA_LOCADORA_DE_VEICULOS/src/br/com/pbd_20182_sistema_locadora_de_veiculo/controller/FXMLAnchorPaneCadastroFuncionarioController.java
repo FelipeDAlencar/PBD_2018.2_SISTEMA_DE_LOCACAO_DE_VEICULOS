@@ -105,6 +105,7 @@ public class FXMLAnchorPaneCadastroFuncionarioController implements Initializabl
     private DAOPessoa dAOPessoa;
     private Fachada fachada;
     private Stage stage;
+    private FXMLAnchorPaneCadastroFuncionarioDialogController controller;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -126,10 +127,9 @@ public class FXMLAnchorPaneCadastroFuncionarioController implements Initializabl
             boolean sucesso = exibirTelaCadastro(funcionario, event);
 
             if (sucesso) {
-
+                funcionario = controller.getFuncionario();
                 funcionario.setSenha(dAOPessoa.criptografarSenha(funcionario.getSenha()));
                 fachada.salvarFuncionario(funcionario);
-                carregarFuncionarios(funcionarios);
 
                 Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
                 alerta.alertar(Alert.AlertType.CONFIRMATION, "Sucesso!", "Inserir Funcionario", "Funcionario"
@@ -150,7 +150,7 @@ public class FXMLAnchorPaneCadastroFuncionarioController implements Initializabl
                     fachada.salvarFuncionario(funcionario);
                     Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
                     alerta.alertar(Alert.AlertType.INFORMATION, "Sucesso", "Sucesso", "Edição realizada com sucesso");
-                    carregarFuncionarios(fachada.listarTodosFuncionario());
+
                 }
 
             } else {
@@ -237,7 +237,7 @@ public class FXMLAnchorPaneCadastroFuncionarioController implements Initializabl
             Scene scene = new Scene(pane);
             stage.setScene(scene);
 
-            FXMLAnchorPaneCadastroFuncionarioDialogController controller = loader.getController();
+            controller = loader.getController();
             controller.setFuncionario(funcionario);
             controller.setStage(stage);
 

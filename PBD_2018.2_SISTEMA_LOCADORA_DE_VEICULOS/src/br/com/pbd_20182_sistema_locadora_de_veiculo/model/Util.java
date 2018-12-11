@@ -53,11 +53,15 @@ public abstract class Util {
     };
 
     public static String gerarCodigoInterno(String nome, String ultimoCodigo) {
-        int parteNumerica = Integer.parseInt(ultimoCodigo.substring(3));
-        parteNumerica += 1;
-        String codigo = nome.substring(0, 3) + String.format("%03d", parteNumerica);
 
-        return codigo;
+        if (ultimoCodigo.length() != 0) {
+            int parteNumerica = Integer.parseInt(ultimoCodigo.substring(3));
+            parteNumerica += 1;
+            String codigo = nome.substring(0, 3) + String.format("%03d", parteNumerica);
+            return codigo;
+        }
+
+        return  nome.substring(0, 3) + String.format("%03d", "1");
     }
 
     public static String gerarNomeCategoria(String ultimoNome, int tipo) {

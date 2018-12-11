@@ -8,9 +8,13 @@ package App;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Endereco;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Funcionario;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Util;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Veiculo;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOFuncionario;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOPessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOPessoaFisica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOPessoaJuridica;
 import java.text.SimpleDateFormat;
@@ -51,11 +55,45 @@ public class teste {
 //        
 //        System.err.println(Util.formatarData(pessoaFisica.getData_nascimento()));
 
-        DAOPessoaJuridica daopf = new DAOPessoaJuridica();
+        DAOFuncionario daof = new DAOFuncionario();
+        
+        DAOPessoa daop =  new DAOPessoa();
+//        Funcionario funcionario = new Funcionario();
+//        
+//        funcionario.setAtivo(true);
+//        funcionario.setCargo("Analista");
+//        funcionario.setNome("Felipe");
+//        //String UltimoCodigo = daof.buscarUltimoCodigo();
+//        funcionario.setCodigo("Fel001");
+//        funcionario.setLogin("felipe");
+//        funcionario.setMatricula("123456");
+//        funcionario.setSenha(funcionario.getMatricula());
+//        funcionario.setSuperUsuario(true);
+//        
+//        Endereco endereco = new Endereco();
+//        endereco.setBairro("Teste");
+//        endereco.setCep("56580-000");
+//        endereco.setCidade("Ibimirim");
+//        endereco.setNumero(56);
+//        endereco.setRua("Murilo Fagundes");
+//        endereco.setUf("PE");
+//        
+//        
+//        funcionario.setEndereco(endereco);
+//        
+//        daop.salvar(funcionario);
+//        
+        
+        System.err.println(daop.criptografarSenha("123456"));
         
         
         
-        System.err.println(daopf.buscarPorCNPJ("123"));
+        
+        
+        
+        
+        
+        
         
         
     }

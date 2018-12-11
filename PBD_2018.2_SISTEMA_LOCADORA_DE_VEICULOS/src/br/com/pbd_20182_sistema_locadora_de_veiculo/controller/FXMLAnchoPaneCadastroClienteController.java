@@ -307,14 +307,15 @@ public class FXMLAnchoPaneCadastroClienteController implements Initializable {
             Pane pane = loader.load();
 
             Stage stage = new Stage();
-
+            
             stage.setTitle("Cadastro de Clientes");
             Scene scene = new Scene(pane);
             stage.setScene(scene);
 
             stage.initOwner(((Node) event.getSource()).getScene().getWindow());
             stage.initModality(Modality.WINDOW_MODAL);
-
+            
+            
             controller = loader.getController();
             controller.setStage(stage);
 
