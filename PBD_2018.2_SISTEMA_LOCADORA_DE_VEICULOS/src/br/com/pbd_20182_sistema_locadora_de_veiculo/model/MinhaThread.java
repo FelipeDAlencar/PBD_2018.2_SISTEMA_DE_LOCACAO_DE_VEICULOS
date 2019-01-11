@@ -66,7 +66,7 @@ public class MinhaThread extends Task<Integer> {
                     System.err.println(dataHoraDaReserva.getTime());
                     if (dataHoraDaReserva.compareTo(dataHoraAtual) < 0) {
 
-                        // reserva.setAtivo(false);
+                        reserva.setAtivo(false);
                         fachada.salvarReservaPessoasCategorias(reserva);
 
                     }

@@ -312,8 +312,8 @@ public class FXMLAnchoPaneCadastroClienteController implements Initializable {
             Scene scene = new Scene(pane);
             stage.setScene(scene);
 
-            stage.initOwner(((Node) event.getSource()).getScene().getWindow());
-            stage.initModality(Modality.WINDOW_MODAL);
+                stage.initOwner(((Node) event.getSource()).getScene().getWindow());
+                stage.initModality(Modality.WINDOW_MODAL);
             
             
             controller = loader.getController();

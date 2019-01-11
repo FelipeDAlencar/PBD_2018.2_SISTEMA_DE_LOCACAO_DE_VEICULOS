@@ -141,13 +141,14 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
             ex.getMessage();
         }
         tfValor.setText(tfMetadeprimeiraDiaria.getText());
-
+        tfKmInicial.setDisable(true);
         adicionarOuvinte();
 
         MascarasTF.mascaraNumero(tfKmFinal);
         MascarasTF.mascaraNumero(tfKmInicial);
         MascarasTF.mascaraNumero(tfMetadeprimeiraDiaria);
         MascarasTF.mascaraNumero(tfValor);
+        
 
     }
 
@@ -246,7 +247,11 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
 
     @FXML
     void AcaoCombos(ActionEvent event) {
-
+        
+        if(event.getSource() == comboVeiculo){
+            tfKmInicial.setText(String.valueOf(comboVeiculo.getValue().getQuilometragemAtual()));
+        }
+            
     }
 
     private void carregarCombos() throws DAOException {

@@ -26,6 +26,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
+import javax.swing.JOptionPane;
 import org.hibernate.type.descriptor.java.LocalDateJavaDescriptor;
 
 /**
@@ -35,6 +36,29 @@ import org.hibernate.type.descriptor.java.LocalDateJavaDescriptor;
 public class teste {
 
     public static void main(String[] args) throws DAOException {
+        
+        
+        
+        Fachada fachada = Fachada.getInstance();
+        
+        Categoria categoria = new Categoria();
+        categoria.setId(2);
+        
+        
+        
+        ArrayList<Veiculo> veiculos = fachada.buscarVeiculoPorCategoria(categoria);
+        
+        
+        
+        System.err.println(fachada.listarTodosVeiculo());
+        
+        
+        
+        
+        
+        
+        
+        
 //        String nome = "CN1";
 //        int parteNumerica = Integer.parseInt(nome.substring(2));
 //        parteNumerica += 1;
@@ -54,10 +78,9 @@ public class teste {
 //        System.err.println(pessoaFisica);
 //        
 //        System.err.println(Util.formatarData(pessoaFisica.getData_nascimento()));
-
         DAOFuncionario daof = new DAOFuncionario();
-        
-        DAOPessoa daop =  new DAOPessoa();
+
+        DAOPessoa daop = new DAOPessoa();
 //        Funcionario funcionario = new Funcionario();
 //        
 //        funcionario.setAtivo(true);
@@ -83,19 +106,20 @@ public class teste {
 //        
 //        daop.salvar(funcionario);
 //        
-        
-        System.err.println(daop.criptografarSenha("123456"));
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+//
+//        System.err.println(daop.criptografarSenha("123456"));
+//
+//        try {
+//            ProcessBuilder pb;
+//            Process p;
+//            pb = new ProcessBuilder("C:/Program Files/PostgreSQL/8.4/bin/pg_dump.exe ", "-i", "-h", "localhost", "-p", "5432", "-U", "seuusuario", "-F", "c", "-b", "-v", "-f", "C:\\Users\\MARK\\Desktop\\TesteBKP.sql", "teste");
+//            pb.environment().put("PGPASSWORD", "suasenha");
+//            pb.redirectErrorStream(true);
+//            p = pb.start();
+//        } catch (Exception ex) {
+//            JOptionPane.showMessageDialog(null, ex);
+//        }
+
     }
 
 }

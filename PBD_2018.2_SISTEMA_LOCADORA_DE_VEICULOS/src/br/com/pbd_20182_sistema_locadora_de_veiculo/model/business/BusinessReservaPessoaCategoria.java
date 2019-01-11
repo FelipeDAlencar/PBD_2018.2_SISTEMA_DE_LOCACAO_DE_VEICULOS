@@ -92,7 +92,7 @@ public class BusinessReservaPessoaCategoria implements IBusinessRerservaPessoaCa
             System.err.println(dataHoraDaReserva.getTime());
             
             
-            if (dataHoraDaReserva.compareTo(dataAtual) < 0) {
+            if (dataHoraDaReserva.compareTo(dataAtual) < 0 && !(reservaPessoasCategorias.getId() != null)) {
                 errorMessage += "Data não pode ser anterior do que a atual.\n";
             }
         } else {

@@ -41,7 +41,7 @@ public class FXMLSplashController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         makeStageDrageable();
-        FadeTransition.applyFadeTransition(parent, Duration.seconds(5), (e) -> {
+        FadeTransition.applyFadeTransition(parent, Duration.seconds(2), (e) -> {
             try {
                 App.stage.close();
                 Stage primaryStage = new Stage();

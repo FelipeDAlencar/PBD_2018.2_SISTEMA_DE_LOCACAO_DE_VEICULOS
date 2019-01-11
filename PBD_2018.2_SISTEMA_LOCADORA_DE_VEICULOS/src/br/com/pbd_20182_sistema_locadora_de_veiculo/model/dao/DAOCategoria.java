@@ -57,7 +57,7 @@ public class DAOCategoria extends DAOGenerico<Categoria> implements IDAOCategori
 
         EntityManager em = ConnectionFactory.getInstance().getConnection();
         try {
-            TypedQuery<Categoria> query = em.createQuery(SQLUtil.Categoria.SQL_BUSCAR_CATEGORIA_POR_NOME_DISPONIVEL, Categoria.class);
+            TypedQuery<Categoria> query = em.createQuery(SQLUtil.Categoria.SQL_BUSCAR_CATEGORIA_POR_NOME, Categoria.class);
             query.setParameter("nome", nome);
             Categoria categoria = query.getSingleResult();
 

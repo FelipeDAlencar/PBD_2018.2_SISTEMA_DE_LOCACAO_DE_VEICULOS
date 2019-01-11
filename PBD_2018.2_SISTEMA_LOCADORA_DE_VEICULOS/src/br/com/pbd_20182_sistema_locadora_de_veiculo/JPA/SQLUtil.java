@@ -47,7 +47,7 @@ public class SQLUtil {
     public static class Categoria {
 
         public static final String SQL_BUSCAR_CATEGORIA_POR_ULTIMO_NOME = "select max(nome) from Categoria where  nome like 'CN%'";
-        public static final String SQL_BUSCAR_CATEGORIA_POR_NOME_DISPONIVEL = "select c from Categoria c where c.nome = :nome and disponivel = true";
+        public static final String SQL_BUSCAR_CATEGORIA_POR_NOME = "select c from Categoria c where c.nome = :nome and ativo = true";
         public static final String BUSCAR_POR_BUSCA = "select c from Categoria c where LOWER(c.nome) like :nome "
                 + "or LOWER(c.descricacao) like :descricao or to_char(c.valor, '999D9') like :valor  ";
     }

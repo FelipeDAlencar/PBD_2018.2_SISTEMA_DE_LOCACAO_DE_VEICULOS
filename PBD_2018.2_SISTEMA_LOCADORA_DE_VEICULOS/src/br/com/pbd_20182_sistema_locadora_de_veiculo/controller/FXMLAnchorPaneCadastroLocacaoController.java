@@ -137,7 +137,7 @@ public class FXMLAnchorPaneCadastroLocacaoController implements Initializable {
             if (sucesso) {
                 fachada.salvarLocacao(locacao);
                 Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
-                alerta.alertar(Alert.AlertType.CONFIRMATION, "Sucesso", "Inserir locaçao", "Inserção"
+                alerta.alertar(Alert.AlertType.INFORMATION, "Sucesso", "Inserir locaçao", "Inserção"
                         + "da categoria foi efetuada com sucesso!.");
 
             }
@@ -186,6 +186,12 @@ public class FXMLAnchorPaneCadastroLocacaoController implements Initializable {
 
             }
 
+        }
+        
+        if(event.getSource() == btnPesquisar){
+            if(tfPesquisar.getLength() == 0){
+                carregarLocacoes(fachada.listarTodosLocacao());
+            }
         }
 
     }
