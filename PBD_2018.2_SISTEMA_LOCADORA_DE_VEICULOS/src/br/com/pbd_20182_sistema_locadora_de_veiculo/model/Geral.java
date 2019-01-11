@@ -19,8 +19,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@SequenceGenerator(name = "geral_sequence", sequenceName = "geral_seq",initialValue = 1, allocationSize = 1)
-public class Geral  implements Serializable, EntidadeBase{
+@SequenceGenerator(name = "geral_sequence", sequenceName = "geral_seq", initialValue = 1, allocationSize = 1)
+public class Geral implements Serializable, EntidadeBase {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "geral_sequence")
     private Integer id;
@@ -33,11 +34,11 @@ public class Geral  implements Serializable, EntidadeBase{
     private Date horaDeBackup;
     @Column(name = "metade_da_primeira_diaria")
     private double metadePrimeiraDiaria;
-    
-    
-    
-    
-    
+    @Column(name = "valor_km_livre")
+    private double valorKmLivre;
+    @Column(name = "valor_km_controle")
+    private double valorKmControle;
+
     public double getTaxaHigienizacao() {
         return taxaHigienizacao;
     }
@@ -78,14 +79,32 @@ public class Geral  implements Serializable, EntidadeBase{
         this.metadePrimeiraDiaria = metadePrimeiraDiaria;
     }
 
+    public double getValorKmLivre() {
+        return valorKmLivre;
+    }
+
+    public void setValorKmLivre(double valorKmLivre) {
+        this.valorKmLivre = valorKmLivre;
+    }
+
+    public double getValorKmControle() {
+        return valorKmControle;
+    }
+
+    public void setValorKmControle(double valorKmControle) {
+        this.valorKmControle = valorKmControle;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.id);
-        hash = 97 * hash + (int) (Double.doubleToLongBits(this.taxaHigienizacao) ^ (Double.doubleToLongBits(this.taxaHigienizacao) >>> 32));
-        hash = 97 * hash + (int) (Double.doubleToLongBits(this.taxaCombustivel) ^ (Double.doubleToLongBits(this.taxaCombustivel) >>> 32));
-        hash = 97 * hash + Objects.hashCode(this.horaDeBackup);
-        hash = 97 * hash + (int) (Double.doubleToLongBits(this.metadePrimeiraDiaria) ^ (Double.doubleToLongBits(this.metadePrimeiraDiaria) >>> 32));
+        hash = 73 * hash + Objects.hashCode(this.id);
+        hash = 73 * hash + (int) (Double.doubleToLongBits(this.taxaHigienizacao) ^ (Double.doubleToLongBits(this.taxaHigienizacao) >>> 32));
+        hash = 73 * hash + (int) (Double.doubleToLongBits(this.taxaCombustivel) ^ (Double.doubleToLongBits(this.taxaCombustivel) >>> 32));
+        hash = 73 * hash + Objects.hashCode(this.horaDeBackup);
+        hash = 73 * hash + (int) (Double.doubleToLongBits(this.metadePrimeiraDiaria) ^ (Double.doubleToLongBits(this.metadePrimeiraDiaria) >>> 32));
+        hash = 73 * hash + (int) (Double.doubleToLongBits(this.valorKmLivre) ^ (Double.doubleToLongBits(this.valorKmLivre) >>> 32));
+        hash = 73 * hash + (int) (Double.doubleToLongBits(this.valorKmControle) ^ (Double.doubleToLongBits(this.valorKmControle) >>> 32));
         return hash;
     }
 
@@ -110,6 +129,12 @@ public class Geral  implements Serializable, EntidadeBase{
         if (Double.doubleToLongBits(this.metadePrimeiraDiaria) != Double.doubleToLongBits(other.metadePrimeiraDiaria)) {
             return false;
         }
+        if (Double.doubleToLongBits(this.valorKmLivre) != Double.doubleToLongBits(other.valorKmLivre)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.valorKmControle) != Double.doubleToLongBits(other.valorKmControle)) {
+            return false;
+        }
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
@@ -118,7 +143,6 @@ public class Geral  implements Serializable, EntidadeBase{
         }
         return true;
     }
-    
     
     
     

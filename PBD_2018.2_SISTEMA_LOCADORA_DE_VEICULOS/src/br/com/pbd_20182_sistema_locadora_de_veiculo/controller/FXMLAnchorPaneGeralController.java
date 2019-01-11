@@ -9,6 +9,7 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Funcionario;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Geral;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.MascarasTF;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Pessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaJuridica;
@@ -61,9 +62,15 @@ public class FXMLAnchorPaneGeralController implements Initializable {
 
     @FXML
     private TextField tfMetadePrimeiraDiaria;
-    
+
     @FXML
     private TextField tfTaxaCombustivel;
+
+    @FXML
+    private TextField tfKmLivre;
+
+    @FXML
+    private TextField tfKmControle;
 
     @FXML
     private Button btnAlterarTaxas;
@@ -76,6 +83,62 @@ public class FXMLAnchorPaneGeralController implements Initializable {
     private DAOPessoa dAOPessoa = new DAOPessoa();
     private Pessoa pessoa;
     private Fachada fachada;
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+
+        MascarasTF.mascaraNumero(tfKmLivre);
+        MascarasTF.mascaraNumero(tfKmControle);
+        MascarasTF.mascaraNumero(tfMetadePrimeiraDiaria);
+        MascarasTF.mascaraNumero(tfTaxaCombustivel);
+        MascarasTF.mascaraNumero(tfTaxaHigienizacao);
+
+        try {
+            carregarTabela(dAOPessoa.listarTodos());
+        } catch (DAOException ex) {
+            Logger.getLogger(FXMLAnchorPaneGeralController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        tableView.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> selecionouNaTabela(newValue));
+
+        fachada = Fachada.getInstance();
+
+        try {
+            Geral geral = fachada.buscarGeral();
+
+            if (geral != null) {
+
+                tfTaxaCombustivel.setText(String.valueOf(geral.getTaxaCombustivel()));
+                tfTaxaHigienizacao.setText(String.valueOf(geral.getTaxaHigienizacao()));
+                tfMetadePrimeiraDiaria.setText(String.valueOf(geral.getMetadePrimeiraDiaria()));
+                tfKmControle.setText(String.valueOf(geral.getValorKmControle()));
+                tfKmLivre.setText(String.valueOf(geral.getValorKmLivre()));
+
+            } else {
+
+                geral = new Geral();
+
+                geral.setTaxaCombustivel(0);
+                geral.setTaxaHigienizacao(0);
+                geral.setMetadePrimeiraDiaria(0);
+                geral.setValorKmControle(0);
+                geral.setValorKmLivre(0);
+
+                fachada.salvarGeral(geral);
+
+                tfTaxaCombustivel.setText(String.valueOf(geral.getTaxaCombustivel()));
+                tfTaxaHigienizacao.setText(String.valueOf(geral.getTaxaHigienizacao()));
+                tfTaxaCombustivel.setText(String.valueOf(geral.getMetadePrimeiraDiaria()));
+                tfKmControle.setText(String.valueOf(geral.getValorKmControle()));
+                tfKmLivre.setText(String.valueOf(geral.getValorKmLivre()));
+            }
+
+        } catch (DAOException ex) {
+            ex.printStackTrace();
+        }
+
+    }
 
     @FXML
     void acaoBtns(ActionEvent event) throws DAOException {
@@ -117,56 +180,14 @@ public class FXMLAnchorPaneGeralController implements Initializable {
             geral.setTaxaCombustivel(Double.parseDouble(tfTaxaCombustivel.getText()));
             geral.setTaxaHigienizacao(Double.parseDouble(tfTaxaHigienizacao.getText()));
             geral.setMetadePrimeiraDiaria(Double.parseDouble(tfMetadePrimeiraDiaria.getText()));
+            geral.setValorKmControle(Double.parseDouble(tfKmControle.getText()));
+            geral.setValorKmLivre(Double.parseDouble(tfKmLivre.getText()));
 
             fachada.salvarGeral(geral);
             Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
             alerta.alertar(Alert.AlertType.CONFIRMATION, "Sucesso", "Alterção de taxas", "Alteração"
                     + "realizada com sucesso!.");
 
-        }
-
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-
-        try {
-            carregarTabela(dAOPessoa.listarTodos());
-        } catch (DAOException ex) {
-            Logger.getLogger(FXMLAnchorPaneGeralController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        tableView.getSelectionModel().selectedItemProperty().addListener(
-                (observable, oldValue, newValue) -> selecionouNaTabela(newValue));
-
-        fachada = Fachada.getInstance();
-
-        try {
-            Geral geral = fachada.buscarGeral();
-
-            if (geral != null) {
-
-                tfTaxaCombustivel.setText(String.valueOf(geral.getTaxaCombustivel()));
-                tfTaxaHigienizacao.setText(String.valueOf(geral.getTaxaHigienizacao()));
-                tfMetadePrimeiraDiaria.setText(String.valueOf(geral.getMetadePrimeiraDiaria()));
-                
-
-            } else {
-
-                geral = new Geral();
-
-                geral.setTaxaCombustivel(0);
-                geral.setTaxaHigienizacao(0);
-                geral.setMetadePrimeiraDiaria(0);
-                fachada.salvarGeral(geral);
-
-                tfTaxaCombustivel.setText(String.valueOf(geral.getTaxaCombustivel()));
-                tfTaxaHigienizacao.setText(String.valueOf(geral.getTaxaHigienizacao()));
-                tfTaxaCombustivel.setText(String.valueOf(geral.getMetadePrimeiraDiaria()));
-            }
-
-        } catch (DAOException ex) {
-            ex.printStackTrace();
         }
 
     }

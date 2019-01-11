@@ -56,7 +56,7 @@ public class BusinessLocacao implements IBusinessLocacao {
         Fachada fachada = Fachada.getInstance();
         
         ArrayList<Veiculo> veiculos = fachada.buscarVeiculoPorCategoria(locacao.getVeiculo().getCategoria());
-        System.err.println(veiculos);
+      
         if (veiculos.isEmpty()) {
             Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
             alerta.alertar(Alert.AlertType.WARNING, "Atenção", "Categoria não disponível",

@@ -57,6 +57,8 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
 
     private static double TAXA_HI = 0;
     private static double TAXA_COM = 0;
+    private static double VALOR_KM_LIVRE = 0;
+    private static double VALOR_KM_CONTROLE = 0;
 
     @FXML
     private ComboBox<PessoaFisica> comboMotorista;
@@ -119,11 +121,13 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
         fachada = Fachada.getInstance();
         alerta = Alerta.getInstace(Alert.AlertType.NONE);
 
         tfValor.setDisable(true);
         tfMetadeprimeiraDiaria.setDisable(true);
+        cbKmLivre.setSelected(true);
 
         try {
             carregarCombos();
@@ -134,13 +138,17 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
         try {
             Geral geral = fachada.buscarGeral();
             tfMetadeprimeiraDiaria.setText(String.valueOf(geral.getMetadePrimeiraDiaria()));
+
+            tfValor.setText(String.valueOf(geral.getMetadePrimeiraDiaria() + geral.getValorKmLivre()));
             TAXA_COM = geral.getTaxaCombustivel();
             TAXA_HI = geral.getTaxaHigienizacao();
+            VALOR_KM_LIVRE = geral.getValorKmLivre();
+            VALOR_KM_CONTROLE = geral.getValorKmControle();
 
         } catch (DAOException ex) {
             ex.getMessage();
         }
-        tfValor.setText(tfMetadeprimeiraDiaria.getText());
+
         tfKmInicial.setDisable(true);
         adicionarOuvinte();
 
@@ -148,7 +156,6 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
         MascarasTF.mascaraNumero(tfKmInicial);
         MascarasTF.mascaraNumero(tfMetadeprimeiraDiaria);
         MascarasTF.mascaraNumero(tfValor);
-        
 
     }
 
@@ -241,17 +248,22 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
             soma += TAXA_HI;
         }
 
+        if (cbKmLivre.isSelected()) {
+            soma += VALOR_KM_LIVRE;
+        } else {
+            soma += calcularKmControle();
+        }
         calcularValor(soma);
 
     }
 
     @FXML
     void AcaoCombos(ActionEvent event) {
-        
-        if(event.getSource() == comboVeiculo){
+
+        if (event.getSource() == comboVeiculo) {
             tfKmInicial.setText(String.valueOf(comboVeiculo.getValue().getQuilometragemAtual()));
         }
-            
+
     }
 
     private void carregarCombos() throws DAOException {
@@ -354,13 +366,26 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
         tfValor.setText(String.valueOf(soma));
     }
 
+    public double calcularKmControle() {
+        if (tfKmFinal.getText().length() != 0) {
+            double kmInicial = Double.parseDouble(tfKmInicial.getText());
+            double kmFinal = Double.parseDouble(tfKmFinal.getText());
+
+            double diferenca = kmFinal - kmInicial;
+
+            double valor = diferenca * VALOR_KM_CONTROLE;
+
+            return valor;
+        
+        }
+        return 0;
+    }
+
     private void adicionarOuvinte() {
         comboCliente.setOnKeyReleased(new EventHandler<KeyEvent>() {
 
             @Override
             public void handle(KeyEvent evt) {
-
-                
 
                 KeyCode code = evt.getCode();
                 ObservableList<Pessoa> obsPessoa;
