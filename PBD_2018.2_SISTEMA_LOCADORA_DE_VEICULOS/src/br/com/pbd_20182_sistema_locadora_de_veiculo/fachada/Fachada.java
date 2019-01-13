@@ -241,9 +241,19 @@ public class Fachada implements IFachada {
     public Locacao buscarPorIdLocacao(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
     @Override
     public Time procedureCalcularIntervaloDeAtraso(Calendar dataAtual, Integer id) throws DAOException {
         return businessLocacao.procedureCalcularIntervaloDeAtraso(dataAtual, id);
+    }
+
+    public int calcularIdade(Integer id) throws DAOException {
+        return businessLocacao.calcularIdade(id);
+    }
+
+    @Override
+    public boolean verificarVencimentoCNH(Calendar dataIda, Calendar dataVolta, Integer id) throws DAOException {
+        return businessLocacao.verificarVencimentoCNH(dataIda, dataVolta, id);
     }
 
     @Override

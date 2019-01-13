@@ -74,7 +74,9 @@ public interface IFachada {
     public ArrayList<Locacao> listarTodosLocacao()throws DAOException;
     public Locacao buscarPorIdLocacao(int id)throws DAOException;
     public Time procedureCalcularIntervaloDeAtraso(Calendar dataAtual, Integer id) throws DAOException ;
-    
+    public boolean verificarVencimentoCNH(Calendar dataIda,Calendar dataVolta, Integer id) throws DAOException;
+    public int calcularIdade( Integer id) throws DAOException ;
+
     
     
     public void salvarLog(Log log)throws BusinessExpection,DAOException;

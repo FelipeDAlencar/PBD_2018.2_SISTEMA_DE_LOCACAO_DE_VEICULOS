@@ -26,6 +26,10 @@ public interface IBusinessLocacao {
 
     public void alterar(Locacao locacao) throws DAOException;
 
-    public Time procedureCalcularIntervaloDeAtraso(Calendar dataAtual, Integer id) throws DAOException ;
+    public Time procedureCalcularIntervaloDeAtraso(Calendar dataAtual, Integer id) throws DAOException;
+
+    public boolean verificarVencimentoCNH(Calendar dataIda, Calendar dataVolta, Integer id) throws DAOException;
+
+    public int calcularIdade(Integer id) throws DAOException;
 
 }

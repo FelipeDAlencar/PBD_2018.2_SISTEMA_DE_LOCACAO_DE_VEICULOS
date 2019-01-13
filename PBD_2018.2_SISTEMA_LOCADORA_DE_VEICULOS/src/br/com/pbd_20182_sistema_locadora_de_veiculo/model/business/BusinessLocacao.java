@@ -54,7 +54,17 @@ public class BusinessLocacao implements IBusinessLocacao {
 
     @Override
     public Time procedureCalcularIntervaloDeAtraso(Calendar dataAtual, Integer id) throws DAOException {
-      return dAOLocacao.procedureCalcularIntervaloDeAtraso(dataAtual, id);
+        return dAOLocacao.procedureCalcularIntervaloDeAtraso(dataAtual, id);
+    }
+
+    @Override
+    public boolean verificarVencimentoCNH(Calendar dataIda, Calendar dataVolta, Integer id) throws DAOException {
+        return dAOLocacao.verificarVencimentoCNH(dataIda, dataVolta, id);
+    }
+
+    @Override
+    public int calcularIdade(Integer id) throws DAOException {
+        return dAOLocacao.calcularIdade(id);
     }
 
     private void validar(Locacao locacao) throws BusinessExpection, DAOException {
@@ -117,6 +127,16 @@ public class BusinessLocacao implements IBusinessLocacao {
         }
         if (locacao.getMetadeDaPrimeiraDiaria() <= 0) {
             errorMessage = "Informe o valor da primeira diária.";
+        }
+
+        if (!fachada.verificarVencimentoCNH(locacao.getDataIda(),
+                locacao.getDataVolta(), locacao.getMotorista().getId())) {
+            errorMessage = "Habilitação do motorista não pode vencer dentro do prazo  de locação.";
+
+        }
+
+        if (fachada.calcularIdade(locacao.getMotorista().getId()) < 21) {
+            errorMessage = "O motorista deve ter idade igual ou superior a 20 anos.";
         }
         if (veiculos.isEmpty()) {
             Alerta alerta = Alerta.getInstace(Alert.AlertType.INFORMATION);

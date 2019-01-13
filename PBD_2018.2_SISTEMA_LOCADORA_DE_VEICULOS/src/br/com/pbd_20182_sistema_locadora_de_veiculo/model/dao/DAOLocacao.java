@@ -58,12 +58,59 @@ public class DAOLocacao extends DAOGenerico<Locacao> implements IDAOLocacao {
 
         Time intervalo = (Time) query
                 .getOutputParameterValue("intervalo");
-        
-        
 
         em.close();
         return intervalo;
 
     }
+
+    @Override
+    public boolean verificarVencimentoCNH(Calendar dataIda, Calendar dataVolta, Integer id) throws DAOException {
+
+        EntityManager em = ConnectionFactory.getInstance().getConnection();
+        StoredProcedureQuery query = em
+                .createStoredProcedureQuery(SQLUtil.Locacao.SQL_PROCEDURE_Verificar_Vencimento_CNH);
+        query.registerStoredProcedureParameter("dataIda", Calendar.class, ParameterMode.IN);
+        query.registerStoredProcedureParameter("dataVolta", Calendar.class, ParameterMode.IN);
+        query.registerStoredProcedureParameter("idMotorista", Integer.class, ParameterMode.IN);
+
+        query.registerStoredProcedureParameter("retorno", boolean.class, ParameterMode.OUT);
+        query.setParameter("dataIda", dataIda);
+        query.setParameter("dataVolta", dataVolta);
+        query.setParameter("idMotorista", id);
+        query.execute();
+
+        boolean retorno = (Boolean) query
+                .getOutputParameterValue("retorno");
+
+        em.close();
+        return retorno;
+
+    }
+    
+    @Override
+    public int calcularIdade( Integer id) throws DAOException {
+
+        EntityManager em = ConnectionFactory.getInstance().getConnection();
+        StoredProcedureQuery query = em
+                .createStoredProcedureQuery(SQLUtil.Locacao.SQL_PROCEDURE_CALCULAR_IDADE);
+       
+        query.registerStoredProcedureParameter("idPar", Integer.class, ParameterMode.IN);
+
+        query.registerStoredProcedureParameter("retorno", Integer.class, ParameterMode.OUT);
+        
+        query.setParameter("idPar", id);
+        
+        query.execute();
+
+        int retorno = (Integer) query
+                .getOutputParameterValue("retorno");
+
+        em.close();
+        return retorno;
+
+    }
+
+    
 
 }

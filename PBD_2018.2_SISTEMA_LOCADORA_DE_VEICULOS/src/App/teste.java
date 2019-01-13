@@ -44,13 +44,16 @@ public class teste {
     public static void main(String[] args) throws DAOException {
 
         Fachada fachada = Fachada.getInstance();
+        DAOLocacao daol = new DAOLocacao();
         
-        Calendar c = Calendar.getInstance();
-        Time intervalo = fachada.procedureCalcularIntervaloDeAtraso(c, 20);
-        c.setTime(intervalo);
-        System.err.println(c.get(Calendar.HOUR));
+        Locacao locacao = daol.findAll().get(0);
+        
+        PessoaFisica p = fachada.listarTodosPessoaFisica().get(0);
+        
+        System.err.println(fachada.verificarVencimentoCNH(locacao.getDataIda(), locacao.getDataVolta(), p.getId()));
+        
         System.exit(0);
-       
+        
         
 
 //        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
@@ -62,7 +65,6 @@ public class teste {
 //        } catch (ParseException ex) {
 //            Logger.getLogger(teste.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-
 //        String nome = "CN1";
         //        int parteNumerica = Integer.parseInt(nome.substring(2));
         //        parteNumerica += 1;

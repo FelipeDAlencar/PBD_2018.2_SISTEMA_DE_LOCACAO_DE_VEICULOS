@@ -102,6 +102,8 @@ public class SQLUtil {
     public static class Locacao {
 
         public static final String SQL_PROCEDURE_CALCULAR_INTERVALO_DE_ATRASO = "calculardiferencadedatalocacao";
+        public static final String SQL_PROCEDURE_Verificar_Vencimento_CNH = "verificarvencimentocnh";
+        public static final String SQL_PROCEDURE_CALCULAR_IDADE = "calcularidade";
 
     }
 }
