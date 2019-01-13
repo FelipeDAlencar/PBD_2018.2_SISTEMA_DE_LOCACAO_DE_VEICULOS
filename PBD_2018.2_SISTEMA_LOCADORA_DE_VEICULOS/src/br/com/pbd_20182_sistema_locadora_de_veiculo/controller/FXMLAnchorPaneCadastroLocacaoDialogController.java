@@ -161,84 +161,97 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
 
     @FXML
     void acaoBtns(ActionEvent event) throws BusinessExpection, DAOException {
-        if (event.getSource() == btnConfirmar) {
+        try {
+            if (event.getSource() == btnConfirmar) {
 
-            Date LocalDate = Date.from(dpDataIda.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
+                Date localDate = Date.from(dpDataIda.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
 
-            SimpleDateFormat spdf = new SimpleDateFormat("dd/yy/dddd HH:mm:ss");
+                Calendar dataHoraIda = Calendar.getInstance();
+                Calendar c1 = Calendar.getInstance();
+                c1.setTime(new Date());
+                dataHoraIda.setTime(localDate);
 
-            Calendar dataHoraIda = Calendar.getInstance();
-            Calendar c1 = Calendar.getInstance();
-            c1.setTime(new Date());
-            dataHoraIda.setTime(LocalDate);
+                dataHoraIda.set(Calendar.HOUR_OF_DAY, c1.get(Calendar.HOUR_OF_DAY));
+                dataHoraIda.set(Calendar.MINUTE, c1.get(Calendar.MINUTE));
+                dataHoraIda.set(Calendar.SECOND, c1.get(Calendar.SECOND));
 
-            dataHoraIda.set(Calendar.HOUR_OF_DAY, c1.get(Calendar.HOUR_OF_DAY));
-            dataHoraIda.set(Calendar.MINUTE, c1.get(Calendar.MINUTE));
-            dataHoraIda.set(Calendar.SECOND, c1.get(Calendar.SECOND));
+                locacao.setDataIda(dataHoraIda);
 
-            locacao.setDataIda(dataHoraIda);
+                localDate = Date.from(dpDataVolta.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
 
-            LocalDate = Date.from(dpDataVolta.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());;
+                Calendar dataHoraVolta = Calendar.getInstance();
+                dataHoraVolta.setTime(localDate);
 
-            Calendar dataHoraVolta = Calendar.getInstance();
-            Calendar c2 = Calendar.getInstance();
-            c1.setTime(new Date());
-            dataHoraIda.setTime(LocalDate);
+                dataHoraVolta.set(Calendar.HOUR_OF_DAY, c1.get(Calendar.HOUR_OF_DAY));
+                dataHoraVolta.set(Calendar.MINUTE, c1.get(Calendar.MINUTE));
+                dataHoraVolta.set(Calendar.SECOND, c1.get(Calendar.SECOND));
 
-            dataHoraVolta.set(Calendar.HOUR_OF_DAY, c1.get(Calendar.HOUR_OF_DAY));
-            dataHoraVolta.set(Calendar.MINUTE, c1.get(Calendar.MINUTE));
-            dataHoraVolta.set(Calendar.SECOND, c1.get(Calendar.SECOND));
+                locacao.setDataVolta(dataHoraVolta);
 
-            locacao.setDataVolta(dataHoraVolta);
+                locacao.setFinalizada(cbFinalizada.isSelected());
+                locacao.setKmFinalVeiculo(Double.parseDouble(tfKmFinal.getText()));
+                locacao.setKmInicialDoVeiculo(Double.parseDouble(tfKmInicial.getText()));
+                locacao.setKmLivre(cbKmLivre.isSelected());
+                locacao.setMetadeDaPrimeiraDiaria(Double.parseDouble(tfMetadeprimeiraDiaria.getText()));
+                locacao.setValor(Double.parseDouble(tfValor.getText()));
+                locacao.setMotorista(comboMotorista.getValue());
+                locacao.setVeiculo(comboVeiculo.getValue());
+                locacao.setCliente(comboCliente.getValue());
 
-            locacao.setFinalizada(cbFinalizada.isSelected());
-            locacao.setKmFinalVeiculo(Double.parseDouble(tfKmFinal.getText()));
-            locacao.setKmInicialDoVeiculo(Double.parseDouble(tfKmInicial.getText()));
-            locacao.setKmLivre(cbKmLivre.isSelected());
-            locacao.setMetadeDaPrimeiraDiaria(Double.parseDouble(tfMetadeprimeiraDiaria.getText()));
-            locacao.setValor(Double.parseDouble(tfValor.getText()));
-            locacao.setMotorista(comboMotorista.getValue());
-            locacao.setVeiculo(comboVeiculo.getValue());
-            locacao.setCliente(comboCliente.getValue());
+                locacao.setAtivo(true);
+                if (cbTaxaCombustivel.isSelected()) {
+                    locacao.setTaxaCombustivel(TAXA_COM);
+                }
 
-            locacao.setAtivo(true);
-            if (cbTaxaCombustivel.isSelected()) {
-                locacao.setTaxaCombustivel(TAXA_COM);
+                if (cbTaxaHigienizacao.isSelected()) {
+                    locacao.setTaxaHigienizacao(TAXA_HI);
+                }
+
+                System.err.println(locacao.getDataIda().getTime());
+                sucesso = true;
+                stage.close();
+
+            } else if (event.getSource() == btnAddMortorista) {
+
+                PessoaFisica pessoaFisica = null;
+
+                boolean sucesso = exibirTelaDecadastro(pessoaFisica, event);
+
+                if (sucesso) {
+
+                    pessoaFisica = (PessoaFisica) controller.getPessoa();
+
+                    fachada.salvarPessoaFisica(pessoaFisica);
+
+                    Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
+                    alerta.alertar(Alert.AlertType.INFORMATION, "Sucesso", "Inserção de motorista",
+                            "Inserção realizada com sucesso. ");
+
+                }
+
+            } else if (event.getSource() == btnCancelar) {
+                stage.close();
             }
+        } catch (NullPointerException e) {
+            alerta.alertar(Alert.AlertType.WARNING, "Atenção", "Informe os campos requisitados corretamente.", buscaVeiculo);
+        } catch (NumberFormatException e) {
+            alerta.alertar(Alert.AlertType.WARNING, "Atenção", "Informe os campos requisitados corretamente.", buscaVeiculo);
 
-            if (cbTaxaHigienizacao.isSelected()) {
-                locacao.setTaxaHigienizacao(TAXA_HI);
-            }
-
-            sucesso = true;
-            stage.close();
-
-        } else if (event.getSource() == btnAddMortorista) {
-
-            PessoaFisica pessoaFisica = null;
-
-            boolean sucesso = exibirTelaDecadastro(pessoaFisica, event);
-
-            if (sucesso) {
-
-                pessoaFisica = (PessoaFisica) controller.getPessoa();
-
-                fachada.salvarPessoaFisica(pessoaFisica);
-
-                Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
-                alerta.alertar(Alert.AlertType.INFORMATION, "Sucesso", "Inserção de motorista",
-                        "Inserção realizada com sucesso. ");
-
-            }
-
-        } else if (event.getSource() == btnCancelar) {
-            stage.close();
         }
+
     }
 
     @FXML
-    void acaoCBs(ActionEvent event) {
+    void acaoCBs(ActionEvent event) throws DAOException {
         double soma = 0;
+
+        if (cbFinalizada.isSelected()) {
+            if (locacao.getId() != null) {
+                Util.calcularQuantidadeDeHorasAtrasadas(locacao);
+                tfValor.setText(String.valueOf(locacao.getValor()));
+
+            }
+        }
 
         if (cbTaxaCombustivel.isSelected()) {
             soma += TAXA_COM;
@@ -276,49 +289,6 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
         comboVeiculo.setItems(obsVeiculos);
     }
 
-    public Stage getStage() {
-        return stage;
-    }
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
-
-    public Locacao getLocacao() {
-        return locacao;
-    }
-
-    public void setLocacao(Locacao locacao) {
-        this.locacao = locacao;
-
-        if (locacao.getId() != null) {
-            comboCliente.setValue(locacao.getCliente());
-            comboMotorista.setValue(locacao.getMotorista());
-            comboVeiculo.setValue(locacao.getVeiculo());
-
-            tfKmFinal.setText(String.valueOf(locacao.getKmFinalVeiculo()));
-            tfKmInicial.setText(String.valueOf(locacao.getKmInicialDoVeiculo()));
-            tfMetadeprimeiraDiaria.setText(String.valueOf(locacao.getMetadeDaPrimeiraDiaria()));
-            tfValor.setText(String.valueOf(locacao.getValor()));
-
-            dpDataIda.setValue((Util.converterDateEmLocalDate(locacao.getDataIda().getTime())));
-            dpDataVolta.setValue((Util.converterDateEmLocalDate(locacao.getDataVolta().getTime())));
-
-            cbFinalizada.setSelected(locacao.isFinalizada());
-            cbKmLivre.setSelected(locacao.isKmLivre());
-
-            if (locacao.getTaxaCombustivel() != 0) {
-                cbTaxaCombustivel.setSelected(true);
-            }
-
-            if (locacao.getTaxaHigienizacao() != 0) {
-                cbTaxaHigienizacao.setSelected(true);
-            }
-
-        }
-
-    }
-
     private boolean exibirTelaDecadastro(Pessoa pessoa, Event event) {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -352,14 +322,6 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
         return false;
     }
 
-    public boolean isSucesso() {
-        return sucesso;
-    }
-
-    public void setSucesso(boolean sucesso) {
-        this.sucesso = sucesso;
-    }
-
     private void calcularValor(double valor) {
 
         double soma = Double.parseDouble(tfMetadeprimeiraDiaria.getText()) + valor;
@@ -376,7 +338,7 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
             double valor = diferenca * VALOR_KM_CONTROLE;
 
             return valor;
-        
+
         }
         return 0;
     }
@@ -493,6 +455,62 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
 
         });
 
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    public Locacao getLocacao() {
+        return locacao;
+    }
+
+    public void setLocacao(Locacao locacao) {
+        this.locacao = locacao;
+
+        if (locacao.getId() != null) {
+            comboCliente.setValue(locacao.getCliente());
+            comboMotorista.setValue(locacao.getMotorista());
+            comboVeiculo.setValue(locacao.getVeiculo());
+
+            tfKmFinal.setText(String.valueOf(locacao.getKmFinalVeiculo()));
+            tfKmInicial.setText(String.valueOf(locacao.getKmInicialDoVeiculo()));
+            tfMetadeprimeiraDiaria.setText(String.valueOf(locacao.getMetadeDaPrimeiraDiaria()));
+
+            dpDataIda.setValue((Util.converterDateEmLocalDate(locacao.getDataIda().getTime())));
+            dpDataVolta.setValue((Util.converterDateEmLocalDate(locacao.getDataVolta().getTime())));
+
+            cbFinalizada.setSelected(locacao.isFinalizada());
+            cbKmLivre.setSelected(locacao.isKmLivre());
+
+            if (locacao.getTaxaCombustivel() != 0) {
+                cbTaxaCombustivel.setSelected(true);
+            }
+
+            if (locacao.getTaxaHigienizacao() != 0) {
+                cbTaxaHigienizacao.setSelected(true);
+            }
+
+            try {
+                Util.calcularQuantidadeDeHorasAtrasadas(locacao);
+                tfValor.setText(String.valueOf(locacao.getValor()));
+            } catch (DAOException ex) {
+                Logger.getLogger(FXMLAnchorPaneCadastroLocacaoDialogController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+    }
+
+    public boolean isSucesso() {
+        return sucesso;
+    }
+
+    public void setSucesso(boolean sucesso) {
+        this.sucesso = sucesso;
     }
 
 }

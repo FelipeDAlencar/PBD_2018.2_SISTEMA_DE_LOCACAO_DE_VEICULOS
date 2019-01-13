@@ -164,7 +164,7 @@ public class FXMLAnchorPaneGeralController implements Initializable {
                 dAOPessoa.salvar(pessoa);
 
                 Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
-                alerta.alertar(Alert.AlertType.CONFIRMATION, "Sucesso", "Senha resetada", "");
+                alerta.alertar(Alert.AlertType.INFORMATION, "Sucesso", "Senha resetada", "");
             } catch (NullPointerException e) {
                 Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
                 alerta.alertar(Alert.AlertType.INFORMATION, "Problema ao resetar senha.", "Usuario não selecionado.", "Selecione o usuario em que a senha deve ser resetada.");
@@ -185,7 +185,7 @@ public class FXMLAnchorPaneGeralController implements Initializable {
 
             fachada.salvarGeral(geral);
             Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
-            alerta.alertar(Alert.AlertType.CONFIRMATION, "Sucesso", "Alterção de taxas", "Alteração"
+            alerta.alertar(Alert.AlertType.INFORMATION, "Sucesso", "Alterção de taxas", "Alteração"
                     + "realizada com sucesso!.");
 
         }

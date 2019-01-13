@@ -138,7 +138,7 @@ public class FXMLAnchorPaneCadastroLocacaoController implements Initializable {
                 fachada.salvarLocacao(locacao);
                 Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
                 alerta.alertar(Alert.AlertType.INFORMATION, "Sucesso", "Inserir locaçao", "Inserção"
-                        + "da categoria foi efetuada com sucesso!.");
+                        + " da locação foi efetuada com sucesso.");
 
             }
         }
@@ -154,13 +154,13 @@ public class FXMLAnchorPaneCadastroLocacaoController implements Initializable {
 
                     fachada.salvarLocacao(locacao);
                     Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
-                    alerta.alertar(Alert.AlertType.CONFIRMATION, "Sucesso", "Inserir locaçao", "Inserção"
-                            + "da categoria foi efetuada com sucesso!.");
+                    alerta.alertar(Alert.AlertType.INFORMATION, "Sucesso", "Inserir locaçao", "Inserção"
+                            + "da locação foi efetuada com sucesso!");
                     carregarLocacoes(fachada.listarTodosLocacao());
                 }
             } else {
                 Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
-                alerta.alertar(Alert.AlertType.CONFIRMATION, "Atençãoo", "Atenção", ""
+                alerta.alertar(Alert.AlertType.INFORMATION, "Atençãoo", "Atenção", ""
                         + "Selecione a locação na tabela para edição.");
 
             }
@@ -176,12 +176,12 @@ public class FXMLAnchorPaneCadastroLocacaoController implements Initializable {
                 fachada.salvarLocacao(locacao);
                 Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
                 alerta.alertar(Alert.AlertType.INFORMATION, "Sucesso", "Excluir locaçao", "Exclusão "
-                        + "da categoria foi efetuada com sucesso!.");
+                        + "da locação foi efetuada com sucesso!.");
                 carregarLocacoes(fachada.listarTodosLocacao());
 
             } else {
                 Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
-                alerta.alertar(Alert.AlertType.CONFIRMATION, "Atençãoo", "Atenção", ""
+                alerta.alertar(Alert.AlertType.INFORMATION, "Atençãoo", "Atenção", ""
                         + "Selecione a locação na tabela para exclusão.");
 
             }

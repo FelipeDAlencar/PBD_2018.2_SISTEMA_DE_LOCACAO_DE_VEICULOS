@@ -9,7 +9,7 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.BusinessExpection;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
-import br.com.pbd_20182_sistema_locadora_de_veiculo.model.MinhaThread;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ThreadDeVerificacaoDeReservas;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ReservaPessoasCategorias;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Veiculo;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOReservaPessoaCategoria;
@@ -109,11 +109,11 @@ public class BusinessReservaPessoaCategoria implements IBusinessRerservaPessoaCa
             errorMessage += "Valor informado inválido,\ninforme um valor válido.";
         }
 
-        System.err.println(errorMessage);
+       
 
         if (errorMessage.length() != 0) {
 
-            MinhaThread task = new MinhaThread();
+            ThreadDeVerificacaoDeReservas task = new ThreadDeVerificacaoDeReservas();
             Thread thread = new Thread(task);
             thread.setDaemon(true);
             thread.start();

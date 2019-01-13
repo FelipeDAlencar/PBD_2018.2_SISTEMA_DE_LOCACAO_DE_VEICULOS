@@ -15,42 +15,22 @@ import javafx.concurrent.Task;
  *
  * @author Felipe
  */
-public class MinhaThread extends Task<Integer> {
+public class ThreadDeVerificacaoDeReservas extends Task<Integer> {
 
     Fachada fachada;
 
-    public MinhaThread() {
+    public ThreadDeVerificacaoDeReservas() {
         fachada = Fachada.getInstance();
     }
 
     @Override
     protected Integer call() {
 
-//        try{
-//            while (true) {
-//            ArrayList<ReservaPessoasCategorias> reservas = fachada.listarTodosReservaPessoasCategorias();
-//            for (int i = 0; i < 10; i++) {
-//                System.err.println(i + 1);
-//                Thread.sleep(500);
-//
-//                if (isCancelled()) {
-//                    return i;
-//                }
-//
-//            }
-//            Thread.sleep(5000);
-//        }
-//        }catch(Exception e){
-//            e.printStackTrace();
-//        }
-//        return null;
-//        
-//    }
         try {
             while (true) {
 
                 ArrayList<ReservaPessoasCategorias> reservas = fachada.listarTodosReservaPessoasCategorias();
-                System.err.println(reservas);
+                //System.err.println(reservas);
                 for (ReservaPessoasCategorias reserva : reservas) {
                     Calendar dataHoraDaReserva = Calendar.getInstance();
                     dataHoraDaReserva.setTime(reserva.getDataHora());
@@ -63,7 +43,7 @@ public class MinhaThread extends Task<Integer> {
 
                     dataHoraDaReserva.add(Calendar.MINUTE, 60);
 
-                    System.err.println(dataHoraDaReserva.getTime());
+                    
                     if (dataHoraDaReserva.compareTo(dataHoraAtual) < 0) {
 
                         reserva.setAtivo(false);

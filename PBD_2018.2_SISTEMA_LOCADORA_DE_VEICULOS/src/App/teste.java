@@ -10,13 +10,17 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Endereco;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Funcionario;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Locacao;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Util;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Veiculo;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOFuncionario;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOLocacao;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOPessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOPessoaFisica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOPessoaJuridica;
+import java.sql.Time;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -24,6 +28,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javax.swing.JOptionPane;
@@ -36,48 +42,45 @@ import org.hibernate.type.descriptor.java.LocalDateJavaDescriptor;
 public class teste {
 
     public static void main(String[] args) throws DAOException {
-        
-        
-        
+
         Fachada fachada = Fachada.getInstance();
         
-        Categoria categoria = new Categoria();
-        categoria.setId(2);
+        Calendar c = Calendar.getInstance();
+        Time intervalo = fachada.procedureCalcularIntervaloDeAtraso(c, 20);
+        c.setTime(intervalo);
+        System.err.println(c.get(Calendar.HOUR));
+        System.exit(0);
+       
         
-        
-        
-        ArrayList<Veiculo> veiculos = fachada.buscarVeiculoPorCategoria(categoria);
-        
-        
-        
-        System.err.println(fachada.listarTodosVeiculo());
-        
-        
-        
-        
-        
-        
-        
-        
-//        String nome = "CN1";
-//        int parteNumerica = Integer.parseInt(nome.substring(2));
-//        parteNumerica += 1;
-//        String parteTexto = nome.substring(0,2);
-//        String nomeCategoria = parteTexto + parteNumerica;
-//        
-//        System.err.println("parte numerica "  + parteNumerica);
-//        System.err.println("parte texto" + parteTexto);
-//        
-//        System.err.println("Nome"  + nomeCategoria);
 
-//        Fachada fachada = Fachada.getInstance();
-//        
-//        PessoaFisica pessoaFisica = fachada.buscarPorIdPessoaFisica(6);
-//        
-//        
-//        System.err.println(pessoaFisica);
-//        
-//        System.err.println(Util.formatarData(pessoaFisica.getData_nascimento()));
+//        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+//        Date date;
+//        try {
+//            date = formato.parse("20/11/2010");
+//            System.err.println(formato.format(date));
+//
+//        } catch (ParseException ex) {
+//            Logger.getLogger(teste.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+
+//        String nome = "CN1";
+        //        int parteNumerica = Integer.parseInt(nome.substring(2));
+        //        parteNumerica += 1;
+        //        String parteTexto = nome.substring(0,2);
+        //        String nomeCategoria = parteTexto + parteNumerica;
+        //        
+        //        System.err.println("parte numerica "  + parteNumerica);
+        //        System.err.println("parte texto" + parteTexto);
+        //        
+        //        System.err.println("Nome"  + nomeCategoria);
+        //        Fachada fachada = Fachada.getInstance();
+        //        
+        //        PessoaFisica pessoaFisica = fachada.buscarPorIdPessoaFisica(6);
+        //        
+        //        
+        //        System.err.println(pessoaFisica);
+        //        
+        //        System.err.println(Util.formatarData(pessoaFisica.getData_nascimento()));
         DAOFuncionario daof = new DAOFuncionario();
 
         DAOPessoa daop = new DAOPessoa();

@@ -21,7 +21,9 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaJuridica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ReservaPessoasCategorias;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Veiculo;
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  *
@@ -71,6 +73,7 @@ public interface IFachada {
     public void salvarLocacao(Locacao locacao)throws DAOException,BusinessExpection;
     public ArrayList<Locacao> listarTodosLocacao()throws DAOException;
     public Locacao buscarPorIdLocacao(int id)throws DAOException;
+    public Time procedureCalcularIntervaloDeAtraso(Calendar dataAtual, Integer id) throws DAOException ;
     
     
     

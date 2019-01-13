@@ -35,7 +35,9 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.model.business.BusinessPesso
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.business.BusinessPessoaJuridica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.business.BusinessReservaPessoaCategoria;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.business.BusinessVeiculo;
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Fachada implements IFachada {
 
@@ -238,6 +240,10 @@ public class Fachada implements IFachada {
     @Override
     public Locacao buscarPorIdLocacao(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    @Override
+    public Time procedureCalcularIntervaloDeAtraso(Calendar dataAtual, Integer id) throws DAOException {
+        return businessLocacao.procedureCalcularIntervaloDeAtraso(dataAtual, id);
     }
 
     @Override

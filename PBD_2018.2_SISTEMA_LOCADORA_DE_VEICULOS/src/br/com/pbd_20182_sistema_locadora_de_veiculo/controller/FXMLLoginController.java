@@ -9,10 +9,11 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.BusinessExpection;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Funcionario;
-import br.com.pbd_20182_sistema_locadora_de_veiculo.model.MinhaThread;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ThreadDeVerificacaoDeReservas;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Pessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaJuridica;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ThreadDeVerificacaoDeLocacoes;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOPessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.view.Alerta;
 import java.io.IOException;
@@ -60,8 +61,30 @@ public class FXMLLoginController implements Initializable {
 
     public FXMLLoginController(Stage stage) {
         this.stage = stage;
+
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+        ThreadDeVerificacaoDeReservas threadDeVerificacaoDeReservas = new ThreadDeVerificacaoDeReservas();
+        ThreadDeVerificacaoDeLocacoes threadDeVerificacaoDeLocacoes = new ThreadDeVerificacaoDeLocacoes();
         
         
+        Thread thread = new Thread(threadDeVerificacaoDeReservas);
+        thread.setDaemon(true);
+        thread.start();
+        
+        Thread thread2 = new Thread(threadDeVerificacaoDeLocacoes);
+        thread2.setDaemon(true);
+        thread2.start();
+        
+        
+        
+        stage.setOnCloseRequest((event) -> {
+            System.exit(0);
+        });
+
     }
 
     @FXML
@@ -84,21 +107,6 @@ public class FXMLLoginController implements Initializable {
 
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-        MinhaThread task = new MinhaThread();
-
-        Thread thread = new Thread(task);
-        thread.setDaemon(true);
-        thread.start();
-        
-        stage.setOnCloseRequest((event) -> {
-            System.exit(0);
-        });
-
-    }
-
     private void verificarTipoUsuarioLogin(Pessoa pessoa) {
         if (pessoa instanceof PessoaFisica || pessoa instanceof PessoaJuridica) {
 
@@ -115,7 +123,7 @@ public class FXMLLoginController implements Initializable {
 
             Funcionario funcionario = (Funcionario) pessoa;
             if (!(funcionario.isSuperUsuario())) {
-                
+
                 controllerPrincipal.getMenuItemConfiguracoes().setDisable(true);
                 controllerPrincipal.getMenuRelatorios().setDisable(true);
 

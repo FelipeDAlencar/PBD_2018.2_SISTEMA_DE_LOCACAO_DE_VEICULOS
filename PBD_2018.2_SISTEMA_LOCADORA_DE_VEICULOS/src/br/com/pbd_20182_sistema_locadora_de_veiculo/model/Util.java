@@ -5,7 +5,10 @@
  */
 package br.com.pbd_20182_sistema_locadora_de_veiculo.model;
 
+import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.view.Alerta;
+import java.sql.Time;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -13,6 +16,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -23,6 +27,7 @@ import javafx.scene.control.TextField;
  */
 public abstract class Util {
 
+    private static Fachada fachada = Fachada.getInstance();
     public static String[] ufs = {"AC",
         "AL",
         "AM",
@@ -61,7 +66,7 @@ public abstract class Util {
             return codigo;
         }
 
-        return  nome.substring(0, 3) + String.format("%03d", "1");
+        return nome.substring(0, 3) + String.format("%03d", "1");
     }
 
     public static String gerarNomeCategoria(String ultimoNome, int tipo) {
@@ -124,6 +129,27 @@ public abstract class Util {
         return textField;
     }
 
+    public static void calcularQuantidadeDeHorasAtrasadas(Locacao locacao) throws DAOException {
+
+        for (Locacao l : ThreadDeVerificacaoDeLocacoes.locacaosEmAtraso) {
+            if (locacao.getId() == l.getId()) {
+                System.err.println(locacao.getId());
+                System.err.println(l.getId());
+                Calendar c = Calendar.getInstance();
+                c.setTime(new Date());
+                Time intervalo = fachada.procedureCalcularIntervaloDeAtraso(c, locacao.getId());
+                c.setTime(intervalo);
+                int qtdHoras = c.get(Calendar.HOUR);
+
+                if (qtdHoras <= 4) {
+                    locacao.setValor(((ThreadDeVerificacaoDeLocacoes.VALOR_DIARIA / 4) * qtdHoras) + locacao.getValor());
+                } else {
+                    locacao.setValor(ThreadDeVerificacaoDeLocacoes.VALOR_DIARIA + locacao.getValor());
+                }
+            }
+        }
+
+    }
 //    ArrayList<Veiculo> veiculos = fachada.buscarVeiculoPorCategoria(reservaPessoasCategorias.getCategoria());
 //
 //        if (veiculos.isEmpty()) {

@@ -5,14 +5,19 @@
  */
 package br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao;
 
+import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Locacao;
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  *
  * @author Felipe
  */
 public interface IDAOLocacao {
-    
-     public ArrayList<Locacao> findAll();
+
+    public ArrayList<Locacao> findAll();
+
+    public Time procedureCalcularIntervaloDeAtraso(Calendar dataFinal,Integer id) throws DAOException ;
 }

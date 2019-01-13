@@ -111,8 +111,8 @@ public class FXMLAnchorPaneCadastroReservaController implements Initializable {
                 fachada.salvarReservaPessoasCategorias(reservaPessoasCategorias);
                 carregarReservas(fachada.listarTodosReservaPessoasCategorias());
                 Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
-                alerta.alertar(Alert.AlertType.INFORMATION, "Cadastro de Reserva", "Sucesso",
-                        "Cadastro realizado com sucesso!");
+                alerta.alertar(Alert.AlertType.INFORMATION, "Inserção de Reserva", "Sucesso",
+                        "Inserção realizada com sucesso!");
                 
             }
         }
@@ -129,7 +129,7 @@ public class FXMLAnchorPaneCadastroReservaController implements Initializable {
                     
                     Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
                     alerta.alertar(Alert.AlertType.INFORMATION, "Edição de Reserva", "Sucesso",
-                            "Edição realizado com sucesso!");
+                            "Edição realizado com sucesso.");
                     
                 }
             }
@@ -145,8 +145,8 @@ public class FXMLAnchorPaneCadastroReservaController implements Initializable {
                 reservaPessoasCategorias.setAtivo(false);
                 fachada.salvarReservaPessoasCategorias(reservaPessoasCategorias);
                 Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
-                alerta.alertar(Alert.AlertType.INFORMATION, "Edição de Reserva", "Sucesso",
-                        "Edição realizado com sucesso!");
+                alerta.alertar(Alert.AlertType.INFORMATION, "Exclusão de Reserva", "Sucesso",
+                        "Edição realizado com sucesso.");
             }
             
         }

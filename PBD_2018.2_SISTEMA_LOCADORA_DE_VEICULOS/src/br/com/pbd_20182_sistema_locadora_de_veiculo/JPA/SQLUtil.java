@@ -25,25 +25,24 @@ public class SQLUtil {
         public static final String SQL_PROCEDURE_CRIPTOGRAFAR_SENHA = "criptografar_senha";
 
     }
-    public static class PessoaFisica{
-            public static final String SQL_BUSCAR_NOME_LIKE = ""
-                    + "select p from PessoaFisica p where lower(p.nome) like :busca";
-            
-             public static final String SQL_BUSCAR_POR_CPF = ""
-                    + "select p from PessoaFisica p where lower(p.CPF) = :cpf";
-            
-            
-        
+
+    public static class PessoaFisica {
+
+        public static final String SQL_BUSCAR_NOME_LIKE = ""
+                + "select p from PessoaFisica p where lower(p.nome) like :busca";
+
+        public static final String SQL_BUSCAR_POR_CPF = ""
+                + "select p from PessoaFisica p where lower(p.CPF) = :cpf";
+
     }
-     public static class PessoaJuridica{
-            
-            
-             public static final String SQL_BUSCAR_POR_CNPJ = ""
-                    + "select p from PessoaJuridica p where lower(p.CNPJ) = :cnpj";
-            
-            
-        
+
+    public static class PessoaJuridica {
+
+        public static final String SQL_BUSCAR_POR_CNPJ = ""
+                + "select p from PessoaJuridica p where lower(p.CNPJ) = :cnpj";
+
     }
+
     public static class Categoria {
 
         public static final String SQL_BUSCAR_CATEGORIA_POR_ULTIMO_NOME = "select max(nome) from Categoria where  nome like 'CN%'";
@@ -96,8 +95,13 @@ public class SQLUtil {
 
     public static class Reservas {
 
-        public static String SQL_BUSCAR_POR_BUSCA  = "select r from ReservaPessoasCategorias r INNER JOIN Pessoa p ON r.pessoa = p.id\n" +
-                                                        "INNER JOIN Categoria c ON r.categoria = c.id WHERE r.ativo = true and LOWER(p.nome) like :NomeCliente or LOWER(c.nome) like :nomeCategoria  or to_char(r.dataHora, 'dd/MM/yyyy') like :dataHora ";
+        public static String SQL_BUSCAR_POR_BUSCA = "select r from ReservaPessoasCategorias r INNER JOIN Pessoa p ON r.pessoa = p.id\n"
+                + "INNER JOIN Categoria c ON r.categoria = c.id WHERE r.ativo = true and LOWER(p.nome) like :NomeCliente or LOWER(c.nome) like :nomeCategoria  or to_char(r.dataHora, 'dd/MM/yyyy') like :dataHora ";
     }
 
+    public static class Locacao {
+
+        public static final String SQL_PROCEDURE_CALCULAR_INTERVALO_DE_ATRASO = "calculardiferencadedatalocacao";
+
+    }
 }

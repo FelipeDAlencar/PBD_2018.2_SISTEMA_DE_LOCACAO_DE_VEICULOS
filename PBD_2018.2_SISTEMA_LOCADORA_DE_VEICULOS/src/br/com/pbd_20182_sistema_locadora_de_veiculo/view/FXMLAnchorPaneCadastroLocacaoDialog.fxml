@@ -61,7 +61,7 @@
                         <DatePicker fx:id="dpDataIda" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                         <DatePicker fx:id="dpDataVolta" style="-fx-background-color: #dcdcdc;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                         <CheckBox fx:id="cbKmLivre" mnemonicParsing="false" onAction="#acaoCBs" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-                        <CheckBox fx:id="cbFinalizada" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                        <CheckBox fx:id="cbFinalizada" mnemonicParsing="false" onAction="#acaoCBs" GridPane.columnIndex="1" GridPane.rowIndex="11" />
                         <TextField fx:id="tfValor" GridPane.columnIndex="1" GridPane.rowIndex="12" />
                         <Label text="Cliente" textFill="GAINSBORO" />
                         <ComboBox fx:id="comboCliente" onAction="#AcaoCombos" prefHeight="25.0" prefWidth="139.0" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" />
