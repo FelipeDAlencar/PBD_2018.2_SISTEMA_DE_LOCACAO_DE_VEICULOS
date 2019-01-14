@@ -129,26 +129,37 @@ public abstract class Util {
         return textField;
     }
 
-    public static void calcularQuantidadeDeHorasAtrasadas(Locacao locacao) throws DAOException {
+    public static double calcularQuantidadeDeHorasAtrasadas(Locacao locacao) throws DAOException {
 
         for (Locacao l : ThreadDeVerificacaoDeLocacoes.locacaosEmAtraso) {
             if (locacao.getId() == l.getId()) {
-                System.err.println(locacao.getId());
-                System.err.println(l.getId());
+
                 Calendar c = Calendar.getInstance();
                 c.setTime(new Date());
                 Time intervalo = fachada.procedureCalcularIntervaloDeAtraso(c, locacao.getId());
                 c.setTime(intervalo);
-                int qtdHoras = c.get(Calendar.HOUR);
 
-                if (qtdHoras <= 4) {
-                    locacao.setValor(((ThreadDeVerificacaoDeLocacoes.VALOR_DIARIA / 4) * qtdHoras) + locacao.getValor());
+                int qtdHoras = c.get(Calendar.HOUR);
+                double valor = 0;
+                System.err.println("Aqui " + qtdHoras);
+
+                if (qtdHoras > 1 && qtdHoras % 4 != 0) {
+                    int diariasCompletas = (qtdHoras / 4);//2
+                    double valorDiariasCompletas = diariasCompletas * ThreadDeVerificacaoDeLocacoes.VALOR_DIARIA;
+                    double resto = (ThreadDeVerificacaoDeLocacoes.VALOR_DIARIA / 4) * (qtdHoras % 4);//
+
+                    valor = ((valorDiariasCompletas + resto) + locacao.getValor());
                 } else {
-                    locacao.setValor(ThreadDeVerificacaoDeLocacoes.VALOR_DIARIA + locacao.getValor());
+
+                    double valorDiarias = (qtdHoras / 4) * ThreadDeVerificacaoDeLocacoes.VALOR_DIARIA;
+
+                    valor = (valorDiarias + locacao.getValor());
                 }
+
+                return valor;
             }
         }
-
+        return 0;
     }
 //    ArrayList<Veiculo> veiculos = fachada.buscarVeiculoPorCategoria(reservaPessoasCategorias.getCategoria());
 //

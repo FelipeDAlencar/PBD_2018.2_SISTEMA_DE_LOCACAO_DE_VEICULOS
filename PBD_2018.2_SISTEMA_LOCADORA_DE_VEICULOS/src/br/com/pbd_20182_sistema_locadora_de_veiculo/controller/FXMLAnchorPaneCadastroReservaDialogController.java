@@ -89,10 +89,9 @@ public class FXMLAnchorPaneCadastroReservaDialogController implements Initializa
         } catch (DAOException ex) {
             ex.getMessage();
         }
-        
+
         adicionarOuvinte();
-        
-        
+
         MascarasTF.mascaraNumero(tfValor);
     }
 
@@ -104,7 +103,6 @@ public class FXMLAnchorPaneCadastroReservaDialogController implements Initializa
             try {
                 reservaPessoasCategorias.setPessoa(comboClientes.getValue());
                 reservaPessoasCategorias.setCategoria(comboCategorias.getValue());
-                
 
                 Date s = Date.from(dpData.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
 
@@ -166,9 +164,6 @@ public class FXMLAnchorPaneCadastroReservaDialogController implements Initializa
 
             @Override
             public void handle(KeyEvent evt) {
-
-                System.err.println(buscaCliente);
-               
 
                 KeyCode code = evt.getCode();
                 ObservableList<Pessoa> obsPessoa;

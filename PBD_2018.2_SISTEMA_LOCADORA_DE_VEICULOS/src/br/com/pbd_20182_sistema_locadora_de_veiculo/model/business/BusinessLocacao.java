@@ -94,8 +94,6 @@ public class BusinessLocacao implements IBusinessLocacao {
         dataAtual.set(Calendar.SECOND, 0);
         dataAtual.set(Calendar.MILLISECOND, 0);
 
-        ArrayList<Veiculo> veiculos = fachada.buscarVeiculoPorCategoria(locacao.getVeiculo().getCategoria());
-
         if (!(locacao.getCliente() != null)) {
             errorMessage += "Por favor, selecione o cliente.";
         }
@@ -111,8 +109,10 @@ public class BusinessLocacao implements IBusinessLocacao {
         if (!(locacao.getDataIda() != null)) {
             errorMessage += "Por favor, selecione a uma data de ida válida.";
         }
-        if (dataIdaTemp.compareTo(dataAtual) < 0 || dataVoltaTem.compareTo(dataAtual) < 0) {
-            errorMessage += "Datas não podem ser antes do dia de hoje. ";
+        if (!(locacao.getId() != null)) {
+            if (dataIdaTemp.compareTo(dataAtual) < 0 || dataVoltaTem.compareTo(dataAtual) < 0) {
+                errorMessage += "Datas não podem ser antes do dia de hoje. ";
+            }
         }
 
 //        if (locacao.getDataIda().compareTo(locacao.getDataVolta()) <= 0) {
@@ -138,20 +138,24 @@ public class BusinessLocacao implements IBusinessLocacao {
         if (fachada.calcularIdade(locacao.getMotorista().getId()) < 21) {
             errorMessage = "O motorista deve ter idade igual ou superior a 20 anos.";
         }
-        if (veiculos.isEmpty()) {
-            Alerta alerta = Alerta.getInstace(Alert.AlertType.INFORMATION);
-            alerta.alertar(Alert.AlertType.WARNING, "Atenção", "Categoria não disponível",
-                    "Categoria não disponível, sua categoria vai ser "
-                    + "remanejada para uma categoria superior, porém com o mesmo valor.");
 
-            locacao.getVeiculo().setCategoria(trocarDeCategoria(locacao.getVeiculo().getCategoria()));
-            validar(locacao);
+        if (!(locacao.getId() != null)) {
+            ArrayList<Veiculo> veiculos = fachada.buscarVeiculoPorCategoria(locacao.getVeiculo().getCategoria());
+            if (veiculos.isEmpty()) {
+                Alerta alerta = Alerta.getInstace(Alert.AlertType.INFORMATION);
+                alerta.alertar(Alert.AlertType.WARNING, "Atenção", "Categoria não disponível",
+                        "Categoria não disponível, sua categoria vai ser "
+                        + "remanejada para uma categoria superior, porém com o mesmo valor.");
 
-        } else {
+                locacao.getVeiculo().setCategoria(trocarDeCategoria(locacao.getVeiculo().getCategoria()));
+                validar(locacao);
 
-            locacao.setVeiculo(veiculos.get(0));
-            veiculos.get(0).setDisponivel(false);
-            fachada.salvarVeiculo(veiculos.get(0));
+            } else {
+
+                locacao.setVeiculo(veiculos.get(0));
+                veiculos.get(0).setDisponivel(false);
+                fachada.salvarVeiculo(veiculos.get(0));
+            }
         }
         if (errorMessage.length() != 0) {
             throw new BusinessExpection(errorMessage);

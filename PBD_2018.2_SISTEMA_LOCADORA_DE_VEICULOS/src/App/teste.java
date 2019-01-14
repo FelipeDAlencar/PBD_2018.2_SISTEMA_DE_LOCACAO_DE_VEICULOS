@@ -10,6 +10,7 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Endereco;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Funcionario;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Geral;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Locacao;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Util;
@@ -44,14 +45,23 @@ public class teste {
     public static void main(String[] args) throws DAOException {
 
         Fachada fachada = Fachada.getInstance();
-        DAOLocacao daol = new DAOLocacao();
         
-        Locacao locacao = daol.findAll().get(0);
+        double qtd = 5;
+        System.err.println(qtd / 4);
+       
+        if(qtd > 1 && qtd % 4 != 0){
+            System.err.println("Incluiu na diaria");
+        }else{
+            System.err.println("Nova diaria");
+        }
         
-        PessoaFisica p = fachada.listarTodosPessoaFisica().get(0);
         
-        System.err.println(fachada.verificarVencimentoCNH(locacao.getDataIda(), locacao.getDataVolta(), p.getId()));
         
+        
+        
+        
+        
+       
         System.exit(0);
         
         

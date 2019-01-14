@@ -232,11 +232,8 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
             } else if (event.getSource() == btnCancelar) {
                 stage.close();
             }
-        } catch (NullPointerException e) {
+        } catch (NullPointerException | NumberFormatException e) {
             alerta.alertar(Alert.AlertType.WARNING, "Atenção", "Informe os campos requisitados corretamente.", buscaVeiculo);
-        } catch (NumberFormatException e) {
-            alerta.alertar(Alert.AlertType.WARNING, "Atenção", "Informe os campos requisitados corretamente.", buscaVeiculo);
-
         }
 
     }
@@ -244,11 +241,10 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
     @FXML
     void acaoCBs(ActionEvent event) throws DAOException {
         double soma = 0;
-
         if (cbFinalizada.isSelected()) {
             if (locacao.getId() != null) {
-                Util.calcularQuantidadeDeHorasAtrasadas(locacao);
-                tfValor.setText(String.valueOf(locacao.getValor()));
+
+                soma += Util.calcularQuantidadeDeHorasAtrasadas(locacao);
 
             }
         }
@@ -323,8 +319,13 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
     }
 
     private void calcularValor(double valor) {
-
-        double soma = Double.parseDouble(tfMetadeprimeiraDiaria.getText()) + valor;
+        double soma = 0;
+        System.err.println(valor);
+        if (locacao != null) {
+            soma = valor;
+        } else {
+            soma = Double.parseDouble(tfMetadeprimeiraDiaria.getText()) + valor;
+        }
         tfValor.setText(String.valueOf(soma));
     }
 
@@ -385,10 +386,6 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
             @Override
             public void handle(KeyEvent evt) {
 
-                System.err.println(buscaCliente);
-                System.err.println(buscaMotorista);
-                System.err.println(buscaVeiculo);
-
                 KeyCode code = evt.getCode();
                 ObservableList<PessoaFisica> obsMotorista;
 
@@ -423,9 +420,6 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
 
             @Override
             public void handle(KeyEvent evt) {
-                System.err.println(buscaCliente);
-                System.err.println(buscaMotorista);
-                System.err.println(buscaVeiculo);
 
                 KeyCode code = evt.getCode();
                 ObservableList<Veiculo> obsveiculos;
@@ -495,12 +489,6 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
                 cbTaxaHigienizacao.setSelected(true);
             }
 
-            try {
-                Util.calcularQuantidadeDeHorasAtrasadas(locacao);
-                tfValor.setText(String.valueOf(locacao.getValor()));
-            } catch (DAOException ex) {
-                Logger.getLogger(FXMLAnchorPaneCadastroLocacaoDialogController.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
 
     }

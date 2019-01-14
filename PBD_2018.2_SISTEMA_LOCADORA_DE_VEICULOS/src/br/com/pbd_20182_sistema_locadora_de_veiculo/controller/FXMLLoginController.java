@@ -13,7 +13,9 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ThreadDeVerificacaoDeR
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Pessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaJuridica;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ThreadDeControleDeLimpezaERevisao;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ThreadDeVerificacaoDeLocacoes;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Veiculo;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOPessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.view.Alerta;
 import java.io.IOException;
@@ -79,7 +81,12 @@ public class FXMLLoginController implements Initializable {
         thread2.setDaemon(true);
         thread2.start();
         
+      //  ThreadDeControleDeLimpezaERevisao t = new ThreadDeControleDeLimpezaERevisao(new Veiculo());
         
+        
+//        Thread thread3 = new Thread(t);
+//        thread3.setDaemon(true);
+//        thread3.start();
         
         stage.setOnCloseRequest((event) -> {
             System.exit(0);
