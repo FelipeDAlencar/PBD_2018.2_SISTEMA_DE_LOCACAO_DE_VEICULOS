@@ -15,6 +15,7 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaJuridica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOPessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.view.Alerta;
+import com.jfoenix.controls.JFXTimePicker;
 import java.net.URL;
 import java.sql.Time;
 import java.util.ArrayList;
@@ -77,6 +78,9 @@ public class FXMLAnchorPaneGeralController implements Initializable {
     private TextField tfTempoLimpezaRevisao;
 
     @FXML
+    private JFXTimePicker tmTemDeLimpezaERevisao;
+
+    @FXML
     private Button btnAlterarTaxas;
 
     @FXML
@@ -118,7 +122,7 @@ public class FXMLAnchorPaneGeralController implements Initializable {
                 tfMetadePrimeiraDiaria.setText(String.valueOf(geral.getMetadePrimeiraDiaria()));
                 tfKmControle.setText(String.valueOf(geral.getValorKmControle()));
                 tfKmLivre.setText(String.valueOf(geral.getValorKmLivre()));
-                tfTempoLimpezaRevisao.setText(String.valueOf(geral.getTempoDeLimpezaRevisao()));
+                tfTempoLimpezaRevisao.setText(String.valueOf(geral.getTempoDeLimpezaRevisao()).substring(0,5));
 
             } else {
 
@@ -190,8 +194,8 @@ public class FXMLAnchorPaneGeralController implements Initializable {
             geral.setMetadePrimeiraDiaria(Double.parseDouble(tfMetadePrimeiraDiaria.getText()));
             geral.setValorKmControle(Double.parseDouble(tfKmControle.getText()));
             geral.setValorKmLivre(Double.parseDouble(tfKmLivre.getText()));
-            geral.setTempoDeLimpezaRevisao(Time.valueOf(tfTempoLimpezaRevisao.getText()));
-            System.err.println("Aqui: " + geral.getTempoDeLimpezaRevisao() );
+            geral.setTempoDeLimpezaRevisao(Time.valueOf(tfTempoLimpezaRevisao.getText() + ":00"));
+            System.err.println("Aqui: " + geral.getTempoDeLimpezaRevisao());
 
             fachada.salvarGeral(geral);
             Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
@@ -213,6 +217,12 @@ public class FXMLAnchorPaneGeralController implements Initializable {
         obsPessoas = FXCollections.observableArrayList(pessoas);
 
         tableView.setItems(obsPessoas);
+
+    }
+
+    @FXML
+    void acaoRelogio(ActionEvent event) {
+        tfTempoLimpezaRevisao.setText(String.valueOf(tmTemDeLimpezaERevisao.getValue()));
 
     }
 

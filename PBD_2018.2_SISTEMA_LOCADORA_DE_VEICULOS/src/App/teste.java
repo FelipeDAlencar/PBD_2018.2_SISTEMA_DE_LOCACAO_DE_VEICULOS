@@ -44,27 +44,13 @@ public class teste {
 
     public static void main(String[] args) throws DAOException {
 
-        Fachada fachada = Fachada.getInstance();
-        
-        double qtd = 5;
-        System.err.println(qtd / 4);
-       
-        if(qtd > 1 && qtd % 4 != 0){
-            System.err.println("Incluiu na diaria");
-        }else{
-            System.err.println("Nova diaria");
-        }
-        
-        
-        
-        
-        
-        
-        
-       
+        int input = 5418;// 1h : 30 min : 18 seg
+        int horas = input / 3600;
+        int minutos = (input - (horas * 3600)) / 60;
+        int segundos = input - (horas * 3600) - (minutos * 60);
+        System.out.printf("Horas: %d%nMinutos: %d%nSegundos: %d%n", horas, minutos, segundos);
+
         System.exit(0);
-        
-        
 
 //        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 //        Date date;

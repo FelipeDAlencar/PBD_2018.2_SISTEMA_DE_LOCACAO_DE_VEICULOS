@@ -416,4 +416,39 @@ public class MascarasTF {
 
     }
 
+    public static void mascaraPlaca(TextField textField) {
+
+        textField.setOnKeyTyped((KeyEvent event) -> {
+            if ("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz-".contains(event.getCharacter()) == false) {
+                event.consume();
+            }
+
+            if (event.getCharacter().trim().length() == 0) { // apagando
+
+                if (textField.getText().length() == 5) {
+                    textField.setText(textField.getText().substring(0, 4));
+                    textField.positionCaret(textField.getText().length());
+                }
+
+            } else { // escrevendo
+
+                if (textField.getText().length() == 9) {
+                    event.consume();
+                }
+
+                if (textField.getText().length() == 4) {
+                    textField.setText(textField.getText() + "-");
+                    textField.positionCaret(textField.getText().length());
+                }
+
+            }
+        });
+
+        if (!textField.getText().matches("\\d.-*")) {
+            textField.setText(textField.getText().replaceAll("[^\\d.-]", ""));
+            textField.positionCaret(textField.getText().length());
+        }
+
+    }
+
 }

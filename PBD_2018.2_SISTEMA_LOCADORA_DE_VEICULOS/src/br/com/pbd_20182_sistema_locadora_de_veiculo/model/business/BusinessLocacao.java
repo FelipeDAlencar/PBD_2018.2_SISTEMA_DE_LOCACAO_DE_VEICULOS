@@ -151,10 +151,11 @@ public class BusinessLocacao implements IBusinessLocacao {
                 validar(locacao);
 
             } else {
-
-                locacao.setVeiculo(veiculos.get(0));
-                veiculos.get(0).setDisponivel(false);
-                fachada.salvarVeiculo(veiculos.get(0));
+                if (errorMessage.length() == 0) {
+                    locacao.setVeiculo(veiculos.get(0));
+                    veiculos.get(0).setDisponivel(false);
+                    fachada.salvarVeiculo(veiculos.get(0));
+                }
             }
         }
         if (errorMessage.length() != 0) {

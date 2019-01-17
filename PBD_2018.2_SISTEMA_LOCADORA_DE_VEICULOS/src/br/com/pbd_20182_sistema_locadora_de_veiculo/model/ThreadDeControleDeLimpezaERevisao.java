@@ -19,50 +19,46 @@ import javafx.concurrent.Task;
  * @author Felipe
  */
 public class ThreadDeControleDeLimpezaERevisao extends Task<Integer> {
-    
+
     private Fachada fachada;
     private Veiculo veiculo;
     private Thread thread;
     private long tempoLimpezaERevisao;
-    
+
     public ThreadDeControleDeLimpezaERevisao(Veiculo veiculo) {
         fachada = Fachada.getInstance();
         this.veiculo = veiculo;
-        
+
         try {
             Calendar cal = Calendar.getInstance();
             cal.setTime(fachada.buscarGeral().getTempoDeLimpezaRevisao());
-            tempoLimpezaERevisao = (cal.get(Calendar.SECOND) * 1000);
-            
+            double horaEmSegundos = cal.get(Calendar.HOUR) * 3600;
+            double minutoEmSegundo = cal.get(Calendar.MINUTE) * 60;
+            tempoLimpezaERevisao = (long) ((cal.get(Calendar.SECOND) + horaEmSegundos + minutoEmSegundo) * 1000);
+
             thread = new Thread(this);
             thread.setDaemon(true);
             thread.start();
-            
+
         } catch (DAOException ex) {
             Logger.getLogger(ThreadDeControleDeLimpezaERevisao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
+
     @Override
     protected Integer call() {
-        
+
         try {
-            
-            while (true) {
-                Thread.sleep(tempoLimpezaERevisao);
-                
-                
-                veiculo.setDisponivel(true);
-                fachada.salvarVeiculo(veiculo);
-                
-            }
-            
+            Thread.sleep(tempoLimpezaERevisao);
+            veiculo.setDisponivel(true);
+            fachada.salvarVeiculo(veiculo);
+
         } catch (Exception e) {
             e.printStackTrace();
             e.getMessage();
         }
         return null;
     }
-    
+
 }

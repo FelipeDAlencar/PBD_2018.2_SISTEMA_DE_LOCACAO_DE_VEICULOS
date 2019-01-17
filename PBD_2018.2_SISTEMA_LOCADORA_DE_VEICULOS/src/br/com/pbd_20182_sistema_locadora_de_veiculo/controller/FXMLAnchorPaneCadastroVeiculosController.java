@@ -137,7 +137,7 @@ public class FXMLAnchorPaneCadastroVeiculosController implements Initializable {
                 fachada.salvarVeiculo(veiculo);
 
                 Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
-                alerta.alertar(Alert.AlertType.CONFIRMATION, "Sucesso", "Inserção de Veículos", ""
+                alerta.alertar(Alert.AlertType.INFORMATION, "Sucesso", "Inserção de Veículos", ""
                         + "Inserção realidade com sucesso!");
 
                 carregaVeiculos(fachada.listarTodosVeiculo());
@@ -157,7 +157,7 @@ public class FXMLAnchorPaneCadastroVeiculosController implements Initializable {
                     fachada.salvarVeiculo(veiculo);
 
                     Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
-                    alerta.alertar(Alert.AlertType.CONFIRMATION, "Sucesso", "Inserção de Veículos", ""
+                    alerta.alertar(Alert.AlertType.INFORMATION, "Sucesso", "Inserção de Veículos", ""
                             + "Inserção realizada com sucesso!");
 
                     carregaVeiculos(fachada.listarTodosVeiculo());
@@ -180,7 +180,7 @@ public class FXMLAnchorPaneCadastroVeiculosController implements Initializable {
                 fachada.salvarVeiculo(veiculo);
 
                 Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
-                alerta.alertar(Alert.AlertType.CONFIRMATION, "Sucesso", "Exclusão de Veículos", ""
+                alerta.alertar(Alert.AlertType.INFORMATION, "Sucesso", "Exclusão de Veículos", ""
                         + "Exclusão realizada com sucesso!");
 
                 carregaVeiculos(fachada.listarTodosVeiculo());

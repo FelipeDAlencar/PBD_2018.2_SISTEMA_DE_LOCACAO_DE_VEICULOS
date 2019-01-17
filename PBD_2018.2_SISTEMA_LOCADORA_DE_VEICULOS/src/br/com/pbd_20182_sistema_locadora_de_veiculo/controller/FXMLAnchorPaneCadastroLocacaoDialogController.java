@@ -13,6 +13,7 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Locacao;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.MascarasTF;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Pessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ThreadDeControleDeLimpezaERevisao;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Util;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Veiculo;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.view.Alerta;
@@ -140,6 +141,7 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
             tfMetadeprimeiraDiaria.setText(String.valueOf(geral.getMetadePrimeiraDiaria()));
 
             tfValor.setText(String.valueOf(geral.getMetadePrimeiraDiaria() + geral.getValorKmLivre()));
+
             TAXA_COM = geral.getTaxaCombustivel();
             TAXA_HI = geral.getTaxaHigienizacao();
             VALOR_KM_LIVRE = geral.getValorKmLivre();
@@ -171,6 +173,15 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
                 c1.setTime(new Date());
                 dataHoraIda.setTime(localDate);
 
+                if (locacao.getId() != null) {
+
+                    c1.set(Calendar.HOUR, locacao.getDataIda().get(Calendar.HOUR));
+                    c1.set(Calendar.MINUTE, locacao.getDataIda().get(Calendar.MINUTE));
+                    c1.set(Calendar.SECOND, locacao.getDataIda().get(Calendar.SECOND));
+
+                    System.err.println(c1.getTime());
+
+                }
                 dataHoraIda.set(Calendar.HOUR_OF_DAY, c1.get(Calendar.HOUR_OF_DAY));
                 dataHoraIda.set(Calendar.MINUTE, c1.get(Calendar.MINUTE));
                 dataHoraIda.set(Calendar.SECOND, c1.get(Calendar.SECOND));
@@ -180,8 +191,15 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
                 localDate = Date.from(dpDataVolta.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
 
                 Calendar dataHoraVolta = Calendar.getInstance();
-                dataHoraVolta.setTime(localDate);
 
+                dataHoraVolta.setTime(localDate);
+                if (locacao.getId() != null) {
+
+                    c1.set(Calendar.HOUR, locacao.getDataVolta().get(Calendar.HOUR));
+                    c1.set(Calendar.MINUTE, locacao.getDataVolta().get(Calendar.MINUTE));
+                    c1.set(Calendar.SECOND, locacao.getDataVolta().get(Calendar.SECOND));
+
+                }
                 dataHoraVolta.set(Calendar.HOUR_OF_DAY, c1.get(Calendar.HOUR_OF_DAY));
                 dataHoraVolta.set(Calendar.MINUTE, c1.get(Calendar.MINUTE));
                 dataHoraVolta.set(Calendar.SECOND, c1.get(Calendar.SECOND));
@@ -206,8 +224,23 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
                 if (cbTaxaHigienizacao.isSelected()) {
                     locacao.setTaxaHigienizacao(TAXA_HI);
                 }
+                if (cbFinalizada.isSelected() && locacao.getId() != null) {
 
-                System.err.println(locacao.getDataIda().getTime());
+                    double kmRodados = locacao.getKmFinalVeiculo() - locacao.getKmInicialDoVeiculo();
+                    System.err.println("km " + kmRodados);
+                    if (kmRodados >= 5000) {
+                        locacao.getVeiculo().setQuilometragemAtual(locacao.getKmFinalVeiculo());
+                        fachada.salvarVeiculo(locacao.getVeiculo());
+                        ThreadDeControleDeLimpezaERevisao r
+                                = new ThreadDeControleDeLimpezaERevisao(locacao.getVeiculo());
+                    } else {
+                        locacao.getVeiculo().setQuilometragemAtual(locacao.getKmFinalVeiculo());
+                        locacao.getVeiculo().setDisponivel(true);
+                        fachada.salvarVeiculo(locacao.getVeiculo());
+                    }
+
+                }
+
                 sucesso = true;
                 stage.close();
 
@@ -239,7 +272,7 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
     }
 
     @FXML
-    void acaoCBs(ActionEvent event) throws DAOException {
+    void acaoCBs(ActionEvent event) throws DAOException, BusinessExpection {
         double soma = 0;
         if (cbFinalizada.isSelected()) {
             if (locacao.getId() != null) {
@@ -481,6 +514,7 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
             cbFinalizada.setSelected(locacao.isFinalizada());
             cbKmLivre.setSelected(locacao.isKmLivre());
 
+            tfValor.setText(String.valueOf(locacao.getValor()));
             if (locacao.getTaxaCombustivel() != 0) {
                 cbTaxaCombustivel.setSelected(true);
             }

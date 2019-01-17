@@ -21,8 +21,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
@@ -45,7 +47,7 @@ public class FXMLAnchorPaneCadastroVeiculosDialogController implements Initializ
     private TextField tfAnoDeFabricacao;
 
     @FXML
-    private TextField tfCor;
+    private ColorPicker cpCor;
 
     @FXML
     private TextField tfPlaca;
@@ -93,6 +95,7 @@ public class FXMLAnchorPaneCadastroVeiculosDialogController implements Initializ
         MascarasTF.mascaraNumeroInteiro(tfKmAtual);
         MascarasTF.mascaraNumeroInteiro(tfNChassi);
         MascarasTF.mascaraNumeroInteiro(tfTorqueDoMotor);
+        MascarasTF.mascaraPlaca(tfPlaca);
 
     }
 
@@ -104,7 +107,7 @@ public class FXMLAnchorPaneCadastroVeiculosDialogController implements Initializ
             veiculo.setAnoDeFabricacao(Integer.parseInt(tfAnoDeFabricacao.getText()));
             veiculo.setAnoDoModelo(Integer.parseInt(tfAnoDoModelo.getText()));
             veiculo.setCategoria(comboCategoria.getValue());
-            veiculo.setCor(tfCor.getText());
+            veiculo.setCor(cpCor.getValue().toString());
             veiculo.setDisponivel(cbDisponivel.isSelected());
             veiculo.setFabricante(tfFabricante.getText());
             veiculo.setModelo(tfModelo.getText());
@@ -158,7 +161,7 @@ public class FXMLAnchorPaneCadastroVeiculosDialogController implements Initializ
         if (veiculo.getId() != null) {
             tfAnoDeFabricacao.setText(String.valueOf(veiculo.getAnoDeFabricacao()));
             tfAnoDoModelo.setText(String.valueOf(veiculo.getAnoDoModelo()));
-            tfCor.setText(veiculo.getCor());
+            cpCor.setValue(Color.web(veiculo.getCor()));
             tfFabricante.setText(veiculo.getFabricante());
             tfKmAtual.setText(String.valueOf(veiculo.getQuilometragemAtual()));
             tfModelo.setText(veiculo.getModelo());
