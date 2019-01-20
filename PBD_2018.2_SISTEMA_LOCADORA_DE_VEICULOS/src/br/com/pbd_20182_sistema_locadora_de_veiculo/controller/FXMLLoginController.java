@@ -13,6 +13,7 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ThreadDeVerificacaoDeR
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Pessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaJuridica;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ThreadBackup;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ThreadDeControleDeLimpezaERevisao;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ThreadDeVerificacaoDeLocacoes;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Veiculo;
@@ -71,23 +72,19 @@ public class FXMLLoginController implements Initializable {
 
         ThreadDeVerificacaoDeReservas threadDeVerificacaoDeReservas = new ThreadDeVerificacaoDeReservas();
         ThreadDeVerificacaoDeLocacoes threadDeVerificacaoDeLocacoes = new ThreadDeVerificacaoDeLocacoes();
-        
+        ThreadBackup threadBackup = new ThreadBackup();
         
         Thread thread = new Thread(threadDeVerificacaoDeReservas);
         thread.setDaemon(true);
         thread.start();
-        
+
         Thread thread2 = new Thread(threadDeVerificacaoDeLocacoes);
         thread2.setDaemon(true);
         thread2.start();
-        
-      //  ThreadDeControleDeLimpezaERevisao t = new ThreadDeControleDeLimpezaERevisao(new Veiculo());
-        
-        
-//        Thread thread3 = new Thread(t);
-//        thread3.setDaemon(true);
-//        thread3.start();
-        
+
+        Thread thread3 = new Thread(threadBackup);
+        thread3.setDaemon(true);
+        thread3.start();
         stage.setOnCloseRequest((event) -> {
             System.exit(0);
         });

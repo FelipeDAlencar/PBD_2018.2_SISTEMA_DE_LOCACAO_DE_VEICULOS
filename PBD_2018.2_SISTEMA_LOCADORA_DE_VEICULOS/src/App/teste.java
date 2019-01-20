@@ -42,13 +42,21 @@ import org.hibernate.type.descriptor.java.LocalDateJavaDescriptor;
  */
 public class teste {
 
-    public static void main(String[] args) throws DAOException {
-
-        int input = 5418;// 1h : 30 min : 18 seg
-        int horas = input / 3600;
-        int minutos = (input - (horas * 3600)) / 60;
-        int segundos = input - (horas * 3600) - (minutos * 60);
-        System.out.printf("Horas: %d%nMinutos: %d%nSegundos: %d%n", horas, minutos, segundos);
+    public static void main(String[] args) throws DAOException, ParseException {
+        
+        SimpleDateFormat format = new   SimpleDateFormat("HH:mm:ss");
+        
+        
+        System.err.println(format.parse(format.format(new Date())));
+        
+        
+        
+//
+//        int input = 5418;// 1h : 30 min : 18 seg
+//        int horas = input / 3600;
+//        int minutos = (input - (horas * 3600)) / 60;
+//        int segundos = input - (horas * 3600) - (minutos * 60);
+//        System.out.printf("Horas: %d%nMinutos: %d%nSegundos: %d%n", horas, minutos, segundos);
 
         System.exit(0);
 

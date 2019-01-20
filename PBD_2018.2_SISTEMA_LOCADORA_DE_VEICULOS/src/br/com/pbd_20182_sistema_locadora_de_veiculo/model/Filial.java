@@ -27,8 +27,7 @@ public class Filial implements Serializable, EntidadeBase {
     private String nome;
     @Column()
     private boolean ativo;
-    
-    
+
     @OneToOne(cascade = CascadeType.ALL)
     private Endereco endereco;
 
@@ -102,7 +101,9 @@ public class Filial implements Serializable, EntidadeBase {
         return true;
     }
 
-    
-    
+    @Override
+    public String toString() {
+        return getNome(); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

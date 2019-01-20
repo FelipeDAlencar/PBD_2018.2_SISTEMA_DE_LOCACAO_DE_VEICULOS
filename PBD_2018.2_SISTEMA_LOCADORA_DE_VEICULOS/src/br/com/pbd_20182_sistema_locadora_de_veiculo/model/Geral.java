@@ -31,8 +31,7 @@ public class Geral implements Serializable, EntidadeBase {
     @Column(name = "taxa_combustivel")
     private double taxaCombustivel;
     @Column(name = "hora_de_backup")
-    @Temporal(TemporalType.TIME)
-    private Date horaDeBackup;
+    private Time horaDeBackup;
     @Column(name = "metade_da_primeira_diaria")
     private double metadePrimeiraDiaria;
     @Column(name = "valor_km_livre")
@@ -58,14 +57,15 @@ public class Geral implements Serializable, EntidadeBase {
         this.taxaCombustivel = taxaCombustivel;
     }
 
-    public Date getHoraDeBackup() {
+    public Time getHoraDeBackup() {
         return horaDeBackup;
     }
 
-    public void setHoraDeBackup(Date horaDeBackup) {
+    public void setHoraDeBackup(Time horaDeBackup) {
         this.horaDeBackup = horaDeBackup;
     }
 
+    @Override
     public Integer getId() {
         return id;
     }
@@ -158,8 +158,5 @@ public class Geral implements Serializable, EntidadeBase {
         }
         return true;
     }
-    
-    
-    
-    
+
 }

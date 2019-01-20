@@ -14,7 +14,7 @@ import javafx.scene.control.Alert.AlertType;
  */
 public class Alerta extends Alert {
 
-    public static Alerta alert;
+    private static Alerta alert;
 
     public static Alerta getInstace(AlertType tipo) {
         if (alert == null) {
@@ -24,7 +24,7 @@ public class Alerta extends Alert {
         return alert;
     }
 
-    public Alerta(AlertType alertType) {
+    private Alerta(AlertType alertType) {
         super(alertType);
     }
 

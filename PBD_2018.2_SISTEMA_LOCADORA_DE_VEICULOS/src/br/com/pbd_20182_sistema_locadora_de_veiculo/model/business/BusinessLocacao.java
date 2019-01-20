@@ -105,6 +105,9 @@ public class BusinessLocacao implements IBusinessLocacao {
         if (!(locacao.getMotorista() != null)) {
             errorMessage += "Por favor, selecione o Motorista.";
         }
+        if (!(locacao.getPontoDeEntregea()!= null)) {
+            errorMessage += "Por favor, selecione o ponto de entrega.";
+        }
 
         if (!(locacao.getDataIda() != null)) {
             errorMessage += "Por favor, selecione a uma data de ida válida.";

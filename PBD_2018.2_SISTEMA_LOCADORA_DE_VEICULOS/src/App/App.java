@@ -59,7 +59,7 @@ public class App extends Application {
     public static Stage stage = null;
 
     @Override
-    public void start(Stage primaryStage) throws IOException, DAOException {
+    public void start(Stage primaryStage) throws IOException, DAOException, InterruptedException {
 //        FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLLogin.fxml"));
 //        loader.setControllerFactory(new Callback<Class<?>, Object>() {
 //            @Override

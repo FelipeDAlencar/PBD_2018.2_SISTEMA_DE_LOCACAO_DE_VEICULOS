@@ -42,7 +42,7 @@
                         <Font name="Arial Bold" size="20.0" />
                      </font>
                   </Label>
-                  <GridPane layoutX="155.0" layoutY="95.0" prefHeight="283.0" prefWidth="244.0">
+                  <GridPane layoutX="133.0" layoutY="67.0" prefHeight="283.0" prefWidth="244.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="154.0" minWidth="10.0" prefWidth="148.0" />
                       <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="94.0" minWidth="10.0" prefWidth="76.0" />
@@ -51,6 +51,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -65,30 +66,32 @@
                      <children>
                         <Label text="Motorista" textFill="GAINSBORO" GridPane.rowIndex="1" />
                         <Label text="Veiculo" textFill="GAINSBORO" GridPane.rowIndex="2" />
-                        <Label text="Km inicial veículo" textFill="GAINSBORO" GridPane.rowIndex="3" />
-                        <Label text="Km final veículo" textFill="GAINSBORO" GridPane.rowIndex="4" />
-                        <Label prefHeight="17.0" prefWidth="139.0" text="Metade da primeira diária" textFill="GAINSBORO" GridPane.rowIndex="5" />
-                        <Label text="Taxa de combustível" textFill="GAINSBORO" GridPane.rowIndex="6" />
-                        <Label text="Taxa de igiênização" textFill="GAINSBORO" GridPane.rowIndex="7" />
-                        <Label text="data de ida" textFill="GAINSBORO" GridPane.rowIndex="8" />
-                        <Label text="data de volta" textFill="GAINSBORO" GridPane.rowIndex="9" />
-                        <Label text="km livre" textFill="GAINSBORO" GridPane.rowIndex="10" />
-                        <Label text="Valor" textFill="GAINSBORO" GridPane.rowIndex="12" />
+                        <Label text="Km inicial veículo" textFill="GAINSBORO" GridPane.rowIndex="4" />
+                        <Label text="Km final veículo" textFill="GAINSBORO" GridPane.rowIndex="5" />
+                        <Label prefHeight="17.0" prefWidth="139.0" text="Metade da primeira diária" textFill="GAINSBORO" GridPane.rowIndex="6" />
+                        <Label text="Taxa de combustível" textFill="GAINSBORO" GridPane.rowIndex="7" />
+                        <Label text="Taxa de igiênização" textFill="GAINSBORO" GridPane.rowIndex="8" />
+                        <Label text="data de ida" textFill="GAINSBORO" GridPane.rowIndex="9" />
+                        <Label text="data de volta" textFill="GAINSBORO" GridPane.rowIndex="10" />
+                        <Label text="km livre" textFill="GAINSBORO" GridPane.rowIndex="11" />
+                        <Label text="Valor" textFill="GAINSBORO" GridPane.rowIndex="13" />
                         <Label fx:id="lbMotorista" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label fx:id="lbVeiculo" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Label fx:id="lbKmInicial" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Label fx:id="lbKmFinal" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <Label fx:id="lbMetadePrimeiraDiaria" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <Label fx:id="lbTaxaCombustivel" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                        <Label fx:id="lbTaxaIgienizacao" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                        <Label fx:id="lbDataIda" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                        <Label fx:id="lbDataVolta" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                        <Label fx:id="lbValor" GridPane.columnIndex="1" GridPane.rowIndex="12" />
-                        <CheckBox fx:id="cbKmLivre" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-                        <Label text="Finalizada" textFill="GAINSBORO" GridPane.rowIndex="11" />
-                        <CheckBox fx:id="cbFinalizada" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                        <Label fx:id="lbKmInicial" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label fx:id="lbKmFinal" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Label fx:id="lbMetadePrimeiraDiaria" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label fx:id="lbTaxaCombustivel" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <Label fx:id="lbTaxaIgienizacao" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <Label fx:id="lbDataIda" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                        <Label fx:id="lbDataVolta" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                        <Label fx:id="lbValor" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+                        <CheckBox fx:id="cbKmLivre" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                        <Label text="Finalizada" textFill="GAINSBORO" GridPane.rowIndex="12" />
+                        <CheckBox fx:id="cbFinalizada" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="12" />
                         <Label text="Cliente" textFill="GAINSBORO" />
                         <Label fx:id="lbCliente" GridPane.columnIndex="1" />
+                        <Label text="Ponto de entrega" textFill="GAINSBORO" GridPane.rowIndex="3" />
+                        <Label fx:id="lbPontoDeEntrega" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                      </children>
                   </GridPane>
                   <HBox layoutX="24.0" layoutY="426.0" prefHeight="23.0" prefWidth="200.0" spacing="5.0">

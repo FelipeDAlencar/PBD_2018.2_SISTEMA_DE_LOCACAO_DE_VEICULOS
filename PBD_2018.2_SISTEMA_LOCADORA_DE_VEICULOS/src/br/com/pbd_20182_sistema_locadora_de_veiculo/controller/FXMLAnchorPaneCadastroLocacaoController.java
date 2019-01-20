@@ -69,6 +69,9 @@ public class FXMLAnchorPaneCadastroLocacaoController implements Initializable {
     private Label lbVeiculo;
 
     @FXML
+    private Label lbPontoDeEntrega;
+    
+    @FXML
     private Label lbKmInicial;
 
     @FXML
@@ -187,9 +190,9 @@ public class FXMLAnchorPaneCadastroLocacaoController implements Initializable {
             }
 
         }
-        
-        if(event.getSource() == btnPesquisar){
-            if(tfPesquisar.getLength() == 0){
+
+        if (event.getSource() == btnPesquisar) {
+            if (tfPesquisar.getLength() == 0) {
                 carregarLocacoes(fachada.listarTodosLocacao());
             }
         }
@@ -222,7 +225,8 @@ public class FXMLAnchorPaneCadastroLocacaoController implements Initializable {
             lbVeiculo.setText(locacao.getVeiculo().toString());
             lbMotorista.setText(locacao.getMotorista().toString());
             lbCliente.setText(locacao.getCliente().toString());
-
+            System.err.println(locacao.getPontoDeEntregea());
+            lbPontoDeEntrega.setText(locacao.getPontoDeEntregea().toString());
             cbKmLivre.setSelected(locacao.isKmLivre());
             cbFinalizada.setSelected(locacao.isFinalizada());
 

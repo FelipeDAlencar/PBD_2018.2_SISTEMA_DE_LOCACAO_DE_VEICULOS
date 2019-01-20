@@ -8,6 +8,10 @@ package br.com.pbd_20182_sistema_locadora_de_veiculo.controller;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.BusinessExpection;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.CaminhonetaDeCarga;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.CaminhonetaDePassageiros;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Filial;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Geral;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Locacao;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.MascarasTF;
@@ -17,6 +21,7 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ThreadDeControleDeLimp
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Util;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Veiculo;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.view.Alerta;
+import com.jfoenix.controls.JFXComboBox;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -62,13 +67,16 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
     private static double VALOR_KM_CONTROLE = 0;
 
     @FXML
-    private ComboBox<PessoaFisica> comboMotorista;
+    private JFXComboBox<PessoaFisica> comboMotorista;
 
     @FXML
-    private ComboBox<Pessoa> comboCliente;
+    private JFXComboBox<Filial> comboPontoDeEntrega;
 
     @FXML
-    private ComboBox<Veiculo> comboVeiculo;
+    private JFXComboBox<Veiculo> comboVeiculo;
+
+    @FXML
+    private JFXComboBox<Pessoa> comboCliente;
 
     @FXML
     private TextField tfKmInicial;
@@ -215,7 +223,7 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
                 locacao.setMotorista(comboMotorista.getValue());
                 locacao.setVeiculo(comboVeiculo.getValue());
                 locacao.setCliente(comboCliente.getValue());
-
+                locacao.setPontoDeEntregea(comboPontoDeEntrega.getValue());
                 locacao.setAtivo(true);
                 if (cbTaxaCombustivel.isSelected()) {
                     locacao.setTaxaCombustivel(TAXA_COM);
@@ -227,17 +235,22 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
                 if (cbFinalizada.isSelected() && locacao.getId() != null) {
 
                     double kmRodados = locacao.getKmFinalVeiculo() - locacao.getKmInicialDoVeiculo();
-                    System.err.println("km " + kmRodados);
-                    if (kmRodados >= 5000) {
+
+                    if (locacao.getVeiculo().getCategoria() instanceof Categoria && kmRodados >= 5000) {
                         locacao.getVeiculo().setQuilometragemAtual(locacao.getKmFinalVeiculo());
                         fachada.salvarVeiculo(locacao.getVeiculo());
                         ThreadDeControleDeLimpezaERevisao r
                                 = new ThreadDeControleDeLimpezaERevisao(locacao.getVeiculo());
-                    } else {
+                    } else if ((locacao.getVeiculo().getCategoria() instanceof CaminhonetaDeCarga || locacao.getVeiculo().getCategoria() instanceof CaminhonetaDePassageiros) && kmRodados >= 10000) {
                         locacao.getVeiculo().setQuilometragemAtual(locacao.getKmFinalVeiculo());
-                        locacao.getVeiculo().setDisponivel(true);
                         fachada.salvarVeiculo(locacao.getVeiculo());
+                        ThreadDeControleDeLimpezaERevisao r
+                                = new ThreadDeControleDeLimpezaERevisao(locacao.getVeiculo());
+
                     }
+                    locacao.getVeiculo().setQuilometragemAtual(locacao.getKmFinalVeiculo());
+                    locacao.getVeiculo().setDisponivel(true);
+                    fachada.salvarVeiculo(locacao.getVeiculo());
 
                 }
 
@@ -313,9 +326,11 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
         ObservableList<PessoaFisica> obsMotorista = FXCollections.observableArrayList(fachada.listarTodosPessoaFisica());
         ObservableList<Veiculo> obsVeiculos = FXCollections.observableArrayList(fachada.listarTodosVeiculo());
         ObservableList<Pessoa> obsCliente = FXCollections.observableArrayList(fachada.listarTodosPessoa());
+        ObservableList<Filial> pbsFilial = FXCollections.observableArrayList(fachada.listarTodosFilial());
         comboMotorista.setItems(obsMotorista);
         comboCliente.setItems(obsCliente);
         comboVeiculo.setItems(obsVeiculos);
+        comboPontoDeEntrega.setItems(pbsFilial);
     }
 
     private boolean exibirTelaDecadastro(Pessoa pessoa, Event event) {
@@ -503,6 +518,7 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
             comboCliente.setValue(locacao.getCliente());
             comboMotorista.setValue(locacao.getMotorista());
             comboVeiculo.setValue(locacao.getVeiculo());
+            comboPontoDeEntrega.setValue(locacao.getPontoDeEntregea());
 
             tfKmFinal.setText(String.valueOf(locacao.getKmFinalVeiculo()));
             tfKmInicial.setText(String.valueOf(locacao.getKmInicialDoVeiculo()));
