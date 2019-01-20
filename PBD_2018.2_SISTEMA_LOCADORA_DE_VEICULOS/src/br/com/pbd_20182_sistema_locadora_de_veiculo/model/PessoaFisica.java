@@ -9,6 +9,8 @@ import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -19,24 +21,25 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "pessoa_fisica")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class PessoaFisica extends Pessoa{
     
     @Column(name = "cpf", length = 15, nullable = false, unique = true)
-    private String CPF;
+     String CPF;
    
     @Column(name = "data_nascimento")
     @Temporal(TemporalType.DATE)
-    private Date dataNascimento;
+     Date dataNascimento;
    
     @Column(name = "data_vencimentocnh")
     @Temporal(TemporalType.DATE)
-    private Date data_vencimentoCNH;
+     Date data_vencimentoCNH;
     
-    private String identificacao;
+    String identificacao;
    
     
     @Column(name = "numero_cnh", length = 11, nullable = false)
-    private String numero_CNH;
+     String numero_CNH;
 
     public String getCPF() {
         return CPF;
@@ -113,10 +116,7 @@ public class PessoaFisica extends Pessoa{
         if (!Objects.equals(this.dataNascimento, other.dataNascimento)) {
             return false;
         }
-        if (!Objects.equals(this.data_vencimentoCNH, other.data_vencimentoCNH)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.data_vencimentoCNH, other.data_vencimentoCNH);
     }
     
     
