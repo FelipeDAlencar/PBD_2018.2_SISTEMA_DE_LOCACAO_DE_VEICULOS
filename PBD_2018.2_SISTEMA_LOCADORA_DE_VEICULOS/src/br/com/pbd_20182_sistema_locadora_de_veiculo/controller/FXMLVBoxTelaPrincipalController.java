@@ -23,7 +23,7 @@ import javafx.util.Callback;
 
 public class FXMLVBoxTelaPrincipalController implements Initializable {
 
-    @FXML
+     @FXML
     private MenuItem menuItemClientes;
 
     @FXML
@@ -34,11 +34,18 @@ public class FXMLVBoxTelaPrincipalController implements Initializable {
 
     @FXML
     private MenuItem menuItemReservas;
+
+    @FXML
+    private MenuItem menuItemLocacoes;
+
+    @FXML
+    private MenuItem menuItemCategoria;
+
     @FXML
     private MenuItem menuiItemFilial;
 
     @FXML
-    private MenuItem menuItemLocacoes;
+    private Menu menuRelatorios;
 
     @FXML
     private MenuItem menuItemClientesFisicos;
@@ -62,22 +69,16 @@ public class FXMLVBoxTelaPrincipalController implements Initializable {
     private MenuItem MenuItemPorCategoriaMaisReservadas;
 
     @FXML
-    private MenuItem menuItemCategoria;
+    private Menu menuAdministracao;
+
+    @FXML
+    private MenuItem menuItemConfiguracoes;
 
     @FXML
     private MenuItem menuItemSair;
 
     @FXML
-    public Menu menuAdministracao;
-
-    @FXML
-    private Menu menuRelatorios;
-
-    @FXML
     private AnchorPane AnchorPaneContent;
-
-    @FXML
-    private MenuItem menuItemConfiguracoes;
 
     Stage stage;
 
@@ -125,9 +126,10 @@ public class FXMLVBoxTelaPrincipalController implements Initializable {
         }
 
         if (event.getSource() == menuItemLocacoes) {
-            pane = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAnchorPaneCadastroLocacao.fxml"));
+            pane = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAnchorPaneRelatorioPessoasFisicas.fxml"));
             AnchorPaneContent.getChildren().setAll(pane);
         }
+
     }
 
     @FXML
@@ -166,8 +168,13 @@ public class FXMLVBoxTelaPrincipalController implements Initializable {
     }
 
     @FXML
-    void acoesMenuItensRelatorios(ActionEvent event) {
+    void acoesMenuItensRelatorios(ActionEvent event) throws IOException {
+        Pane pane;
 
+        if (event.getSource() == menuItemClientesFisicos) {
+            pane = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAnchorPaneRelatorioPessoasFisicas.fxml"));
+            AnchorPaneContent.getChildren().setAll(pane);
+        }
     }
 
     public MenuItem getMenuItemClientes() {

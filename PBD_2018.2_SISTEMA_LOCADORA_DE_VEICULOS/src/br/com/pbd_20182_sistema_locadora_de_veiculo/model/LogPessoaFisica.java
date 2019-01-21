@@ -6,6 +6,7 @@
 package br.com.pbd_20182_sistema_locadora_de_veiculo.model;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Column;
@@ -51,12 +52,22 @@ public class LogPessoaFisica implements Serializable {
 
     @Column(length = 30, nullable = false)
     private String nome;
+    
     @Column(nullable = false, unique = true)
     private String codigo;
+    
     @Column(length = 50, nullable = false, unique = true)
     private String login;
+    
     @Column(length = 50, nullable = false)
     private String senha;
+    
+    @Column(name = "data_modificacao")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Calendar dataModificacao;
+    
+    @Column(name = "alteracao")
+    private String alteracao;
 
     @OneToOne
     private Endereco endereco;
@@ -157,20 +168,38 @@ public class LogPessoaFisica implements Serializable {
         this.endereco = endereco;
     }
 
+    public Calendar getDataModificacao() {
+        return dataModificacao;
+    }
+
+    public void setDataModificacao(Calendar dataModificacao) {
+        this.dataModificacao = dataModificacao;
+    }
+
+    public String getAlteracao() {
+        return alteracao;
+    }
+
+    public void setAlteracao(String alteracao) {
+        this.alteracao = alteracao;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 13 * hash + Objects.hashCode(this.id);
-        hash = 13 * hash + Objects.hashCode(this.CPF);
-        hash = 13 * hash + Objects.hashCode(this.dataNascimento);
-        hash = 13 * hash + Objects.hashCode(this.data_vencimentoCNH);
-        hash = 13 * hash + Objects.hashCode(this.identificacao);
-        hash = 13 * hash + Objects.hashCode(this.numero_CNH);
-        hash = 13 * hash + Objects.hashCode(this.nome);
-        hash = 13 * hash + Objects.hashCode(this.codigo);
-        hash = 13 * hash + Objects.hashCode(this.login);
-        hash = 13 * hash + Objects.hashCode(this.senha);
-        hash = 13 * hash + Objects.hashCode(this.endereco);
+        int hash = 7;
+        hash = 37 * hash + Objects.hashCode(this.id);
+        hash = 37 * hash + Objects.hashCode(this.CPF);
+        hash = 37 * hash + Objects.hashCode(this.dataNascimento);
+        hash = 37 * hash + Objects.hashCode(this.data_vencimentoCNH);
+        hash = 37 * hash + Objects.hashCode(this.identificacao);
+        hash = 37 * hash + Objects.hashCode(this.numero_CNH);
+        hash = 37 * hash + Objects.hashCode(this.nome);
+        hash = 37 * hash + Objects.hashCode(this.codigo);
+        hash = 37 * hash + Objects.hashCode(this.login);
+        hash = 37 * hash + Objects.hashCode(this.senha);
+        hash = 37 * hash + Objects.hashCode(this.dataModificacao);
+        hash = 37 * hash + Objects.hashCode(this.alteracao);
+        hash = 37 * hash + Objects.hashCode(this.endereco);
         return hash;
     }
 
@@ -207,6 +236,9 @@ public class LogPessoaFisica implements Serializable {
         if (!Objects.equals(this.senha, other.senha)) {
             return false;
         }
+        if (!Objects.equals(this.alteracao, other.alteracao)) {
+            return false;
+        }
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
@@ -216,7 +248,9 @@ public class LogPessoaFisica implements Serializable {
         if (!Objects.equals(this.data_vencimentoCNH, other.data_vencimentoCNH)) {
             return false;
         }
-
+        if (!Objects.equals(this.dataModificacao, other.dataModificacao)) {
+            return false;
+        }
         if (!Objects.equals(this.endereco, other.endereco)) {
             return false;
         }

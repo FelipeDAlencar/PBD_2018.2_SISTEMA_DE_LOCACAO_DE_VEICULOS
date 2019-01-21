@@ -6,12 +6,19 @@
 package br.com.pbd_20182_sistema_locadora_de_veiculo.JPA;
 
 import java.io.File;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  *
  * @author Felipe
  */
 public class SQLUtil {
+
+    public static String USUARIO_POSTGRES = "postgres";
+    public static String SENHA_POSTGRES = "81540106";
+    public static String URL_POSTGRES = "jdbc:postgresql://localhost:5432/PBD_2018.2_SISTEMA_LOCADORA_DE_VEICULOS";
 
     public static class Pessoa {
 
@@ -104,6 +111,32 @@ public class SQLUtil {
         public static final String SQL_PROCEDURE_CALCULAR_INTERVALO_DE_ATRASO = "calculardiferencadedatalocacao";
         public static final String SQL_PROCEDURE_Verificar_Vencimento_CNH = "verificarvencimentocnh";
         public static final String SQL_PROCEDURE_CALCULAR_IDADE = "calcularidade";
+
+    }
+
+    public static final String NOME_BD_CONEXAO_POSTGRES = "POSTGRES";
+
+    private static Connection conexao = null;
+
+    public static synchronized Connection getConnectionInstance(String bd) {
+
+        try {
+            if (conexao == null || conexao.isClosed()) {
+                switch (bd) {
+                    case NOME_BD_CONEXAO_POSTGRES:
+                        conexao = (Connection) DriverManager.getConnection(SQLUtil.URL_POSTGRES, SQLUtil.USUARIO_POSTGRES,
+                                SQLUtil.SENHA_POSTGRES);
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+        return conexao;
 
     }
 }

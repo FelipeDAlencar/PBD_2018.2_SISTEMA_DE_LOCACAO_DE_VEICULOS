@@ -6,6 +6,7 @@
 package br.com.pbd_20182_sistema_locadora_de_veiculo.model;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,6 +17,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -29,19 +32,31 @@ public class LogPessoaJuridica implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "log_pessoa_juridica_sequencia")
     private Integer id;
+    
     @Column(length = 30, nullable = false)
     private String nome;
+    
     @Column(nullable = false, unique = true)
     private String codigo;
+    
     @Column(length = 50, nullable = false, unique = true)
     private String login;
+    
     @Column(length = 50, nullable = false)
     private String senha;
 
     @Column(name = "cnpj", nullable = false, length = 20)
     private String CNPJ;
+    
     @Column(name = "inscricao_estadual", nullable = false, length = 11)
     private String inscriçãoEstadual;
+    
+    @Column(name = "data_modificacao")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Calendar dataModificacao;
+    
+    @Column(name = "alteracao")
+    private String alteracao;
     @OneToOne
     private Endereco endereco;
 
@@ -109,17 +124,35 @@ public class LogPessoaJuridica implements Serializable {
         this.endereco = endereco;
     }
 
+    public Calendar getDataModificacao() {
+        return dataModificacao;
+    }
+
+    public void setDataModificacao(Calendar dataModificacao) {
+        this.dataModificacao = dataModificacao;
+    }
+
+    public String getAlteracao() {
+        return alteracao;
+    }
+
+    public void setAlteracao(String alteracao) {
+        this.alteracao = alteracao;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.id);
-        hash = 97 * hash + Objects.hashCode(this.nome);
-        hash = 97 * hash + Objects.hashCode(this.codigo);
-        hash = 97 * hash + Objects.hashCode(this.login);
-        hash = 97 * hash + Objects.hashCode(this.senha);
-        hash = 97 * hash + Objects.hashCode(this.CNPJ);
-        hash = 97 * hash + Objects.hashCode(this.endereco);
-        hash = 97 * hash + Objects.hashCode(this.inscriçãoEstadual);
+        hash = 19 * hash + Objects.hashCode(this.id);
+        hash = 19 * hash + Objects.hashCode(this.nome);
+        hash = 19 * hash + Objects.hashCode(this.codigo);
+        hash = 19 * hash + Objects.hashCode(this.login);
+        hash = 19 * hash + Objects.hashCode(this.senha);
+        hash = 19 * hash + Objects.hashCode(this.CNPJ);
+        hash = 19 * hash + Objects.hashCode(this.inscriçãoEstadual);
+        hash = 19 * hash + Objects.hashCode(this.dataModificacao);
+        hash = 19 * hash + Objects.hashCode(this.alteracao);
+        hash = 19 * hash + Objects.hashCode(this.endereco);
         return hash;
     }
 
@@ -153,7 +186,13 @@ public class LogPessoaJuridica implements Serializable {
         if (!Objects.equals(this.inscriçãoEstadual, other.inscriçãoEstadual)) {
             return false;
         }
+        if (!Objects.equals(this.alteracao, other.alteracao)) {
+            return false;
+        }
         if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.dataModificacao, other.dataModificacao)) {
             return false;
         }
         if (!Objects.equals(this.endereco, other.endereco)) {
@@ -161,5 +200,8 @@ public class LogPessoaJuridica implements Serializable {
         }
         return true;
     }
+    
+    
+   
 
 }
