@@ -15,9 +15,12 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaJuridica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOPessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.view.Alerta;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
 import java.net.URL;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -31,7 +34,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
@@ -54,37 +56,43 @@ public class FXMLAnchorPaneGeralController implements Initializable {
     private TableColumn<Pessoa, String> colunaCodigo;
 
     @FXML
-    private TextField tfPesquisa;
+    private JFXTextField tfPesquisa;
 
     @FXML
-    private Button btnPesquisa;
+    private JFXButton btnPesquisa;
 
     @FXML
-    private TextField tfTaxaHigienizacao;
+    private JFXTextField tfTaxaHigienizacao;
 
     @FXML
-    private TextField tfMetadePrimeiraDiaria;
-
-    @FXML
-    private TextField tfTaxaCombustivel;
-
-    @FXML
-    private TextField tfKmLivre;
-
-    @FXML
-    private TextField tfKmControle;
-
-    @FXML
-    private TextField tfTempoLimpezaRevisao;
+    private JFXTextField tfTaxaCombustivel;
 
     @FXML
     private JFXTimePicker tmTemDeLimpezaERevisao;
 
     @FXML
-    private Button btnAlterarTaxas;
+    private JFXTimePicker tmHorabackup;
 
     @FXML
-    private Button btnResetar;
+    private JFXButton btnResetar;
+
+    @FXML
+    private JFXButton btnAlterarTaxas;
+
+    @FXML
+    private JFXTextField tfMetadePrimeiraDiaria;
+
+    @FXML
+    private JFXTextField tfKmLivre;
+
+    @FXML
+    private JFXTextField tfKmControle;
+
+    @FXML
+    private JFXTextField tfTempoLimpezaRevisao;
+
+    @FXML
+    private JFXTextField tfHoraBackup;
 
     private ArrayList<Pessoa> pessoas;
     private ObservableList<Pessoa> obsPessoas;
@@ -122,8 +130,8 @@ public class FXMLAnchorPaneGeralController implements Initializable {
                 tfMetadePrimeiraDiaria.setText(String.valueOf(geral.getMetadePrimeiraDiaria()));
                 tfKmControle.setText(String.valueOf(geral.getValorKmControle()));
                 tfKmLivre.setText(String.valueOf(geral.getValorKmLivre()));
-                tfTempoLimpezaRevisao.setText(String.valueOf(geral.getTempoDeLimpezaRevisao()).substring(0,5));
-
+                tfTempoLimpezaRevisao.setText(String.valueOf(geral.getTempoDeLimpezaRevisao()).substring(0, 5));
+                tfHoraBackup.setText(String.valueOf(geral.getHoraDeBackup()).substring(0, 5));
             } else {
 
                 geral = new Geral();
@@ -134,6 +142,7 @@ public class FXMLAnchorPaneGeralController implements Initializable {
                 geral.setValorKmControle(0);
                 geral.setValorKmLivre(0);
                 geral.setTempoDeLimpezaRevisao(new Time(0));
+                geral.setHoraDeBackup(new Time(0));
 
                 fachada.salvarGeral(geral);
 
@@ -195,8 +204,7 @@ public class FXMLAnchorPaneGeralController implements Initializable {
             geral.setValorKmControle(Double.parseDouble(tfKmControle.getText()));
             geral.setValorKmLivre(Double.parseDouble(tfKmLivre.getText()));
             geral.setTempoDeLimpezaRevisao(Time.valueOf(tfTempoLimpezaRevisao.getText() + ":00"));
-            System.err.println("Aqui: " + geral.getTempoDeLimpezaRevisao());
-
+            geral.setHoraDeBackup(Time.valueOf(tfHoraBackup.getText()+ ":00"));
             fachada.salvarGeral(geral);
             Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
             alerta.alertar(Alert.AlertType.INFORMATION, "Sucesso", "Alterção de taxas", "Alteração"
@@ -222,7 +230,12 @@ public class FXMLAnchorPaneGeralController implements Initializable {
 
     @FXML
     void acaoRelogio(ActionEvent event) {
-        tfTempoLimpezaRevisao.setText(String.valueOf(tmTemDeLimpezaERevisao.getValue()));
+        if (event.getSource() == tmTemDeLimpezaERevisao) {
+            tfTempoLimpezaRevisao.setText(String.valueOf(tmTemDeLimpezaERevisao.getValue()));
+        } else {
+            tfHoraBackup.setText(String.valueOf(tmHorabackup.getValue()));
+
+        }
 
     }
 

@@ -10,6 +10,8 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.CaminhonetaDeCarga;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.CaminhonetaDePassageiros;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ContaAPagar;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ContaAReceber;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Endereco;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Filial;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Funcionario;
@@ -20,7 +22,12 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Pessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaJuridica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ReservaPessoasCategorias;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Revisao;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Veiculo;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ViewHistoricoPorVeiculo;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ViewLocacaoPorPeriodo;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ViewMotoristaPorLocacao;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ViewReservasPorPeriodo;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.business.BusinessCategoria;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.business.BusinessCategoriaCaminhonetaDeCarga;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.business.BusinessCategoriaCaminhonetaDePassageiros;
@@ -35,9 +42,13 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.model.business.BusinessPesso
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.business.BusinessPessoaJuridica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.business.BusinessReservaPessoaCategoria;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.business.BusinessVeiculo;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.business.BusinnessContaAPagar;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.business.BusinnessContaAReceber;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.business.BusinnessRevisao;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 public class Fachada implements IFachada {
 
@@ -56,6 +67,9 @@ public class Fachada implements IFachada {
     private BusinessReservaPessoaCategoria businessReservaPessoaCategoria;
     private BusinessVeiculo businessVeiculo;
     private BusinessLog businessLog;
+    private BusinnessContaAPagar businnessContaAPagar;
+    private BusinnessContaAReceber businnessContaAReceber;
+    private BusinnessRevisao businnessRevisao;
 
     public Fachada() {
 
@@ -73,6 +87,9 @@ public class Fachada implements IFachada {
         businessPessoaJuridica = new BusinessPessoaJuridica();
         businessReservaPessoaCategoria = new BusinessReservaPessoaCategoria();
         businessVeiculo = new BusinessVeiculo();
+        businnessContaAPagar = new BusinnessContaAPagar();
+        businnessContaAReceber = new BusinnessContaAReceber();
+        businnessRevisao = new BusinnessRevisao();
 
     }
 
@@ -247,6 +264,7 @@ public class Fachada implements IFachada {
         return businessLocacao.procedureCalcularIntervaloDeAtraso(dataAtual, id);
     }
 
+    @Override
     public int calcularIdade(Integer id) throws DAOException {
         return businessLocacao.calcularIdade(id);
     }
@@ -254,6 +272,22 @@ public class Fachada implements IFachada {
     @Override
     public boolean verificarVencimentoCNH(Calendar dataIda, Calendar dataVolta, Integer id) throws DAOException {
         return businessLocacao.verificarVencimentoCNH(dataIda, dataVolta, id);
+    }
+
+    @Override
+    public ArrayList<Locacao> buscarLocacaoPorCliente(Pessoa pessoa) throws DAOException {
+        return businessLocacao.buscarLocacaoPorCliente(pessoa);
+    }
+
+    @Override
+    public ArrayList<ViewMotoristaPorLocacao> buscarMotoristaPorLocacao(PessoaFisica pessoaFisica) throws DAOException {
+        return businessLocacao.bsucarMotoristaPorLocacao(pessoaFisica);
+    }
+
+    @Override
+    public ArrayList<ViewLocacaoPorPeriodo> buscarLocacaoPorPeriodo(Date dataIncial, Date dataFinal)
+            throws DAOException {
+        return businessLocacao.buscarLocacaoPorPeriodo(dataIncial, dataFinal);
     }
 
     @Override
@@ -357,6 +391,11 @@ public class Fachada implements IFachada {
         return businessReservaPessoaCategoria.listarTodos();
     }
 
+    public ArrayList<ViewReservasPorPeriodo> buscarReservaPorPeriodo(Date dataIncial, Date dataFinal)
+            throws DAOException {
+        return businessReservaPessoaCategoria.buscarReservaPorPeriodo(dataIncial, dataFinal);
+    }
+
     @Override
     public ReservaPessoasCategorias buscarPorIdReservaPessoasCategorias(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -397,6 +436,52 @@ public class Fachada implements IFachada {
     @Override
     public ArrayList<Veiculo> buscarPorBuscaVeiculo(String busca) throws DAOException {
         return businessVeiculo.buscarPorBusca(busca);
+    }
+
+    @Override
+    public ArrayList<ContaAPagar> listarTodasContasAPagar() throws DAOException {
+        return businnessContaAPagar.listarTodasContasAPagar();
+    }
+
+    @Override
+    public void salvarContaAPagar(ContaAPagar contaAPagar) throws DAOException {
+        businnessContaAPagar.salvarContaAPagar(contaAPagar);
+    }
+
+    @Override
+    public void excluirContaAPagar(ContaAPagar contaAPagar) throws DAOException {
+        businnessContaAPagar.excluirContaAPagar(contaAPagar);
+    }
+
+    @Override
+    public void salvarContaAReceber(ContaAReceber contaAReceber) throws DAOException {
+        businnessContaAReceber.salvarContaAReceber(contaAReceber);
+    }
+
+    @Override
+    public void excluirContaAReceber(ContaAReceber contaAPagar) throws DAOException {
+        businnessContaAReceber.excluirContaAReceber(contaAPagar);
+    }
+
+    @Override
+    public ArrayList<ContaAReceber> listarTodasContasAReceber() throws DAOException {
+
+        return businnessContaAReceber.listarTodasContasAReceber();
+    }
+
+    @Override
+    public ArrayList<ViewHistoricoPorVeiculo> revisoesPorVeiculo(Veiculo veiculo) throws DAOException {
+        return businnessRevisao.revisoesPorVeiculo(veiculo);
+    }
+
+    @Override
+    public void salvarRevisao(Revisao revisao) throws DAOException {
+        businnessRevisao.salvar(revisao);
+    }
+
+    @Override
+    public ArrayList<ViewHistoricoPorVeiculo> findAll() throws DAOException {
+        return businnessRevisao.findAllRevisao();
     }
 
 }

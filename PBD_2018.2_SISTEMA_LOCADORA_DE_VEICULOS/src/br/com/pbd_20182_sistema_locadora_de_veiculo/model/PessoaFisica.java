@@ -22,24 +22,23 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "pessoa_fisica")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class PessoaFisica extends Pessoa{
-    
+public class PessoaFisica extends Pessoa {
+
     @Column(name = "cpf", length = 15, nullable = false, unique = true)
-     String CPF;
-   
+    String CPF;
+
     @Column(name = "data_nascimento")
     @Temporal(TemporalType.DATE)
-     Date dataNascimento;
-   
+    Date dataNascimento;
+
     @Column(name = "data_vencimentocnh")
     @Temporal(TemporalType.DATE)
-     Date data_vencimentoCNH;
-    
+    Date data_vencimentoCNH;
+
     String identificacao;
-   
-    
+
     @Column(name = "numero_cnh", length = 11, nullable = false)
-     String numero_CNH;
+    String numero_CNH;
 
     public String getCPF() {
         return CPF;
@@ -118,10 +117,5 @@ public class PessoaFisica extends Pessoa{
         }
         return Objects.equals(this.data_vencimentoCNH, other.data_vencimentoCNH);
     }
-    
-    
-    
-    
-    
-    
+
 }

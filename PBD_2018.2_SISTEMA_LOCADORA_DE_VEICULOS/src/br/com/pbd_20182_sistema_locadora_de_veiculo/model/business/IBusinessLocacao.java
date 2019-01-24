@@ -8,9 +8,14 @@ package br.com.pbd_20182_sistema_locadora_de_veiculo.model.business;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.BusinessExpection;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Locacao;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Pessoa;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ViewLocacaoPorPeriodo;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ViewMotoristaPorLocacao;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
@@ -31,5 +36,12 @@ public interface IBusinessLocacao {
     public boolean verificarVencimentoCNH(Calendar dataIda, Calendar dataVolta, Integer id) throws DAOException;
 
     public int calcularIdade(Integer id) throws DAOException;
+
+    public ArrayList<Locacao> buscarLocacaoPorCliente(Pessoa pessoa) throws DAOException;
+
+    public ArrayList<ViewMotoristaPorLocacao> bsucarMotoristaPorLocacao(PessoaFisica pessoaFisica) throws DAOException;
+
+    public ArrayList<ViewLocacaoPorPeriodo> buscarLocacaoPorPeriodo(Date dataIncial, Date dataFinal)
+            throws DAOException;
 
 }

@@ -8,18 +8,12 @@ package br.com.pbd_20182_sistema_locadora_de_veiculo.model.business;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.BusinessExpection;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
-import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
-import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ThreadDeVerificacaoDeReservas;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ReservaPessoasCategorias;
-import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Veiculo;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ViewReservasPorPeriodo;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOReservaPessoaCategoria;
-import br.com.pbd_20182_sistema_locadora_de_veiculo.view.Alerta;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.scene.control.Alert;
 
 /**
  *
@@ -59,6 +53,13 @@ public class BusinessReservaPessoaCategoria implements IBusinessRerservaPessoaCa
         return dAOReservaPessoaCategoria.buscarPorBuscaReserva(busca);
     }
 
+    @Override
+    public ArrayList<ViewReservasPorPeriodo> buscarReservaPorPeriodo(Date dataIncial, Date dataFinal)
+            throws DAOException {
+
+        return dAOReservaPessoaCategoria.buscarReservaPorPeriodo(dataIncial, dataFinal);
+    }
+
     private void validar(ReservaPessoasCategorias reservaPessoasCategorias) throws BusinessExpection, DAOException {
         fachada = Fachada.getInstance();
         Calendar dataAtual = Calendar.getInstance();
@@ -86,12 +87,10 @@ public class BusinessReservaPessoaCategoria implements IBusinessRerservaPessoaCa
             dataAtual.set(Calendar.MINUTE, 0);
             dataAtual.set(Calendar.SECOND, 0);
             dataAtual.set(Calendar.MILLISECOND, 0);
-            
-            
+
             System.err.println(dataAtual.getTime());
             System.err.println(dataHoraDaReserva.getTime());
-            
-            
+
             if (dataHoraDaReserva.compareTo(dataAtual) < 0 && !(reservaPessoasCategorias.getId() != null)) {
                 errorMessage += "Data não pode ser anterior do que a atual.\n";
             }
@@ -109,14 +108,7 @@ public class BusinessReservaPessoaCategoria implements IBusinessRerservaPessoaCa
             errorMessage += "Valor informado inválido,\ninforme um valor válido.";
         }
 
-       
-
         if (errorMessage.length() != 0) {
-
-            ThreadDeVerificacaoDeReservas task = new ThreadDeVerificacaoDeReservas();
-            Thread thread = new Thread(task);
-            thread.setDaemon(true);
-            thread.start();
 
             throw new BusinessExpection("Atenção\n\n" + errorMessage);
 

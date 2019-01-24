@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.Group?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -32,25 +32,27 @@
             <Label text="Categoria" textFill="GAINSBORO" GridPane.rowIndex="1" />
             <Label text="Data" textFill="GAINSBORO" GridPane.rowIndex="3" />
             <Label text="Valor Previsto" textFill="GAINSBORO" GridPane.rowIndex="2" />
-            <ComboBox fx:id="comboClientes" onAction="#AcaoCombos" prefWidth="150.0" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" />
-            <ComboBox fx:id="comboCategorias" onAction="#AcaoCombos" prefHeight="6.0" prefWidth="144.0" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="tfValor" promptText="Valor previsto" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <DatePicker fx:id="dpData" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label text="Efetivada" textFill="GAINSBORO" GridPane.rowIndex="4" />
-            <CheckBox fx:id="cbEfetivada" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <JFXComboBox fx:id="comboClientes" focusColor="#e43917" prefHeight="25.0" prefWidth="135.0" unFocusColor="GAINSBORO" GridPane.columnIndex="1" />
+            <JFXComboBox fx:id="comboCategorias" focusColor="#e43917" prefHeight="25.0" prefWidth="153.0" unFocusColor="GAINSBORO" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <JFXTextField fx:id="tfValor" focusColor="#e43917" unFocusColor="GAINSBORO" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <JFXDatePicker fx:id="dpData" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <JFXCheckBox fx:id="cbEfetivada" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
       <Group layoutX="77.0" layoutY="213.0">
          <children>
-            <Button fx:id="btnSalvar" mnemonicParsing="false" onAction="#acaoBtns" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #006400;" text="Confirmar" textFill="GAINSBORO">
+            <JFXButton fx:id="btnSalvar" onAction="#acaoBtns" ripplerFill="#0be11a" text="Confirmar" textFill="GAINSBORO">
                <cursor>
                   <Cursor fx:constant="HAND" />
-               </cursor></Button>
-            <Button fx:id="btnCancelar" layoutX="85.0" mnemonicParsing="false" onAction="#acaoBtns" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #8B0000;" text="Cancelar" textFill="GAINSBORO">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></Button>
+               </cursor>
+            </JFXButton>
          </children>
       </Group>
+      <JFXButton fx:id="btnCancelar" layoutX="168.0" layoutY="211.0" onAction="#acaoBtns" ripplerFill="#f23506" text="Cancelar" textFill="GAINSBORO">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
    </children>
 </AnchorPane>

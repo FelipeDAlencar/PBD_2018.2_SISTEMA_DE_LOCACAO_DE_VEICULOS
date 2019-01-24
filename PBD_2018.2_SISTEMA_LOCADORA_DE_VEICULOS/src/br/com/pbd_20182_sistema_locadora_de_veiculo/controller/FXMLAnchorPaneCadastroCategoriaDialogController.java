@@ -13,6 +13,9 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.MascarasTF;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Util;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.view.Alerta;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -21,11 +24,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -45,99 +44,102 @@ public class FXMLAnchorPaneCadastroCategoriaDialogController implements Initiali
     private String ultimoNome = "";
     private boolean isEditar;
     
+        @FXML
+    private AnchorPane paneScroll;
+
     @FXML
     private GridPane grid;
-    
+
     @FXML
-    private TextField tfNome;
-    
+    private JFXTextField tfNome;
+
     @FXML
-    private TextField tfValor;
-    
+    private JFXTextField tfValor;
+
     @FXML
-    private TextField tfDescricao;
-    
+    private JFXTextField tfDescricao;
+
     @FXML
-    private TextField tfNPortas;
-    
+    private JFXTextField tfNPortas;
+
     @FXML
-    private TextField tfNPassageiros;
-    
+    private JFXTextField tfNPassageiros;
+
     @FXML
-    private CheckBox cbArCondicionado;
-    
+    private JFXCheckBox cbArCondicionado;
+
     @FXML
-    private CheckBox cbMP3;
-    
+    private JFXCheckBox cbMP3;
+
     @FXML
-    private CheckBox cbDVD;
-    
+    private JFXCheckBox cbDVD;
+
     @FXML
-    private CheckBox cbDirecaoHidraulica;
-    
+    private JFXCheckBox cbDirecaoHidraulica;
+
     @FXML
-    private CheckBox cbRadio;
-    
+    private JFXCheckBox cbRadio;
+
     @FXML
-    private CheckBox cbTipoCambio;
-    
+    private JFXCheckBox cbTipoCambio;
+
     @FXML
-    private CheckBox cbCameraDeRe;
-    
+    private JFXCheckBox cbCameraDeRe;
+
     @FXML
     private RadioButton rbCategoria;
-    
+
     @FXML
     private RadioButton rbCategoriaCarga;
-    
+
     @FXML
     private RadioButton rbCategoriaPassageiros;
-    
-    @FXML
-    private Button btnConfirmar;
-    
+
     @FXML
     private GridPane gridPassageiros;
-    
+
     @FXML
-    private CheckBox cbCintoSeguranca;
-    
+    private JFXCheckBox cbCintoSeguranca;
+
     @FXML
-    private CheckBox cbDirecaoAssistida;
-    
+    private JFXCheckBox cbDirecaoAssistida;
+
     @FXML
-    private CheckBox cbAirBag;
-    
+    private JFXCheckBox cbAirBag;
+
     @FXML
-    private CheckBox cbRodasDeLigaLeve;
-    
+    private JFXCheckBox cbRodasDeLigaLeve;
+
     @FXML
-    private CheckBox cbControleDePoluicaoDoAr;
-    
+    private JFXCheckBox cbControleDePoluicaoDoAr;
+
     @FXML
     private GridPane gridCarga;
-    
+
     @FXML
-    private TextField tfPotenciaDoMotor;
-    
+    private JFXTextField tfPotenciaDoMotor;
+
     @FXML
-    private TextField tfDistanciaEntreEixos;
-    
+    private JFXTextField tfDistanciaEntreEixos;
+
     @FXML
-    private TextField tfCapacidadeDeCarga;
-    
+    private JFXTextField tfCapacidadeDeCarga;
+
     @FXML
-    private TextField tfAcionamentoDaEmbreagem;
-    
+    private JFXTextField tfAcionamentoDaEmbreagem;
+
     @FXML
-    private TextField tfDesempenho;
-    
+    private JFXTextField tfDesempenho;
+
     @FXML
-    private TextField tfVolumeSuportado;
-    
+    private JFXTextField tfVolumeSuportado;
+
     @FXML
-    private AnchorPane paneScroll;
-    
+    private JFXButton btnConfirmar;
+
+    @FXML
+    private JFXButton btnCancelar;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ToggleGroup tg = new ToggleGroup();

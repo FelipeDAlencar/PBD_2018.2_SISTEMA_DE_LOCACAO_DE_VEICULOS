@@ -69,7 +69,7 @@ public class FXMLAnchorPaneRelatorioPessoasFisicasController implements Initiali
     void acaoBtnImprimir(ActionEvent event) throws JRException {
         Connection conexao = SQLUtil.getConnectionInstance(SQLUtil.NOME_BD_CONEXAO_POSTGRES);
 
-        URL url = getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/relatorios/RelatorioPessosFisicas.jasper");
+        URL url = getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/relatorios/RelatorioPessosFisicas.jrfxml");
         JasperReport jasperReport = (JasperReport) JRLoader.loadObject(url);
 
         //null por que n�o estamos usando filtro.

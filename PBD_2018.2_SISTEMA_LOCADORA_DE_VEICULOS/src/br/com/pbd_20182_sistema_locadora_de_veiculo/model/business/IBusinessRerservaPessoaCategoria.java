@@ -8,7 +8,9 @@ package br.com.pbd_20182_sistema_locadora_de_veiculo.model.business;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.BusinessExpection;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ReservaPessoasCategorias;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ViewReservasPorPeriodo;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -23,4 +25,8 @@ public interface IBusinessRerservaPessoaCategoria {
     public ReservaPessoasCategorias buscarPorId(int id) throws DAOException;
 
     public ArrayList<ReservaPessoasCategorias> buscarPorBusca(String busca) throws DAOException;
-}
+
+    public ArrayList<ViewReservasPorPeriodo> buscarReservaPorPeriodo(Date dataIncial, Date dataFinal)
+            throws DAOException;
+
+    }

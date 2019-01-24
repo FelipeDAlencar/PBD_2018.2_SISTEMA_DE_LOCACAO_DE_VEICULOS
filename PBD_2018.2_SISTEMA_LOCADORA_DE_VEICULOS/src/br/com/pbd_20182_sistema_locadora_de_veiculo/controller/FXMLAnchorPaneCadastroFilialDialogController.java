@@ -9,6 +9,10 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Endereco;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Filial;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.MascarasTF;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Util;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.view.Alerta;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -17,6 +21,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -30,31 +35,31 @@ import javafx.stage.Stage;
 public class FXMLAnchorPaneCadastroFilialDialogController implements Initializable {
     
     @FXML
-    private TextField tfNomeFilial;
+    private JFXTextField tfNomeFilial;
     
     @FXML
-    private TextField tfCidade;
+    private JFXTextField tfCidade;
     
     @FXML
-    private TextField tfRua;
+    private JFXTextField tfRua;
     
     @FXML
-    private TextField tfBairro;
+    private JFXTextField tfBairro;
     
     @FXML
-    private ComboBox<String> comboUF;
+    private JFXComboBox<String> comboUF;
     
     @FXML
-    private TextField tfNumero;
+    private JFXTextField tfNumero;
     
     @FXML
-    private Button btnConfirmar;
+    private JFXButton btnConfirmar;
     
     @FXML
-    private Button btnCancelar;
+    private JFXButton btnCancelar;
     
     @FXML
-    private TextField tfCep;
+    private JFXTextField tfCep;
     
     private Stage stage;
     private boolean sucesso;
@@ -81,7 +86,7 @@ public class FXMLAnchorPaneCadastroFilialDialogController implements Initializab
     @FXML
     void acaoBtns(ActionEvent event) {
         if (event.getSource() == btnConfirmar) {
-            
+            try{
             filial.setNome(tfNomeFilial.getText());
             Endereco endereco = new Endereco();
             endereco.setBairro(tfBairro.getText());
@@ -96,7 +101,10 @@ public class FXMLAnchorPaneCadastroFilialDialogController implements Initializab
             
             sucesso = true;
             stage.close();
-            
+            }catch(NumberFormatException e){
+                Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
+                alerta.alertar(Alert.AlertType.WARNING, "Atenção", "Campos incorretos!", "Preencha corretamente.");
+            }
         } else {
             stage.close();
         }

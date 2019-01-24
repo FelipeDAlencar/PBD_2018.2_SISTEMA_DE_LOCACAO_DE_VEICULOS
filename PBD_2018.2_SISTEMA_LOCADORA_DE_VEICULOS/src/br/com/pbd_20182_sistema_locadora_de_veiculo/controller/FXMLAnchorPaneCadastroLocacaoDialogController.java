@@ -11,24 +11,28 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.CaminhonetaDeCarga;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.CaminhonetaDePassageiros;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ContaAReceber;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Filial;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Geral;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Locacao;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.MascarasTF;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Pessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Revisao;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ThreadDeControleDeLimpezaERevisao;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Util;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Veiculo;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.view.Alerta;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
-import static java.util.Locale.filter;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,10 +48,6 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
@@ -65,9 +65,11 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
     private static double TAXA_COM = 0;
     private static double VALOR_KM_LIVRE = 0;
     private static double VALOR_KM_CONTROLE = 0;
-
     @FXML
     private JFXComboBox<PessoaFisica> comboMotorista;
+
+    @FXML
+    private Button btnAddMortorista;
 
     @FXML
     private JFXComboBox<Filial> comboPontoDeEntrega;
@@ -79,43 +81,40 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
     private JFXComboBox<Pessoa> comboCliente;
 
     @FXML
-    private TextField tfKmInicial;
+    private JFXTextField tfKmInicial;
 
     @FXML
-    private TextField tfKmFinal;
+    private JFXTextField tfKmFinal;
 
     @FXML
-    private TextField tfMetadeprimeiraDiaria;
+    private JFXTextField tfMetadeprimeiraDiaria;
 
     @FXML
-    private CheckBox cbTaxaHigienizacao;
+    private JFXDatePicker dpDataIda;
 
     @FXML
-    private CheckBox cbTaxaCombustivel;
+    private JFXDatePicker dpDataVolta;
 
     @FXML
-    private DatePicker dpDataIda;
+    private JFXCheckBox cbTaxaCombustivel;
 
     @FXML
-    private DatePicker dpDataVolta;
+    private JFXCheckBox cbKmLivre;
 
     @FXML
-    private CheckBox cbFinalizada;
+    private JFXCheckBox cbFinalizada;
 
     @FXML
-    private CheckBox cbKmLivre;
+    private JFXTextField tfValor;
 
     @FXML
-    private TextField tfValor;
+    private JFXButton btnConfirmar;
 
     @FXML
-    private Button btnConfirmar;
+    private JFXButton btnCancelar;
 
     @FXML
-    private Button btnCancelar;
-
-    @FXML
-    private Button btnAddMortorista;
+    private JFXCheckBox cbTaxaHigienizacao;
 
     private Fachada fachada;
     private Stage stage;
@@ -187,8 +186,6 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
                     c1.set(Calendar.MINUTE, locacao.getDataIda().get(Calendar.MINUTE));
                     c1.set(Calendar.SECOND, locacao.getDataIda().get(Calendar.SECOND));
 
-                    System.err.println(c1.getTime());
-
                 }
                 dataHoraIda.set(Calendar.HOUR_OF_DAY, c1.get(Calendar.HOUR_OF_DAY));
                 dataHoraIda.set(Calendar.MINUTE, c1.get(Calendar.MINUTE));
@@ -241,16 +238,26 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
                         fachada.salvarVeiculo(locacao.getVeiculo());
                         ThreadDeControleDeLimpezaERevisao r
                                 = new ThreadDeControleDeLimpezaERevisao(locacao.getVeiculo());
+                        fachada.salvarRevisao(new Revisao(locacao.getVeiculo(), new Date()));
                     } else if ((locacao.getVeiculo().getCategoria() instanceof CaminhonetaDeCarga || locacao.getVeiculo().getCategoria() instanceof CaminhonetaDePassageiros) && kmRodados >= 10000) {
                         locacao.getVeiculo().setQuilometragemAtual(locacao.getKmFinalVeiculo());
                         fachada.salvarVeiculo(locacao.getVeiculo());
                         ThreadDeControleDeLimpezaERevisao r
                                 = new ThreadDeControleDeLimpezaERevisao(locacao.getVeiculo());
+                        fachada.salvarRevisao(new Revisao(locacao.getVeiculo(), new Date()));
 
                     }
                     locacao.getVeiculo().setQuilometragemAtual(locacao.getKmFinalVeiculo());
                     locacao.getVeiculo().setDisponivel(true);
                     fachada.salvarVeiculo(locacao.getVeiculo());
+
+                    ContaAReceber contaAReceber = new ContaAReceber();
+                    contaAReceber.setDescricao("Locacao de :" + locacao);
+                    contaAReceber.setDataRecebimento(new Date());
+                    contaAReceber.setPago(true);
+                    contaAReceber.setValor(locacao.getValor());
+
+                    fachada.salvarContaAReceber(contaAReceber);
 
                 }
 
@@ -279,7 +286,7 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
                 stage.close();
             }
         } catch (NullPointerException | NumberFormatException e) {
-            alerta.alertar(Alert.AlertType.WARNING, "Atenção", "Informe os campos requisitados corretamente.", buscaVeiculo);
+            alerta.alertar(Alert.AlertType.WARNING, "Atenção", "Campos não preenchidos.", "Confirme se os campos estão todos preechidos");
         }
 
     }

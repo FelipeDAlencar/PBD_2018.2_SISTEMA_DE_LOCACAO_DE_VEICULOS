@@ -8,22 +8,18 @@ package br.com.pbd_20182_sistema_locadora_de_veiculo.controller;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.BusinessExpection;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
-import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Endereco;
-import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Funcionario;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Pessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaJuridica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Util;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOPessoa;
-import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOPessoaFisica;
-import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOPessoaJuridica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.view.Alerta;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -38,7 +34,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
@@ -51,6 +46,7 @@ import javafx.stage.Stage;
  */
 public class FXMLAnchoPaneCadastroClienteController implements Initializable {
 
+   
     @FXML
     private TableView<Pessoa> tableViewClientes;
 
@@ -65,9 +61,6 @@ public class FXMLAnchoPaneCadastroClienteController implements Initializable {
 
     @FXML
     private Label lbNumeroCNHD;
-
-    @FXML
-    private Label lbNumeroCNH;
 
     @FXML
     private Label lbDatavencimentoCNHD;
@@ -94,26 +87,28 @@ public class FXMLAnchoPaneCadastroClienteController implements Initializable {
     private Label lbDataDeVencimentoCNH;
 
     @FXML
+    private Label lbNumeroCNH;
+
+    @FXML
     private Label lbIdentificacao;
 
     @FXML
     private Label lbLogin;
 
     @FXML
-    private TextField tfPesquisa;
+    private JFXTextField tfPesquisa;
 
     @FXML
-    private Button btnPesquisar;
+    private JFXButton btnPesquisar;
 
     @FXML
-    private Button BtnInserirCliente;
+    private JFXButton BtnInserirCliente;
 
     @FXML
-    private Button btnAlterar;
+    private JFXButton btnAlterar;
 
     @FXML
-    private Button BtnExcluir;
-
+    private JFXButton BtnExcluir;
     private ArrayList<Pessoa> pessoas;
     private ObservableList<Pessoa> obsPessoas;
     private Fachada fachada = Fachada.getInstance();

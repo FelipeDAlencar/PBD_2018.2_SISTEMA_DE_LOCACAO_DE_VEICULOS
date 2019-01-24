@@ -13,12 +13,12 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Util;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Veiculo;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.view.Alerta;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Observable;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -95,25 +95,27 @@ public class FXMLAnchorPaneCadastroLocacaoController implements Initializable {
     @FXML
     private Label lbValor;
 
-    @FXML
-    private CheckBox cbKmLivre;
-    @FXML
-    private CheckBox cbFinalizada;
+     @FXML
+    private JFXCheckBox cbKmLivre;
 
     @FXML
-    private TextField tfPesquisar;
+    private JFXCheckBox cbFinalizada;
 
     @FXML
-    private Button btnPesquisar;
+    private JFXTextField tfPesquisar;
 
     @FXML
-    private Button btnInserir;
+    private JFXButton btnPesquisar;
 
     @FXML
-    private Button btnEditar;
+    private JFXButton btnInserir;
 
     @FXML
-    private Button btnExcluir;
+    private JFXButton btnEditar;
+
+    @FXML
+    private JFXButton btnExcluir;
+
 
     private Fachada fachada;
     private ArrayList<Locacao> locacaos;

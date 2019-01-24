@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.Group?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -35,45 +35,28 @@
                   </TableView>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <AnchorPane fx:id="BtnEditar" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <Label layoutX="124.0" layoutY="28.0" text="Detalhes da categoria">
+                  <Label layoutX="175.0" layoutY="28.0" text="Detalhes da categoria">
                      <font>
                         <Font name="Arial Bold" size="18.0" />
                      </font>
                   </Label>
-                  <HBox layoutX="26.0" layoutY="418.0" prefHeight="25.0" prefWidth="175.0" spacing="5.0">
+                  <HBox layoutX="26.0" layoutY="418.0" prefHeight="25.0" prefWidth="200.0" spacing="5.0">
                      <children>
-                        <TextField fx:id="tfBusca" prefHeight="25.0" prefWidth="126.0" style="-fx-background-color: #D3D3D3;" />
-                        <Button fx:id="btnBusca" mnemonicParsing="false" onAction="#acaoDeBtns" style="-fx-background-color: #D3D3D3;">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
+                        <JFXTextField fx:id="tfBusca" focusColor="#c6461f" prefHeight="25.0" prefWidth="170.0" unFocusColor="GAINSBORO" />
+                        <JFXButton fx:id="btnBusca" buttonType="RAISED" onAction="#acaoDeBtns" prefHeight="25.0" prefWidth="25.0">
                            <graphic>
                               <ImageView>
                                  <image>
                                     <Image url="@../../../../res/baseline_search_black_18dp.png" />
                                  </image>
                               </ImageView>
-                           </graphic></Button>
+                           </graphic>
+                        </JFXButton>
                      </children>
                   </HBox>
-                  <Group layoutX="219.0" layoutY="418.0">
-                     <children>
-                        <Button fx:id="btInserir" mnemonicParsing="false" onAction="#acaoDeBtns" style="-fx-background-color: #D3D3D3;" text="Inserir">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor></Button>
-                        <Button fx:id="BtnEditar" layoutX="67.0" mnemonicParsing="false" onAction="#acaoDeBtns" style="-fx-background-color: #D3D3D3;" text="Editar">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor></Button>
-                        <Button fx:id="btnExcluir" layoutX="134.0" mnemonicParsing="false" onAction="#acaoDeBtns" style="-fx-background-color: #D3D3D3;" text="Excluir">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor></Button>
-                     </children>
-                  </Group>
+                  <Group layoutX="219.0" layoutY="418.0" />
                   <GridPane layoutX="119.0" layoutY="89.0" prefHeight="267.0" prefWidth="200.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -120,6 +103,18 @@
                         <Label fx:id="lbArCondicionado" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                      </children>
                   </GridPane>
+                  <JFXButton fx:id="btInserir" layoutX="244.0" layoutY="418.0" onAction="#acaoDeBtns" ripplerFill="#17d32d" text="Inserir" textFill="GAINSBORO">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></JFXButton>
+                  <JFXButton fx:id="btnEditar" layoutX="311.0" layoutY="418.0" onAction="#acaoDeBtns" ripplerFill="#36b8cc" text="Alterar" textFill="GAINSBORO">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></JFXButton>
+                  <JFXButton fx:id="btnExcluir" layoutX="381.0" layoutY="419.0" onAction="#acaoDeBtns" ripplerFill="#e80b08" text="Excluir" textFill="GAINSBORO">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></JFXButton>
                </children>
             </AnchorPane>
         </items>

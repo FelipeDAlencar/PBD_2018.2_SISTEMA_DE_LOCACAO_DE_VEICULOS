@@ -10,7 +10,11 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Locacao;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Pessoa;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Veiculo;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ViewLocacaoPorPeriodo;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ViewMotoristaPorLocacao;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOLocacao;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.view.Alerta;
 import java.sql.Time;
@@ -67,6 +71,27 @@ public class BusinessLocacao implements IBusinessLocacao {
         return dAOLocacao.calcularIdade(id);
     }
 
+    @Override
+    public ArrayList<Locacao> buscarLocacaoPorCliente(Pessoa pessoa) throws DAOException {
+        return dAOLocacao.buscarLocacaoPorCliente(pessoa);
+    }
+
+    @Override
+    public ArrayList<ViewMotoristaPorLocacao> bsucarMotoristaPorLocacao(PessoaFisica pessoaFisica) throws DAOException {
+        return dAOLocacao.buscarMotoristaPorLocacao(pessoaFisica);
+    }
+
+    @Override
+    public ArrayList<ViewLocacaoPorPeriodo> buscarLocacaoPorPeriodo(Date dataIncial, Date dataFinal) 
+            throws DAOException {
+        
+        return dAOLocacao.buscarLocacaoPorPeriodo(dataIncial, dataFinal);
+        
+        
+    }
+
+    
+
     private void validar(Locacao locacao) throws BusinessExpection, DAOException {
         String errorMessage = "";
         Fachada fachada = Fachada.getInstance();
@@ -105,7 +130,7 @@ public class BusinessLocacao implements IBusinessLocacao {
         if (!(locacao.getMotorista() != null)) {
             errorMessage += "Por favor, selecione o Motorista.";
         }
-        if (!(locacao.getPontoDeEntregea()!= null)) {
+        if (!(locacao.getPontoDeEntregea() != null)) {
             errorMessage += "Por favor, selecione o ponto de entrega.";
         }
 

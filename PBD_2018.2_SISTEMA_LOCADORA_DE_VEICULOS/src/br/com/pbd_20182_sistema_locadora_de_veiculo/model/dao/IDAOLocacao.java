@@ -7,9 +7,13 @@ package br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao;
 
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Locacao;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Pessoa;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ViewLocacaoPorPeriodo;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
@@ -25,4 +29,10 @@ public interface IDAOLocacao {
 
     public int calcularIdade(Integer id) throws DAOException;
 
-}
+    public ArrayList<Locacao> buscarLocacaoPorCliente(Pessoa pessoa) throws DAOException;
+
+    public ArrayList<ViewLocacaoPorPeriodo> buscarLocacaoPorPeriodo(Date dataIncial, Date dataFinal) 
+            throws DAOException;
+    
+
+    }

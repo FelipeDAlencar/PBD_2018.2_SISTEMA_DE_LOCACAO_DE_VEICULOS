@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.Group?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -70,38 +70,36 @@
                         <Label fx:id="lbUF" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                      </children>
                   </GridPane>
-                  <Group layoutX="316.0" layoutY="418.0">
-                     <children>
-                        <Button fx:id="btnInserir" mnemonicParsing="false" onAction="#acaoBtns" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: #D3D3D3;" text="Inserir">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor></Button>
-                        <Button fx:id="btnEditar" layoutX="60.0" mnemonicParsing="false" onAction="#acaoBtns" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: #D3D3D3;" text="Editar">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor></Button>
-                        <Button fx:id="btnExcluir" layoutX="118.0" mnemonicParsing="false" onAction="#acaoBtns" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: #D3D3D3;" text="Excluir">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor></Button>
-                     </children>
-                  </Group>
+                  <Group layoutX="316.0" layoutY="418.0" />
                   <HBox layoutX="21.0" layoutY="418.0" onDragDetected="#acaoBtns" prefHeight="25.0" prefWidth="231.0" spacing="5.0">
                      <children>
-                        <TextField fx:id="tfPesquisa" style="-fx-background-color: #D3D3D3;" />
-                        <Button fx:id="btnPesquisar" mnemonicParsing="false" onAction="#acaoBtns" style="-fx-background-color: #D3D3D3;">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
+                        <JFXTextField fx:id="tfPesquisa" focusColor="#ee3713" prefHeight="25.0" prefWidth="192.0" unFocusColor="GAINSBORO" />
+                        <JFXButton fx:id="btnPesquisar" onAction="#acaoBtns" prefHeight="25.0" prefWidth="17.0" ripplerFill="#c5e319">
                            <graphic>
-                              <ImageView>
+                              <ImageView fx:id="acaoBtns">
                                  <image>
                                     <Image url="@../../../../res/baseline_search_black_18dp.png" />
                                  </image>
                               </ImageView>
-                           </graphic></Button>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
                      </children>
                   </HBox>
+                  <JFXButton fx:id="btnInserir" layoutX="301.0" layoutY="418.0" onAction="#acaoBtns" ripplerFill="#1ee417" text="Inserir" textFill="GAINSBORO">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></JFXButton>
+                  <JFXButton fx:id="btnEditar" layoutX="368.0" layoutY="419.0" onAction="#acaoBtns" ripplerFill="#13d8ed" text="Alterar" textFill="GAINSBORO">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></JFXButton>
+                  <JFXButton fx:id="btnExcluir" layoutX="433.0" layoutY="419.0" onAction="#acaoBtns" ripplerFill="#e32f19" text="Excluir" textFill="GAINSBORO">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></JFXButton>
                </children>
             </AnchorPane>
         </items>

@@ -10,6 +10,8 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.CaminhonetaDeCarga;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.CaminhonetaDePassageiros;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ContaAPagar;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ContaAReceber;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Endereco;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Filial;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Funcionario;
@@ -20,10 +22,16 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Pessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaJuridica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ReservaPessoasCategorias;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Revisao;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Veiculo;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ViewHistoricoPorVeiculo;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ViewLocacaoPorPeriodo;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ViewMotoristaPorLocacao;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ViewReservasPorPeriodo;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
@@ -76,8 +84,12 @@ public interface IFachada {
     public Time procedureCalcularIntervaloDeAtraso(Calendar dataAtual, Integer id) throws DAOException ;
     public boolean verificarVencimentoCNH(Calendar dataIda,Calendar dataVolta, Integer id) throws DAOException;
     public int calcularIdade( Integer id) throws DAOException ;
+    public ArrayList<Locacao> buscarLocacaoPorCliente(Pessoa pessoa) throws DAOException;
+    public ArrayList<ViewMotoristaPorLocacao> buscarMotoristaPorLocacao(PessoaFisica pessoaFisica) 
+            throws DAOException ;
+    public ArrayList<ViewLocacaoPorPeriodo> buscarLocacaoPorPeriodo(Date dataIncial, Date dataFinal)
+            throws DAOException;
 
-    
     
     public void salvarLog(Log log)throws BusinessExpection,DAOException;
     public ArrayList<Log> listarTodosLog()throws DAOException;
@@ -112,7 +124,9 @@ public interface IFachada {
     public ArrayList<ReservaPessoasCategorias> listarTodosReservaPessoasCategorias()throws DAOException;
     public ReservaPessoasCategorias buscarPorIdReservaPessoasCategorias(int id)throws DAOException;
     public ArrayList<ReservaPessoasCategorias> buscarPorBuscaReservasPessoaCategoria(String busca) throws DAOException;
-    
+        public ArrayList<ViewReservasPorPeriodo> buscarReservaPorPeriodo(Date dataIncial, Date dataFinal) 
+                throws DAOException;
+        
     public void salvarVeiculo(Veiculo veiculo)throws BusinessExpection,DAOException;
     public ArrayList<Veiculo> listarTodosVeiculo()throws DAOException;
     public Veiculo buscarPorIdVeiculo(int id)throws DAOException;
@@ -122,5 +136,20 @@ public interface IFachada {
     public ArrayList<Veiculo> buscarPorBuscaVeiculo(String busca)throws DAOException;
     
     
+    public ArrayList<ContaAPagar> listarTodasContasAPagar() throws DAOException;
+    public void salvarContaAPagar(ContaAPagar contaAPagar) throws DAOException;
+    public void excluirContaAPagar(ContaAPagar contaAPagar) throws DAOException;
+    
+    
+    public void salvarContaAReceber(ContaAReceber contaAPagar) throws DAOException;    
+    public void excluirContaAReceber(ContaAReceber contaAPagar) throws DAOException;
+    public ArrayList<ContaAReceber> listarTodasContasAReceber() throws DAOException ;
+    
+    
+    
+    public ArrayList<ViewHistoricoPorVeiculo> revisoesPorVeiculo(Veiculo veiculo) throws DAOException ;
+    public void salvarRevisao(Revisao revisao)throws DAOException;
+    public ArrayList<ViewHistoricoPorVeiculo> findAll()throws DAOException;
+
     
 }

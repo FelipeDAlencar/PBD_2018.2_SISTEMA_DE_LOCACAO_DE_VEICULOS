@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="479.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.pbd_20182_sistema_locadora_de_veiculo.controller.FXMLAnchorPaneRelatorioLocacaoPorMotoristaController">
+   <children>
+      <TableView fx:id="tableView" layoutX="96.0" layoutY="51.0" prefHeight="430.0" prefWidth="800.0" AnchorPane.bottomAnchor="54.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columns>
+          <TableColumn fx:id="colunaIdLocacao" prefWidth="75.0" text="ID da Locação" />
+          <TableColumn fx:id="colunaNumeroCnh" prefWidth="75.0" text="Número da CNH do Motorista" />
+            <TableColumn fx:id="colunaNomeVeiculo" prefWidth="75.0" text="Veículo da locação" />
+            <TableColumn fx:id="colunaNomeCliente" prefWidth="75.0" text="Cliente" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <JFXComboBox fx:id="comboMotorista" focusColor="#d0281c" layoutX="26.0" layoutY="440.0" onAction="#acaoCombo" prefHeight="25.0" prefWidth="148.0" promptText="Selecione o motorista" unFocusColor="#4059a9" />
+      <JFXButton fx:id="btnImprimir" layoutX="695.0" layoutY="440.0" onAction="#acaBtn" style="-fx-background-color: #121d72;" text="Imprimir" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXButton>
+   </children>
+</AnchorPane>

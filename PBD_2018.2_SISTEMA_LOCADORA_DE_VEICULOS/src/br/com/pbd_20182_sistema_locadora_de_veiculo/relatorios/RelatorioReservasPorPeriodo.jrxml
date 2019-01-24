@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Simple_Blue" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f08a0b68-c0f0-40bd-90dd-a7bbef3a313b">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PBD_2018.2_SISTEMA_LOCADORA_DE_VEICULOS"/>
+	<queryString language="SQL">
+		<![CDATA[]]>
+	</queryString>
+	<field name="reservaId" class="java.lang.Integer"/>
+	<field name="nomecliente" class="java.lang.String"/>
+	<field name="dataReserva" class="java.util.Date"/>
+	<field name="nomeCategoria" class="java.lang.String"/>
+	<field name="valorPrevisto" class="java.lang.Double"/>
+	<field name="efetivada" class="java.lang.Boolean"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="f55ad31f-1c35-48d5-89eb-e45a3627efa7"/>
+				<staticText>
+					<reportElement x="20" y="20" width="550" height="43" forecolor="#FFFFFF" uuid="e37fca4e-9950-4bac-bea1-403e819ef56e"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Relatório de reservas no período]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="b52d9278-f838-40e6-89e6-f17fa9fc941d"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="0" width="95" height="21" uuid="46bc4dba-df53-4b01-a229-8f2ca4a29e18">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e5c65ec1-0ac1-4ec9-ade2-ca49c67a9661"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[ID da Reserva]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="95" y="0" width="92" height="21" uuid="a15f720b-d8d3-41d6-bc9c-7bf9ae2b1b80">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1532f47c-5d47-412e-accf-23ba7818ffa0"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="187" y="0" width="92" height="21" uuid="e53096e1-74f7-49f0-a75f-3cc4d2b84474">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="459a777d-6a80-4959-9da4-8fec242410cf"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Data Reserva]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="0" width="92" height="21" uuid="1ce625c4-e577-4d55-bf18-54fee636b2d9">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="eef903ba-e474-4085-a7d6-6b873c161578"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Categoria]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="371" y="0" width="92" height="21" uuid="757c0c7a-6bed-4467-9cb2-ec4c023219e7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="26078da7-d26d-4159-a664-c4eed9015110"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Valor Previsto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="463" y="0" width="92" height="21" uuid="539d69d7-3b77-4edc-8384-e7401c23cff6">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d874653f-2e96-4184-8232-3fd901fc4cdd"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Efetivada]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="69">
+			<textField>
+				<reportElement x="0" y="0" width="95" height="30" uuid="b345a3ed-ff6a-466c-aa90-ecbffb88221f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e5c65ec1-0ac1-4ec9-ade2-ca49c67a9661"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{reservaId}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="95" y="0" width="92" height="30" uuid="81e9d19c-c01d-4645-a818-3b0c472a5bac">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1532f47c-5d47-412e-accf-23ba7818ffa0"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{nomecliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="187" y="0" width="92" height="30" uuid="37dd3e4b-756a-4c05-a065-2b30afe45825">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="459a777d-6a80-4959-9da4-8fec242410cf"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd/MM/yyyy").format($F{dataReserva})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="279" y="0" width="92" height="30" uuid="04bb7a5c-f921-4f18-a2fd-76ffe4dd1c47">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="eef903ba-e474-4085-a7d6-6b873c161578"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{nomeCategoria}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="371" y="0" width="92" height="30" uuid="1d370a75-0e6f-428d-bdd5-81eabce78444">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="26078da7-d26d-4159-a664-c4eed9015110"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{valorPrevisto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="463" y="0" width="92" height="30" uuid="f512b9c1-8594-4b92-b944-6b5c4cd7e92c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d874653f-2e96-4184-8232-3fd901fc4cdd"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{efetivada} == true? "Efetivada": $F{efetivada}  || $F{efetivada}  == false ? "Não efetivada":$F{efetivada} 
+]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="4e4a7d41-6c35-4c67-bab5-cd38e06ae22a"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="ca9e1e2c-22dd-40e5-8880-6a0f2be09b2c"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="49cb8735-2b6f-4339-95b2-f5fe1af1b047"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

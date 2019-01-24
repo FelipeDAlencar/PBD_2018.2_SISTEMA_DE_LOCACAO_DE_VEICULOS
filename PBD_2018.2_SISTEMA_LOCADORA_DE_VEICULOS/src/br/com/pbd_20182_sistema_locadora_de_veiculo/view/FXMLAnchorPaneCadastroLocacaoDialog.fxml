@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,13 +18,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane id="AnchorPane" prefHeight="349.0" prefWidth="359.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.pbd_20182_sistema_locadora_de_veiculo.controller.FXMLAnchorPaneCadastroLocacaoDialogController">
+<AnchorPane id="AnchorPane" prefHeight="261.0" prefWidth="378.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.pbd_20182_sistema_locadora_de_veiculo.controller.FXMLAnchorPaneCadastroLocacaoDialogController">
    <children>
-      <ScrollPane layoutY="5.0" prefHeight="343.0" prefWidth="390.0">
+      <ScrollPane layoutY="5.0" prefHeight="259.0" prefWidth="393.0">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="636.0" prefWidth="372.0" style="-fx-background-color: #3b5998;">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="506.0" prefWidth="375.0" style="-fx-background-color: #3b5998;">
                <children>
-                  <GridPane layoutX="56.0" layoutY="27.0" prefHeight="421.0" prefWidth="310.0" vgap="30.0">
+                  <GridPane layoutX="56.0" layoutY="27.0" prefHeight="421.0" prefWidth="310.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="173.0" minWidth="10.0" prefWidth="151.0" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.0" minWidth="10.0" prefWidth="139.0" />
@@ -55,22 +56,12 @@
                         <Label text="Km livre" textFill="GAINSBORO" GridPane.rowIndex="11" />
                         <Label text="Finalizada" textFill="GAINSBORO" GridPane.rowIndex="12" />
                         <Label text="Valor" textFill="GAINSBORO" GridPane.rowIndex="13" />
-                        <TextField fx:id="tfKmInicial" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <TextField fx:id="tfKmFinal" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <TextField fx:id="tfMetadeprimeiraDiaria" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                        <DatePicker fx:id="dpDataIda" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                        <DatePicker fx:id="dpDataVolta" style="-fx-background-color: #dcdcdc;" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                        <CheckBox fx:id="cbKmLivre" mnemonicParsing="false" onAction="#acaoCBs" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-                        <CheckBox fx:id="cbFinalizada" mnemonicParsing="false" onAction="#acaoCBs" GridPane.columnIndex="1" GridPane.rowIndex="12" />
-                        <TextField fx:id="tfValor" GridPane.columnIndex="1" GridPane.rowIndex="13" />
                         <Label text="Cliente" textFill="GAINSBORO" />
                         <Label text="Taxa de higiênização" textFill="GAINSBORO" GridPane.rowIndex="9" />
                         <Label text="Taxa de Combustível" textFill="GAINSBORO" GridPane.rowIndex="10" />
-                        <CheckBox fx:id="cbTaxaHigienizacao" mnemonicParsing="false" onAction="#acaoCBs" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                        <CheckBox fx:id="cbTaxaCombustivel" mnemonicParsing="false" onAction="#acaoCBs" GridPane.columnIndex="1" GridPane.rowIndex="10" />
                         <HBox prefHeight="25.0" prefWidth="159.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <children>
-                              <JFXComboBox fx:id="comboMotorista" focusColor="#2cc30e" prefHeight="25.0" prefWidth="101.0" promptText="Motorista" unFocusColor="#bf2b2b" />
+                              <JFXComboBox fx:id="comboMotorista" focusColor="#c23a10" prefHeight="25.0" prefWidth="101.0" unFocusColor="GAINSBORO" />
                               <Button fx:id="btnAddMortorista" mnemonicParsing="false" onAction="#acaoBtns">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
@@ -86,25 +77,35 @@
                            </children>
                         </HBox>
                         <Label text="Ponto de entrega" textFill="GAINSBORO" GridPane.rowIndex="3" />
-                        <JFXComboBox fx:id="comboPontoDeEntrega" focusColor="#2cc30e" prefHeight="25.0" prefWidth="137.0" promptText="Ponto de entrega" unFocusColor="#bf2b2b" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <JFXComboBox fx:id="comboVeiculo" focusColor="#2cc30e" prefHeight="25.0" prefWidth="137.0" promptText="Veículo" unFocusColor="#bf2b2b" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <JFXComboBox fx:id="comboCliente" focusColor="#2cc30e" prefHeight="25.0" prefWidth="143.0" promptText="Cliente" unFocusColor="#bf2b2b" GridPane.columnIndex="1" />
+                        <JFXComboBox fx:id="comboPontoDeEntrega" focusColor="#c23a10" prefHeight="25.0" prefWidth="137.0" unFocusColor="GAINSBORO" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <JFXComboBox fx:id="comboVeiculo" focusColor="#c23a10" onAction="#AcaoCombos" prefHeight="25.0" prefWidth="137.0" unFocusColor="GAINSBORO" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <JFXComboBox fx:id="comboCliente" focusColor="#c23a10" prefHeight="25.0" prefWidth="143.0" unFocusColor="GAINSBORO" GridPane.columnIndex="1" />
+                        <JFXTextField fx:id="tfKmInicial" focusColor="#c23a10" unFocusColor="GAINSBORO" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <JFXTextField fx:id="tfKmFinal" focusColor="#c23a10" unFocusColor="GAINSBORO" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <JFXTextField fx:id="tfMetadeprimeiraDiaria" focusColor="#c23a10" unFocusColor="GAINSBORO" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <JFXDatePicker fx:id="dpDataIda" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <JFXDatePicker fx:id="dpDataVolta" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <JFXCheckBox fx:id="cbTaxaHigienizacao" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                        <JFXCheckBox fx:id="cbTaxaCombustivel" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                        <JFXCheckBox fx:id="cbKmLivre" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                        <JFXCheckBox fx:id="cbFinalizada" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                        <JFXTextField fx:id="tfValor" focusColor="#c23a10" unFocusColor="GAINSBORO" GridPane.columnIndex="1" GridPane.rowIndex="13" />
                      </children>
                   </GridPane>
-                  <Group layoutX="122.0" layoutY="600.0">
+                  <Group layoutX="103.0" layoutY="461.0">
                      <children>
-                        <Button fx:id="btnConfirmar" mnemonicParsing="false" onAction="#acaoBtns" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #006400;" text="Confirmar" textFill="GAINSBORO">
+                        <JFXButton fx:id="btnConfirmar" onAction="#acaoBtns" ripplerFill="#03ee13" text="Confirmar" textFill="GAINSBORO">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
-                        </Button>
-                        <Button fx:id="btnCancelar" layoutX="99.0" mnemonicParsing="false" onAction="#acaoBtns" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #8B0000;" text="Cancelar" textFill="GAINSBORO">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
+                        </JFXButton>
                      </children>
                   </Group>
+                  <JFXButton fx:id="btnCancelar" layoutX="229.0" layoutY="461.0" onAction="#acaoBtns" ripplerFill="#e10909" text="Cancelar" textFill="GAINSBORO">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
                </children>
             </AnchorPane>
         </content>

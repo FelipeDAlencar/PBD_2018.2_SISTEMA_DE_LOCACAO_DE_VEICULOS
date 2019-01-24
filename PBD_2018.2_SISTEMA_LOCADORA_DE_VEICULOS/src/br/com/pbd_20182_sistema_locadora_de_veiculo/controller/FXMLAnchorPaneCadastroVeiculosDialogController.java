@@ -10,20 +10,20 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.MascarasTF;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Veiculo;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.view.Alerta;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXColorPicker;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Alert;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -35,46 +35,46 @@ import javafx.stage.Stage;
 public class FXMLAnchorPaneCadastroVeiculosDialogController implements Initializable {
 
     @FXML
-    private TextField tfModelo;
+    private JFXTextField tfModelo;
 
     @FXML
-    private TextField tfFabricante;
+    private JFXTextField tfFabricante;
 
     @FXML
-    private TextField tfAnoDoModelo;
+    private JFXTextField tfAnoDoModelo;
 
     @FXML
-    private TextField tfAnoDeFabricacao;
+    private JFXTextField tfAnoDeFabricacao;
 
     @FXML
-    private ColorPicker cpCor;
+    private JFXColorPicker cpCor;
 
     @FXML
-    private TextField tfPlaca;
+    private JFXTextField tfPlaca;
 
     @FXML
-    private TextField tfNChassi;
+    private JFXTextField tfNChassi;
 
     @FXML
-    private TextField tfKmAtual;
+    private JFXTextField tfKmAtual;
 
     @FXML
-    private TextField tfTipoCombustivel;
+    private JFXTextField tfTipoCombustivel;
 
     @FXML
-    private TextField tfTorqueDoMotor;
+    private JFXTextField tfTorqueDoMotor;
 
     @FXML
-    private ComboBox<Categoria> comboCategoria;
+    private JFXComboBox<Categoria> comboCategoria;
 
     @FXML
-    private CheckBox cbDisponivel;
+    private JFXCheckBox cbDisponivel;
 
     @FXML
-    private Button btnConfirmar;
+    private JFXButton btnConfirmar;
 
     @FXML
-    private Button btnCancelar;
+    private JFXButton btnCancelar;
 
     private Fachada fachada;
     private Stage stage;
@@ -103,24 +103,29 @@ public class FXMLAnchorPaneCadastroVeiculosDialogController implements Initializ
     void acoesBtns(ActionEvent event) {
 
         if (event.getSource() == btnConfirmar) {
+            try {
+                veiculo.setAnoDeFabricacao(Integer.parseInt(tfAnoDeFabricacao.getText()));
+                veiculo.setAnoDoModelo(Integer.parseInt(tfAnoDoModelo.getText()));
+                veiculo.setCategoria(comboCategoria.getValue());
+                veiculo.setCor(cpCor.getValue().toString());
+                veiculo.setDisponivel(cbDisponivel.isSelected());
+                veiculo.setFabricante(tfFabricante.getText());
+                veiculo.setModelo(tfModelo.getText());
+                veiculo.setNumeroChassi(tfNChassi.getText());
+                veiculo.setPlaca(tfPlaca.getText());
+                veiculo.setQuilometragemAtual(Double.parseDouble(tfKmAtual.getText()));
+                veiculo.setTipoDeCombustivel(tfTipoCombustivel.getText());
+                veiculo.setTorqueDoMotor(Double.parseDouble(tfTorqueDoMotor.getText()));
 
-            veiculo.setAnoDeFabricacao(Integer.parseInt(tfAnoDeFabricacao.getText()));
-            veiculo.setAnoDoModelo(Integer.parseInt(tfAnoDoModelo.getText()));
-            veiculo.setCategoria(comboCategoria.getValue());
-            veiculo.setCor(cpCor.getValue().toString());
-            veiculo.setDisponivel(cbDisponivel.isSelected());
-            veiculo.setFabricante(tfFabricante.getText());
-            veiculo.setModelo(tfModelo.getText());
-            veiculo.setNumeroChassi(tfNChassi.getText());
-            veiculo.setPlaca(tfPlaca.getText());
-            veiculo.setQuilometragemAtual(Double.parseDouble(tfKmAtual.getText()));
-            veiculo.setTipoDeCombustivel(tfTipoCombustivel.getText());
-            veiculo.setTorqueDoMotor(Double.parseDouble(tfTorqueDoMotor.getText()));
+                veiculo.setAtivo(true);
 
-            veiculo.setAtivo(true);
+                sucesso = true;
+                stage.close();
 
-            sucesso = true;
-            stage.close();
+            } catch (NumberFormatException e) {
+                Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
+                alerta.alertar(Alert.AlertType.WARNING, "Atenção", "Campos incorretos!", "Preencha corretamente.");
+            }
 
         } else {
             stage.close();

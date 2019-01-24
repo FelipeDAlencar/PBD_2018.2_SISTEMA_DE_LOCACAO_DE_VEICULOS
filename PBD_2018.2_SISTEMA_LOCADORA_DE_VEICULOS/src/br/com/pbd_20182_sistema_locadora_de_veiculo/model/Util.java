@@ -8,6 +8,7 @@ package br.com.pbd_20182_sistema_locadora_de_veiculo.model;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.view.Alerta;
+import java.io.InputStream;
 import java.sql.Time;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -16,10 +17,19 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import javafx.scene.control.Alert;
-import javafx.scene.control.TextField;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -160,6 +170,26 @@ public abstract class Util {
             }
         }
         return 0;
+    }
+
+    public static Date converterLocalDateEmDate(LocalDate localDate) {
+        Date s = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+        return s;
+
+    }
+    public static void gerarRelatorio(InputStream caminho, ArrayList<? extends Object> lista) throws JRException{
+        
+        JasperDesign desenho = JRXmlLoader.load(caminho);
+
+        JasperReport jasperReport = JasperCompileManager.compileReport(desenho);
+
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, new JRBeanCollectionDataSource(lista));
+
+        //false pq n�o deixa feixar a 'aplica��o principal
+        JasperViewer jasperViewer = new JasperViewer(jasperPrint, false);
+        jasperViewer.setVisible(true);
+        
     }
 //    ArrayList<Veiculo> veiculos = fachada.buscarVeiculoPorCategoria(reservaPessoasCategorias.getCategoria());
 //

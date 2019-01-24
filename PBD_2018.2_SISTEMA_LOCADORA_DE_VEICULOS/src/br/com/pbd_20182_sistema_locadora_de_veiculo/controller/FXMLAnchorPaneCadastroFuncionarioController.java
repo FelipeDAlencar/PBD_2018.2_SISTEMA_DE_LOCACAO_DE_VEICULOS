@@ -9,15 +9,15 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.BusinessExpection;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Funcionario;
-import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Pessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOPessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.view.Alerta;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -54,7 +54,6 @@ public class FXMLAnchorPaneCadastroFuncionarioController implements Initializabl
 
     @FXML
     private TableColumn<Funcionario, String> colunaMatricula;
-
     @FXML
     private Label lbNome;
 
@@ -68,7 +67,7 @@ public class FXMLAnchorPaneCadastroFuncionarioController implements Initializabl
     private Label lbCargo;
 
     @FXML
-    private CheckBox cbSuperUsuario;
+    private JFXCheckBox cbSuperUsuario;
 
     @FXML
     private Label lbCidade;
@@ -86,19 +85,19 @@ public class FXMLAnchorPaneCadastroFuncionarioController implements Initializabl
     private Label LBNumero;
 
     @FXML
-    private TextField tfBuscar;
+    private JFXTextField tfBuscar;
 
     @FXML
-    private Button btnPesquisar;
+    private JFXButton btnPesquisar;
 
     @FXML
-    private Button btnInserir;
+    private JFXButton btnInserir;
 
     @FXML
-    private Button btnExcluir;
+    private JFXButton btnEditar;
 
     @FXML
-    private Button btnEditar;
+    private JFXButton btnExcluir;
 
     private ArrayList<Funcionario> funcionarios;
     private ObservableList<Funcionario> obsFuncionarios;

@@ -12,6 +12,9 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaJuridica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Veiculo;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.view.Alerta;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -55,10 +58,7 @@ public class FXMLAnchorPaneCadastroVeiculosController implements Initializable {
     @FXML
     private TableColumn<Veiculo, Integer> colunaAnoModelo;
 
-    @FXML
-    private Button btnPesquisar;
-
-    @FXML
+      @FXML
     private Label lbModelo;
 
     @FXML
@@ -92,18 +92,22 @@ public class FXMLAnchorPaneCadastroVeiculosController implements Initializable {
     private Label lbCategoria;
 
     @FXML
-    private TextField tfPesquisa;
+    private JFXCheckBox cbDisponivel;
 
     @FXML
-    private CheckBox cbDisponível;
-    @FXML
-    private Button btnInserir;
+    private JFXTextField tfPesquisa;
 
     @FXML
-    private Button btnEditar;
+    private JFXButton btnPesquisar;
 
     @FXML
-    private Button btnExcluir;
+    private JFXButton btnInserir;
+
+    @FXML
+    private JFXButton btnEditar;
+
+    @FXML
+    private JFXButton btnExcluir;
 
     private Fachada fachada;
     private ArrayList<Veiculo> veiculos;
@@ -116,7 +120,7 @@ public class FXMLAnchorPaneCadastroVeiculosController implements Initializable {
         tableView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> selecionouDaTabela(newValue));
 
-        cbDisponível.setDisable(true);
+        cbDisponivel.setDisable(true);
 
         if (FXMLLoginController.pessoa instanceof PessoaFisica || FXMLLoginController.pessoa instanceof PessoaJuridica) {
             btnEditar.setDisable(true);
@@ -229,7 +233,7 @@ public class FXMLAnchorPaneCadastroVeiculosController implements Initializable {
             lbPlaca.setText(veiculo.getPlaca());
             lbTipoCombustivel.setText(veiculo.getTipoDeCombustivel());
             lbTorqueDoMotor.setText(String.valueOf(veiculo.getTorqueDoMotor()));
-            cbDisponível.setSelected(veiculo.isDisponivel());
+            cbDisponivel.setSelected(veiculo.isDisponivel());
         }
 
     }
@@ -333,8 +337,8 @@ public class FXMLAnchorPaneCadastroVeiculosController implements Initializable {
         return tfPesquisa;
     }
 
-    public CheckBox getCbDisponível() {
-        return cbDisponível;
+    public CheckBox getCbDisponivel() {
+        return cbDisponivel;
     }
 
     public Button getBtnInserir() {

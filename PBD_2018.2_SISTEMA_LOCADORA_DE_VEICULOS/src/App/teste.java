@@ -12,14 +12,21 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Endereco;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Funcionario;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Geral;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Locacao;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Pessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Util;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Veiculo;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ViewFilialPorEndereco;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ViewMotoristaPorLocacao;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOContasAPagar;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOFilial;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOFuncionario;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOLocacao;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOPessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOPessoaFisica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOPessoaJuridica;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOReservaPessoaCategoria;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAORevisao;
 import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -34,6 +41,8 @@ import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
 import org.hibernate.type.descriptor.java.LocalDateJavaDescriptor;
 
 /**
@@ -41,23 +50,22 @@ import org.hibernate.type.descriptor.java.LocalDateJavaDescriptor;
  * @author Felipe
  */
 public class teste {
+    
+    public static void main(String[] args) throws DAOException, ParseException, JRException {
+        
+        DAORevisao daor = new DAORevisao();
+        Veiculo veiculo = new Veiculo();
+        veiculo.setId(1);
+        
+        System.err.println(daor.findAll());
 
-    public static void main(String[] args) throws DAOException, ParseException {
-        
-        SimpleDateFormat format = new   SimpleDateFormat("HH:mm:ss");
-        
-        
-        System.err.println(format.parse(format.format(new Date())));
-        
-        
-        
+//        System.err.println(format.parse(format.format(new Date())));
 //
 //        int input = 5418;// 1h : 30 min : 18 seg
 //        int horas = input / 3600;
 //        int minutos = (input - (horas * 3600)) / 60;
 //        int segundos = input - (horas * 3600) - (minutos * 60);
 //        System.out.printf("Horas: %d%nMinutos: %d%nSegundos: %d%n", horas, minutos, segundos);
-
         System.exit(0);
 
 //        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
@@ -88,7 +96,7 @@ public class teste {
         //        
         //        System.err.println(Util.formatarData(pessoaFisica.getData_nascimento()));
         DAOFuncionario daof = new DAOFuncionario();
-
+        
         DAOPessoa daop = new DAOPessoa();
 //        Funcionario funcionario = new Funcionario();
 //        
@@ -130,5 +138,5 @@ public class teste {
 //        }
 
     }
-
+    
 }

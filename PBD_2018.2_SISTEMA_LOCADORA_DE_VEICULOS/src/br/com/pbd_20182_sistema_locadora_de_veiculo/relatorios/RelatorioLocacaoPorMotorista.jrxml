@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Simple_Blue" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ceb73b27-c4cd-454d-9fd9-fa1ee0bd5643">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PBD_2018.2_SISTEMA_LOCADORA_DE_VEICULOS"/>
+	<queryString language="SQL">
+		<![CDATA[]]>
+	</queryString>
+	<field name="locacaoId" class="java.lang.Integer"/>
+	<field name="numeroCnh" class="java.lang.String"/>
+	<field name="nomeCliente" class="java.lang.String"/>
+	<field name="modeloVeiculo" class="java.lang.String"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="69c1b68e-7e55-4be2-83ae-e15dfef1d06a"/>
+				<staticText>
+					<reportElement x="9" y="20" width="581" height="72" forecolor="#FFFFFF" uuid="cfc49d09-a48f-425f-bdc2-948808d61e9a"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Relatório de locações por motorista ]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="ebd19464-b450-461d-a326-9074ef13372e"/>
+			</line>
+			<staticText>
+				<reportElement x="31" y="0" width="110" height="21" uuid="ca30ca5a-0154-4517-b31d-f3296aebf228">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="11df73f5-e117-4c9c-9437-d3253eddb254"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[ID da locação]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="141" y="0" width="138" height="21" uuid="67e64a13-8e7d-4ab2-a230-1c8d6e2d907d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="690aafb6-db30-40af-9376-a95abf128a94"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Motorista]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="0" width="138" height="21" uuid="c89d4808-6e6e-4a8f-9d19-e4d54334a20b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7d80530e-428a-405b-8457-dbeb61fe13ca"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="417" y="0" width="138" height="21" uuid="eb77ea24-8fbe-4eb5-8828-9ec94b985a9f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7886b641-df66-4a3a-a5ef-ae22fe1399bd"/>
+				</reportElement>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Veículo]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="32">
+			<textField>
+				<reportElement x="0" y="0" width="141" height="30" uuid="7b585683-1ed5-405b-865a-6ef56771c173">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="11df73f5-e117-4c9c-9437-d3253eddb254"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{locacaoId}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="141" y="0" width="138" height="30" uuid="4086f554-f96b-438f-9c81-07d3e10c0985">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="690aafb6-db30-40af-9376-a95abf128a94"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{numeroCnh}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="279" y="0" width="138" height="30" uuid="a209ad0b-8af3-4e5f-b1bd-6b232c3c080b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7d80530e-428a-405b-8457-dbeb61fe13ca"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{nomeCliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="417" y="0" width="138" height="30" uuid="8d5a175c-2338-4f62-9d9e-ec06242cb662">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7886b641-df66-4a3a-a5ef-ae22fe1399bd"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{modeloVeiculo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="75eed469-e298-49d2-bb36-c97886d89f30"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="94edf3e4-11a9-44db-9478-d60ce8f33ce8"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="10300de5-7971-4668-b03c-de8a48a66044"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

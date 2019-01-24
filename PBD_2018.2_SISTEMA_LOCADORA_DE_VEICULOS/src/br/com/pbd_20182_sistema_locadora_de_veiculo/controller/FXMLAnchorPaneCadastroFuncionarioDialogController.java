@@ -11,19 +11,20 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Funcionario;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.MascarasTF;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Util;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOPessoa;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.view.Alerta;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.Arrays;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 /**
@@ -34,40 +35,40 @@ import javafx.stage.Stage;
 public class FXMLAnchorPaneCadastroFuncionarioDialogController implements Initializable {
 
     @FXML
-    private TextField tfNome;
+    private JFXTextField tfNome;
 
     @FXML
-    private TextField tfMatricula;
+    private JFXTextField tfLogin;
 
     @FXML
-    private TextField tfCargo;
+    private JFXTextField tfMatricula;
 
     @FXML
-    private CheckBox cbSuperUsuario;
+    private JFXCheckBox cbSuperUsuario;
 
     @FXML
-    private TextField tfCidade;
+    private JFXTextField tfCidade;
 
     @FXML
-    private TextField tfRua;
+    private JFXTextField tfRua;
 
     @FXML
-    private TextField tfBairro;
+    private JFXTextField tfBairro;
 
     @FXML
-    private TextField tfNumero;
+    private JFXTextField tfNumero;
 
     @FXML
-    private TextField tfLogin;
+    private JFXTextField tfCargo;
 
     @FXML
-    private ComboBox<String> ufCombo;
+    private JFXComboBox<String> ufCombo;
 
     @FXML
-    private Button btnConfirmar;
+    private JFXButton btnCancelas;
 
     @FXML
-    private Button btnCancelas;
+    private JFXButton btnConfirmar;
 
     private Funcionario funcionario;
     private Stage stage;
@@ -87,9 +88,9 @@ public class FXMLAnchorPaneCadastroFuncionarioDialogController implements Initia
 
     @FXML
     void acaoBtns(ActionEvent event) throws BusinessExpection {
-        try {
-            if (event.getSource() == btnConfirmar) {
 
+        if (event.getSource() == btnConfirmar) {
+            try {
                 Endereco endereco = new Endereco();
 
                 endereco.setBairro(tfBairro.getText());
@@ -97,12 +98,12 @@ public class FXMLAnchorPaneCadastroFuncionarioDialogController implements Initia
                 endereco.setNumero(Integer.parseInt(tfNumero.getText()));
                 endereco.setRua(tfRua.getText());
                 endereco.setUf(ufCombo.getValue());
-               
+
                 cbSuperUsuario.setSelected(funcionario.isSuperUsuario());
 
                 funcionario.setEndereco(endereco);
                 funcionario.setCargo(tfCargo.getText());
-               
+
                 funcionario.setLogin(tfLogin.getText());
                 funcionario.setSenha(tfMatricula.getText());
                 funcionario.setMatricula(tfMatricula.getText());
@@ -112,15 +113,18 @@ public class FXMLAnchorPaneCadastroFuncionarioDialogController implements Initia
                 funcionario.setCodigo(Util.gerarCodigoInterno(funcionario.getNome(), new DAOPessoa().buscarUltimoCodigo()));
                 funcionario.setAtivo(true);
                 sucesso = true;
-
                 stage.close();
-            } else if (event.getSource() == btnCancelas) {
-
-                stage.close();
+            } catch (Exception e) {
+                Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
+                alerta.alertar(Alert.AlertType.WARNING, "Atenção", "Campos incorretos!", "Preencha corretamente.");
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+
+            
+        } else if (event.getSource() == btnCancelas) {
+
+            stage.close();
         }
+
     }
 
     public Funcionario getFuncionario() {

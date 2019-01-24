@@ -104,14 +104,23 @@ public class SQLUtil {
 
         public static String SQL_BUSCAR_POR_BUSCA = "select r from ReservaPessoasCategorias r INNER JOIN Pessoa p ON r.pessoa = p.id\n"
                 + "INNER JOIN Categoria c ON r.categoria = c.id WHERE r.ativo = true and LOWER(p.nome) like :NomeCliente or LOWER(c.nome) like :nomeCategoria  or to_char(r.dataHora, 'dd/MM/yyyy') like :dataHora ";
+   
+        public static String SQL_BUSCAR_RESERVA_POR_PERIODO = "select v  from ViewReservasPorPeriodo v  where dataReserva between :dataInicial and :dataFinal";
     }
+    
+    public static class Revisao{
+        public static String SQL_BUSCAR_REVISOES_POR_VEICULO = "select v from ViewHistoricoPorVeiculo v where veiculoId = :veiculo_id";
+                public static String SQL_BUSCAR_REVISOES = "select v from ViewHistoricoPorVeiculo v ";
 
+    }
     public static class Locacao {
 
         public static final String SQL_PROCEDURE_CALCULAR_INTERVALO_DE_ATRASO = "calculardiferencadedatalocacao";
         public static final String SQL_PROCEDURE_Verificar_Vencimento_CNH = "verificarvencimentocnh";
         public static final String SQL_PROCEDURE_CALCULAR_IDADE = "calcularidade";
-
+        public static final String SQL_BUSCAR_LOCACAO_POR_CLIENTE = "select l from Locacao l where l.cliente = :idcliente ";
+        public static final String SQL_BUSCAR_LOCACAO_POR_MOTORISTA = "select v  from ViewMotoristaPorLocacao v  where motoId = :id";
+        public static final String SQL_BUSCAR_LOCACAO_POR_PERIODO = "select v  from ViewLocacaoPorPeriodo v  where dataIda between :dataInicial and :dataFinal";
     }
 
     public static final String NOME_BD_CONEXAO_POSTGRES = "POSTGRES";

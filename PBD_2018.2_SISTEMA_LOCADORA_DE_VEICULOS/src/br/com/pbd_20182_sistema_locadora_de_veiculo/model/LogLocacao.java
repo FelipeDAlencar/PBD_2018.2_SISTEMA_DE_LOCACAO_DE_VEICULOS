@@ -24,7 +24,7 @@ import javax.persistence.TemporalType;
  * @author Felipe
  */
 @Entity
-@SequenceGenerator(name = "log_locacao_sequencia", sequenceName = "log_locacao_seq", initialValue = 2, allocationSize = 1)
+@SequenceGenerator(name = "log_locacao_sequencia", sequenceName = "log_locacao_seq", initialValue = 1, allocationSize = 1)
 @Table(name = "log_locacao")
 public class LogLocacao implements Serializable {
 
@@ -85,6 +85,8 @@ public class LogLocacao implements Serializable {
     @OneToOne
     private Veiculo veiculo;
 
+    @OneToOne
+    private Locacao locacao;
     public Integer getId() {
         return id;
     }
@@ -229,27 +231,36 @@ public class LogLocacao implements Serializable {
         this.alteracao = alteracao;
     }
 
+    public Locacao getLocacao() {
+        return locacao;
+    }
+
+    public void setLocacao(Locacao locacao) {
+        this.locacao = locacao;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 61 * hash + Objects.hashCode(this.id);
-        hash = 61 * hash + (this.finalizada ? 1 : 0);
-        hash = 61 * hash + (int) (Double.doubleToLongBits(this.valor) ^ (Double.doubleToLongBits(this.valor) >>> 32));
-        hash = 61 * hash + (int) (Double.doubleToLongBits(this.KmInicialDoVeiculo) ^ (Double.doubleToLongBits(this.KmInicialDoVeiculo) >>> 32));
-        hash = 61 * hash + (int) (Double.doubleToLongBits(this.metadeDaPrimeiraDiaria) ^ (Double.doubleToLongBits(this.metadeDaPrimeiraDiaria) >>> 32));
-        hash = 61 * hash + (int) (Double.doubleToLongBits(this.kmFinalVeiculo) ^ (Double.doubleToLongBits(this.kmFinalVeiculo) >>> 32));
-        hash = 61 * hash + (int) (Double.doubleToLongBits(this.taxaCombustivel) ^ (Double.doubleToLongBits(this.taxaCombustivel) >>> 32));
-        hash = 61 * hash + (int) (Double.doubleToLongBits(this.taxaHigienizacao) ^ (Double.doubleToLongBits(this.taxaHigienizacao) >>> 32));
-        hash = 61 * hash + Objects.hashCode(this.dataIda);
-        hash = 61 * hash + Objects.hashCode(this.dataVolta);
-        hash = 61 * hash + (this.kmLivre ? 1 : 0);
-        hash = 61 * hash + (this.ativo ? 1 : 0);
-        hash = 61 * hash + Objects.hashCode(this.dataModificacao);
-        hash = 61 * hash + Objects.hashCode(this.alteracao);
-        hash = 61 * hash + Objects.hashCode(this.pontoDeEntregea);
-        hash = 61 * hash + Objects.hashCode(this.cliente);
-        hash = 61 * hash + Objects.hashCode(this.motorista);
-        hash = 61 * hash + Objects.hashCode(this.veiculo);
+        hash = 97 * hash + Objects.hashCode(this.id);
+        hash = 97 * hash + (this.finalizada ? 1 : 0);
+        hash = 97 * hash + (int) (Double.doubleToLongBits(this.valor) ^ (Double.doubleToLongBits(this.valor) >>> 32));
+        hash = 97 * hash + (int) (Double.doubleToLongBits(this.KmInicialDoVeiculo) ^ (Double.doubleToLongBits(this.KmInicialDoVeiculo) >>> 32));
+        hash = 97 * hash + (int) (Double.doubleToLongBits(this.metadeDaPrimeiraDiaria) ^ (Double.doubleToLongBits(this.metadeDaPrimeiraDiaria) >>> 32));
+        hash = 97 * hash + (int) (Double.doubleToLongBits(this.kmFinalVeiculo) ^ (Double.doubleToLongBits(this.kmFinalVeiculo) >>> 32));
+        hash = 97 * hash + (int) (Double.doubleToLongBits(this.taxaCombustivel) ^ (Double.doubleToLongBits(this.taxaCombustivel) >>> 32));
+        hash = 97 * hash + (int) (Double.doubleToLongBits(this.taxaHigienizacao) ^ (Double.doubleToLongBits(this.taxaHigienizacao) >>> 32));
+        hash = 97 * hash + Objects.hashCode(this.dataIda);
+        hash = 97 * hash + Objects.hashCode(this.dataVolta);
+        hash = 97 * hash + (this.kmLivre ? 1 : 0);
+        hash = 97 * hash + (this.ativo ? 1 : 0);
+        hash = 97 * hash + Objects.hashCode(this.dataModificacao);
+        hash = 97 * hash + Objects.hashCode(this.alteracao);
+        hash = 97 * hash + Objects.hashCode(this.pontoDeEntregea);
+        hash = 97 * hash + Objects.hashCode(this.cliente);
+        hash = 97 * hash + Objects.hashCode(this.motorista);
+        hash = 97 * hash + Objects.hashCode(this.veiculo);
+        hash = 97 * hash + Objects.hashCode(this.locacao);
         return hash;
     }
 
@@ -319,10 +330,14 @@ public class LogLocacao implements Serializable {
         if (!Objects.equals(this.veiculo, other.veiculo)) {
             return false;
         }
+        if (!Objects.equals(this.locacao, other.locacao)) {
+            return false;
+        }
         return true;
     }
     
-
+    
+   
     
 
 }

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Group?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -24,12 +23,12 @@
         </rowConstraints>
          <children>
             <Label text="Nome" textFill="GAINSBORO" />
-            <TextField fx:id="tfNomeFilial" prefHeight="25.0" prefWidth="147.0" promptText="Nome" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" />
+            <JFXTextField fx:id="tfNomeFilial" focusColor="#eb3712" unFocusColor="GAINSBORO" GridPane.columnIndex="1" />
          </children>
       </GridPane>
       <Label layoutX="128.0" layoutY="67.0" text="Informações referentes ao endereço" />
       <Separator layoutX="128.0" layoutY="98.0" prefHeight="3.0" prefWidth="244.0" />
-      <GridPane layoutX="128.0" layoutY="113.0" prefHeight="144.0" prefWidth="244.0" vgap="20.0">
+      <GridPane layoutX="128.0" layoutY="113.0" prefHeight="144.0" prefWidth="244.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -48,26 +47,20 @@
             <Label text="Bairro" textFill="GAINSBORO" GridPane.rowIndex="2" />
             <Label text="UF" textFill="GAINSBORO" GridPane.rowIndex="5" />
             <Label text="Número" textFill="GAINSBORO" GridPane.rowIndex="3" />
-            <TextField fx:id="tfCidade" promptText="Cidade" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" />
-            <TextField fx:id="tfRua" promptText="Rua" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="tfBairro" promptText="Bairro" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="tfNumero" promptText="Número" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <ComboBox fx:id="comboUF" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField fx:id="tfCep" promptText="CEP" style="-fx-background-color: #D3D3D3;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Label text="CEP" textFill="GAINSBORO" GridPane.rowIndex="4" />
+            <JFXTextField fx:id="tfCidade" focusColor="#eb3712" unFocusColor="GAINSBORO" GridPane.columnIndex="1" />
+            <JFXTextField fx:id="tfRua" focusColor="#eb3712" unFocusColor="GAINSBORO" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <JFXTextField fx:id="tfBairro" focusColor="#eb3712" unFocusColor="GAINSBORO" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <JFXTextField fx:id="tfNumero" focusColor="#eb3712" unFocusColor="GAINSBORO" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <JFXTextField fx:id="tfCep" focusColor="#eb3712" unFocusColor="GAINSBORO" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <JFXComboBox fx:id="comboUF" focusColor="#eb3712" prefHeight="25.0" prefWidth="130.0" unFocusColor="GAINSBORO" GridPane.columnIndex="1" GridPane.rowIndex="5" />
          </children>
       </GridPane>
       <Group layoutX="150.0" layoutY="329.0">
          <children>
-            <Button fx:id="btnConfirmar" mnemonicParsing="false" onAction="#acaoBtns" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #006400;" text="Confirmar" textFill="GAINSBORO">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></Button>
-            <Button fx:id="btnCancelar" layoutX="121.0" mnemonicParsing="false" onAction="#acaoBtns" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #8B0000;" text="Cancelar" textFill="GAINSBORO">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></Button>
+            <JFXButton fx:id="btnConfirmar" layoutX="-11.0" onAction="#acaoBtns" ripplerFill="#27dd07" text="Confirmar" textFill="GAINSBORO" />
          </children>
       </Group>
+      <JFXButton fx:id="btnCancelar" layoutX="281.0" layoutY="329.0" onAction="#acaoBtns" ripplerFill="#e11010" text="Cancelar" textFill="GAINSBORO" />
    </children>
 </AnchorPane>

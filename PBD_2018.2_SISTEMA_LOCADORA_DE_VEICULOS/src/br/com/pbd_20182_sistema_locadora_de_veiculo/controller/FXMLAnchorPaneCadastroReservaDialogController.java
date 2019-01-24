@@ -11,15 +11,14 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.MascarasTF;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Pessoa;
-import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ReservaPessoasCategorias;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Util;
-import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Veiculo;
-import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOCategoria;
-import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOPessoa;
-import br.com.pbd_20182_sistema_locadora_de_veiculo.view.Alerta;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -33,13 +32,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
@@ -58,25 +51,26 @@ public class FXMLAnchorPaneCadastroReservaDialogController implements Initializa
     private String buscaCategoria = "";
 
     @FXML
-    private ComboBox<Pessoa> comboClientes;
+    private JFXComboBox<Pessoa> comboClientes;
 
     @FXML
-    private ComboBox<Categoria> comboCategorias;
+    private JFXTextField tfValor;
 
     @FXML
-    private TextField tfValor;
+    private JFXDatePicker dpData;
 
     @FXML
-    private DatePicker dpData;
+    private JFXCheckBox cbEfetivada;
 
     @FXML
-    private CheckBox cbEfetivada;
+    private JFXButton btnSalvar;
 
     @FXML
-    private Button btnSalvar;
-
+    private JFXButton btnCancelar;
+    
     @FXML
-    private Button btnCancelar;
+    private JFXComboBox<Categoria> comboCategorias;
+
 
     private Fachada fachada;
 

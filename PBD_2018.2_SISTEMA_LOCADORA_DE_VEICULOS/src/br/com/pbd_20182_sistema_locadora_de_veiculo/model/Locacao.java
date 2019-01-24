@@ -25,27 +25,38 @@ public class Locacao implements Serializable, EntidadeBase {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "locacao_sequencia")
     private Integer id;
+    
     @Column(nullable = false)
     private boolean finalizada;
+    
     private double valor;
+    
     @Column(name = "km_inicial_veiculo", nullable = false)
     private double KmInicialDoVeiculo;
+    
     @Column(name = "metade_primeira_diaria", nullable = false)
     private double metadeDaPrimeiraDiaria;
+    
     @Column(name = "km_final_veiculo")
     private double kmFinalVeiculo;
+    
     @Column(name = "taxa_combustivel")
     private double taxaCombustivel;
+    
     @Column(name = "taxa_higienizacao")
     private double taxaHigienizacao;
+    
     @Column(name = "data_ida", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar dataIda;
+    
     @Column(name = "data_volta")
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar dataVolta;
+    
     @Column(name = "km_livre")
     private boolean kmLivre;
+    
     @Column()
     private boolean ativo;
 

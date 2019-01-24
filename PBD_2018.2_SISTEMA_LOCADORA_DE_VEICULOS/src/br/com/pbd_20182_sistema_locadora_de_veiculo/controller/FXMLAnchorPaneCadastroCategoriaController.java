@@ -11,14 +11,13 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.CaminhonetaDeCarga;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.CaminhonetaDePassageiros;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
-import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOCategoria;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.view.Alerta;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -35,38 +34,33 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class FXMLAnchorPaneCadastroCategoriaController implements Initializable {
 
-    @FXML
+      @FXML
     private TableView<Categoria> tableView;
 
     @FXML
     private TableColumn<Categoria, String> colunaNome;
 
     @FXML
-    private TableColumn<Categoria, String> colunaDescricao;
+   private TableColumn<Categoria, String> colunaDescricao;
 
     @FXML
     private TableColumn<Categoria, Double> colunaValor;
 
     @FXML
-    private TextField tfBusca;
+    private AnchorPane BtnEditar;
 
     @FXML
-    private Button btnBusca;
+    private JFXTextField tfBusca;
 
     @FXML
-    private Button btInserir;
-
-    @FXML
-    private Button BtnEditar;
-
-    @FXML
-    private Button btnExcluir;
+    private JFXButton btnBusca;
 
     @FXML
     private Label lbNome;
@@ -79,9 +73,6 @@ public class FXMLAnchorPaneCadastroCategoriaController implements Initializable 
 
     @FXML
     private Label lbNumeroDePortas;
-
-    @FXML
-    private Label lbArCondicionado;
 
     @FXML
     private Label lbMP3;
@@ -103,6 +94,18 @@ public class FXMLAnchorPaneCadastroCategoriaController implements Initializable 
 
     @FXML
     private Label lbCameraDeRe;
+
+    @FXML
+    private Label lbArCondicionado;
+
+    @FXML
+    private JFXButton btInserir;
+
+    @FXML
+    private JFXButton btnEditar;
+
+    @FXML
+    private JFXButton btnExcluir;
 
     private Fachada fachada;
     private ArrayList<Categoria> categorias;
@@ -171,7 +174,7 @@ public class FXMLAnchorPaneCadastroCategoriaController implements Initializable 
 
         }
 
-        if (event.getSource() == BtnEditar) {
+        if (event.getSource() == btnEditar) {
 
             Categoria categoria = tableView.getSelectionModel().getSelectedItem();
 
@@ -310,7 +313,7 @@ public class FXMLAnchorPaneCadastroCategoriaController implements Initializable 
     }
 
     public Button getBtnEditar() {
-        return BtnEditar;
+        return btnEditar;
     }
 
     public Button getBtnExcluir() {

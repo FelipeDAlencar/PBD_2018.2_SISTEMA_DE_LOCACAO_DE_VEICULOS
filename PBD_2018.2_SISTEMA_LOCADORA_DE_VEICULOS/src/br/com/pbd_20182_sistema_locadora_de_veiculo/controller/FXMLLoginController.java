@@ -14,11 +14,11 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Pessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaJuridica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ThreadBackup;
-import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ThreadDeControleDeLimpezaERevisao;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ThreadDeVerificacaoDeLocacoes;
-import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Veiculo;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOPessoa;
-import br.com.pbd_20182_sistema_locadora_de_veiculo.view.Alerta;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -29,14 +29,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javax.persistence.NoResultException;
 
 /**
  *
@@ -45,17 +39,15 @@ import javax.persistence.NoResultException;
 public class FXMLLoginController implements Initializable {
 
     private Stage stage;
-    @FXML
-    private AnchorPane AnchorPane;
 
     @FXML
-    private TextField tfLogin;
+    private JFXTextField tfLogin;
 
     @FXML
-    private Button btnEntrar;
+    private JFXPasswordField tfSenha;
 
     @FXML
-    private PasswordField tfSenha;
+    private JFXButton btnEntrar;
 
     private DAOPessoa dAOPessoa = new DAOPessoa();
     private FXMLVBoxTelaPrincipalController controllerPrincipal;
@@ -73,7 +65,7 @@ public class FXMLLoginController implements Initializable {
         ThreadDeVerificacaoDeReservas threadDeVerificacaoDeReservas = new ThreadDeVerificacaoDeReservas();
         ThreadDeVerificacaoDeLocacoes threadDeVerificacaoDeLocacoes = new ThreadDeVerificacaoDeLocacoes();
         ThreadBackup threadBackup = new ThreadBackup();
-        
+
         Thread thread = new Thread(threadDeVerificacaoDeReservas);
         thread.setDaemon(true);
         thread.start();

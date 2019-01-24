@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -85,37 +85,41 @@
                         <Label text="Categoria" textFill="GAINSBORO" GridPane.rowIndex="2" />
                         <Label fx:id="lbCategoria" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <Label text="Disponível" textFill="GAINSBORO" GridPane.rowIndex="11" />
-                        <CheckBox fx:id="cbDisponível" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                        <JFXCheckBox fx:id="cbDisponivel" GridPane.columnIndex="1" GridPane.rowIndex="11" />
                      </children>
                   </GridPane>
-                  <HBox layoutX="26.0" layoutY="425.0" prefHeight="6.0" prefWidth="200.0" spacing="5.0">
+                  <HBox layoutX="26.0" layoutY="425.0" prefHeight="25.0" prefWidth="217.0" spacing="5.0">
                      <children>
-                        <TextField fx:id="tfPesquisa" promptText="Pesquisar" style="-fx-background-color: #D3D3D3;" />
-                        <Button fx:id="btnPesquisar" mnemonicParsing="false" onAction="#acaoBtns" prefHeight="25.0" prefWidth="46.0" style="-fx-background-color: #D3D3D3;">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
+                        <JFXTextField fx:id="tfPesquisa" focusColor="#bc2d1a" prefHeight="25.0" prefWidth="194.0" unFocusColor="GAINSBORO" />
+                        <JFXButton fx:id="btnPesquisar" onAction="#acaoBtns" prefHeight="25.0" prefWidth="16.0">
                            <graphic>
                               <ImageView>
                                  <image>
                                     <Image url="@../../../../res/baseline_search_black_18dp.png" />
                                  </image>
                               </ImageView>
-                           </graphic></Button>
+                           </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
                      </children>
                   </HBox>
-                  <Button fx:id="btnInserir" layoutX="264.0" layoutY="425.0" mnemonicParsing="false" onAction="#acaoBtns" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #D3D3D3;" text="Inserir">
+                  <JFXButton fx:id="btnInserir" layoutX="306.0" layoutY="425.0" onAction="#acaoBtns" ripplerFill="#0df237" text="Inserir" textFill="GAINSBORO">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></Button>
-                  <Button fx:id="btnEditar" layoutX="332.0" layoutY="425.0" mnemonicParsing="false" onAction="#acaoBtns" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #D3D3D3;" text="Editar">
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="btnEditar" layoutX="373.0" layoutY="425.0" onAction="#acaoBtns" ripplerFill="#0ecbf0" text="Alterar" textFill="GAINSBORO">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></Button>
-                  <Button fx:id="btnExcluir" layoutX="402.0" layoutY="425.0" mnemonicParsing="false" onAction="#acaoBtns" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #D3D3D3;" text="Excluir">
+                     </cursor>
+                  </JFXButton>
+                  <JFXButton fx:id="btnExcluir" layoutX="438.0" layoutY="425.0" onAction="#acaoBtns" ripplerFill="#f00e0e" text="Excluir" textFill="GAINSBORO">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></Button>
+                     </cursor>
+                  </JFXButton>
                </children>
             </AnchorPane>
         </items>

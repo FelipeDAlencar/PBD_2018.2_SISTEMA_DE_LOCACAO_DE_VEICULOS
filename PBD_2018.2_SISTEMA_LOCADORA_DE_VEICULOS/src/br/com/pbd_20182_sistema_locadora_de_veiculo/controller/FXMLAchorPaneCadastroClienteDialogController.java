@@ -14,6 +14,11 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaJuridica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Util;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOPessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.view.Alerta;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXRadioButton;
+import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.ZoneId;
@@ -27,14 +32,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.Background;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
@@ -53,7 +55,21 @@ public class FXMLAchorPaneCadastroClienteDialogController implements Initializab
     private boolean isEdicao;
 
     @FXML
+    private Label lbInscricaoEstadual;
+
+    private JFXTextField tfInscricaoEstadual;
+
+    @FXML
+    private GridPane gridPane2;
+
+    @FXML
+    private ColumnConstraints gridPane;
+
+    @FXML
     private Label lbDataNascimento;
+
+    @FXML
+    private Label lbCPFCNPJ;
 
     @FXML
     private Label lbDataDeVencimentoCNH;
@@ -65,74 +81,67 @@ public class FXMLAchorPaneCadastroClienteDialogController implements Initializab
     private Label lbNCNH;
 
     @FXML
-    private Label lbCPFCNPJ;
+    private JFXTextField tfNome;
 
     @FXML
-    private TextField tfNome;
+    private JFXTextField tfCPFCNPJ;
 
     @FXML
-    private TextField tfCPFCNPJ;
+    private JFXTextField tfLogin;
 
     @FXML
-    private DatePicker cpDataNascimento;
+    private JFXDatePicker cpDataNascimento;
 
     @FXML
-    private DatePicker cpVencimentoCNH;
+    private JFXDatePicker cpVencimentoCNH;
 
     @FXML
-    private TextField tfIdentificacao;
+    private JFXTextField tfIdentificacao;
 
     @FXML
-    private TextField tfNCNH;
+    private JFXTextField tfNCNH;
 
     @FXML
-    private TextField tfLogin;
+    private JFXTextField tfCidade;
 
     @FXML
-    private Button btnCadastrar;
+    private JFXTextField tfRua;
 
     @FXML
-    private Button BtnCancelar;
+    private JFXTextField tfBairro;
 
     @FXML
-    private RadioButton rbPessoaJuridica;
+    private JFXTextField tfNumero;
 
     @FXML
-    private RadioButton rbPessoaFisica;
+    private JFXTextField tfCep;
 
     @FXML
-    private Label lbInscricaoEstadual;
-
-    private TextField tfInscricaoEstadual;
-    @FXML
-    private GridPane gridPane2;
+    private JFXComboBox<String> comboUF;
 
     @FXML
-    private TextField tfRua;
+    private JFXRadioButton rbPessoaFisica;
 
     @FXML
-    private TextField tfBairro;
+    private JFXRadioButton rbPessoaJuridica;
 
     @FXML
-    private TextField tfCidade;
+    private JFXButton btnCadastrar;
 
     @FXML
-    private ComboBox<String> comboUF;
-
-    @FXML
-    private TextField tfNumero;
-    
-    @FXML
-    private TextField tfCep;
+    private JFXButton BtnCancelar;
 
     private DAOPessoa dAOPessoa = new DAOPessoa();
 
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
         lbInscricaoEstadual = new Label("Inscrição Estadual");
         lbInscricaoEstadual.setTextFill(Paint.valueOf("#dcdcdc"));
 
-        tfInscricaoEstadual = new TextField();
-        tfInscricaoEstadual.setStyle("-fx-background-color: #D3D3D3;");
+        tfInscricaoEstadual = new JFXTextField();
+        tfInscricaoEstadual.setFocusColor(Paint.valueOf("#e84017"));
+        tfInscricaoEstadual.setUnFocusColor(Paint.valueOf("#dcdcdc"));
+        tfInscricaoEstadual.setPromptText("Inscrição estadual");
 
         lbInscricaoEstadual.setVisible(false);
         tfInscricaoEstadual.setVisible(false);
@@ -227,7 +236,6 @@ public class FXMLAchorPaneCadastroClienteDialogController implements Initializab
 
             lbCPFCNPJ.setText("CPF");
             MascarasTF.mascaraCPF(tfCPFCNPJ);
-           
 
         }
     }
@@ -252,17 +260,20 @@ public class FXMLAchorPaneCadastroClienteDialogController implements Initializab
             pessoa.setEndereco(endereco);
         }
 
-       
-
         pessoa.setNome(tfNome.getText());
         ((PessoaFisica) pessoa).setCPF(Util.removerCaracteres(tfCPFCNPJ.getText()));
         pessoa.setLogin(tfLogin.getText());
         if (!isEdicao) {
             pessoa.setSenha(((PessoaFisica) pessoa).getCPF());
             try {
-                String UltimoCodigo = dAOPessoa.buscarUltimoCodigo();
-                pessoa.setCodigo(Util.gerarCodigoInterno(pessoa.getNome(), UltimoCodigo));
-
+                if (pessoa.getNome().length() > 3) {
+                    String UltimoCodigo = dAOPessoa.buscarUltimoCodigo();
+                    pessoa.setCodigo(Util.gerarCodigoInterno(pessoa.getNome(), UltimoCodigo));
+                } else {
+                    Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
+                    alerta.alertar(Alert.AlertType.INFORMATION, "Campo inválido!", "Seu nome deve ser válido",
+                            "Nome tem quer ter no mínimo 3 caracteres.");
+                }
             } catch (DAOException ex) {
                 throw new DAOException("ERRO AO BUSCAR ULTIMO CÓDIGO!");
             }
@@ -309,8 +320,14 @@ public class FXMLAchorPaneCadastroClienteDialogController implements Initializab
 
             String UltimoCodigo;
             try {
-                UltimoCodigo = dAOPessoa.buscarUltimoCodigo();
-                pessoa.setCodigo(Util.gerarCodigoInterno(pessoa.getNome(), UltimoCodigo));
+                if (pessoa.getNome().length() > 3) {
+                    UltimoCodigo = dAOPessoa.buscarUltimoCodigo();
+                    pessoa.setCodigo(Util.gerarCodigoInterno(pessoa.getNome(), UltimoCodigo));
+                } else {
+                    Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
+                    alerta.alertar(Alert.AlertType.INFORMATION, "Campo inválido!", "Seu nome deve ser válido",
+                            "Nome tem quer ter no mínimo 3 caracteres.");
+                }
 
             } catch (DAOException ex) {
                 throw new DAOException("ERRO AO BUSCAR ULTIMO CÓDIGO!");

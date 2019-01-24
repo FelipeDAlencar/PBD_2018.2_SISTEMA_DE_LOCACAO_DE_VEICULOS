@@ -26,24 +26,28 @@
                         <MenuItem fx:id="menuiItemFilial" mnemonicParsing="false" onAction="#acaosMenuItensCadastros" text="Filial" />
                   </items>
                 </Menu>
-                <Menu fx:id="menuRelatorios" mnemonicParsing="false" text="Relatorios">
+                <Menu fx:id="menuRelatorios" mnemonicParsing="false" text="Relatórios">
                   <items>
                     <MenuItem fx:id="menuItemClientesFisicos" mnemonicParsing="false" onAction="#acoesMenuItensRelatorios" text="Cliente Físicos" />
                         <MenuItem fx:id="menuItemPessoasJuridicas" mnemonicParsing="false" onAction="#acoesMenuItensRelatorios" text="Cliente Juridicos" />
-                        <MenuItem fx:id="menuItemReservasPorPeriodo" mnemonicParsing="false" onAction="#acoesMenuItensRelatorios" text="Reservar por período" />
+                        <MenuItem fx:id="menuItemReservasPorPeriodo" mnemonicParsing="false" onAction="#acoesMenuItensRelatorios" text="Reservas por período" />
                         <MenuItem fx:id="menuItemLocacoesPorPeriodo" mnemonicParsing="false" onAction="#acoesMenuItensRelatorios" text="Locações por período" />
                         <MenuItem fx:id="menuItemLocacoesPorCliente" mnemonicParsing="false" onAction="#acoesMenuItensRelatorios" text="Locações por clientes" />
                         <MenuItem fx:id="MenuItemLocacoesPorMotorista" mnemonicParsing="false" onAction="#acoesMenuItensRelatorios" text="Locações por motorista" />
-                        <MenuItem mnemonicParsing="false" onAction="#acoesMenuItensRelatorios" text="Unspecified Action" />
-                        <MenuItem mnemonicParsing="false" onAction="#acoesMenuItensRelatorios" text="Histórico de revisões por carro" />
-                        <MenuItem fx:id="MenuItemPorCategoriaMaisReservadas" mnemonicParsing="false" onAction="#acoesMenuItensRelatorios" text="Por categoria mais reservada" />
+                        <MenuItem fx:id="menuItemHistoricoDeRevisoes" mnemonicParsing="false" onAction="#acoesMenuItensRelatorios" text="Histórico de revisões por carro" />
                   </items>
                 </Menu>
-                  <Menu fx:id="menuAdministracao" mnemonicParsing="false" text="Administrar">
+                  <Menu fx:id="menuAdministracao" mnemonicParsing="false" text="Geral">
                      <items>
                         <MenuItem fx:id="menuItemConfiguracoes" mnemonicParsing="false" onAction="#acaoMenuItemConfiguracoes" text="Configurações" />
                         <MenuItem fx:id="menuItemSair" mnemonicParsing="false" onAction="#acaoMenuItemConfiguracoes" text="Sair" />
                      </items></Menu>
+                  <Menu fx:id="menuFinanceiro" mnemonicParsing="false" text="Financeiro">
+                    <items>
+                        <MenuItem fx:id="menuItemContasAPagar" mnemonicParsing="false" onAction="#acaoMenuFinanceiro" text="Contas a pagar" />
+                        <MenuItem fx:id="menuItemContasAReceber" mnemonicParsing="false" onAction="#acaoMenuFinanceiro" text="Contas a receber" />
+                    </items>
+                  </Menu>
               </menus>
                <effect>
                   <Blend />

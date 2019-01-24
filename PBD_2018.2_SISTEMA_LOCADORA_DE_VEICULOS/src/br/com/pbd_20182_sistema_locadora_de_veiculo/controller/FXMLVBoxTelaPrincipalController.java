@@ -23,7 +23,7 @@ import javafx.util.Callback;
 
 public class FXMLVBoxTelaPrincipalController implements Initializable {
 
-     @FXML
+    @FXML
     private MenuItem menuItemClientes;
 
     @FXML
@@ -44,6 +44,8 @@ public class FXMLVBoxTelaPrincipalController implements Initializable {
     @FXML
     private MenuItem menuiItemFilial;
 
+    @FXML
+    private MenuItem menuItemHistoricoDeRevisoes;
     @FXML
     private Menu menuRelatorios;
 
@@ -66,9 +68,6 @@ public class FXMLVBoxTelaPrincipalController implements Initializable {
     private MenuItem MenuItemLocacoesPorMotorista;
 
     @FXML
-    private MenuItem MenuItemPorCategoriaMaisReservadas;
-
-    @FXML
     private Menu menuAdministracao;
 
     @FXML
@@ -78,7 +77,30 @@ public class FXMLVBoxTelaPrincipalController implements Initializable {
     private MenuItem menuItemSair;
 
     @FXML
+    private Menu menuFinanceiro;
+
+    @FXML
+    private MenuItem menuItemContasAReceber;
+
+    @FXML
+    private MenuItem menuItemContasAPagar;
+
+    @FXML
     private AnchorPane AnchorPaneContent;
+
+    @FXML
+    void acaoMenuFinanceiro(ActionEvent event) throws IOException {
+        Pane pane;
+
+        if (event.getSource() == menuItemContasAPagar) {
+            pane = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAnchorPaneContaAPagar.fxml"));
+            AnchorPaneContent.getChildren().setAll(pane);
+        }
+        if (event.getSource() == menuItemContasAReceber) {
+            pane = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAnchorPaneContasAReceber.fxml"));
+            AnchorPaneContent.getChildren().setAll(pane);
+        }
+    }
 
     Stage stage;
 
@@ -126,7 +148,7 @@ public class FXMLVBoxTelaPrincipalController implements Initializable {
         }
 
         if (event.getSource() == menuItemLocacoes) {
-            pane = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAnchorPaneRelatorioPessoasFisicas.fxml"));
+            pane = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAnchorPaneCadastroLocacao.fxml"));
             AnchorPaneContent.getChildren().setAll(pane);
         }
 
@@ -175,6 +197,33 @@ public class FXMLVBoxTelaPrincipalController implements Initializable {
             pane = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAnchorPaneRelatorioPessoasFisicas.fxml"));
             AnchorPaneContent.getChildren().setAll(pane);
         }
+
+        if (event.getSource() == menuItemPessoasJuridicas) {
+            pane = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAnchorPaneRelatorioPessoasJuridicas.fxml"));
+            AnchorPaneContent.getChildren().setAll(pane);
+
+        }
+        if (event.getSource() == menuItemLocacoesPorCliente) {
+            pane = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAnchorPaneRelatorioLocacoesPorCliente.fxml"));
+            AnchorPaneContent.getChildren().setAll(pane);
+        }
+        if (event.getSource() == MenuItemLocacoesPorMotorista) {
+            pane = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAnchorPaneRelatorioLocacaoPorMotorista.fxml"));
+            AnchorPaneContent.getChildren().setAll(pane);
+        }
+        if (event.getSource() == menuItemLocacoesPorPeriodo) {
+            pane = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAchorPaneRelatorioLocacaoPorPeriodo.fxml"));
+            AnchorPaneContent.getChildren().setAll(pane);
+        }
+        if (event.getSource() == menuItemReservasPorPeriodo) {
+            pane = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAnchorPaneRelatorioReservasPorPeriodo.fxml"));
+            AnchorPaneContent.getChildren().setAll(pane);
+        }
+
+        if (event.getSource() == menuItemHistoricoDeRevisoes) {
+            pane = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAnchorPaneHistoricoDeRevisao.fxml"));
+            AnchorPaneContent.getChildren().setAll(pane);
+        }
     }
 
     public MenuItem getMenuItemClientes() {
@@ -221,9 +270,7 @@ public class FXMLVBoxTelaPrincipalController implements Initializable {
         return MenuItemLocacoesPorMotorista;
     }
 
-    public MenuItem getMenuItemPorCategoriaMaisReservadas() {
-        return MenuItemPorCategoriaMaisReservadas;
-    }
+    
 
     public Menu getMenuAdministracao() {
         return menuAdministracao;

@@ -8,16 +8,14 @@ package br.com.pbd_20182_sistema_locadora_de_veiculo.controller;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.BusinessExpection;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
-import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Endereco;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Filial;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.view.Alerta;
-import com.sun.deploy.util.FXLoader;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -34,8 +32,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -59,7 +56,7 @@ public class FXMLAnchorPaneCadastroFilialController implements Initializable {
     @FXML
     private TableColumn<Filial, String> colunaUF;
 
-    @FXML
+       @FXML
     private Label lbNomeFilial;
 
     @FXML
@@ -78,19 +75,23 @@ public class FXMLAnchorPaneCadastroFilialController implements Initializable {
     private Label lbUF;
 
     @FXML
-    private Button btnInserir;
+    private JFXTextField tfPesquisa;
 
     @FXML
-    private Button btnEditar;
+    private JFXButton btnPesquisar;
 
     @FXML
-    private Button btnExcluir;
+    private ImageView acaoBtns;
 
     @FXML
-    private TextField tfPesquisa;
+    private JFXButton btnInserir;
 
     @FXML
-    private Button btnPesquisar;
+    private JFXButton btnEditar;
+
+    @FXML
+    private JFXButton btnExcluir;
+
 
     private Fachada fachada;
     private ArrayList<Filial> filiais;
