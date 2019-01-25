@@ -122,6 +122,15 @@ public class SQLUtil {
         public static final String SQL_BUSCAR_LOCACAO_POR_MOTORISTA = "select v  from ViewMotoristaPorLocacao v  where motoId = :id";
         public static final String SQL_BUSCAR_LOCACAO_POR_PERIODO = "select v  from ViewLocacaoPorPeriodo v  where dataIda between :dataInicial and :dataFinal";
     }
+    
+    public static class ContaAPagar{
+        public static  String  SQL_BUSCAR_CONTA_A_PAGAR_POR_PERIODO = "select v  from ContaAPagar v  where v.dataVencimento between :dataInicial and :dataFinal";
+        
+    }
+    
+    public static class ContaAReceber{
+        public static  String  SQL_BUSCAR_CONTA_A_RECEBER_POR_PERIODO = "select v  from ContaAReceber v  where v.dataRecebimento between :dataInicial and :dataFinal";
+    }
 
     public static final String NOME_BD_CONEXAO_POSTGRES = "POSTGRES";
 

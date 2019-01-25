@@ -136,12 +136,13 @@ public class FXMLAchorPaneCadastroClienteDialogController implements Initializab
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         lbInscricaoEstadual = new Label("Inscrição Estadual");
-        lbInscricaoEstadual.setTextFill(Paint.valueOf("#dcdcdc"));
+        
 
         tfInscricaoEstadual = new JFXTextField();
         tfInscricaoEstadual.setFocusColor(Paint.valueOf("#e84017"));
-        tfInscricaoEstadual.setUnFocusColor(Paint.valueOf("#dcdcdc"));
-        tfInscricaoEstadual.setPromptText("Inscrição estadual");
+        tfInscricaoEstadual.setUnFocusColor(Paint.valueOf("#000000"));
+        
+       
 
         lbInscricaoEstadual.setVisible(false);
         tfInscricaoEstadual.setVisible(false);

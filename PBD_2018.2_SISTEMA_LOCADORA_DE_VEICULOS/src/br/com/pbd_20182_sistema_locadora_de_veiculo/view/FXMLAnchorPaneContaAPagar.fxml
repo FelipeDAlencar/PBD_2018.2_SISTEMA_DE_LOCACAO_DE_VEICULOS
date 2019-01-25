@@ -16,8 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="479.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="br.com.pbd_20182_sistema_locadora_de_veiculo.controller.FXMLAnchorPaneContaAPagarController">
+<AnchorPane id="AnchorPane" prefHeight="479.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.pbd_20182_sistema_locadora_de_veiculo.controller.FXMLAnchorPaneContaAPagarController">
    <children>
       <SplitPane dividerPositions="0.3634085213032581" layoutX="77.0" layoutY="99.0" prefHeight="479.0" prefWidth="800.0" style="-fx-background-color: #3b5998;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -29,12 +28,15 @@
                       <TableColumn fx:id="colunaValor" prefWidth="51.0" text="Valor" />
                         <TableColumn fx:id="colunaSituacao" prefWidth="67.0" text="paga" />
                     </columns>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </TableView>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #DCDCDC;">
                <children>
-                  <Label layoutX="140.0" layoutY="32.0" text="Detalhes contas à pagar" textFill="GAINSBORO">
+                  <Label layoutX="140.0" layoutY="32.0" text="Detalhes contas à pagar">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -51,42 +53,48 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label text="Descrição" textFill="GAINSBORO" />
-                        <Label text="Data Vencimento" textFill="GAINSBORO" GridPane.rowIndex="1" />
-                        <Label text="Valor" textFill="GAINSBORO" GridPane.rowIndex="2" />
-                        <Label text="Situação" textFill="GAINSBORO" GridPane.rowIndex="3" />
+                        <Label text="Descrição" />
+                        <Label text="Data Vencimento" GridPane.rowIndex="1" />
+                        <Label text="Valor" GridPane.rowIndex="2" />
+                        <Label text="Situação" GridPane.rowIndex="3" />
                         <Label fx:id="lbDrescricao" GridPane.columnIndex="1" />
                         <Label fx:id="lbDataVencimento" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label fx:id="lbValor" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <Label fx:id="lbSituacao" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                      </children>
                   </GridPane>
-                  <JFXButton fx:id="btnInserir" layoutX="265.0" layoutY="426.0" onAction="#acaoBtns" text="Inserir" textFill="GAINSBORO">
+                  <JFXButton fx:id="btnInserir" layoutX="265.0" layoutY="426.0" onAction="#acaoBtns" style="-fx-background-color: #c6e30b;" text="Inserir">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </JFXButton>
-                  <JFXButton fx:id="btnEditar" layoutX="355.0" layoutY="426.0" onAction="#acaoBtns" text="Alterar" textFill="GAINSBORO">
+                  <JFXButton fx:id="btnEditar" layoutX="355.0" layoutY="426.0" onAction="#acaoBtns" style="-fx-background-color: #c6e30b;" text="Alterar">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </JFXButton>
-                  <JFXButton fx:id="btnExcluir" layoutX="439.0" layoutY="426.0" onAction="#acaoBtns" text="Excluir" textFill="GAINSBORO">
+                  <JFXButton fx:id="btnExcluir" layoutX="439.0" layoutY="426.0" onAction="#acaoBtns" style="-fx-background-color: #c6e30b;" text="Excluir">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </JFXButton>
                   <HBox layoutX="26.0" layoutY="426.0" prefHeight="25.0" prefWidth="200.0">
                      <children>
-                        <JFXTextField fx:id="tfBuscar" focusColor="#b23528" prefHeight="25.0" prefWidth="204.0" unFocusColor="GAINSBORO" />
+                        <JFXTextField fx:id="tfBuscar" focusColor="#b23528" prefHeight="25.0" prefWidth="204.0" unFocusColor="BLACK" />
                         <JFXButton fx:id="btnBuscar" onAction="#acaoBtns" prefHeight="25.0" prefWidth="10.0">
                            <graphic>
                               <ImageView>
                                  <image>
                                     <Image url="@../../../../res/baseline_search_black_18dp.png" />
                                  </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </ImageView>
                            </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </JFXButton>
                      </children>
                   </HBox>

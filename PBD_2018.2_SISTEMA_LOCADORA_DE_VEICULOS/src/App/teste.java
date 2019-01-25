@@ -50,14 +50,15 @@ import org.hibernate.type.descriptor.java.LocalDateJavaDescriptor;
  * @author Felipe
  */
 public class teste {
-    
+
     public static void main(String[] args) throws DAOException, ParseException, JRException {
-        
-        DAORevisao daor = new DAORevisao();
-        Veiculo veiculo = new Veiculo();
-        veiculo.setId(1);
-        
-        System.err.println(daor.findAll());
+
+        DAOContasAPagar daocap = new DAOContasAPagar();
+        Date date1 = new Date(119, 0, 15);
+        Date date2 = new Date(119, 0, 17);
+
+        System.err.println(date1 + " - " + date2);
+        System.err.println(daocap.buscarContaAPagarPorPeriodo(date1, date2));
 
 //        System.err.println(format.parse(format.format(new Date())));
 //
@@ -96,7 +97,7 @@ public class teste {
         //        
         //        System.err.println(Util.formatarData(pessoaFisica.getData_nascimento()));
         DAOFuncionario daof = new DAOFuncionario();
-        
+
         DAOPessoa daop = new DAOPessoa();
 //        Funcionario funcionario = new Funcionario();
 //        
@@ -138,5 +139,5 @@ public class teste {
 //        }
 
     }
-    
+
 }

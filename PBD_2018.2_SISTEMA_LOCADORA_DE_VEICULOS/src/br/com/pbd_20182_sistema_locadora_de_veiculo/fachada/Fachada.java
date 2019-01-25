@@ -444,6 +444,12 @@ public class Fachada implements IFachada {
     }
 
     @Override
+    public ArrayList<ContaAPagar> buscarContaAPagarPorPeriodo(Date dataInicial, Date dataFinal)
+            throws DAOException {
+        return businnessContaAPagar.buscarContaAPagarPorPeriodo(dataInicial, dataFinal);
+    }
+
+    @Override
     public void salvarContaAPagar(ContaAPagar contaAPagar) throws DAOException {
         businnessContaAPagar.salvarContaAPagar(contaAPagar);
     }
@@ -467,6 +473,12 @@ public class Fachada implements IFachada {
     public ArrayList<ContaAReceber> listarTodasContasAReceber() throws DAOException {
 
         return businnessContaAReceber.listarTodasContasAReceber();
+    }
+
+    @Override
+    public ArrayList<ContaAReceber> buscarContaAReceberPorPeriodo(Date dataInicial, Date dataFinal)
+            throws DAOException {
+        return businnessContaAReceber.buscarContaAReceberPorPeriodo(dataInicial, dataFinal);
     }
 
     @Override

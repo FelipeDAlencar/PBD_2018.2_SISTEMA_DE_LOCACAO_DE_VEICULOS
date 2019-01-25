@@ -34,7 +34,7 @@
                   </TableView>
                </children>
             </AnchorPane>
-          <AnchorPane accessibleRole="BUTTON" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <AnchorPane accessibleRole="BUTTON" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #DCDCDC;">
                <children>
                   <GridPane alignment="BASELINE_RIGHT" layoutX="135.0" layoutY="111.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="256.0" prefWidth="288.0">
                     <columnConstraints>
@@ -52,13 +52,13 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label text="Codigo" textFill="GAINSBORO" />
-                        <Label text="Nome" textFill="GAINSBORO" GridPane.rowIndex="1" />
-                        <Label fx:id="lbCPFCPNJ" text="CPF" textFill="GAINSBORO" GridPane.rowIndex="3" />
-                        <Label fx:id="lbNumeroCNHD" text="Numero CNH" textFill="GAINSBORO" GridPane.rowIndex="6" />
-                        <Label fx:id="lbDatavencimentoCNHD" prefHeight="18.0" prefWidth="201.0" text="Data de vencimento CNH" textFill="GAINSBORO" GridPane.rowIndex="5" />
-                        <Label fx:id="lbDataNascimentoD" text="Data de nascimento" textFill="GAINSBORO" GridPane.rowIndex="4" />
-                        <Label fx:id="lbIdentificacaoD" text="Identificacao" textFill="GAINSBORO" GridPane.rowIndex="7" />
+                        <Label text="Codigo" />
+                        <Label text="Nome" GridPane.rowIndex="1" />
+                        <Label fx:id="lbCPFCPNJ" text="CPF" GridPane.rowIndex="3" />
+                        <Label fx:id="lbNumeroCNHD" text="Numero CNH" GridPane.rowIndex="6" />
+                        <Label fx:id="lbDatavencimentoCNHD" prefHeight="18.0" prefWidth="201.0" text="Data de vencimento CNH" GridPane.rowIndex="5" />
+                        <Label fx:id="lbDataNascimentoD" text="Data de nascimento" GridPane.rowIndex="4" />
+                        <Label fx:id="lbIdentificacaoD" text="Identificacao" GridPane.rowIndex="7" />
                         <Label fx:id="lbCodigo" textAlignment="JUSTIFY" GridPane.columnIndex="1" />
                         <Label fx:id="lbNome" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label fx:id="lbDataNascimento" GridPane.columnIndex="1" GridPane.rowIndex="4" />
@@ -66,7 +66,7 @@
                         <Label fx:id="lbDataDeVencimentoCNH" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                         <Label fx:id="lbNumeroCNH" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                         <Label fx:id="lbIdentificacao" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                        <Label text="Login" textFill="GAINSBORO" GridPane.rowIndex="2" />
+                        <Label text="Login" GridPane.rowIndex="2" />
                         <Label fx:id="lbLogin" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
@@ -78,7 +78,7 @@
                   <Group layoutX="187.0" layoutY="373.0" />
                   <HBox layoutX="29.0" layoutY="412.0" prefHeight="25.0" prefWidth="212.0" spacing="5.0">
                      <children>
-                        <JFXTextField fx:id="tfPesquisa" focusColor="#ea1f0d" prefHeight="25.0" prefWidth="166.0" unFocusColor="GAINSBORO" />
+                        <JFXTextField fx:id="tfPesquisa" focusColor="#ea1f0d" prefHeight="25.0" prefWidth="166.0" unFocusColor="BLACK" />
                         <JFXButton fx:id="btnPesquisar" onAction="#acoesDeBotao" prefHeight="25.0" prefWidth="19.0" ripplerFill="#d8d8d8" text=" ">
                            <graphic>
                               <ImageView fitHeight="17.0" fitWidth="17.0">
@@ -93,15 +93,15 @@
                         </JFXButton>
                      </children>
                   </HBox>
-                  <JFXButton fx:id="BtnInserirCliente" layoutX="276.0" layoutY="416.0" onAction="#acoesDeBotao" ripplerFill="#28d71c" text="Inserir">
+                  <JFXButton fx:id="BtnInserirCliente" layoutX="276.0" layoutY="416.0" onAction="#acoesDeBotao" ripplerFill="#28d71c" style="-fx-background-color: #c6e30b;" text="Inserir">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></JFXButton>
-                  <JFXButton fx:id="btnAlterar" layoutX="371.0" layoutY="416.0" onAction="#acoesDeBotao" ripplerFill="#10b0e5" text="Alterar">
+                  <JFXButton fx:id="btnAlterar" layoutX="371.0" layoutY="416.0" onAction="#acoesDeBotao" ripplerFill="#10b0e5" style="-fx-background-color: #c6e30b;" text="Alterar">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></JFXButton>
-                  <JFXButton fx:id="BtnExcluir" layoutX="451.0" layoutY="416.0" onAction="#acoesDeBotao" ripplerFill="#e80e0e" text="Excluir" />
+                  <JFXButton fx:id="BtnExcluir" layoutX="451.0" layoutY="416.0" onAction="#acoesDeBotao" ripplerFill="#e80e0e" style="-fx-background-color: #c6e30b;" text="Excluir" />
                </children>
             </AnchorPane>
         </items>

@@ -11,10 +11,9 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: #3b5998;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="br.com.pbd_20182_sistema_locadora_de_veiculo.controller.FXMLAnchorPaneContaAPagarDialogController">
+<AnchorPane id="AnchorPane" prefHeight="347.0" prefWidth="425.0" style="-fx-background-color: #DCDCDC;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.pbd_20182_sistema_locadora_de_veiculo.controller.FXMLAnchorPaneContaAPagarDialogController">
    <children>
-      <GridPane layoutX="96.0" layoutY="41.0" prefHeight="226.0" prefWidth="309.0">
+      <GridPane layoutX="54.0" layoutY="41.0" prefHeight="226.0" prefWidth="309.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="134.0" minWidth="10.0" prefWidth="97.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="206.0" minWidth="10.0" prefWidth="181.0" />
@@ -26,22 +25,22 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Descrição" textFill="GAINSBORO" />
-            <Label text="Data de vecimento" textFill="GAINSBORO" GridPane.rowIndex="1" />
-            <Label text="paga" textFill="GAINSBORO" GridPane.rowIndex="3" />
-            <Label text="Valor" textFill="GAINSBORO" GridPane.rowIndex="2" />
-            <JFXTextField fx:id="tfDescricao" focusColor="#d02f1d" unFocusColor="GAINSBORO" GridPane.columnIndex="1" />
-            <JFXTextField fx:id="tfValor" focusColor="#d02f1d" unFocusColor="GAINSBORO" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <JFXDatePicker fx:id="dpDataVencimento" prefHeight="25.0" prefWidth="207.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="Descrição" />
+            <Label text="Data de vecimento" GridPane.rowIndex="1" />
+            <Label text="paga" GridPane.rowIndex="3" />
+            <Label text="Valor" GridPane.rowIndex="2" />
+            <JFXTextField fx:id="tfDescricao" focusColor="#d02f1d" unFocusColor="BLACK" GridPane.columnIndex="1" />
+            <JFXTextField fx:id="tfValor" focusColor="#d02f1d" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <JFXDatePicker fx:id="dpDataVencimento" prefHeight="25.0" prefWidth="203.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <JFXCheckBox fx:id="cbPago" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
-      <JFXButton fx:id="btnConfirmar" layoutX="149.0" layoutY="344.0" onAction="#acaoBtns" ripplerFill="#06f532" text="Confirmar" textFill="GAINSBORO">
+      <JFXButton fx:id="btnConfirmar" layoutX="101.0" layoutY="294.0" onAction="#acaoBtns" ripplerFill="#06f532" style="-fx-background-color: #c6e30b;" text="Confirmar">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="btnCancelar" layoutX="301.0" layoutY="344.0" onAction="#acaoBtns" ripplerFill="#eb2209" text="Cancelar" textFill="GAINSBORO">
+      <JFXButton fx:id="btnCancelar" layoutX="253.0" layoutY="294.0" onAction="#acaoBtns" ripplerFill="#eb2209" style="-fx-background-color: #c6e30b;" text="Cancelar">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

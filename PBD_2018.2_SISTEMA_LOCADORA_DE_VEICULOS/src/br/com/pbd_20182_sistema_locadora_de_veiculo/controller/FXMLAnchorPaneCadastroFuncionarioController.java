@@ -157,6 +157,8 @@ public class FXMLAnchorPaneCadastroFuncionarioController implements Initializabl
                 alerta.alertar(Alert.AlertType.INFORMATION, "Atenção", "Atenção", "Por favor,"
                         + "Selecione na tabela o funcionario para edição.");
             }
+            
+            carregarFuncionarios(fachada.listarTodosFuncionario());
 
         }
 
@@ -177,7 +179,7 @@ public class FXMLAnchorPaneCadastroFuncionarioController implements Initializabl
                         + "Selecione na tabela o funcionario para exclusão.");
 
             }
-
+            
         }
         if (event.getSource() == btnPesquisar) {
 
@@ -185,15 +187,19 @@ public class FXMLAnchorPaneCadastroFuncionarioController implements Initializabl
 
                 funcionarios = fachada.buscarPorBuscaFuncionario(tfBuscar.getText());
                 carregarFuncionarios(funcionarios);
+
             } else {
+
                 carregarFuncionarios(fachada.listarTodosFuncionario());
             }
 
         }
-
+        
     }
 
     private void carregarFuncionarios(ArrayList<Funcionario> funcionarios) throws DAOException {
+
+        tableView.getItems().clear();
 
         colunaMatricula.setCellValueFactory(new PropertyValueFactory<>("matricula"));
         colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));

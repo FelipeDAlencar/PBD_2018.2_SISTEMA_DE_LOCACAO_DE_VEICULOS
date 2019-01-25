@@ -86,6 +86,12 @@ public class FXMLVBoxTelaPrincipalController implements Initializable {
     private MenuItem menuItemContasAPagar;
 
     @FXML
+    private MenuItem meniItemRelatorioContaAPagar;
+
+    @FXML
+    private MenuItem meniItemRelatorioContaAReceber;
+
+    @FXML
     private AnchorPane AnchorPaneContent;
 
     @FXML
@@ -224,6 +230,15 @@ public class FXMLVBoxTelaPrincipalController implements Initializable {
             pane = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAnchorPaneHistoricoDeRevisao.fxml"));
             AnchorPaneContent.getChildren().setAll(pane);
         }
+
+        if (event.getSource() == meniItemRelatorioContaAPagar) {
+            pane = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAnchorPaneRelatorioContaAPagar.fxml"));
+            AnchorPaneContent.getChildren().setAll(pane);
+        }
+        if (event.getSource() == meniItemRelatorioContaAReceber) {
+            pane = FXMLLoader.load(getClass().getResource("/br/com/pbd_20182_sistema_locadora_de_veiculo/view/FXMLAnchorPaneRelatorioContasAReceber.fxml"));
+            AnchorPaneContent.getChildren().setAll(pane);
+        }
     }
 
     public MenuItem getMenuItemClientes() {
@@ -269,8 +284,6 @@ public class FXMLVBoxTelaPrincipalController implements Initializable {
     public MenuItem getMenuItemLocacoesPorMotorista() {
         return MenuItemLocacoesPorMotorista;
     }
-
-    
 
     public Menu getMenuAdministracao() {
         return menuAdministracao;
@@ -325,6 +338,38 @@ public class FXMLVBoxTelaPrincipalController implements Initializable {
 
     public MenuItem getMenuiItemFilial() {
         return menuiItemFilial;
+    }
+
+    public MenuItem getMenuItemHistoricoDeRevisoes() {
+        return menuItemHistoricoDeRevisoes;
+    }
+
+    public void setMenuItemHistoricoDeRevisoes(MenuItem menuItemHistoricoDeRevisoes) {
+        this.menuItemHistoricoDeRevisoes = menuItemHistoricoDeRevisoes;
+    }
+
+    public Menu getMenuFinanceiro() {
+        return menuFinanceiro;
+    }
+
+    public void setMenuFinanceiro(Menu menuFinanceiro) {
+        this.menuFinanceiro = menuFinanceiro;
+    }
+
+    public MenuItem getMenuItemContasAReceber() {
+        return menuItemContasAReceber;
+    }
+
+    public void setMenuItemContasAReceber(MenuItem menuItemContasAReceber) {
+        this.menuItemContasAReceber = menuItemContasAReceber;
+    }
+
+    public MenuItem getMenuItemContasAPagar() {
+        return menuItemContasAPagar;
+    }
+
+    public void setMenuItemContasAPagar(MenuItem menuItemContasAPagar) {
+        this.menuItemContasAPagar = menuItemContasAPagar;
     }
 
 }

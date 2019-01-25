@@ -11,6 +11,7 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Pessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaJuridica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.view.Alerta;
+import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -30,10 +31,10 @@ import javafx.stage.Stage;
 public class FXMLAnchorPaneTelaDeMudancaDeSenhaController implements Initializable {
 
     @FXML
-    private JFXTextField ptfSenha;
+    private JFXPasswordField ptfSenha;
 
     @FXML
-    private JFXTextField ptfConfirmarSenha;
+    private JFXPasswordField ptfConfirmarSenha;
 
     @FXML
     private Button btnRedefinir;
@@ -76,13 +77,7 @@ public class FXMLAnchorPaneTelaDeMudancaDeSenhaController implements Initializab
 
     }
 
-    public JFXTextField getPtfSenha() {
-        return ptfSenha;
-    }
-
-    public JFXTextField getPtfConfirmarSenha() {
-        return ptfConfirmarSenha;
-    }
+   
 
     public Button getBtnRedefinir() {
         return btnRedefinir;

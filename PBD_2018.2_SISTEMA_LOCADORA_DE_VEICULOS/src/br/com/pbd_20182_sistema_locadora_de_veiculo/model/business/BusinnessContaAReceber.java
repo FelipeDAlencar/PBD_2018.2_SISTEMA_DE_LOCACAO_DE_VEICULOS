@@ -11,6 +11,7 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ContaAReceber;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOContaAReceber;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOContasAPagar;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -39,6 +40,12 @@ public class BusinnessContaAReceber implements IBusinnessContaAReceber {
     public ArrayList<ContaAReceber> listarTodasContasAReceber() throws DAOException {
 
         return daocap.findAll();
+    }
+
+    @Override
+    public ArrayList<ContaAReceber> buscarContaAReceberPorPeriodo(Date dataInicial, Date dataFinal)
+            throws DAOException {
+        return daocap.buscarContaAReceberPorPeriodo(dataInicial, dataFinal);
     }
 
 }

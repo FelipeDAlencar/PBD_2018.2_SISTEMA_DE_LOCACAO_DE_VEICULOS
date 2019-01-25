@@ -22,33 +22,49 @@ public class Veiculo implements Serializable, EntidadeBase {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "veiculo_sequencia")
     private Integer id;
+    
     @Column(length = 50, nullable = false)
     private String cor;
+    
     @Column(name = "quilometragem_atual", nullable = false)
     private double quilometragemAtual;
+    
     @Column(name = "numero_chassi", nullable = false, length = 17)
     private String numeroChassi;
+    
     @Column(length = 70, nullable = false)
     private String modelo;
+    
     @Column(name = "torque_do_motor")
     private double torqueDoMotor;
+    
     @Column(name = "ano_de_fabricacao")
     private int anoDeFabricacao;
+    
     @Column(name = "ano_do_modelo", nullable = false)
     private int anoDoModelo;
+    
     @Column(length = 100)
     private String fabricante;
+    
     @Column(length = 8, nullable = false)
     private String placa;
+    
     @Column(name = "tipo_de_combustivel", length = 100)
     private String tipoDeCombustivel;
+    
+    @Column(name = "disponivel")
     private boolean disponivel;
     
+    @Column(name = "ativo")
     private boolean ativo;
     
     
     @ManyToOne
     private Categoria categoria;
+    
+    @ManyToOne
+    private Filial filial;
 
     @Override
     public Integer getId() {
@@ -163,23 +179,32 @@ public class Veiculo implements Serializable, EntidadeBase {
         this.ativo = ativo;
     }
 
+    public Filial getFilial() {
+        return filial;
+    }
+
+    public void setFilial(Filial filial) {
+        this.filial = filial;
+    }
+
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 23 * hash + Objects.hashCode(this.id);
-        hash = 23 * hash + Objects.hashCode(this.cor);
-        hash = 23 * hash + (int) (Double.doubleToLongBits(this.quilometragemAtual) ^ (Double.doubleToLongBits(this.quilometragemAtual) >>> 32));
-        hash = 23 * hash + Objects.hashCode(this.numeroChassi);
-        hash = 23 * hash + Objects.hashCode(this.modelo);
-        hash = 23 * hash + (int) (Double.doubleToLongBits(this.torqueDoMotor) ^ (Double.doubleToLongBits(this.torqueDoMotor) >>> 32));
-        hash = 23 * hash + this.anoDeFabricacao;
-        hash = 23 * hash + this.anoDoModelo;
-        hash = 23 * hash + Objects.hashCode(this.fabricante);
-        hash = 23 * hash + Objects.hashCode(this.placa);
-        hash = 23 * hash + Objects.hashCode(this.tipoDeCombustivel);
-        hash = 23 * hash + (this.disponivel ? 1 : 0);
-        hash = 23 * hash + (this.ativo ? 1 : 0);
-        hash = 23 * hash + Objects.hashCode(this.categoria);
+        hash = 59 * hash + Objects.hashCode(this.id);
+        hash = 59 * hash + Objects.hashCode(this.cor);
+        hash = 59 * hash + (int) (Double.doubleToLongBits(this.quilometragemAtual) ^ (Double.doubleToLongBits(this.quilometragemAtual) >>> 32));
+        hash = 59 * hash + Objects.hashCode(this.numeroChassi);
+        hash = 59 * hash + Objects.hashCode(this.modelo);
+        hash = 59 * hash + (int) (Double.doubleToLongBits(this.torqueDoMotor) ^ (Double.doubleToLongBits(this.torqueDoMotor) >>> 32));
+        hash = 59 * hash + this.anoDeFabricacao;
+        hash = 59 * hash + this.anoDoModelo;
+        hash = 59 * hash + Objects.hashCode(this.fabricante);
+        hash = 59 * hash + Objects.hashCode(this.placa);
+        hash = 59 * hash + Objects.hashCode(this.tipoDeCombustivel);
+        hash = 59 * hash + (this.disponivel ? 1 : 0);
+        hash = 59 * hash + (this.ativo ? 1 : 0);
+        hash = 59 * hash + Objects.hashCode(this.categoria);
+        hash = 59 * hash + Objects.hashCode(this.filial);
         return hash;
     }
 
@@ -237,8 +262,13 @@ public class Veiculo implements Serializable, EntidadeBase {
         if (!Objects.equals(this.categoria, other.categoria)) {
             return false;
         }
+        if (!Objects.equals(this.filial, other.filial)) {
+            return false;
+        }
         return true;
     }
+    
+   
 
     @Override
     public String toString() {

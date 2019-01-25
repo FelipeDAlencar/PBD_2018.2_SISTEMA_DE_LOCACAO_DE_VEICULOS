@@ -35,7 +35,7 @@
                   </TableView>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #DCDCDC;">
                <children>
                   <Label layoutX="165.0" layoutY="41.0" text="Detalhes da reserva">
                      <font>
@@ -44,7 +44,7 @@
                   </Label>
                   <HBox layoutX="14.0" layoutY="414.0" prefHeight="25.0" prefWidth="226.0" spacing="5.0">
                      <children>
-                        <JFXTextField fx:id="tfBusca" focusColor="#dd1818" unFocusColor="GAINSBORO" />
+                        <JFXTextField fx:id="tfBusca" focusColor="#dd1818" unFocusColor="BLACK" />
                         <JFXButton fx:id="btnBusca" prefHeight="25.0" prefWidth="0.0" textFill="GAINSBORO">
                            <graphic>
                               <ImageView>
@@ -69,27 +69,27 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label text="Cliente" textFill="GAINSBORO" />
-                        <Label text="Categoria" textFill="GAINSBORO" GridPane.rowIndex="1" />
-                        <Label text="Data" textFill="GAINSBORO" GridPane.rowIndex="2" />
-                        <Label text="Valor Previsto" textFill="GAINSBORO" GridPane.rowIndex="3" />
+                        <Label text="Cliente" />
+                        <Label text="Categoria" GridPane.rowIndex="1" />
+                        <Label text="Data" GridPane.rowIndex="2" />
+                        <Label text="Valor Previsto" GridPane.rowIndex="3" />
                         <Label fx:id="lbCliente" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
                         <Label fx:id="lbCategoria" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
                         <Label fx:id="lbData" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
                         <Label fx:id="lbValorPrevisto" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
                      </children>
                   </GridPane>
-                  <JFXButton fx:id="btnInserir" layoutX="278.0" layoutY="414.0" onAction="#acaoBtns" ripplerFill="#0de109" text="Inserir" textFill="GAINSBORO">
+                  <JFXButton fx:id="btnInserir" layoutX="278.0" layoutY="414.0" onAction="#acaoBtns" ripplerFill="#0de109" style="-fx-background-color: #c6e30b;" text="Inserir">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </JFXButton>
-                  <JFXButton fx:id="btnEditar" layoutX="347.0" layoutY="414.0" onAction="#acaoBtns" ripplerFill="#0bb9e0" text="Alterar" textFill="GAINSBORO">
+                  <JFXButton fx:id="btnEditar" layoutX="347.0" layoutY="414.0" onAction="#acaoBtns" ripplerFill="#0bb9e0" style="-fx-background-color: #c6e30b;" text="Alterar">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </JFXButton>
-                  <JFXButton fx:id="btnExcluir" layoutX="415.0" layoutY="414.0" onAction="#acaoBtns" ripplerFill="#f20a0a" text="Excluir" textFill="GAINSBORO">
+                  <JFXButton fx:id="btnExcluir" layoutX="415.0" layoutY="414.0" onAction="#acaoBtns" ripplerFill="#f20a0a" style="-fx-background-color: #c6e30b;" text="Excluir">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>

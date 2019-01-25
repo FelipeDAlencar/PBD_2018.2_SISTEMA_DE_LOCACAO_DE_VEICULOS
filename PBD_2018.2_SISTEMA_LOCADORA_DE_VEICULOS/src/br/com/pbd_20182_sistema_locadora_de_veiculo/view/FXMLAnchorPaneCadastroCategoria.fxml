@@ -35,7 +35,7 @@
                   </TableView>
                </children>
             </AnchorPane>
-          <AnchorPane fx:id="BtnEditar" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <AnchorPane fx:id="BtnEditar" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #DCDCDC;">
                <children>
                   <Label layoutX="175.0" layoutY="28.0" text="Detalhes da categoria">
                      <font>
@@ -44,7 +44,7 @@
                   </Label>
                   <HBox layoutX="26.0" layoutY="418.0" prefHeight="25.0" prefWidth="200.0" spacing="5.0">
                      <children>
-                        <JFXTextField fx:id="tfBusca" focusColor="#c6461f" prefHeight="25.0" prefWidth="170.0" unFocusColor="GAINSBORO" />
+                        <JFXTextField fx:id="tfBusca" focusColor="#e50707" prefHeight="25.0" prefWidth="170.0" unFocusColor="BLACK" />
                         <JFXButton fx:id="btnBusca" buttonType="RAISED" onAction="#acaoDeBtns" prefHeight="25.0" prefWidth="25.0">
                            <graphic>
                               <ImageView>
@@ -77,17 +77,17 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label text="Descrição" textFill="GAINSBORO" GridPane.rowIndex="1" />
-                        <Label text="Valor" textFill="GAINSBORO" GridPane.rowIndex="2" />
-                        <Label text="Nº de portas" textFill="GAINSBORO" GridPane.rowIndex="3" />
-                        <Label text="Ar condicionado" textFill="GAINSBORO" GridPane.rowIndex="6" />
-                        <Label text="MP3" textFill="GAINSBORO" GridPane.rowIndex="5" />
-                        <Label text="Nº de passageiros" textFill="GAINSBORO" GridPane.rowIndex="4" />
-                        <Label text="DVD" textFill="GAINSBORO" GridPane.rowIndex="7" />
-                        <Label text="Dire. Hidráulica" textFill="GAINSBORO" GridPane.rowIndex="8" />
-                        <Label text="Radio" textFill="GAINSBORO" GridPane.rowIndex="9" />
-                        <Label text="Tipo de câmbio" textFill="GAINSBORO" GridPane.rowIndex="10" />
-                        <Label text="Câmera de ré" textFill="GAINSBORO" GridPane.rowIndex="11" />
+                        <Label text="Descrição" GridPane.rowIndex="1" />
+                        <Label text="Valor" GridPane.rowIndex="2" />
+                        <Label text="Nº de portas" GridPane.rowIndex="3" />
+                        <Label text="Ar condicionado" GridPane.rowIndex="6" />
+                        <Label text="MP3" GridPane.rowIndex="5" />
+                        <Label text="Nº de passageiros" GridPane.rowIndex="4" />
+                        <Label text="DVD" GridPane.rowIndex="7" />
+                        <Label text="Dire. Hidráulica" GridPane.rowIndex="8" />
+                        <Label text="Radio" GridPane.rowIndex="9" />
+                        <Label text="Tipo de câmbio" GridPane.rowIndex="10" />
+                        <Label text="Câmera de ré" GridPane.rowIndex="11" />
                         <Label fx:id="lbNome" GridPane.columnIndex="1" />
                         <Label fx:id="lbDescricao" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label fx:id="lbValor" GridPane.columnIndex="1" GridPane.rowIndex="2" />
@@ -99,19 +99,19 @@
                         <Label fx:id="lbRadio" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                         <Label fx:id="lbTipoCambio" GridPane.columnIndex="1" GridPane.rowIndex="10" />
                         <Label fx:id="lbCameraDeRe" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-                        <Label text="Nome" textFill="GAINSBORO" />
+                        <Label text="Nome" />
                         <Label fx:id="lbArCondicionado" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                      </children>
                   </GridPane>
-                  <JFXButton fx:id="btInserir" layoutX="244.0" layoutY="418.0" onAction="#acaoDeBtns" ripplerFill="#17d32d" text="Inserir" textFill="GAINSBORO">
+                  <JFXButton fx:id="btInserir" layoutX="244.0" layoutY="418.0" onAction="#acaoDeBtns" ripplerFill="#17d32d" style="-fx-background-color: #c6e30b;" text="Inserir">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></JFXButton>
-                  <JFXButton fx:id="btnEditar" layoutX="311.0" layoutY="418.0" onAction="#acaoDeBtns" ripplerFill="#36b8cc" text="Alterar" textFill="GAINSBORO">
+                  <JFXButton fx:id="btnEditar" layoutX="311.0" layoutY="418.0" onAction="#acaoDeBtns" ripplerFill="#36b8cc" style="-fx-background-color: #c6e30b;" text="Alterar">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></JFXButton>
-                  <JFXButton fx:id="btnExcluir" layoutX="381.0" layoutY="419.0" onAction="#acaoDeBtns" ripplerFill="#e80b08" text="Excluir" textFill="GAINSBORO">
+                  <JFXButton fx:id="btnExcluir" layoutX="381.0" layoutY="419.0" onAction="#acaoDeBtns" ripplerFill="#e80b08" style="-fx-background-color: #c6e30b;" text="Excluir">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></JFXButton>

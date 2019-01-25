@@ -49,15 +49,14 @@ public class BusinessVeiculo implements IBusinessVeiculos {
 
     private void validar(Veiculo veiculo) throws BusinessExpection {
         String errorMessage = "";
-        
-        
-//        if (String.valueOf(veiculo.getAnoDeFabricacao()).length() < 4) {
-//            errorMessage += "Por favor, informe um número de chassi válido.";
-//        }
 
-//        if (String.valueOf(veiculo.getAnoDoModelo()).length() < 4) {
-//            errorMessage += "Por favor, informe um ano válido.";
-//        }
+        if (String.valueOf(veiculo.getAnoDeFabricacao()).length() < 4) {
+            errorMessage += "Por favor, informe um número de chassi válido.";
+        }
+
+        if (String.valueOf(veiculo.getAnoDoModelo()).length() < 4) {
+            errorMessage += "Por favor, informe um ano válido.";
+        }
 
         if (!(veiculo.getCategoria() != null)) {
             errorMessage += "Por favor, selecione a categoria.";
@@ -72,25 +71,29 @@ public class BusinessVeiculo implements IBusinessVeiculos {
             errorMessage += "Por favor, informe o fabricante.";
         }
 
-//        if (String.valueOf(veiculo.getNumeroChassi()).length() != 17) {
-//            errorMessage += "Por favor, informe o número de chassi válido";
-//        }
-//        if (veiculo.getPlaca().length() != 8) {
-//            errorMessage += "Por favor, informe uma placa válida.";
-//        }
-//        if (veiculo.getQuilometragemAtual() < 0) {
-//            errorMessage += "Por favor, informe uma quilometragem válida.";
-//        }
-//        if (veiculo.getTipoDeCombustivel().length() == 0) {
-//            errorMessage += "Por favor, informe o tipo de combustível.";
-//        }
-//        if (veiculo.getTorqueDoMotor() <= 0) {
-//            errorMessage += " Por favor, informe um torque válidor.";
-//        }
+        if (String.valueOf(veiculo.getNumeroChassi()).length() != 17) {
+            errorMessage += "Por favor, informe o número de chassi válido";
+        }
+        if (veiculo.getPlaca().length() != 9) {
+            errorMessage += "Por favor, informe uma placa válida.";
+        }
+        if (veiculo.getQuilometragemAtual() < 0) {
+            errorMessage += "Por favor, informe uma quilometragem válida.";
+        }
+        if (veiculo.getTipoDeCombustivel().length() == 0) {
+            errorMessage += "Por favor, informe o tipo de combustível.";
+        }
+        if (veiculo.getTorqueDoMotor() <= 0) {
+            errorMessage += " Por favor, informe um torque válidor.";
+        }
 
+        if (!(veiculo.getFilial() != null)) {
+            errorMessage = "Por favor informe a filial do veículo.";
+        }
         if (errorMessage.length() != 0) {
             throw new BusinessExpection(errorMessage);
         }
+
     }
 
     @Override

@@ -139,11 +139,15 @@ public interface IFachada {
     public ArrayList<ContaAPagar> listarTodasContasAPagar() throws DAOException;
     public void salvarContaAPagar(ContaAPagar contaAPagar) throws DAOException;
     public void excluirContaAPagar(ContaAPagar contaAPagar) throws DAOException;
+    public ArrayList<ContaAPagar> buscarContaAPagarPorPeriodo(Date dataInicial, Date dataFinal) 
+            throws DAOException ;
     
     
     public void salvarContaAReceber(ContaAReceber contaAPagar) throws DAOException;    
     public void excluirContaAReceber(ContaAReceber contaAPagar) throws DAOException;
     public ArrayList<ContaAReceber> listarTodasContasAReceber() throws DAOException ;
+    public ArrayList<ContaAReceber> buscarContaAReceberPorPeriodo(Date dataInicial, Date dataFinal)
+            throws DAOException;
     
     
     

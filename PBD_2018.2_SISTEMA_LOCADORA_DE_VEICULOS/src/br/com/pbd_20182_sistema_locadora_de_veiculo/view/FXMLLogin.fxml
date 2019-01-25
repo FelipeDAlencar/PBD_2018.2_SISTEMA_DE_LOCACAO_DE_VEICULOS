@@ -5,36 +5,29 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="461.0" prefWidth="400.0" style="-fx-background-color: #3b5998;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.pbd_20182_sistema_locadora_de_veiculo.controller.FXMLLoginController">
+<AnchorPane id="AnchorPane" prefHeight="389.0" prefWidth="400.0" style="-fx-background-color: #DCDCDC;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.pbd_20182_sistema_locadora_de_veiculo.controller.FXMLLoginController">
    <children>
-      <Separator layoutX="84.0" layoutY="254.0" prefHeight="3.0" prefWidth="245.0" />
-      <ImageView fitHeight="214.0" fitWidth="227.0" layoutX="93.0" layoutY="-42.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../res/logo.png" />
-         </image>
-      </ImageView>
-      <Text layoutX="58.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Locadora de veículos Pajeú">
+      <Separator layoutX="83.0" layoutY="182.0" prefHeight="3.0" prefWidth="245.0" />
+      <Text layoutX="59.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Locadora de veículos Pajeú">
          <font>
             <Font name="Segoe UI Light" size="26.0" />
          </font>
       </Text>
-      <Text layoutX="82.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
+      <Text layoutX="84.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
          <font>
             <Font name="Segoe UI Light" size="23.0" />
          </font>
       </Text>
-      <JFXTextField fx:id="tfLogin" focusColor="#9e2e28" layoutX="84.0" layoutY="274.0" prefHeight="24.0" prefWidth="245.0" promptText="Login" unFocusColor="WHITE" />
-      <JFXButton fx:id="btnEntrar" layoutX="179.0" layoutY="398.0" onAction="#acaoBtnEntrar" prefHeight="42.0" prefWidth="52.0" style="-fx-background-color: #006400;" text="Entrar" textFill="WHITE">
+      <JFXTextField fx:id="tfLogin" focusColor="#9e2e28" layoutX="84.0" layoutY="198.0" prefHeight="24.0" prefWidth="245.0" promptText="Login" unFocusColor="BLACK" />
+      <JFXButton fx:id="btnEntrar" layoutX="180.0" layoutY="305.0" onAction="#acaoBtnEntrar" prefHeight="42.0" prefWidth="52.0" style="-fx-background-color: #006400;" text="Entrar" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXPasswordField fx:id="tfSenha" focusColor="#9e2e28" layoutX="84.0" layoutY="324.0" prefHeight="24.0" prefWidth="245.0" unFocusColor="WHITE" />
+      <JFXPasswordField fx:id="tfSenha" focusColor="#9e2e28" layoutX="78.0" layoutY="246.0" prefHeight="24.0" prefWidth="245.0" promptText="Senha" unFocusColor="BLACK" />
    </children>
 </AnchorPane>

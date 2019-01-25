@@ -156,6 +156,12 @@ public class ReservaPessoasCategorias implements Serializable, EntidadeBase {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return categoria + " - " + pessoa + " - " + dataHora ;
+    }
+    
     
     
 

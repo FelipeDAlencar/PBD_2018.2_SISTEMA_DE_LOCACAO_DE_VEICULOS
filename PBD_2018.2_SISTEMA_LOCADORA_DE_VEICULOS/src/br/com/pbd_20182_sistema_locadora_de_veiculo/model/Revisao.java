@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -35,7 +36,7 @@ public class Revisao implements Serializable,EntidadeBase{
     @GeneratedValue(generator = "revisao_sequencia",strategy = GenerationType.SEQUENCE)
     private Integer id;
     
-    @ManyToOne
+    @OneToOne
     private Veiculo veiculo;
     
     @Column(name = "data_de_revisao")

@@ -10,6 +10,8 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Pessoa;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaJuridica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ReservaPessoasCategorias;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Util;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.view.Alerta;
@@ -100,6 +102,15 @@ public class FXMLAnchorPaneCadastroReservaController implements Initializable {
 
         tableView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> selecionouDaTabela(newValue));
+        
+        
+        
+         if (FXMLLoginController.pessoa instanceof PessoaFisica || FXMLLoginController.pessoa instanceof PessoaJuridica) {
+           
+           btnEditar.setDisable(true);
+           btnExcluir.setDisable(true);
+            
+        }
 
     }
 

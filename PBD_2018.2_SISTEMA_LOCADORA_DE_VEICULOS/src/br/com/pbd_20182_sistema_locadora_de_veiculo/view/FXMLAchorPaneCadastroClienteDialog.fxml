@@ -14,13 +14,13 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane id="AnchorPane" prefHeight="390.0" prefWidth="592.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.pbd_20182_sistema_locadora_de_veiculo.controller.FXMLAchorPaneCadastroClienteDialogController">
+<AnchorPane id="AnchorPane" prefHeight="265.0" prefWidth="488.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.pbd_20182_sistema_locadora_de_veiculo.controller.FXMLAchorPaneCadastroClienteDialogController">
    <children>
-      <ScrollPane layoutX="-7.0" layoutY="-14.0" prefHeight="403.0" prefWidth="618.0">
+      <ScrollPane layoutX="-7.0" layoutY="-14.0" prefHeight="279.0" prefWidth="495.0">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="612.0" prefWidth="599.0" style="-fx-background-color: #3b5998;">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="612.0" prefWidth="478.0" style="-fx-background-color: #DCDCDC;">
                <children>
-                  <GridPane fx:id="gridPane2" hgap="2.0" layoutX="129.0" layoutY="64.0" prefHeight="222.0" prefWidth="375.0">
+                  <GridPane fx:id="gridPane2" hgap="2.0" layoutX="34.0" layoutY="70.0" prefHeight="222.0" prefWidth="375.0">
                     <columnConstraints>
                       <ColumnConstraints fx:id="gridPane" hgrow="SOMETIMES" maxWidth="177.0" minWidth="10.0" prefWidth="137.0" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.0" minWidth="10.0" prefWidth="229.0" />
@@ -35,24 +35,24 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label fx:id="lbDataNascimento" text="Data de nascimento" textFill="GAINSBORO" GridPane.rowIndex="3" />
-                        <Label fx:id="lbCPFCNPJ" text="CPF" textFill="GAINSBORO" GridPane.rowIndex="1" />
-                        <Label fx:id="lbDataDeVencimentoCNH" text="Data de vencimento CNH" textFill="GAINSBORO" GridPane.rowIndex="4" />
-                        <Label fx:id="lbIndentificacao" text="Identificação" textFill="GAINSBORO" GridPane.rowIndex="5" />
-                        <Label fx:id="lbNCNH" text="Nº da CNH" textFill="GAINSBORO" GridPane.rowIndex="6" />
-                        <Label text="Nome" textFill="GAINSBORO" />
-                        <Label text="Login" textFill="GAINSBORO" GridPane.rowIndex="2" />
-                        <JFXTextField fx:id="tfNome" alignment="TOP_LEFT" focusColor="#e84017" prefHeight="25.0" prefWidth="232.0" promptText="Nome" unFocusColor="GAINSBORO" GridPane.columnIndex="1" />
-                        <JFXTextField fx:id="tfCPFCNPJ" focusColor="#e84017" unFocusColor="GAINSBORO" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <JFXTextField fx:id="tfLogin" focusColor="#e84017" promptText="Login" unFocusColor="GAINSBORO" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="lbDataNascimento" text="Data de nascimento" GridPane.rowIndex="3" />
+                        <Label fx:id="lbCPFCNPJ" text="CPF" GridPane.rowIndex="1" />
+                        <Label fx:id="lbDataDeVencimentoCNH" text="Data de vencimento CNH" GridPane.rowIndex="4" />
+                        <Label fx:id="lbIndentificacao" text="Identificação" GridPane.rowIndex="5" />
+                        <Label fx:id="lbNCNH" text="Nº da CNH" GridPane.rowIndex="6" />
+                        <Label text="Nome" />
+                        <Label text="Login" GridPane.rowIndex="2" />
+                        <JFXTextField fx:id="tfNome" alignment="TOP_LEFT" focusColor="#e84017" prefHeight="25.0" prefWidth="232.0" unFocusColor="BLACK" GridPane.columnIndex="1" />
+                        <JFXTextField fx:id="tfCPFCNPJ" focusColor="#e84017" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <JFXTextField fx:id="tfLogin" focusColor="#e84017" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <JFXDatePicker fx:id="cpDataNascimento" prefHeight="25.0" prefWidth="231.0" promptText="Data Nascimento" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <JFXDatePicker fx:id="cpVencimentoCNH" prefHeight="25.0" prefWidth="233.0" promptText="Data de vencimento da CNH" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <JFXTextField fx:id="tfIdentificacao" focusColor="#e84017" unFocusColor="GAINSBORO" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <JFXTextField fx:id="tfNCNH" focusColor="#e84017" unFocusColor="GAINSBORO" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <JFXTextField fx:id="tfIdentificacao" focusColor="#e84017" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <JFXTextField fx:id="tfNCNH" focusColor="#e84017" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                      </children>
                   </GridPane>
-                  <Label layoutX="129.0" layoutY="304.0" text="INFORMAÇÕES SOBRE ENDEREÇO" />
-                  <GridPane hgap="2.0" layoutX="126.0" layoutY="339.0" prefHeight="184.0" prefWidth="376.0" vgap="10.0">
+                  <Label layoutX="28.0" layoutY="306.0" text="INFORMAÇÕES SOBRE ENDEREÇO" />
+                  <GridPane hgap="2.0" layoutX="24.0" layoutY="347.0" prefHeight="184.0" prefWidth="376.0" vgap="10.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -66,28 +66,28 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label text="Bairro" textFill="GAINSBORO" GridPane.rowIndex="2" />
-                        <Label text="UF" textFill="GAINSBORO" GridPane.rowIndex="5" />
-                        <Label text="Número" textFill="GAINSBORO" GridPane.rowIndex="3" />
-                        <Label text="Rua" textFill="GAINSBORO" GridPane.rowIndex="1" />
-                        <Label text="Cidade" textFill="GAINSBORO" />
-                        <Label text="CEP" textFill="GAINSBORO" GridPane.rowIndex="4" />
-                        <JFXTextField fx:id="tfCidade" focusColor="#e84017" promptText="Cidade" unFocusColor="GAINSBORO" GridPane.columnIndex="1" />
-                        <JFXTextField fx:id="tfRua" focusColor="#e84017" promptText="Rua" unFocusColor="GAINSBORO" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <JFXTextField fx:id="tfBairro" focusColor="#e84017" promptText="Bairro" unFocusColor="GAINSBORO" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <JFXTextField fx:id="tfNumero" focusColor="#e84017" promptText="Número" unFocusColor="GAINSBORO" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <JFXTextField fx:id="tfCep" focusColor="#e84017" promptText="CEP" unFocusColor="GAINSBORO" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label text="Bairro" GridPane.rowIndex="2" />
+                        <Label text="UF" GridPane.rowIndex="5" />
+                        <Label text="Número" GridPane.rowIndex="3" />
+                        <Label text="Rua" GridPane.rowIndex="1" />
+                        <Label text="Cidade" />
+                        <Label text="CEP" GridPane.rowIndex="4" />
+                        <JFXTextField fx:id="tfCidade" focusColor="#e84017" unFocusColor="BLACK" GridPane.columnIndex="1" />
+                        <JFXTextField fx:id="tfRua" focusColor="#e84017" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <JFXTextField fx:id="tfBairro" focusColor="#e84017" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <JFXTextField fx:id="tfNumero" focusColor="#e84017" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <JFXTextField fx:id="tfCep" focusColor="#e84017" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <JFXComboBox fx:id="comboUF" focusColor="#e84017" prefHeight="25.0" prefWidth="185.0" promptText="Selecione o estado" unFocusColor="GAINSBORO" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                      </children>
                   </GridPane>
-                  <Separator layoutX="126.0" layoutY="329.0" prefHeight="0.0" prefWidth="361.0" />
-                  <JFXRadioButton fx:id="rbPessoaFisica" layoutX="200.0" layoutY="25.0" onAction="#acaoRbs" text="Pessoa Física" textFill="GAINSBORO" />
-                  <JFXRadioButton fx:id="rbPessoaJuridica" layoutX="345.0" layoutY="25.0" onAction="#acaoRbs" text="Pessoa Juridica" textFill="GAINSBORO" />
-                  <JFXButton fx:id="btnCadastrar" layoutX="195.0" layoutY="555.0" onAction="#acoesBtns" prefHeight="25.0" prefWidth="74.0" ripplerFill="#0ee536" text="Inserir" textFill="GAINSBORO">
+                  <Separator layoutX="32.0" layoutY="336.0" prefHeight="0.0" prefWidth="361.0" />
+                  <JFXRadioButton fx:id="rbPessoaFisica" layoutX="105.0" layoutY="25.0" onAction="#acaoRbs" selected="true" text="Pessoa Física" />
+                  <JFXRadioButton fx:id="rbPessoaJuridica" layoutX="250.0" layoutY="25.0" onAction="#acaoRbs" text="Pessoa Juridica" />
+                  <JFXButton fx:id="btnCadastrar" layoutX="131.0" layoutY="576.0" onAction="#acoesBtns" prefHeight="25.0" prefWidth="75.0" ripplerFill="#0ee536" style="-fx-background-color: #c6e30b;" text="Inserir">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></JFXButton>
-                  <JFXButton fx:id="BtnCancelar" layoutX="340.0" layoutY="555.0" onAction="#acoesBtns" prefHeight="25.0" prefWidth="74.0" ripplerFill="#fc0000" text="Cancelar" textFill="GAINSBORO">
+                  <JFXButton fx:id="BtnCancelar" layoutX="276.0" layoutY="576.0" onAction="#acoesBtns" prefHeight="25.0" prefWidth="75.0" ripplerFill="#fc0000" style="-fx-background-color: #c6e30b;" text="Cancelar">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></JFXButton>

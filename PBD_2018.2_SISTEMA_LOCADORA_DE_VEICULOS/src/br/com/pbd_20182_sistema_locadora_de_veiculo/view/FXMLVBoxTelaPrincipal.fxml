@@ -34,7 +34,7 @@
                         <MenuItem fx:id="menuItemLocacoesPorPeriodo" mnemonicParsing="false" onAction="#acoesMenuItensRelatorios" text="Locações por período" />
                         <MenuItem fx:id="menuItemLocacoesPorCliente" mnemonicParsing="false" onAction="#acoesMenuItensRelatorios" text="Locações por clientes" />
                         <MenuItem fx:id="MenuItemLocacoesPorMotorista" mnemonicParsing="false" onAction="#acoesMenuItensRelatorios" text="Locações por motorista" />
-                        <MenuItem fx:id="menuItemHistoricoDeRevisoes" mnemonicParsing="false" onAction="#acoesMenuItensRelatorios" text="Histórico de revisões por carro" />
+                        <MenuItem fx:id="menuItemHistoricoDeRevisoes" mnemonicParsing="false" onAction="#acoesMenuItensRelatorios" text="Histórico de revisões por veículo" />
                   </items>
                 </Menu>
                   <Menu fx:id="menuAdministracao" mnemonicParsing="false" text="Geral">
@@ -46,6 +46,8 @@
                     <items>
                         <MenuItem fx:id="menuItemContasAPagar" mnemonicParsing="false" onAction="#acaoMenuFinanceiro" text="Contas a pagar" />
                         <MenuItem fx:id="menuItemContasAReceber" mnemonicParsing="false" onAction="#acaoMenuFinanceiro" text="Contas a receber" />
+                        <MenuItem fx:id="meniItemRelatorioContaAPagar" mnemonicParsing="false" onAction="#acoesMenuItensRelatorios" text="Relatório conta a pagar" />
+                        <MenuItem fx:id="meniItemRelatorioContaAReceber" mnemonicParsing="false" onAction="#acoesMenuItensRelatorios" text="Relatorio conta a receber" />
                     </items>
                   </Menu>
               </menus>
@@ -53,11 +55,11 @@
                   <Blend />
                </effect>
             </MenuBar>
-            <AnchorPane fx:id="AnchorPaneContent" prefHeight="486.0" prefWidth="800.0" style="-fx-background-color: #3b5998;">
+            <AnchorPane fx:id="AnchorPaneContent" prefHeight="486.0" prefWidth="800.0" style="-fx-background-color: #DCDCDC;">
                <children>
-                  <ImageView fitHeight="475.0" fitWidth="800.0" layoutX="1.0" layoutY="1.0">
+                  <ImageView fitHeight="479.0" fitWidth="800.0">
                      <image>
-                        <Image url="@../../../../res/WhatsApp%20Image%202018-12-09%20at%2019.20.41.jpeg" />
+                        <Image url="@../../../../res/logo.png" />
                      </image>
                   </ImageView>
                </children></AnchorPane>

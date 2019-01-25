@@ -7,7 +7,6 @@ package br.com.pbd_20182_sistema_locadora_de_veiculo.controller;
 
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
-import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ContaAPagar;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ContaAReceber;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Util;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.view.Alerta;

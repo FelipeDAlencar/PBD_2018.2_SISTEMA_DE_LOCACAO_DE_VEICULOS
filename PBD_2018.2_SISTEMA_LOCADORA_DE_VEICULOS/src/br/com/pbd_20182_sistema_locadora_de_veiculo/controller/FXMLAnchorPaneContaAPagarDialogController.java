@@ -63,7 +63,7 @@ public class FXMLAnchorPaneContaAPagarDialogController implements Initializable 
         if (event.getSource() == btnConfirmar) {
             try {
                 
-                contaAPagar.setDataVencimento(Date.from(dpDataVencimento.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+                contaAPagar.setDataVencimento(Util.converterLocalDateEmDate(dpDataVencimento.getValue()));
                 contaAPagar.setDescricao(tfDescricao.getText());
                 contaAPagar.setValor(Double.parseDouble(tfValor.getText()));
                 contaAPagar.setPago(cbPago.isSelected());

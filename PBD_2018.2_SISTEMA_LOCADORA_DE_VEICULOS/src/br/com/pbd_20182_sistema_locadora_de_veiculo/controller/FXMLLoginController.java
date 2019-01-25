@@ -113,7 +113,8 @@ public class FXMLLoginController implements Initializable {
             controllerPrincipal.getMenuRelatorios().setDisable(true);
             controllerPrincipal.getMenuiItemFilial().setDisable(true);
             controllerPrincipal.getMenuItemCategoria().setDisable(true);
-            controllerPrincipal.getMenuItemReservas().setDisable(true);
+            controllerPrincipal.getMenuFinanceiro().setDisable(true);
+            
 
         } else if (pessoa instanceof Funcionario) {
 
@@ -121,8 +122,9 @@ public class FXMLLoginController implements Initializable {
             if (!(funcionario.isSuperUsuario())) {
 
                 controllerPrincipal.getMenuItemConfiguracoes().setDisable(true);
-                controllerPrincipal.getMenuRelatorios().setDisable(true);
-
+                controllerPrincipal.getMenuFinanceiro().setDisable(true);
+                controllerPrincipal.getMenuItemLocacoesPorPeriodo().setDisable(true);
+                controllerPrincipal.getMenuItemReservasPorPeriodo().setDisable(true);
             }
 
         }

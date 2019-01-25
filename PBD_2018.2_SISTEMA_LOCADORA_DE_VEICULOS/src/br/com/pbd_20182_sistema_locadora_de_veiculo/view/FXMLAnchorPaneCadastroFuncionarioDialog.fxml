@@ -14,11 +14,11 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane id="AnchorPane" prefHeight="285.0" prefWidth="457.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.pbd_20182_sistema_locadora_de_veiculo.controller.FXMLAnchorPaneCadastroFuncionarioDialogController">
+<AnchorPane id="AnchorPane" prefHeight="285.0" prefWidth="436.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.pbd_20182_sistema_locadora_de_veiculo.controller.FXMLAnchorPaneCadastroFuncionarioDialogController">
    <children>
-      <ScrollPane prefHeight="288.0" prefWidth="457.0">
+      <ScrollPane prefHeight="285.0" prefWidth="441.0">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="457.0" prefWidth="442.0" style="-fx-background-color: #3b5998;">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="457.0" prefWidth="426.0" style="-fx-background-color: #DCDCDC;">
                <children>
                   <GridPane layoutX="73.0" layoutY="32.0" prefHeight="150.0" prefWidth="269.0">
                     <columnConstraints>
@@ -33,15 +33,15 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label text="Nome" textFill="GAINSBORO" />
-                        <Label text="Matricula" textFill="GAINSBORO" GridPane.rowIndex="2" />
-                        <Label text="Cargo" textFill="GAINSBORO" GridPane.rowIndex="3" />
-                        <Label text="SuperUsuário" textFill="GAINSBORO" GridPane.rowIndex="4" />
-                        <Label text="Login" textFill="GAINSBORO" GridPane.rowIndex="1" />
-                        <JFXTextField fx:id="tfNome" focusColor="#e42e1a" unFocusColor="GAINSBORO" GridPane.columnIndex="1" />
-                        <JFXTextField fx:id="tfLogin" focusColor="#e42e1a" unFocusColor="GAINSBORO" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <JFXTextField fx:id="tfMatricula" focusColor="#e42e1a" unFocusColor="GAINSBORO" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <JFXTextField fx:id="tfCargo" focusColor="#e42e1a" unFocusColor="GAINSBORO" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label text="Nome" />
+                        <Label text="Matricula" GridPane.rowIndex="2" />
+                        <Label text="Cargo" GridPane.rowIndex="3" />
+                        <Label text="SuperUsuário" GridPane.rowIndex="4" />
+                        <Label text="Login" GridPane.rowIndex="1" />
+                        <JFXTextField fx:id="tfNome" focusColor="#e42e1a" unFocusColor="BLACK" GridPane.columnIndex="1" />
+                        <JFXTextField fx:id="tfLogin" focusColor="#e42e1a" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <JFXTextField fx:id="tfMatricula" focusColor="#e42e1a" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <JFXTextField fx:id="tfCargo" focusColor="#e42e1a" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <JFXCheckBox fx:id="cbSuperUsuario" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                      </children>
                   </GridPane>
@@ -60,24 +60,24 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label text="Cidade" textFill="GAINSBORO" />
-                        <Label text="Rua" textFill="GAINSBORO" GridPane.rowIndex="1" />
-                        <Label text="Bairro" textFill="GAINSBORO" GridPane.rowIndex="2" />
-                        <Label text="Número" textFill="GAINSBORO" GridPane.rowIndex="3" />
-                        <Label text="UF" textFill="GAINSBORO" GridPane.rowIndex="4" />
-                        <JFXTextField fx:id="tfCidade" focusColor="#e42e1a" unFocusColor="GAINSBORO" GridPane.columnIndex="1" />
-                        <JFXTextField fx:id="tfRua" focusColor="#e42e1a" unFocusColor="GAINSBORO" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <JFXTextField fx:id="tfBairro" focusColor="#e42e1a" unFocusColor="GAINSBORO" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <JFXTextField fx:id="tfNumero" focusColor="#e42e1a" unFocusColor="GAINSBORO" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <JFXComboBox fx:id="ufCombo" focusColor="#e42e1a" prefHeight="25.0" prefWidth="140.0" promptText="Selecione o estado" unFocusColor="GAINSBORO" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label text="Cidade" />
+                        <Label text="Rua" GridPane.rowIndex="1" />
+                        <Label text="Bairro" GridPane.rowIndex="2" />
+                        <Label text="Número" GridPane.rowIndex="3" />
+                        <Label text="UF" GridPane.rowIndex="4" />
+                        <JFXTextField fx:id="tfCidade" focusColor="#e42e1a" unFocusColor="BLACK" GridPane.columnIndex="1" />
+                        <JFXTextField fx:id="tfRua" focusColor="#e42e1a" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <JFXTextField fx:id="tfBairro" focusColor="#e42e1a" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <JFXTextField fx:id="tfNumero" focusColor="#e42e1a" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <JFXComboBox fx:id="ufCombo" focusColor="#e42e1a" prefHeight="25.0" prefWidth="140.0" promptText="Selecione o estado" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                      </children>
                   </GridPane>
                   <Group layoutX="163.0" layoutY="422.0" />
-                  <JFXButton fx:id="btnCancelas" layoutX="254.0" layoutY="424.0" onAction="#acaoBtns" text="Cancelar">
+                  <JFXButton fx:id="btnCancelas" layoutX="254.0" layoutY="424.0" onAction="#acaoBtns" style="-fx-background-color: #c6e30b;" text="Cancelar">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></JFXButton>
-                  <JFXButton fx:id="btnConfirmar" layoutX="132.0" layoutY="423.0" onAction="#acaoBtns" ripplerFill="#21e31b" text="Confirmar">
+                  <JFXButton fx:id="btnConfirmar" layoutX="132.0" layoutY="423.0" onAction="#acaoBtns" ripplerFill="#21e31b" style="-fx-background-color: #c6e30b;" text="Confirmar">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></JFXButton>

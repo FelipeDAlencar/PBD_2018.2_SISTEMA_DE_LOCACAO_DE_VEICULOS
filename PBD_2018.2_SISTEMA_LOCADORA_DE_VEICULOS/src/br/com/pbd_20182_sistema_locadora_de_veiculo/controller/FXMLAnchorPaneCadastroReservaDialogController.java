@@ -11,6 +11,8 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.MascarasTF;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Pessoa;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaJuridica;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ReservaPessoasCategorias;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Util;
 import com.jfoenix.controls.JFXButton;
@@ -85,8 +87,9 @@ public class FXMLAnchorPaneCadastroReservaDialogController implements Initializa
         }
 
         adicionarOuvinte();
-
         MascarasTF.mascaraNumero(tfValor);
+        
+        
     }
 
     @FXML
@@ -138,8 +141,17 @@ public class FXMLAnchorPaneCadastroReservaDialogController implements Initializa
     }
 
     public void carregarCombos() throws DAOException {
-
-        ArrayList<Pessoa> pessoas = fachada.listarTodosPessoa();
+         ArrayList<Pessoa> pessoas = null;
+        if (FXMLLoginController.pessoa instanceof PessoaFisica || FXMLLoginController.pessoa instanceof PessoaJuridica) {
+           pessoas = new ArrayList<>();
+           pessoas.add(FXMLLoginController.pessoa);
+           comboClientes.setValue(pessoas.get(0));
+           comboClientes.setDisable(true);
+            
+        }else{
+             pessoas = fachada.listarTodosPessoa();
+        }
+       
         ArrayList<Categoria> categorias = fachada.listarTodosCategoria();
 
         ObservableList<Categoria> obsCategorias;

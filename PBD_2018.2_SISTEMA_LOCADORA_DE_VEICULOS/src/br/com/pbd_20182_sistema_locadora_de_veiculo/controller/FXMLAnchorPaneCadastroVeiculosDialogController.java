@@ -8,6 +8,7 @@ package br.com.pbd_20182_sistema_locadora_de_veiculo.controller;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Categoria;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Filial;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.MascarasTF;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Veiculo;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.view.Alerta;
@@ -76,6 +77,10 @@ public class FXMLAnchorPaneCadastroVeiculosDialogController implements Initializ
     @FXML
     private JFXButton btnCancelar;
 
+    @FXML
+    private JFXComboBox<Filial> comboFilial;
+    
+    
     private Fachada fachada;
     private Stage stage;
     private boolean sucesso;
@@ -116,6 +121,7 @@ public class FXMLAnchorPaneCadastroVeiculosDialogController implements Initializ
                 veiculo.setQuilometragemAtual(Double.parseDouble(tfKmAtual.getText()));
                 veiculo.setTipoDeCombustivel(tfTipoCombustivel.getText());
                 veiculo.setTorqueDoMotor(Double.parseDouble(tfTorqueDoMotor.getText()));
+                veiculo.setFilial(comboFilial.getValue());
 
                 veiculo.setAtivo(true);
 
@@ -135,9 +141,12 @@ public class FXMLAnchorPaneCadastroVeiculosDialogController implements Initializ
 
     private void carregarCombo() throws DAOException {
 
-        ObservableList<Categoria> obs = FXCollections.observableArrayList(fachada.listarTodosCategoria());
-        comboCategoria.setItems(obs);
-
+        ObservableList<Categoria> obsCategoria = FXCollections.observableArrayList(fachada.listarTodosCategoria());
+        comboCategoria.setItems(obsCategoria);
+        
+        
+        ObservableList<Filial> obsFilial = FXCollections.observableArrayList(fachada.listarTodosFilial());
+        comboFilial.setItems(obsFilial);
     }
 
     public Stage getStage() {

@@ -35,7 +35,7 @@
                   </TableView>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #DCDCDC;">
                <children>
                   <Label layoutX="158.0" layoutY="30.0" text="Detalhes da locação">
                      <font>
@@ -64,17 +64,17 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label text="Motorista" textFill="GAINSBORO" GridPane.rowIndex="1" />
-                        <Label text="Veiculo" textFill="GAINSBORO" GridPane.rowIndex="2" />
-                        <Label text="Km inicial veículo" textFill="GAINSBORO" GridPane.rowIndex="4" />
-                        <Label text="Km final veículo" textFill="GAINSBORO" GridPane.rowIndex="5" />
-                        <Label prefHeight="17.0" prefWidth="139.0" text="Metade da primeira diária" textFill="GAINSBORO" GridPane.rowIndex="6" />
-                        <Label text="Taxa de combustível" textFill="GAINSBORO" GridPane.rowIndex="7" />
-                        <Label text="Taxa de igiênização" textFill="GAINSBORO" GridPane.rowIndex="8" />
-                        <Label text="data de ida" textFill="GAINSBORO" GridPane.rowIndex="9" />
-                        <Label text="data de volta" textFill="GAINSBORO" GridPane.rowIndex="10" />
-                        <Label text="km livre" textFill="GAINSBORO" GridPane.rowIndex="11" />
-                        <Label text="Valor" textFill="GAINSBORO" GridPane.rowIndex="13" />
+                        <Label text="Motorista" GridPane.rowIndex="1" />
+                        <Label text="Veiculo" GridPane.rowIndex="2" />
+                        <Label text="Km inicial veículo" GridPane.rowIndex="4" />
+                        <Label text="Km final veículo" GridPane.rowIndex="5" />
+                        <Label prefHeight="17.0" prefWidth="139.0" text="Metade da primeira diária" GridPane.rowIndex="6" />
+                        <Label text="Taxa de combustível" GridPane.rowIndex="7" />
+                        <Label text="Taxa de igiênização" GridPane.rowIndex="8" />
+                        <Label text="data de ida" GridPane.rowIndex="9" />
+                        <Label text="data de volta" GridPane.rowIndex="10" />
+                        <Label text="km livre" GridPane.rowIndex="11" />
+                        <Label text="Valor" GridPane.rowIndex="13" />
                         <Label fx:id="lbMotorista" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label fx:id="lbVeiculo" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <Label fx:id="lbKmInicial" GridPane.columnIndex="1" GridPane.rowIndex="4" />
@@ -85,10 +85,10 @@
                         <Label fx:id="lbDataIda" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                         <Label fx:id="lbDataVolta" GridPane.columnIndex="1" GridPane.rowIndex="10" />
                         <Label fx:id="lbValor" GridPane.columnIndex="1" GridPane.rowIndex="13" />
-                        <Label text="Finalizada" textFill="GAINSBORO" GridPane.rowIndex="12" />
-                        <Label text="Cliente" textFill="GAINSBORO" />
+                        <Label text="Finalizada" GridPane.rowIndex="12" />
+                        <Label text="Cliente" />
                         <Label fx:id="lbCliente" GridPane.columnIndex="1" />
-                        <Label text="Ponto de entrega" textFill="GAINSBORO" GridPane.rowIndex="3" />
+                        <Label text="Ponto de entrega" GridPane.rowIndex="3" />
                         <Label fx:id="lbPontoDeEntrega" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <JFXCheckBox fx:id="cbKmLivre" GridPane.columnIndex="1" GridPane.rowIndex="11" />
                         <JFXCheckBox fx:id="cbFinalizada" GridPane.columnIndex="1" GridPane.rowIndex="12" />
@@ -96,7 +96,7 @@
                   </GridPane>
                   <HBox layoutX="24.0" layoutY="426.0" prefHeight="23.0" prefWidth="200.0" spacing="5.0">
                      <children>
-                        <JFXTextField fx:id="tfPesquisar" focusColor="#bc3922" prefHeight="25.0" prefWidth="178.0" unFocusColor="GAINSBORO" />
+                        <JFXTextField fx:id="tfPesquisar" focusColor="#d00e0e" prefHeight="25.0" prefWidth="178.0" unFocusColor="BLACK" />
                         <JFXButton fx:id="btnPesquisar" onAction="#acaoBtns" prefHeight="25.0" prefWidth="21.0">
                            <graphic>
                               <ImageView>
@@ -105,18 +105,21 @@
                                  </image>
                               </ImageView>
                            </graphic>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </JFXButton>
                      </children>
                   </HBox>
-                  <JFXButton fx:id="btnInserir" layoutX="275.0" layoutY="426.0" onAction="#acaoBtns" ripplerFill="#22fa11" text="Inserir" textFill="GAINSBORO">
+                  <JFXButton fx:id="btnInserir" layoutX="275.0" layoutY="426.0" onAction="#acaoBtns" ripplerFill="#22fa11" style="-fx-background-color: #c6e30b;" text="Inserir">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></JFXButton>
-                  <JFXButton fx:id="btnEditar" layoutX="351.0" layoutY="426.0" onAction="#acaoBtns" ripplerFill="#13c2ee" text="Alterar" textFill="GAINSBORO">
+                  <JFXButton fx:id="btnEditar" layoutX="351.0" layoutY="426.0" onAction="#acaoBtns" ripplerFill="#13c2ee" style="-fx-background-color: #c6e30b;" text="Alterar">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></JFXButton>
-                  <JFXButton fx:id="btnExcluir" layoutX="428.0" layoutY="426.0" onAction="#acaoBtns" ripplerFill="#fc1111" text="Excluir" textFill="GAINSBORO">
+                  <JFXButton fx:id="btnExcluir" layoutX="428.0" layoutY="426.0" onAction="#acaoBtns" ripplerFill="#fc1111" style="-fx-background-color: #c6e30b;" text="Excluir">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></JFXButton>

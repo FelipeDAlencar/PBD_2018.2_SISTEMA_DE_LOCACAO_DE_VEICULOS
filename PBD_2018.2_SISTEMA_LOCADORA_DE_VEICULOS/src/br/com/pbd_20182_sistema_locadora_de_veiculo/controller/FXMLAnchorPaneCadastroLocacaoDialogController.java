@@ -18,6 +18,7 @@ import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Locacao;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.MascarasTF;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Pessoa;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.PessoaFisica;
+import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ReservaPessoasCategorias;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Revisao;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ThreadDeControleDeLimpezaERevisao;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.Util;
@@ -81,6 +82,9 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
     private JFXComboBox<Pessoa> comboCliente;
 
     @FXML
+    private JFXComboBox<ReservaPessoasCategorias> comboReservas;
+
+    @FXML
     private JFXTextField tfKmInicial;
 
     @FXML
@@ -115,6 +119,8 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
 
     @FXML
     private JFXCheckBox cbTaxaHigienizacao;
+    
+    
 
     private Fachada fachada;
     private Stage stage;
@@ -234,25 +240,24 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
                     double kmRodados = locacao.getKmFinalVeiculo() - locacao.getKmInicialDoVeiculo();
 
                     if (locacao.getVeiculo().getCategoria() instanceof Categoria && kmRodados >= 5000) {
-                        locacao.getVeiculo().setQuilometragemAtual(locacao.getKmFinalVeiculo());
                         fachada.salvarVeiculo(locacao.getVeiculo());
                         ThreadDeControleDeLimpezaERevisao r
                                 = new ThreadDeControleDeLimpezaERevisao(locacao.getVeiculo());
                         fachada.salvarRevisao(new Revisao(locacao.getVeiculo(), new Date()));
                     } else if ((locacao.getVeiculo().getCategoria() instanceof CaminhonetaDeCarga || locacao.getVeiculo().getCategoria() instanceof CaminhonetaDePassageiros) && kmRodados >= 10000) {
-                        locacao.getVeiculo().setQuilometragemAtual(locacao.getKmFinalVeiculo());
                         fachada.salvarVeiculo(locacao.getVeiculo());
                         ThreadDeControleDeLimpezaERevisao r
                                 = new ThreadDeControleDeLimpezaERevisao(locacao.getVeiculo());
                         fachada.salvarRevisao(new Revisao(locacao.getVeiculo(), new Date()));
 
                     }
-                    locacao.getVeiculo().setQuilometragemAtual(locacao.getKmFinalVeiculo());
+                    locacao.getVeiculo().setQuilometragemAtual(Double.parseDouble(tfKmFinal.getText()));
                     locacao.getVeiculo().setDisponivel(true);
+                    locacao.getVeiculo().setFilial(comboPontoDeEntrega.getValue());
                     fachada.salvarVeiculo(locacao.getVeiculo());
 
                     ContaAReceber contaAReceber = new ContaAReceber();
-                    contaAReceber.setDescricao("Locacao de :" + locacao);
+                    contaAReceber.setDescricao("Locacao de: " + locacao.getCliente());
                     contaAReceber.setDataRecebimento(new Date());
                     contaAReceber.setPago(true);
                     contaAReceber.setValor(locacao.getValor());
@@ -320,10 +325,16 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
     }
 
     @FXML
-    void AcaoCombos(ActionEvent event) {
+    void AcaoCombos(ActionEvent e) throws DAOException {
 
-        if (event.getSource() == comboVeiculo) {
+        if (e.getSource() == comboVeiculo) {
             tfKmInicial.setText(String.valueOf(comboVeiculo.getValue().getQuilometragemAtual()));
+        }
+        if (e.getSource() == comboReservas) {
+            comboCliente.setValue(comboReservas.getValue().getPessoa());
+
+            ObservableList<Veiculo> obsVeiculo = FXCollections.observableArrayList(fachada.buscarVeiculoPorCategoria(comboReservas.getValue().getCategoria()));
+            comboVeiculo.setItems(obsVeiculo);
         }
 
     }
@@ -334,10 +345,12 @@ public class FXMLAnchorPaneCadastroLocacaoDialogController implements Initializa
         ObservableList<Veiculo> obsVeiculos = FXCollections.observableArrayList(fachada.listarTodosVeiculo());
         ObservableList<Pessoa> obsCliente = FXCollections.observableArrayList(fachada.listarTodosPessoa());
         ObservableList<Filial> pbsFilial = FXCollections.observableArrayList(fachada.listarTodosFilial());
+        ObservableList<ReservaPessoasCategorias> obsReservas = FXCollections.observableArrayList(fachada.listarTodosReservaPessoasCategorias());
         comboMotorista.setItems(obsMotorista);
         comboCliente.setItems(obsCliente);
         comboVeiculo.setItems(obsVeiculos);
         comboPontoDeEntrega.setItems(pbsFilial);
+        comboReservas.setItems(obsReservas);
     }
 
     private boolean exibirTelaDecadastro(Pessoa pessoa, Event event) {

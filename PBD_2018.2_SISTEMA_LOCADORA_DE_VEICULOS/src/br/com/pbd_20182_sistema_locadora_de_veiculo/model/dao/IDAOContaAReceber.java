@@ -8,6 +8,7 @@ package br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ContaAReceber;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -16,4 +17,7 @@ import java.util.ArrayList;
 public interface IDAOContaAReceber {
 
     public ArrayList<ContaAReceber> findAll() throws DAOException;
+
+    public ArrayList<ContaAReceber> buscarContaAReceberPorPeriodo(Date dataInicial, Date dataFinal)
+            throws DAOException;
 }

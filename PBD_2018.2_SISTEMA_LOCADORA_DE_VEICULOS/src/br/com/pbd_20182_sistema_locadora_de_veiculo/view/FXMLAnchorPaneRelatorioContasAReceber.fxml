@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="479.0" prefWidth="800.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.pbd_20182_sistema_locadora_de_veiculo.controller.FXMLAnchorPaneRelatorioContasAReceberController">
+   <children>
+      <TableView fx:id="tableView" accessibleText="dasdas" layoutX="124.0" layoutY="-20.0" prefHeight="419.0" prefWidth="800.0" AnchorPane.bottomAnchor="59.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <columns>
+            <TableColumn fx:id="colunaDescricao" prefWidth="75.0" text="Descrição" />
+            <TableColumn fx:id="colunaValor" prefWidth="75.0" text="Valor" />
+            <TableColumn fx:id="colunaDataDeRecebimento" prefWidth="75.0" text="Data de vencimento" />
+            <TableColumn fx:id="colunaPago" prefWidth="75.0" text="Paga" />
+         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <JFXButton fx:id="btnImprimir" layoutX="695.0" layoutY="440.0" onAction="#acaoBtns" style="-fx-background-color: #121d72;" text="Imprimir" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXButton fx:id="btnListarTodos" layoutX="429.0" layoutY="440.0" onAction="#acaoBtns" style="-fx-background-color: #121d72;" text="Listar todos as contas a pagar" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXDatePicker fx:id="dataInicial" layoutX="14.0" layoutY="440.0" promptText="Data inicial">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXDatePicker>
+      <JFXDatePicker fx:id="dataFinal" layoutX="206.0" layoutY="440.0" onAction="#acaoDp" promptText="Data final">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXDatePicker>
+   </children>
+</AnchorPane>

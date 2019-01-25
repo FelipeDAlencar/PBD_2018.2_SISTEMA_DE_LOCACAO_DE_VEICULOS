@@ -88,8 +88,6 @@ public class FXMLAnchorPaneContaAPagarController implements Initializable {
 
         fachada = Fachada.getInstance();
 
-        
-
         tableView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> selecionouDaTabea(newValue));
 
@@ -131,12 +129,12 @@ public class FXMLAnchorPaneContaAPagarController implements Initializable {
                 if (sucesso) {
 
                     fachada.salvarContaAPagar(contaAPagar);
-
+                    
                     Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
                     alerta.alertar(Alert.AlertType.INFORMATION, "Sucesso", "Sucesso", "Edição realizada "
                             + "com sucesso");
+                    carregarTabela(fachada.listarTodasContasAPagar());
 
-                    
                 }
 
             } else {
@@ -153,7 +151,7 @@ public class FXMLAnchorPaneContaAPagarController implements Initializable {
             if (contaAPagar != null) {
 
                 fachada.excluirContaAPagar(contaAPagar);
-               
+
                 Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
                 alerta.alertar(Alert.AlertType.INFORMATION, "Sucesso", "Sucesso", "Exclusão realizada "
                         + "com sucesso");
@@ -165,16 +163,17 @@ public class FXMLAnchorPaneContaAPagarController implements Initializable {
             }
 
         }
-         carregarTabela(fachada.listarTodasContasAPagar());
+        carregarTabela(fachada.listarTodasContasAPagar());
 
     }
 
     public void carregarTabela(ArrayList<ContaAPagar> contaAPagars) {
         
+        tableView.getItems().clear();   
         colunaDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
         colunaSituacao.setCellValueFactory(new PropertyValueFactory<>("pago"));
         colunaValor.setCellValueFactory(new PropertyValueFactory<>("valor"));
-        
+
         obsContasAPagar = FXCollections.observableArrayList(contaAPagars);
 
         tableView.setItems(obsContasAPagar);

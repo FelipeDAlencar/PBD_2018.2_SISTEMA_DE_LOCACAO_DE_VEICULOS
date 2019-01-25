@@ -35,7 +35,7 @@
                   </TableView>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #DCDCDC;">
                <children>
                   <Label layoutX="141.0" layoutY="45.0" text="Detalhes do Funcionário">
                      <font>
@@ -60,21 +60,21 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label text="Nome" textFill="GAINSBORO" />
-                        <Label text="Código" textFill="GAINSBORO" GridPane.rowIndex="1" />
-                        <Label text="Matricula" textFill="GAINSBORO" GridPane.rowIndex="2" />
-                        <Label text="Cargo" textFill="GAINSBORO" GridPane.rowIndex="3" />
+                        <Label text="Nome" />
+                        <Label text="Código" GridPane.rowIndex="1" />
+                        <Label text="Matricula" GridPane.rowIndex="2" />
+                        <Label text="Cargo" GridPane.rowIndex="3" />
                         <Label GridPane.rowIndex="5" />
-                        <Label text="Rua" textFill="GAINSBORO" GridPane.rowIndex="6" />
-                        <Label text="Bairro" textFill="GAINSBORO" GridPane.rowIndex="7" />
-                        <Label text="UF" textFill="GAINSBORO" GridPane.rowIndex="8" />
-                        <Label text="Cidade" textFill="GAINSBORO" GridPane.rowIndex="5" />
-                        <Label text="Número" textFill="GAINSBORO" GridPane.rowIndex="9" />
+                        <Label text="Rua" GridPane.rowIndex="6" />
+                        <Label text="Bairro" GridPane.rowIndex="7" />
+                        <Label text="UF" GridPane.rowIndex="8" />
+                        <Label text="Cidade" GridPane.rowIndex="5" />
+                        <Label text="Número" GridPane.rowIndex="9" />
                         <Label fx:id="lbNome" GridPane.columnIndex="1" />
                         <Label fx:id="lbCodigo" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label fx:id="lbMatricula" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <Label fx:id="lbCargo" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Label text="Super Usuário" textFill="GAINSBORO" GridPane.rowIndex="4" />
+                        <Label text="Super Usuário" GridPane.rowIndex="4" />
                         <Label fx:id="lbCidade" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                         <Label fx:id="lbRua" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                         <Label fx:id="lbBairro" GridPane.columnIndex="1" GridPane.rowIndex="7" />
@@ -85,7 +85,7 @@
                   </GridPane>
                   <HBox layoutX="32.0" layoutY="438.0" prefHeight="17.0" prefWidth="200.0" spacing="5.0">
                      <children>
-                        <JFXTextField fx:id="tfBuscar" focusColor="#d0310d" unFocusColor="GAINSBORO" />
+                        <JFXTextField fx:id="tfBuscar" focusColor="#cf0e0e" unFocusColor="BLACK" />
                         <JFXButton fx:id="btnPesquisar" onAction="#acaoBtns" prefHeight="25.0" prefWidth="7.0">
                            <graphic>
                               <ImageView>
@@ -101,15 +101,15 @@
                      </children>
                   </HBox>
                   <Group layoutX="286.0" layoutY="438.0" />
-                  <JFXButton fx:id="btnInserir" layoutX="285.0" layoutY="438.0" onAction="#acaoBtns" ripplerFill="#10dd10" text="Inserir" textFill="GAINSBORO">
+                  <JFXButton fx:id="btnInserir" layoutX="285.0" layoutY="438.0" onAction="#acaoBtns" ripplerFill="#10dd10" style="-fx-background-color: #c6e30b;" text="Inserir">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></JFXButton>
-                  <JFXButton fx:id="btnEditar" layoutX="358.0" layoutY="438.0" onAction="#acaoBtns" ripplerFill="#11a9e1" text="Alterar" textFill="GAINSBORO">
+                  <JFXButton fx:id="btnEditar" layoutX="358.0" layoutY="438.0" onAction="#acaoBtns" ripplerFill="#11a9e1" style="-fx-background-color: #c6e30b;" text="Alterar">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></JFXButton>
-                  <JFXButton fx:id="btnExcluir" layoutX="442.0" layoutY="438.0" onAction="#acaoBtns" ripplerFill="#db1612" text="Excluir" textFill="GAINSBORO">
+                  <JFXButton fx:id="btnExcluir" layoutX="442.0" layoutY="438.0" onAction="#acaoBtns" ripplerFill="#db1612" style="-fx-background-color: #c6e30b;" text="Excluir">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></JFXButton>

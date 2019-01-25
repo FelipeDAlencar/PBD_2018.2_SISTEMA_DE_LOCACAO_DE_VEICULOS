@@ -20,11 +20,11 @@
 
 <AnchorPane id="AnchorPane" prefHeight="261.0" prefWidth="378.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.pbd_20182_sistema_locadora_de_veiculo.controller.FXMLAnchorPaneCadastroLocacaoDialogController">
    <children>
-      <ScrollPane layoutY="5.0" prefHeight="259.0" prefWidth="393.0">
+      <ScrollPane prefHeight="265.0" prefWidth="383.0">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="506.0" prefWidth="375.0" style="-fx-background-color: #3b5998;">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="544.0" prefWidth="367.0" style="-fx-background-color: #DCDCDC;">
                <children>
-                  <GridPane layoutX="56.0" layoutY="27.0" prefHeight="421.0" prefWidth="310.0">
+                  <GridPane layoutX="33.0" layoutY="70.0" prefHeight="421.0" prefWidth="310.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="173.0" minWidth="10.0" prefWidth="151.0" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.0" minWidth="10.0" prefWidth="139.0" />
@@ -46,22 +46,22 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label text="Motorista" textFill="GAINSBORO" GridPane.rowIndex="1" />
-                        <Label text="Veiculo" textFill="GAINSBORO" GridPane.rowIndex="2" />
-                        <Label text="Km incial" textFill="GAINSBORO" GridPane.rowIndex="4" />
-                        <Label text="Km final" textFill="GAINSBORO" GridPane.rowIndex="5" />
-                        <Label text="Metade da primeira diária" textFill="GAINSBORO" GridPane.rowIndex="6" />
-                        <Label text="Data ida" textFill="GAINSBORO" GridPane.rowIndex="7" />
-                        <Label text="Data volta" textFill="GAINSBORO" GridPane.rowIndex="8" />
-                        <Label text="Km livre" textFill="GAINSBORO" GridPane.rowIndex="11" />
-                        <Label text="Finalizada" textFill="GAINSBORO" GridPane.rowIndex="12" />
-                        <Label text="Valor" textFill="GAINSBORO" GridPane.rowIndex="13" />
-                        <Label text="Cliente" textFill="GAINSBORO" />
-                        <Label text="Taxa de higiênização" textFill="GAINSBORO" GridPane.rowIndex="9" />
-                        <Label text="Taxa de Combustível" textFill="GAINSBORO" GridPane.rowIndex="10" />
+                        <Label text="Motorista" GridPane.rowIndex="1" />
+                        <Label text="Veiculo" GridPane.rowIndex="2" />
+                        <Label text="Km incial" GridPane.rowIndex="4" />
+                        <Label text="Km final" GridPane.rowIndex="5" />
+                        <Label text="Metade da primeira diária" GridPane.rowIndex="6" />
+                        <Label text="Data ida" GridPane.rowIndex="7" />
+                        <Label text="Data volta" GridPane.rowIndex="8" />
+                        <Label text="Km livre" GridPane.rowIndex="11" />
+                        <Label text="Finalizada" GridPane.rowIndex="12" />
+                        <Label text="Valor" GridPane.rowIndex="13" />
+                        <Label text="Cliente" />
+                        <Label text="Taxa de higiênização" GridPane.rowIndex="9" />
+                        <Label text="Taxa de Combustível" GridPane.rowIndex="10" />
                         <HBox prefHeight="25.0" prefWidth="159.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <children>
-                              <JFXComboBox fx:id="comboMotorista" focusColor="#c23a10" prefHeight="25.0" prefWidth="101.0" unFocusColor="GAINSBORO" />
+                              <JFXComboBox fx:id="comboMotorista" focusColor="#c23a10" prefHeight="25.0" prefWidth="101.0" unFocusColor="BLACK" />
                               <Button fx:id="btnAddMortorista" mnemonicParsing="false" onAction="#acaoBtns">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
@@ -76,36 +76,34 @@
                               </Button>
                            </children>
                         </HBox>
-                        <Label text="Ponto de entrega" textFill="GAINSBORO" GridPane.rowIndex="3" />
-                        <JFXComboBox fx:id="comboPontoDeEntrega" focusColor="#c23a10" prefHeight="25.0" prefWidth="137.0" unFocusColor="GAINSBORO" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <JFXComboBox fx:id="comboVeiculo" focusColor="#c23a10" onAction="#AcaoCombos" prefHeight="25.0" prefWidth="137.0" unFocusColor="GAINSBORO" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <JFXComboBox fx:id="comboCliente" focusColor="#c23a10" prefHeight="25.0" prefWidth="143.0" unFocusColor="GAINSBORO" GridPane.columnIndex="1" />
-                        <JFXTextField fx:id="tfKmInicial" focusColor="#c23a10" unFocusColor="GAINSBORO" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <JFXTextField fx:id="tfKmFinal" focusColor="#c23a10" unFocusColor="GAINSBORO" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <JFXTextField fx:id="tfMetadeprimeiraDiaria" focusColor="#c23a10" unFocusColor="GAINSBORO" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label text="Ponto de entrega" GridPane.rowIndex="3" />
+                        <JFXComboBox fx:id="comboPontoDeEntrega" focusColor="#c23a10" prefHeight="25.0" prefWidth="137.0" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <JFXComboBox fx:id="comboVeiculo" focusColor="#c23a10" onAction="#AcaoCombos" prefHeight="25.0" prefWidth="137.0" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <JFXComboBox fx:id="comboCliente" focusColor="#c23a10" prefHeight="25.0" prefWidth="143.0" unFocusColor="BLACK" GridPane.columnIndex="1" />
+                        <JFXTextField fx:id="tfKmInicial" focusColor="#c23a10" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <JFXTextField fx:id="tfKmFinal" focusColor="#c23a10" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <JFXTextField fx:id="tfMetadeprimeiraDiaria" focusColor="#c23a10" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                         <JFXDatePicker fx:id="dpDataIda" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                         <JFXDatePicker fx:id="dpDataVolta" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                         <JFXCheckBox fx:id="cbTaxaHigienizacao" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                         <JFXCheckBox fx:id="cbTaxaCombustivel" GridPane.columnIndex="1" GridPane.rowIndex="10" />
                         <JFXCheckBox fx:id="cbKmLivre" GridPane.columnIndex="1" GridPane.rowIndex="11" />
                         <JFXCheckBox fx:id="cbFinalizada" GridPane.columnIndex="1" GridPane.rowIndex="12" />
-                        <JFXTextField fx:id="tfValor" focusColor="#c23a10" unFocusColor="GAINSBORO" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+                        <JFXTextField fx:id="tfValor" focusColor="#c23a10" unFocusColor="BLACK" GridPane.columnIndex="1" GridPane.rowIndex="13" />
                      </children>
                   </GridPane>
-                  <Group layoutX="103.0" layoutY="461.0">
-                     <children>
-                        <JFXButton fx:id="btnConfirmar" onAction="#acaoBtns" ripplerFill="#03ee13" text="Confirmar" textFill="GAINSBORO">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </JFXButton>
-                     </children>
-                  </Group>
-                  <JFXButton fx:id="btnCancelar" layoutX="229.0" layoutY="461.0" onAction="#acaoBtns" ripplerFill="#e10909" text="Cancelar" textFill="GAINSBORO">
+                  <Group layoutX="102.0" layoutY="491.0" />
+                  <JFXButton fx:id="btnCancelar" layoutX="207.0" layoutY="505.0" onAction="#acaoBtns" ripplerFill="#e10909" style="-fx-background-color: #c6e30b;" text="Cancelar">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </JFXButton>
+                  <JFXButton fx:id="btnConfirmar" layoutX="111.0" layoutY="505.0" onAction="#acaoBtns" ripplerFill="#03ee13" style="-fx-background-color: #c6e30b;" text="Confirmar">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </JFXButton>
+                  <JFXComboBox fx:id="comboReservas" focusColor="#c23a10" layoutX="176.0" layoutY="25.0" onAction="#AcaoCombos" prefHeight="25.0" prefWidth="167.0" promptText="Aproveitar de uma reserva" unFocusColor="BLACK" />
                </children>
             </AnchorPane>
         </content>

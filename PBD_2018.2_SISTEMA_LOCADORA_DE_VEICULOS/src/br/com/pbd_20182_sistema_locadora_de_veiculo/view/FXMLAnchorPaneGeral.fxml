@@ -29,18 +29,18 @@
                   </TableView>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="367.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="367.0" style="-fx-background-color: #DCDCDC;">
                <children>
-                  <Label layoutX="201.0" layoutY="37.0" text="Configurações" textFill="GAINSBORO">
+                  <Label layoutX="201.0" layoutY="37.0" text="Configurações">
                      <font>
                         <Font name="Arial Bold" size="22.0" />
                      </font>
                   </Label>
-                  <Label layoutX="26.0" layoutY="98.0" text="Resetar Senha" textFill="#eae3e3" />
+                  <Label layoutX="26.0" layoutY="98.0" text="Resetar Senha" />
                   <HBox layoutX="26.0" layoutY="128.0" prefHeight="26.0" prefWidth="217.0" spacing="5.0">
                      <children>
-                        <JFXTextField fx:id="tfPesquisa" focusColor="#e42f0b" unFocusColor="#eae3e3" />
-                        <JFXButton fx:id="btnPesquisa" onAction="#acaoBtns" prefHeight="25.0" prefWidth="78.0" text="Pesquisar">
+                        <JFXTextField fx:id="tfPesquisa" focusColor="#e42f0b" unFocusColor="BLACK" />
+                        <JFXButton fx:id="btnPesquisa" onAction="#acaoBtns" prefHeight="25.0" prefWidth="78.0" style="-fx-background-color: #c6e30b;" text="Pesquisar">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -49,44 +49,44 @@
                   </HBox>
                   <Separator layoutX="276.0" layoutY="70.0" orientation="VERTICAL" prefHeight="399.0" prefWidth="3.0" />
                   <Separator layoutX="29.0" layoutY="204.0" prefHeight="9.0" prefWidth="217.0" />
-                  <Label layoutX="27.0" layoutY="222.0" text="Taxa de higienização" textFill="#eae3e3" />
+                  <Label layoutX="27.0" layoutY="222.0" text="Taxa de higienização" />
                   <HBox layoutX="27.0" layoutY="245.0" prefHeight="25.0" prefWidth="149.0">
                      <children>
-                        <JFXTextField fx:id="tfTaxaHigienizacao" focusColor="#e42f0b" unFocusColor="#eae3e3" />
+                        <JFXTextField fx:id="tfTaxaHigienizacao" focusColor="#e42f0b" unFocusColor="BLACK" />
                      </children>
                   </HBox>
                   <HBox layoutX="28.0" layoutY="308.0" prefHeight="26.0" prefWidth="149.0">
                      <children>
-                        <JFXTextField fx:id="tfTaxaCombustivel" focusColor="#e42f0b" unFocusColor="#eae3e3" />
+                        <JFXTextField fx:id="tfTaxaCombustivel" focusColor="#e42f0b" unFocusColor="BLACK" />
                      </children>
                   </HBox>
-                  <Label layoutX="27.0" layoutY="278.0" text="Taxa de Combustivel" textFill="#eae3e3" />
-                  <Label layoutX="26.0" layoutY="351.0" text="Metade da primeira diária" textFill="#eae3e3" />
-                  <Label layoutX="292.0" layoutY="98.0" text="Valor adicional do Km Livre" textFill="#eae3e3" />
-                  <Label layoutX="292.0" layoutY="162.0" text="Valor do Km controle" textFill="#eae3e3" />
+                  <Label layoutX="27.0" layoutY="278.0" text="Taxa de Combustivel" />
+                  <Label layoutX="26.0" layoutY="351.0" text="Metade da primeira diária" />
+                  <Label layoutX="292.0" layoutY="98.0" text="Valor adicional do Km Livre" />
+                  <Label layoutX="292.0" layoutY="162.0" text="Valor do Km controle" />
                   <Separator layoutX="292.0" layoutY="229.0" prefHeight="3.0" prefWidth="217.0" />
-                  <Label layoutX="292.0" layoutY="249.0" text="Tempo de limpeza e revisão" textFill="#eae3e3" />
-                  <JFXTimePicker fx:id="tmTemDeLimpezaERevisao" defaultColor="#b9b1b1" layoutX="437.0" layoutY="279.0" onAction="#acaoRelogio" prefHeight="25.0" prefWidth="6.0">
+                  <Label layoutX="292.0" layoutY="249.0" text="Tempo de limpeza e revisão" />
+                  <JFXTimePicker fx:id="tmTemDeLimpezaERevisao" defaultColor="BLACK" layoutX="437.0" layoutY="279.0" onAction="#acaoRelogio" prefHeight="25.0" prefWidth="6.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></JFXTimePicker>
-                  <JFXButton fx:id="btnResetar" layoutX="26.0" layoutY="171.0" onAction="#acaoBtns" text="Resetar senha">
+                  <JFXButton fx:id="btnResetar" layoutX="26.0" layoutY="171.0" onAction="#acaoBtns" style="-fx-background-color: #c6e30b;" text="Resetar senha">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </JFXButton>
-                  <JFXButton fx:id="btnAlterarTaxas" layoutX="29.0" layoutY="414.0" onAction="#acaoBtns" text="Alterar">
+                  <JFXButton fx:id="btnAlterarTaxas" layoutX="29.0" layoutY="414.0" onAction="#acaoBtns" style="-fx-background-color: #c6e30b;" text="Alterar">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </JFXButton>
-                  <JFXTextField fx:id="tfMetadePrimeiraDiaria" focusColor="#e42f0b" layoutX="27.0" layoutY="375.0" unFocusColor="#eae3e3" />
-                  <JFXTextField fx:id="tfKmLivre" focusColor="#e42f0b" layoutX="289.0" layoutY="129.0" unFocusColor="#eae3e3" />
-                  <JFXTextField fx:id="tfKmControle" focusColor="#e42f0b" layoutX="289.0" layoutY="192.0" unFocusColor="#eae3e3" />
-                  <JFXTextField fx:id="tfTempoLimpezaRevisao" focusColor="#eae3e3" layoutX="288.0" layoutY="266.0" />
-                  <Label layoutX="289.0" layoutY="313.0" text="Horário de backup" textFill="#eae3e3" />
-                  <JFXTimePicker fx:id="tmHorabackup" defaultColor="#b9b1b1" layoutX="437.0" layoutY="347.0" onAction="#acaoRelogio" prefHeight="25.0" prefWidth="36.0" />
-                  <JFXTextField fx:id="tfHoraBackup" layoutX="289.0" layoutY="347.0" prefHeight="25.0" prefWidth="137.0" />
+                  <JFXTextField fx:id="tfMetadePrimeiraDiaria" focusColor="#e42f0b" layoutX="27.0" layoutY="375.0" unFocusColor="BLACK" />
+                  <JFXTextField fx:id="tfKmLivre" focusColor="#e42f0b" layoutX="289.0" layoutY="129.0" unFocusColor="BLACK" />
+                  <JFXTextField fx:id="tfKmControle" focusColor="#e42f0b" layoutX="289.0" layoutY="192.0" unFocusColor="BLACK" />
+                  <JFXTextField fx:id="tfTempoLimpezaRevisao" focusColor="#eae3e3" layoutX="288.0" layoutY="266.0" unFocusColor="BLACK" />
+                  <Label layoutX="289.0" layoutY="313.0" text="Horário de backup" />
+                  <JFXTimePicker fx:id="tmHorabackup" defaultColor="BLACK" layoutX="437.0" layoutY="347.0" onAction="#acaoRelogio" prefHeight="25.0" prefWidth="36.0" />
+                  <JFXTextField fx:id="tfHoraBackup" layoutX="289.0" layoutY="347.0" prefHeight="25.0" prefWidth="137.0" unFocusColor="BLACK" />
                </children>
             </AnchorPane>
         </items>
