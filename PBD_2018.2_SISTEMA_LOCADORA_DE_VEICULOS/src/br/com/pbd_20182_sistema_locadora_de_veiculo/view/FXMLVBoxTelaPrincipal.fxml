@@ -41,6 +41,7 @@
                      <items>
                         <MenuItem fx:id="menuItemConfiguracoes" mnemonicParsing="false" onAction="#acaoMenuItemConfiguracoes" text="Configurações" />
                         <MenuItem fx:id="menuItemSair" mnemonicParsing="false" onAction="#acaoMenuItemConfiguracoes" text="Sair" />
+                        <MenuItem fx:id="menuItemAlterarSenha" mnemonicParsing="false" onAction="#acaoMenuItemConfiguracoes" text="Alterar senha" />
                      </items></Menu>
                   <Menu fx:id="menuFinanceiro" mnemonicParsing="false" text="Financeiro">
                     <items>

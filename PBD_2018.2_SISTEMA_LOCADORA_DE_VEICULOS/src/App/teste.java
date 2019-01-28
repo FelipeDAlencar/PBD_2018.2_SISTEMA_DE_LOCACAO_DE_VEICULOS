@@ -53,12 +53,9 @@ public class teste {
 
     public static void main(String[] args) throws DAOException, ParseException, JRException {
 
-        DAOContasAPagar daocap = new DAOContasAPagar();
-        Date date1 = new Date(119, 0, 15);
-        Date date2 = new Date(119, 0, 17);
-
-        System.err.println(date1 + " - " + date2);
-        System.err.println(daocap.buscarContaAPagarPorPeriodo(date1, date2));
+       DAOContasAPagar daocap = new DAOContasAPagar();
+       
+        System.err.println(daocap.buscarPorBuscaContaAPagar("200"));
 
 //        System.err.println(format.parse(format.format(new Date())));
 //

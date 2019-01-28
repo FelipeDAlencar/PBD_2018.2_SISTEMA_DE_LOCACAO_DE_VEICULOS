@@ -5,6 +5,7 @@
  */
 package br.com.pbd_20182_sistema_locadora_de_veiculo.controller;
 
+import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.BusinessExpection;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.fachada.Fachada;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ContaAPagar;
@@ -91,10 +92,14 @@ public class FXMLAnchorPaneContaAPagarController implements Initializable {
         tableView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> selecionouDaTabea(newValue));
 
+        colunaDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
+        colunaSituacao.setCellValueFactory(new PropertyValueFactory<>("pago"));
+        colunaValor.setCellValueFactory(new PropertyValueFactory<>("valor"));
+
     }
 
     @FXML
-    void acaoBtns(ActionEvent e) throws DAOException {
+    void acaoBtns(ActionEvent e) throws DAOException, BusinessExpection {
 
         if (e.getSource() == btnBuscar) {
 
@@ -102,6 +107,7 @@ public class FXMLAnchorPaneContaAPagarController implements Initializable {
                 carregarTabela(fachada.listarTodasContasAPagar());
             } else {
 
+                carregarTabela(fachada.buscarPorBuscaContaAPagar(tfBuscar.getText()));
             }
 
         }
@@ -115,6 +121,8 @@ public class FXMLAnchorPaneContaAPagarController implements Initializable {
                 Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
                 alerta.alertar(Alert.AlertType.INFORMATION, "Sucesso", "Inserir conta a pagar", "Conta a pagarw "
                         + "Inserida com Sucesso.");
+                carregarTabela(fachada.listarTodasContasAPagar());
+
             }
         }
 
@@ -129,7 +137,7 @@ public class FXMLAnchorPaneContaAPagarController implements Initializable {
                 if (sucesso) {
 
                     fachada.salvarContaAPagar(contaAPagar);
-                    
+
                     Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
                     alerta.alertar(Alert.AlertType.INFORMATION, "Sucesso", "Sucesso", "Edição realizada "
                             + "com sucesso");
@@ -155,6 +163,7 @@ public class FXMLAnchorPaneContaAPagarController implements Initializable {
                 Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
                 alerta.alertar(Alert.AlertType.INFORMATION, "Sucesso", "Sucesso", "Exclusão realizada "
                         + "com sucesso");
+                carregarTabela(fachada.listarTodasContasAPagar());
 
             } else {
                 Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
@@ -163,16 +172,12 @@ public class FXMLAnchorPaneContaAPagarController implements Initializable {
             }
 
         }
-        carregarTabela(fachada.listarTodasContasAPagar());
 
     }
 
     public void carregarTabela(ArrayList<ContaAPagar> contaAPagars) {
-        
-        tableView.getItems().clear();   
-        colunaDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
-        colunaSituacao.setCellValueFactory(new PropertyValueFactory<>("pago"));
-        colunaValor.setCellValueFactory(new PropertyValueFactory<>("valor"));
+
+        tableView.getItems().clear();
 
         obsContasAPagar = FXCollections.observableArrayList(contaAPagars);
 

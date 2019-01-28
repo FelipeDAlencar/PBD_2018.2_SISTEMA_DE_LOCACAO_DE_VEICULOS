@@ -28,6 +28,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXPasswordField fx:id="tfSenha" focusColor="#9e2e28" layoutX="78.0" layoutY="246.0" prefHeight="24.0" prefWidth="245.0" promptText="Senha" unFocusColor="BLACK" />
+      <JFXPasswordField fx:id="tfSenha" focusColor="#9e2e28" layoutX="85.0" layoutY="246.0" prefHeight="24.0" prefWidth="245.0" promptText="Senha" unFocusColor="BLACK" />
    </children>
 </AnchorPane>

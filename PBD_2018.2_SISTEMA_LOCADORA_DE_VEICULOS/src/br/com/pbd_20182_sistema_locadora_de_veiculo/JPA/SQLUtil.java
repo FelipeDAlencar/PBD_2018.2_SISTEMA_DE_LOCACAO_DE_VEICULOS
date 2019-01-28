@@ -104,15 +104,17 @@ public class SQLUtil {
 
         public static String SQL_BUSCAR_POR_BUSCA = "select r from ReservaPessoasCategorias r INNER JOIN Pessoa p ON r.pessoa = p.id\n"
                 + "INNER JOIN Categoria c ON r.categoria = c.id WHERE r.ativo = true and LOWER(p.nome) like :NomeCliente or LOWER(c.nome) like :nomeCategoria  or to_char(r.dataHora, 'dd/MM/yyyy') like :dataHora ";
-   
+
         public static String SQL_BUSCAR_RESERVA_POR_PERIODO = "select v  from ViewReservasPorPeriodo v  where dataReserva between :dataInicial and :dataFinal";
     }
-    
-    public static class Revisao{
+
+    public static class Revisao {
+
         public static String SQL_BUSCAR_REVISOES_POR_VEICULO = "select v from ViewHistoricoPorVeiculo v where veiculoId = :veiculo_id";
-                public static String SQL_BUSCAR_REVISOES = "select v from ViewHistoricoPorVeiculo v ";
+        public static String SQL_BUSCAR_REVISOES = "select v from ViewHistoricoPorVeiculo v ";
 
     }
+
     public static class Locacao {
 
         public static final String SQL_PROCEDURE_CALCULAR_INTERVALO_DE_ATRASO = "calculardiferencadedatalocacao";
@@ -122,14 +124,17 @@ public class SQLUtil {
         public static final String SQL_BUSCAR_LOCACAO_POR_MOTORISTA = "select v  from ViewMotoristaPorLocacao v  where motoId = :id";
         public static final String SQL_BUSCAR_LOCACAO_POR_PERIODO = "select v  from ViewLocacaoPorPeriodo v  where dataIda between :dataInicial and :dataFinal";
     }
-    
-    public static class ContaAPagar{
-        public static  String  SQL_BUSCAR_CONTA_A_PAGAR_POR_PERIODO = "select v  from ContaAPagar v  where v.dataVencimento between :dataInicial and :dataFinal";
-        
+
+    public static class ContaAPagar {
+
+        public static String SQL_BUSCAR_CONTA_A_PAGAR_POR_PERIODO = "select v  from ContaAPagar v  where v.dataVencimento between :dataInicial and :dataFinal";
+        public static String SQL_BUSCAR_POR_BUSCA = "select c from ContaAPagar c WHERE  LOWER(c.descricao) like :descricao or to_char(c.valor,'999D9') like :valor  or to_char(c.dataVencimento, 'yyyy/MM/dd') like :dataVencimento ";
     }
-    
-    public static class ContaAReceber{
-        public static  String  SQL_BUSCAR_CONTA_A_RECEBER_POR_PERIODO = "select v  from ContaAReceber v  where v.dataRecebimento between :dataInicial and :dataFinal";
+
+    public static class ContaAReceber {
+
+        public static String SQL_BUSCAR_CONTA_A_RECEBER_POR_PERIODO = "select v  from ContaAReceber v  where v.dataRecebimento between :dataInicial and :dataFinal";
+         public static String SQL_BUSCAR_POR_BUSCA = "select c from ContaAReceber c WHERE  LOWER(c.descricao) like :descricao or to_char(c.valor,'999D9') like :valor  or to_char(c.dataRecebimento, 'yyyy/MM/dd') like :dataRecebimento ";
     }
 
     public static final String NOME_BD_CONEXAO_POSTGRES = "POSTGRES";

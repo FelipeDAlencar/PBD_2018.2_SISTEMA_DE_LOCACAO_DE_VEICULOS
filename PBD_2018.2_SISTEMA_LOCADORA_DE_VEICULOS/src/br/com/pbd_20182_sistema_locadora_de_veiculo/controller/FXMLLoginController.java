@@ -52,7 +52,7 @@ public class FXMLLoginController implements Initializable {
     private DAOPessoa dAOPessoa = new DAOPessoa();
     private FXMLVBoxTelaPrincipalController controllerPrincipal;
     private FXMLAnchorPaneTelaDeMudancaDeSenhaController controllerMudancaSenha;
-    public static Pessoa pessoa;
+    public static Pessoa usuario;
 
     public FXMLLoginController(Stage stage) {
         this.stage = stage;
@@ -92,7 +92,7 @@ public class FXMLLoginController implements Initializable {
 
         pessoa = dAOPessoa.buscarLogin(pessoa);
 
-        this.pessoa = pessoa;
+        this.usuario = pessoa;
         if (pessoa != null) {
             if (!verificarPrimeiroAcesso(pessoa)) {
                 exibirTelaPrincipal(pessoa);

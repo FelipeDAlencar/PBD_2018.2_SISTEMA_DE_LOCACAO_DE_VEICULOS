@@ -142,9 +142,9 @@ public class FXMLAnchorPaneCadastroReservaDialogController implements Initializa
 
     public void carregarCombos() throws DAOException {
          ArrayList<Pessoa> pessoas = null;
-        if (FXMLLoginController.pessoa instanceof PessoaFisica || FXMLLoginController.pessoa instanceof PessoaJuridica) {
+        if (FXMLLoginController.usuario instanceof PessoaFisica || FXMLLoginController.usuario instanceof PessoaJuridica) {
            pessoas = new ArrayList<>();
-           pessoas.add(FXMLLoginController.pessoa);
+           pessoas.add(FXMLLoginController.usuario);
            comboClientes.setValue(pessoas.get(0));
            comboClientes.setDisable(true);
             

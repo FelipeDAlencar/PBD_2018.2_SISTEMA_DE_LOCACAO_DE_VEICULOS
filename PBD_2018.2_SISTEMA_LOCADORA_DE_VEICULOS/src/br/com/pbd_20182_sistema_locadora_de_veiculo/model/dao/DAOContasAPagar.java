@@ -42,7 +42,8 @@ public class DAOContasAPagar extends DAOGenerico<ContaAPagar> implements IDAOCon
 
     }
 
-    public ArrayList<ContaAPagar> buscarContaAPagarPorPeriodo(Date dataInicial, Date dataFinal) 
+    @Override
+    public ArrayList<ContaAPagar> buscarContaAPagarPorPeriodo(Date dataInicial, Date dataFinal)
             throws DAOException {
 
         EntityManager em = ConnectionFactory.getInstance().getConnection();
@@ -52,6 +53,29 @@ public class DAOContasAPagar extends DAOGenerico<ContaAPagar> implements IDAOCon
             TypedQuery<ContaAPagar> query = em.createQuery(SQLUtil.ContaAPagar.SQL_BUSCAR_CONTA_A_PAGAR_POR_PERIODO, ContaAPagar.class);
             query.setParameter("dataInicial", dataInicial);
             query.setParameter("dataFinal", dataFinal);
+
+            contasAPagar = (ArrayList<ContaAPagar>) query.getResultList();
+
+            return contasAPagar;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new DAOException("ERRO AO BUSCAR CONTAS A PAGAR NO BANCO DE DADOS.");
+        } finally {
+            em.close();
+        }
+
+    }
+
+    @Override
+    public ArrayList<ContaAPagar> buscarPorBuscaContaAPagar(String busca) throws DAOException {
+        EntityManager em = ConnectionFactory.getInstance().getConnection();
+        ArrayList<ContaAPagar> contasAPagar = null;
+        busca = "%" + busca.toLowerCase() + "%";
+        try {
+            TypedQuery<ContaAPagar> query = em.createQuery(SQLUtil.ContaAPagar.SQL_BUSCAR_POR_BUSCA, ContaAPagar.class);
+            query.setParameter("descricao", busca);
+            query.setParameter("valor", busca);
+            query.setParameter("dataVencimento", busca);
 
             contasAPagar = (ArrayList<ContaAPagar>) query.getResultList();
 

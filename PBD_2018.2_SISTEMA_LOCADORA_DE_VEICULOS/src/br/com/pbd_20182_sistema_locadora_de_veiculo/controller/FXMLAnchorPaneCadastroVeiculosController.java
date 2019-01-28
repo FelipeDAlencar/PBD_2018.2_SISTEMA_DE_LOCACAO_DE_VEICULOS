@@ -122,7 +122,7 @@ public class FXMLAnchorPaneCadastroVeiculosController implements Initializable {
 
         cbDisponivel.setDisable(true);
 
-        if (FXMLLoginController.pessoa instanceof PessoaFisica || FXMLLoginController.pessoa instanceof PessoaJuridica) {
+        if (FXMLLoginController.usuario instanceof PessoaFisica || FXMLLoginController.usuario instanceof PessoaJuridica) {
             btnEditar.setDisable(true);
             btnExcluir.setDisable(true);
             btnInserir.setDisable(true);

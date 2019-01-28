@@ -20,4 +20,6 @@ public interface IDAOContaAReceber {
 
     public ArrayList<ContaAReceber> buscarContaAReceberPorPeriodo(Date dataInicial, Date dataFinal)
             throws DAOException;
+
+    public ArrayList<ContaAReceber> buscarPorBuscaContaAReceber(String busca) throws DAOException;
 }

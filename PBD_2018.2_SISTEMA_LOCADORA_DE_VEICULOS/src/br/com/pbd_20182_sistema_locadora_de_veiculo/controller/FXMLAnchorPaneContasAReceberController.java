@@ -93,7 +93,7 @@ public class FXMLAnchorPaneContasAReceberController implements Initializable {
         tableView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> selecionouDaTabea(newValue));
     }
-    
+
     @FXML
     void acaoBtns(ActionEvent e) throws DAOException {
 
@@ -102,7 +102,7 @@ public class FXMLAnchorPaneContasAReceberController implements Initializable {
             if (tfBuscar.getText().length() == 0) {
                 carregarTabela(fachada.listarTodasContasAReceber());
             } else {
-
+                carregarTabela(fachada.buscarPorBuscaContaAReceber(tfBuscar.getText()));
             }
 
         }
@@ -116,7 +116,10 @@ public class FXMLAnchorPaneContasAReceberController implements Initializable {
                 Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
                 alerta.alertar(Alert.AlertType.INFORMATION, "Sucesso", "Inserir conta a pagar", "Conta a pagarw "
                         + "Inserida com Sucesso.");
+                carregarTabela(fachada.listarTodasContasAReceber());
+
             }
+
         }
 
         if (e.getSource() == btnEditar) {
@@ -134,6 +137,7 @@ public class FXMLAnchorPaneContasAReceberController implements Initializable {
                     Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
                     alerta.alertar(Alert.AlertType.INFORMATION, "Sucesso", "Sucesso", "Edição realizada "
                             + "com sucesso");
+                    carregarTabela(fachada.listarTodasContasAReceber());
 
                 }
 
@@ -155,6 +159,7 @@ public class FXMLAnchorPaneContasAReceberController implements Initializable {
                 Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
                 alerta.alertar(Alert.AlertType.INFORMATION, "Sucesso", "Sucesso", "Exclusão realizada "
                         + "com sucesso");
+                carregarTabela(fachada.listarTodasContasAReceber());
 
             } else {
                 Alerta alerta = Alerta.getInstace(Alert.AlertType.NONE);
@@ -163,7 +168,6 @@ public class FXMLAnchorPaneContasAReceberController implements Initializable {
             }
 
         }
-        carregarTabela(fachada.listarTodasContasAReceber());
 
     }
 

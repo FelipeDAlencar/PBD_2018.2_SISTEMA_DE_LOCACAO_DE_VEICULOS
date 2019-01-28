@@ -21,4 +21,6 @@ public interface IDAOContasAPagar {
     public ArrayList<ContaAPagar> buscarContaAPagarPorPeriodo(Date dataInicial, Date dataFinal)
             throws DAOException;
 
+    public ArrayList<ContaAPagar> buscarPorBuscaContaAPagar(String busca)throws DAOException;
+
 }

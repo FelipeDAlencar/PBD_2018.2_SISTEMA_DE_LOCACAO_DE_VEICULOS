@@ -5,6 +5,7 @@
  */
 package br.com.pbd_20182_sistema_locadora_de_veiculo.model.business;
 
+import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.BusinessExpection;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ContaAPagar;
 import java.util.ArrayList;
@@ -17,13 +18,13 @@ import java.util.Date;
 public interface IBusinnessContasAPagar {
 
     public ArrayList<ContaAPagar> listarTodasContasAPagar() throws DAOException;
-   
-  
-    public void salvarContaAPagar(ContaAPagar contaAPagar) throws DAOException;
-       
+
+    public void salvarContaAPagar(ContaAPagar contaAPagar) throws DAOException, BusinessExpection;
+
     public void excluirContaAPagar(ContaAPagar contaAPagar) throws DAOException;
-    
-    public ArrayList<ContaAPagar> buscarContaAPagarPorPeriodo(Date dataInicial, Date dataFinal) 
+
+    public ArrayList<ContaAPagar> buscarContaAPagarPorPeriodo(Date dataInicial, Date dataFinal)
             throws DAOException;
-      
+
+    public ArrayList<ContaAPagar> buscarPorBuscaContaAPagar(String busca) throws DAOException;
 }

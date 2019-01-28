@@ -40,6 +40,7 @@ public class DAOContaAReceber extends DAOGenerico<ContaAReceber> implements IDAO
 
     }
 
+    @Override
     public ArrayList<ContaAReceber> buscarContaAReceberPorPeriodo(Date dataInicial, Date dataFinal)
             throws DAOException {
 
@@ -50,6 +51,28 @@ public class DAOContaAReceber extends DAOGenerico<ContaAReceber> implements IDAO
             TypedQuery<ContaAReceber> query = em.createQuery(SQLUtil.ContaAReceber.SQL_BUSCAR_CONTA_A_RECEBER_POR_PERIODO, ContaAReceber.class);
             query.setParameter("dataInicial", dataInicial);
             query.setParameter("dataFinal", dataFinal);
+
+            contaAReceber = (ArrayList<ContaAReceber>) query.getResultList();
+
+            return contaAReceber;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new DAOException("ERRO AO BUSCAR CONTAS A PAGAR NO BANCO DE DADOS.");
+        } finally {
+            em.close();
+        }
+
+    }
+
+    public ArrayList<ContaAReceber> buscarPorBuscaContaAReceber(String busca) throws DAOException {
+        EntityManager em = ConnectionFactory.getInstance().getConnection();
+        ArrayList<ContaAReceber> contaAReceber = null;
+        busca = "%" + busca.toLowerCase() + "%";
+        try {
+            TypedQuery<ContaAReceber> query = em.createQuery(SQLUtil.ContaAReceber.SQL_BUSCAR_POR_BUSCA, ContaAReceber.class);
+            query.setParameter("descricao", busca);
+            query.setParameter("valor", busca);
+            query.setParameter("dataRecebimento", busca);
 
             contaAReceber = (ArrayList<ContaAReceber>) query.getResultList();
 

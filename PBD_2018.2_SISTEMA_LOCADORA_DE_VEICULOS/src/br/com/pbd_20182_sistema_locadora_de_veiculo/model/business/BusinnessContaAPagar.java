@@ -5,6 +5,7 @@
  */
 package br.com.pbd_20182_sistema_locadora_de_veiculo.model.business;
 
+import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.BusinessExpection;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.exception.DAOException;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.ContaAPagar;
 import br.com.pbd_20182_sistema_locadora_de_veiculo.model.dao.DAOContasAPagar;
@@ -24,7 +25,8 @@ public class BusinnessContaAPagar implements IBusinnessContasAPagar {
     }
 
     @Override
-    public void salvarContaAPagar(ContaAPagar contaAPagar) throws DAOException {
+    public void salvarContaAPagar(ContaAPagar contaAPagar) throws DAOException,BusinessExpection {
+        validar(contaAPagar);
         daocap.salvar(contaAPagar);
 
     }
@@ -40,10 +42,36 @@ public class BusinnessContaAPagar implements IBusinnessContasAPagar {
         return daocap.findAll();
     }
 
+    @Override
     public ArrayList<ContaAPagar> buscarContaAPagarPorPeriodo(Date dataInicial, Date dataFinal)
             throws DAOException {
 
         return daocap.buscarContaAPagarPorPeriodo(dataInicial, dataFinal);
+    }
+
+    @Override
+    public ArrayList<ContaAPagar> buscarPorBuscaContaAPagar(String busca) throws DAOException {
+        return daocap.buscarPorBuscaContaAPagar(busca);
+    }
+
+    private void validar(ContaAPagar contaAPagar) throws BusinessExpection {
+        String erroMessage = "";
+
+        if (!(contaAPagar.getDataVencimento() != null)) {
+            erroMessage += "Por favor, informe uma data válida.";
+        }
+        if (contaAPagar.getDescricao().length() == 0) {
+            erroMessage += "Por favor, ingorme a decrição da conta.";
+
+        }
+        if (contaAPagar.getValor() < 0) {
+            erroMessage += "Informe o valor da conta.";
+        }
+
+        if (erroMessage.length() != 0) {
+            throw new BusinessExpection(erroMessage);
+        }
+
     }
 
 }
