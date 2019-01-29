@@ -50,9 +50,9 @@ public class BusinessVeiculo implements IBusinessVeiculos {
     private void validar(Veiculo veiculo) throws BusinessExpection {
         String errorMessage = "";
 
-        if (String.valueOf(veiculo.getAnoDeFabricacao()).length() < 4) {
-            errorMessage += "Por favor, informe um número de chassi válido.";
-        }
+//        if (String.valueOf(veiculo.getAnoDeFabricacao()).length() < 4) {
+//            errorMessage += "Por favor, informe um número de chassi válido.";
+//        }
 
         if (String.valueOf(veiculo.getAnoDoModelo()).length() < 4) {
             errorMessage += "Por favor, informe um ano válido.";
@@ -71,9 +71,9 @@ public class BusinessVeiculo implements IBusinessVeiculos {
             errorMessage += "Por favor, informe o fabricante.";
         }
 
-        if (String.valueOf(veiculo.getNumeroChassi()).length() != 17) {
-            errorMessage += "Por favor, informe o número de chassi válido";
-        }
+//        if (String.valueOf(veiculo.getNumeroChassi()).length() != 17) {
+//            errorMessage += "Por favor, informe o número de chassi válido";
+//        }
         if (veiculo.getPlaca().length() != 9) {
             errorMessage += "Por favor, informe uma placa válida.";
         }

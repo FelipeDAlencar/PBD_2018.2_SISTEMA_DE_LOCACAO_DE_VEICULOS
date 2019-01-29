@@ -27,7 +27,7 @@ import javax.swing.JOptionPane;
  */
 public class Backup implements Initializable {
 
-    private static final String caminhoBackup = "C:/BKPCECOM";
+    private static final String caminhoBackup = "C:/BKP";
     private static final String senha = "81540106";
     private static final String nomeBanco = "PBD_2018.2_SISTEMA_LOCADORA_DE_VEICULOS";
     private static final String caminhoDump = "C:\\Program Files\\PostgreSQL\\10\\bin\\pg_dump.exe";

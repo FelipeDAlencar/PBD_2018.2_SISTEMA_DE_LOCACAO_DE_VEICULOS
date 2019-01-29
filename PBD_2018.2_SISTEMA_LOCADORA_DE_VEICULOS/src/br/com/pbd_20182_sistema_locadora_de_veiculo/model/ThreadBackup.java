@@ -46,7 +46,10 @@ public class ThreadBackup extends Task<Integer> {
 
                 int horaAtual = calHoraAtual.get(Calendar.HOUR_OF_DAY);
                 int minutoAtual = calHoraAtual.get(Calendar.MINUTE);
-
+                    
+                
+                System.err.println(horaBack + " - " + minutoBack);
+                System.err.println(horaAtual + " - " + minutoAtual);
                 if (horaBack >= horaAtual && minutoBack == minutoAtual) {
 
                     Backup.realizaBackup();
